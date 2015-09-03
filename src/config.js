@@ -3,7 +3,8 @@ var config = {
         retry: 3
     },
     flash: {
-        url: "ya/audio/flash/build/player.swf", //FIXME: сделать адекватный путь после настройки сборки
+        path: "dist",
+        name: "player-2_0.swf",
         version: "9.0.28",
         playerID: "YaMusicFlashPlayer",
         callback: "__flash__YaMusicFlashCallback",

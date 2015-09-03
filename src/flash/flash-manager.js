@@ -31,7 +31,7 @@ var FlashManager = function(overlay) { // singleton!
 
     window[config.flash.callback] = this.onEvent.bind(this);
     this.__loadTimeout = setTimeout(this.onLoadTimeout, config.flash.loadTimeout);
-    flashLoader(config.flash.url, config.flash.version, config.flash.playerID, this.onLoad.bind(this), {}, overlay);
+    flashLoader(config.flash.path + "/" + config.flash.name, config.flash.version, config.flash.playerID, this.onLoad.bind(this), {}, overlay);
 
     if (overlay) {
         var timeout;
