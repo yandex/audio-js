@@ -59,9 +59,9 @@ Logger._formatTimestamp = function(timestamp) {
 LEVELS.forEach(function(level) {
     Logger.prototype[level] = function() {
         var args = [].slice.call(arguments);
-        args.unshift(level);
         args.unshift(this.channel);
-        Logger.log.call(Logger, args);
+        args.unshift(level);
+        Logger.log.apply(Logger, args);
     };
 });
 
