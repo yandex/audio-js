@@ -15,4 +15,4 @@ all: clean
 	$(UGLIFY_JS) $(BUILDDIR)/index.js > $(BUILDDIR)/index.min.js
 
 
-.PHONY: all
+.PHONY: all clean
