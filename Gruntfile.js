@@ -56,7 +56,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('build', ['clean', 'mkdir', 'browserify', 'copy']);
+    grunt.registerTask('all', ['build', 'uglify']);
 
     // Default task.
-    grunt.registerTask('default', ['build', 'uglify']);
+    grunt.registerTask('default', ['all']);
 };
