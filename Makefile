@@ -17,6 +17,7 @@ clean:
 build: clean
 	@mkdir -p -- $(BUILDDIR)
 	$(BROWSERIFY) ./src/index.js > $(BUILDDIR)/index.js
+	cp ./src/flash/build/player-2_0.swf $(BUILDDIR)/player-2_0.swf
 
 
 minify: build

@@ -36,8 +36,15 @@ module.exports = function(grunt) {
                 dest: BUILDDIR + '/index.min.js',
                 options: {
                     sourceMap: true,
-                    sourceMapName : BUILDDIR + "/index.map.json"
+                    sourceMapName: BUILDDIR + "/index.map.json"
                 }
+            }
+        },
+
+        copy: {
+            build: {
+                src: "./src/flash/build/player-2_0.swf",
+                dest: BUILDDIR + "/player-2_0.swf"
             }
         }
     });
@@ -46,7 +53,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
+    grunt.registerTask('build', ['clean', 'mkdir', 'browserify', 'copy']);
 
     // Default task.
-    grunt.registerTask('default', ['clean', 'mkdir', 'browserify', 'uglify']);
+    grunt.registerTask('default', ['build', 'uglify']);
 };
