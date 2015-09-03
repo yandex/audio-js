@@ -5,3 +5,4 @@ grunt-browserify
 grunt-contrib-clean
 grunt-contrib-uglify
 grunt-mkdir
+node_modules/.bin
