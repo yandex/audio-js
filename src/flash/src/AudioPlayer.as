@@ -1,4 +1,4 @@
-package src.flash.src {
+package {
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.events.IOErrorEvent;

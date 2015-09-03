@@ -1,11 +1,11 @@
 var config = require('../config');
-var swfobject = require('./browser/swfobject');
-var detect = require('./browser/detect');
-var Logger = require('./logger');
+var swfobject = require('../lib/browser/swfobject');
+var detect = require('../lib/browser/detect');
+var Logger = require('../logger/logger');
 var logger = new Logger('AudioFlash');
 var FlashManager = require('./flash-manager');
 var FlashInterface = require('./flash-interface');
-var Events = require('./async/events');
+var Events = require('../lib/async/events');
 
 var playerId = 1;
 

@@ -1,4 +1,4 @@
-package src.flash.src {
+package {
 import flash.events.DataEvent;
 
 public final class AudioEvent extends DataEvent {

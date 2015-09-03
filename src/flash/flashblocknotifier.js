@@ -36,7 +36,7 @@
  * @version 1.0
  */
 
-var swfobject = require('./browser/swfobject');
+var swfobject = require('../lib/browser/swfobject');
 
 function remove(node) {
     node.parentNode.removeChild(node);

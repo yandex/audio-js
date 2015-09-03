@@ -1,4 +1,4 @@
-var clearInstance = require('./class/clear-instance');
+var clearInstance = require('../lib/class/clear-instance');
 
 var AudioError = function(message) {
     Error.call(this, message);

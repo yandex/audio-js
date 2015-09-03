@@ -1,4 +1,4 @@
-var Logger = require('./logger');
+var Logger = require('../logger/logger');
 var logger = new Logger('FlashBridge');
 
 var config = require('../config');
@@ -7,10 +7,10 @@ var AudioStatic = require('../audio-static');
 var flashLoader = require('./loader');
 var FlashInterface = require('./flash-interface');
 
-var Deferred = require('./async/deferred');
+var Deferred = require('../lib/async/deferred');
 
-var AudioError = require('./audio-error');
-var LoaderError = require('./net/error/loader-error');
+var AudioError = require('../error/audio-error');
+var LoaderError = require('../lib/net/error/loader-error');
 
 var flashManager;
 

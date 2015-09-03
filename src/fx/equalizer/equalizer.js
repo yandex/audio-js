@@ -1,5 +1,5 @@
-var Events = require('.././async/events');
-var Proxy = require('.././class/proxy');
+var Events = require('../../lib/async/events');
+var Proxy = require('../../lib/class/proxy');
 
 var Equalizer = function(audioContext, bands) {
     Events.call(this);
@@ -38,7 +38,7 @@ Events.mixin(Equalizer);
 Equalizer.EVENT_CHANGE = "change";
 
 Equalizer.WINAMP_BANDS = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000];
-Equalizer.WINAMP_PRESETS = require('./winamp.presets.js');
+Equalizer.WINAMP_PRESETS = require('./winamp.presets');
 
 Equalizer.prototype._onBandEvent = function(band, event, data) {
     this.trigger(event, band.getFreq(), data);
