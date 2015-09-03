@@ -1,0 +1,24 @@
+{
+  "name": "YandexAudio",
+  "version": "0.0.1",
+  "description": "Audio-player library for browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.yandex-team.ru/music/audio.git"
+  },
+  "keywords": [
+    "audio",
+    "html5",
+    "flash"
+  ],
+  "author": "gheljenor@yandex-team.ru",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "uglify-js": "^2.4.24"
+  }
+}
