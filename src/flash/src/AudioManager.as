@@ -1,4 +1,4 @@
-package {
+package src.flash.src {
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;

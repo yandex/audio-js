@@ -1,8 +1,8 @@
-var Logger = require('../logger/logger');
+var Logger = require('./logger');
 var logger = new Logger('AudioHTML5');
 
-var detect = require('../lib/browser/detect');
-var Events = require('../lib/async/events');
+var detect = require('./browser/detect');
+var Events = require('./async/events');
 var AudioStatic = require('../audio-static');
 
 var playerId = 1;

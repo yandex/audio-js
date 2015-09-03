@@ -1,4 +1,4 @@
-var swfobject = require('../lib/browser/swfobject');
+var swfobject = require('./browser/swfobject');
 
 /**
  * Модуль загрузки флеш-плеера

@@ -1,4 +1,4 @@
-var Logger = require('../logger/logger');
+var Logger = require('./logger');
 var logger = new Logger('FlashInterface');
 
 var FlashInterface = function(flash) {

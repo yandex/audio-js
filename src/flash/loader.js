@@ -1,7 +1,7 @@
-var swfobject = require('../lib/browser/swfobject');
+var swfobject = require('./browser/swfobject');
 var FlashBlockNotifier = require('./flashblocknotifier');
 var FlashEmbedder = require('./flashembedder');
-var detect = require('../lib/browser/detect');
+var detect = require('./browser/detect');
 
 var winSafari = detect.platform.os === 'windows' && detect.browser.name === 'safari';
 
