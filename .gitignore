@@ -6,4 +6,5 @@ grunt-contrib-clean
 grunt-contrib-uglify
 grunt-mkdir
 grunt-contrib-copy
+node_modules/ym
 node_modules/.bin

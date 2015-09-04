@@ -15,12 +15,16 @@ module.exports = function(grunt) {
         },
 
         browserify: {
-            build: {
+            options: {
+                debug: true
+            },
+            main: {
                 src: "./src/index.js",
-                dest: BUILDDIR + "/index.js",
-                options: {
-                    debug: true
-                }
+                dest: BUILDDIR + "/index.js"
+            },
+            modules: {
+                src: "./src/modules.js",
+                dest: BUILDDIR + "/modules.js"
             }
         },
 
@@ -31,18 +35,26 @@ module.exports = function(grunt) {
                 bareReturns: true,
                 stats: true
             },
-            build: {
-                src: 'src/index.js',
+            main: {
+                src: BUILDDIR + '/index.js',
                 dest: BUILDDIR + '/index.min.js',
                 options: {
                     sourceMap: true,
                     sourceMapName: BUILDDIR + "/index.map.json"
                 }
+            },
+            modules: {
+                src: BUILDDIR + '/modules.js',
+                dest: BUILDDIR + '/modules.min.js',
+                options: {
+                    sourceMap: true,
+                    sourceMapName: BUILDDIR + "/modules.map.json"
+                }
             }
         },
 
         copy: {
-            build: {
+            flash: {
                 src: "./src/flash/build/player-2_0.swf",
                 dest: BUILDDIR + "/player-2_0.swf"
             }
