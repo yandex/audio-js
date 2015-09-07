@@ -82,6 +82,8 @@ AudioHTML5.prototype._addLoader = function() {
 
     loader.loop = false; // for IE
     loader.preload = loader.autobuffer = "auto"; // 100%
+    loader.crossOrigin = "";
+    //loader.crossOrigin = "anonymous";
 
     loader.startPlay = function() { //INFO: эта конструкция нужна, чтобы не менять логику при resume
         loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
@@ -231,8 +233,19 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
         this.sources = this.sources || [];
         this.loaders.forEach(function(loader, idx) {
             loader.volume = 1;
+            var prepared = loader.crossOrigin;
             loader.crossOrigin = "anonymous";
             this._addSource(loader, this.sources[idx]);
+
+            if (!prepared) {
+                var pos = loader.currentTime;
+                var paused = loader.paused;
+                loader.load();
+                loader.currentTime = pos;
+                if (!paused) {
+                    loader.play();
+                }
+            }
         }.bind(this));
 
     } else if (this.audioOutput) {
@@ -250,7 +263,6 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
 
         this.loaders.forEach(function(loader, idx) {
             loader.volume = this.volume;
-            loader.crossOrigin = "";
 
             var source = this.sources[idx];
             if (source) {
