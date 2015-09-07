@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.yandex-team.ru/music/audio.git"
+    "url": "https://github.com/gheljenor/audio.git"
   },
   "keywords": [
     "audio",
     "html5",
     "flash"
   ],
-  "author": "gheljenor@yandex-team.ru",
-  "license": "ISC",
+  "author": "Silaev Mikhail <gheljenor@yandex-team.ru>",
+  "license": "GNU LGPL v3.0",
   "devDependencies": {
     "browserify": "^11.0.1",
     "grunt": "^0.4.5",
