@@ -195,7 +195,8 @@ AudioPlayer.prototype._waitEvents = function(action, resolve, reject) {
 
     reject.forEach(function(event) {
         self.on(event, function(data) {
-            deferred.reject(new AudioError(data || event));
+            var error = data instanceof Error ? data : new AudioError(data || event);
+            deferred.reject(error);
         });
     });
 
@@ -205,7 +206,9 @@ AudioPlayer.prototype._waitEvents = function(action, resolve, reject) {
 };
 
 AudioPlayer.prototype._populateEvents = function(event, offset, data) {
-    logger.debug(this, "_populateEvents", event, offset, data);
+    if (event !== AudioPlayer.EVENT_PROGRESS) {
+        logger.debug(this, "_populateEvents", event, offset, data);
+    }
 
     var outerEvent = (offset ? AudioPlayer.PRELOADER_EVENT : "") + event;
 
@@ -358,8 +361,12 @@ AudioPlayer.prototype.pause = function() {
 AudioPlayer.prototype.resume = function() {
     logger.info(this, "resume");
 
-    if (this.state !== AudioPlayer.STATE_PAUSED && !this._whenPause) {
-        return false;
+    if (this.state === AudioPlayer.STATE_PLAYING && !this._whenPause) {
+        return Promise.resolve();
+    }
+
+    if (!(this.state === AudioPlayer.STATE_IDLE || this.state === AudioPlayer.STATE_PAUSED || this.state === AudioPlayer.STATE_PLAYING)) {
+        return reject(new AudioError(AudioError.BAD_STATE));
     }
 
     var promise;
@@ -463,7 +470,7 @@ AudioPlayer.prototype.isPreloaded = function(src) {
 };
 
 AudioPlayer.prototype.isPreloading = function(src) {
-    return this.implementation.isPreloading(src);
+    return this.implementation.isPreloading(src, 1);
 };
 
 //------------------------------------------------------------------------- Timings

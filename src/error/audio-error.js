@@ -7,6 +7,7 @@ AudioError.prototype = ErrorClass.create("AudioError");
 
 AudioError.NO_IMPLEMENTATION = "cannot find suitable implementation";
 AudioError.NOT_PRELOADED = "track is not preloaded";
+AudioError.BAD_STATE = "action is not permited from current state";
 
 AudioError.FLASH_BLOCKER = "flash is rejected by flash blocker plugin";
 AudioError.FLASH_UNKNOWN_CRASH = "flash is crashed without reason";

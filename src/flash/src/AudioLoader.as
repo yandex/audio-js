@@ -84,7 +84,9 @@ public final class AudioLoader extends EventDispatcher {
     }
 
     private function onLoadingProgress(event:ProgressEvent):void {
+        //FIXME: it will give wrong values on VBR audio (Variable BitRate), and it gives imprecise values with CBR audio
         this.guessDuration = this.sound.length * event.bytesTotal / event.bytesLoaded;
+
         this.loaded = this.duration * event.bytesLoaded / event.bytesTotal;
         this.dispatchEvent(new Event(AudioEvent.EVENT_PROGRESS));
     }

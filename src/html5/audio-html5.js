@@ -4,6 +4,7 @@ var logger = new Logger('AudioHTML5');
 var detect = require('../lib/browser/detect');
 var Events = require('../lib/async/events');
 var AudioStatic = require('../audio-static');
+var PlaybackError = require('../error/playback-error');
 
 var playerId = 1;
 
@@ -82,8 +83,6 @@ AudioHTML5.prototype._addLoader = function() {
 
     loader.loop = false; // for IE
     loader.preload = loader.autobuffer = "auto"; // 100%
-    loader.crossOrigin = "";
-    //loader.crossOrigin = "anonymous";
 
     loader.startPlay = function() { //INFO: эта конструкция нужна, чтобы не менять логику при resume
         loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
@@ -138,7 +137,12 @@ AudioHTML5.prototype._addLoader = function() {
 
     loader.addEventListener(AudioHTML5.EVENT_NATIVE_ERROR, function(e) {
         if (!loader.fake) {
-            listener.trigger(AudioStatic.EVENT_ERROR, loader.error || e);
+            var error = new PlaybackError(loader.error
+                    ? PlaybackError.html5[loader.error.code]
+                    : e instanceof Error ? e.message : e,
+                loader.src);
+
+            listener.trigger(AudioStatic.EVENT_ERROR, error);
         }
     });
 
@@ -237,7 +241,7 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
             loader.crossOrigin = "anonymous";
             this._addSource(loader, this.sources[idx]);
 
-            if (!prepared) {
+            if (!prepared) { // INFO: после того как мы включили webAudioAPI его уже нельзя полностью выключить.
                 var pos = loader.currentTime;
                 var paused = loader.paused;
                 loader.load();
@@ -265,7 +269,7 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
             loader.volume = this.volume;
 
             var source = this.sources[idx];
-            if (source) {
+            if (source) { // INFO: после того как мы включили webAudioAPI его уже нельзя полностью выключить.
                 source.connect(audioContext.destination);
             }
         }.bind(this));
@@ -314,9 +318,9 @@ AudioHTML5.prototype.play = function(src) {
 
     var loader = this._getLoader(true);
 
-    loader.preloaded = false;
     loader.fake = false;
     loader.src = src;
+    loader._src = src;
     loader.notLoading = true;
     loader.load();
 
@@ -341,6 +345,7 @@ AudioHTML5.prototype.stop = function(offset) {
 
     loader.fake = true;
     loader.src = "";
+    loader._src = false;
     loader.notLoading = true;
     loader.load();
 
@@ -356,8 +361,8 @@ AudioHTML5.prototype.preload = function(src, _, offset) {
 
     var loader = this._getLoader(true, offset);
 
-    loader.preloaded = src;
     loader.src = src;
+    loader._src = src;
     loader.notLoading = true;
     loader.load();
 
@@ -366,12 +371,12 @@ AudioHTML5.prototype.preload = function(src, _, offset) {
 
 AudioHTML5.prototype.isPreloaded = function(src, offset) {
     var loader = this._getLoader(false, offset);
-    return loader.preloaded === src && !loader.notLoading;
+    return loader._src === src && !loader.notLoading;
 };
 
 AudioHTML5.prototype.isPreloading = function(src, offset) {
     var loader = this._getLoader(false, offset);
-    return loader.preloaded === src;
+    return loader._src === src;
 };
 
 AudioHTML5.prototype.playPreloaded = function(offset) {
@@ -382,7 +387,7 @@ AudioHTML5.prototype.playPreloaded = function(offset) {
         return false;
     }
 
-    if (!this._getLoader(false, offset).preloaded) {
+    if (!this._getLoader(false, offset)._src) {
         return false;
     }
 
@@ -434,7 +439,7 @@ AudioHTML5.prototype.setVolume = function(volume) {
 };
 
 AudioHTML5.prototype.getSrc = function(offset) {
-    return this._getLoader(false, offset).src;
+    return this._getLoader(false, offset)._src;
 };
 
 AudioHTML5.prototype.isDeviceVolume = function() {
