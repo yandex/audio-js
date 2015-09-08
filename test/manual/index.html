@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        .player-first__overlay {
+            display: block;
+            background: #a8ffae;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 
@@ -10,8 +19,12 @@
     <div class="player-first__overlay"></div>
     <button class="player-first__play">Play</button>
     <button class="player-first__stop">Stop</button>
+    <hr/>
     <div class="player-first__progress"></div>
     <div class="player-first__src"></div>
+    <hr/>
+    <div class="player-first__progress_preloader"></div>
+    <div class="player-first__src_preloader"></div>
 </div>
 
 <script src="../../src/index.js"></script>

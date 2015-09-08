@@ -31,7 +31,8 @@ var FlashManager = function(overlay) { // singleton!
 
     window[config.flash.callback] = this.onEvent.bind(this);
     this.__loadTimeout = setTimeout(this.onLoadTimeout, config.flash.loadTimeout);
-    flashLoader(config.flash.path + "/" + config.flash.name, config.flash.version, config.flash.playerID, this.onLoad.bind(this), {}, overlay);
+    flashLoader(config.flash.path + "/"
+        + config.flash.name, config.flash.version, config.flash.playerID, this.onLoad.bind(this), {}, overlay);
 
     if (overlay) {
         var timeout;
@@ -100,6 +101,10 @@ FlashManager.prototype.onInit = function() {
 };
 
 FlashManager.prototype.onEvent = function(event, id, offset, data) {
+    if (event === "debug") {
+        console.debug("flashDEBUG", id, offset, data);
+    }
+
     if (this.state === "failed") {
         logger.warn(this, "onEventFailed", event, id, offset, data);
         return;

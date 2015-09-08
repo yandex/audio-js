@@ -28,24 +28,27 @@ Logger.log = function(level, channel, context) {
 };
 
 Logger._dumpEntry = function(logEntry) {
-    var level = logEntry.level;
+    try {
+        var level = logEntry.level;
 
-    var name = logEntry.context && (logEntry.context.taskName || logEntry.context.name);
-    var context = logEntry.context && (logEntry.context._logger ? logEntry.context._logger() : "");
+        var name = logEntry.context && (logEntry.context.taskName || logEntry.context.name);
+        var context = logEntry.context && (logEntry.context._logger ? logEntry.context._logger() : "");
 
-    if (typeof console[level] !== "function") {
-        console.log.apply(console, [
-            level.toUpperCase(),
-            Logger._formatTimestamp(logEntry.timestamp),
-            "[" + logEntry.channel + (name ? ":" + name : "") + "]",
-            context
-        ].concat(logEntry.message));
-    } else {
-        console[level].apply(console, [
-            Logger._formatTimestamp(logEntry.timestamp),
-            "[" + logEntry.channel + (name ? ":" + name : "") + "]",
-            context
-        ].concat(logEntry.message));
+        if (typeof console[level] !== "function") {
+            console.log.apply(console, [
+                level.toUpperCase(),
+                Logger._formatTimestamp(logEntry.timestamp),
+                "[" + logEntry.channel + (name ? ":" + name : "") + "]",
+                context
+            ].concat(logEntry.message));
+        } else {
+            console[level].apply(console, [
+                Logger._formatTimestamp(logEntry.timestamp),
+                "[" + logEntry.channel + (name ? ":" + name : "") + "]",
+                context
+            ].concat(logEntry.message));
+        }
+    } catch(e) {
     }
 };
 

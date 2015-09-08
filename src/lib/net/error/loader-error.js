@@ -1,9 +1,9 @@
-var clearInstance = require('../../class/clear-instance');
+var ErrorClass = require('../../class/error-class');
 
 var LoaderError = function(message) {
-    Error.call(this, message);
+    ErrorClass.call(this, message);
 };
-LoaderError.prototype = clearInstance(Error);
+LoaderError.prototype = ErrorClass.create("LoaderError");
 
 LoaderError.TIMEOUT = "request timeout";
 LoaderError.FAILED = "request failed";

@@ -17,7 +17,7 @@ public final class AudioPlayer extends EventDispatcher {
 
     private var activeLoader:int = 0;
     private var position:Number = 0;
-    private var lastUpdate:int = 0;
+    private var lastUpdate:Number = 0;
 
     public function AudioPlayer(id:uint) {
         timer.start();
@@ -61,8 +61,7 @@ public final class AudioPlayer extends EventDispatcher {
     }
 
     private function onProgress(event:Event):void {
-        var offset:uint = event && this.getOffset(event.currentTarget as AudioLoader) || 0;
-
+        var offset:uint = event !== null && this.getOffset(event.currentTarget as AudioLoader) || 0;
         if (offset === 0) {
             if (this.soundChannel is SoundChannel) {
                 this.position = this.soundChannel.position;
@@ -70,7 +69,7 @@ public final class AudioPlayer extends EventDispatcher {
         }
 
         var currentTime:Number = new Date().valueOf();
-        if (currentTime - this.lastUpdate < 500) {
+        if (currentTime - this.lastUpdate < 100) {
             return;
         }
 
@@ -94,14 +93,10 @@ public final class AudioPlayer extends EventDispatcher {
     }
 
     private function onLoadStart(event:Event):void {
-        if (!this.isPlaying) {
-            return;
-        }
-
-        var offset:uint = event && this.getOffset(event.currentTarget as AudioLoader) || 0;
+        var offset:uint = event !== null && this.getOffset(event.currentTarget as AudioLoader) || 0;
         this.dispatchEvent(new AudioEvent(AudioEvent.EVENT_LOADING, offset));
 
-        if (offset) {
+        if (offset > 0 || !this.isPlaying) {
             return;
         }
 

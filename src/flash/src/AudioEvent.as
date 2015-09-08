@@ -15,6 +15,8 @@ public final class AudioEvent extends DataEvent {
     public static const EVENT_LOADING:String = "loading";
     public static const EVENT_SWAP:String = "swap";
 
+    public static const EVENT_DEBUG:String = "debug";
+
     public function AudioEvent(type:String, offset:int = -1, data:String = "") {
         super(type, false, false, data);
         this.offset = offset;

@@ -377,9 +377,11 @@ AudioHTML5.prototype.isPreloading = function(src, offset) {
 AudioHTML5.prototype.playPreloaded = function(offset) {
     logger.info(this, "playPreloaded", offset);
     offset = offset || 1;
+
     if (this.loaders.length < 1 + offset) {
         return false;
     }
+
     if (!this._getLoader(false, offset).preloaded) {
         return false;
     }

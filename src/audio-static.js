@@ -6,6 +6,7 @@ AudioStatic.EVENT_STOP = "stop";
 AudioStatic.EVENT_PAUSE = "pause";
 
 AudioStatic.EVENT_PROGRESS = "progress";
+
 AudioStatic.EVENT_LOADING = "loading";
 AudioStatic.EVENT_LOADED = "loaded";
 

@@ -63,6 +63,12 @@ AudioFlash.prototype.isDeviceVolume = function() {
 
 AudioFlash.prototype._logger = function() {
     try {
+        if (!this.hasOwnProperty("id")) {
+            return {
+                main: "not ready",
+                preloader: "not ready"
+            };
+        }
         return {
             main: this.getSrc(0),
             preloader: this.getSrc(1)

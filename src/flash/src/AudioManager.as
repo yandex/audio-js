@@ -100,6 +100,8 @@ public final class AudioManager extends Sprite {
         player.addEventListener(AudioEvent.EVENT_LOADED, delegateEvent);
         player.addEventListener(AudioEvent.EVENT_LOADING, delegateEvent);
 
+        player.addEventListener(AudioEvent.EVENT_DEBUG, delegateEvent);
+
         players.push(player);
         return player.id;
     }

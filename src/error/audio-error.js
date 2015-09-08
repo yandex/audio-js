@@ -1,9 +1,9 @@
-var clearInstance = require('../lib/class/clear-instance');
+var ErrorClass = require('../lib/class/error-class');
 
 var AudioError = function(message) {
-    Error.call(this, message);
+    ErrorClass.call(this, message);
 };
-AudioError.prototype = clearInstance(Error);
+AudioError.prototype = ErrorClass.create("AudioError");
 
 AudioError.NO_IMPLEMENTATION = "cannot find suitable implementation";
 AudioError.NOT_PRELOADED = "track is not preloaded";

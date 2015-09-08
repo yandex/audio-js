@@ -194,7 +194,9 @@ AudioPlayer.prototype._waitEvents = function(action, resolve, reject) {
     });
 
     reject.forEach(function(event) {
-        self.on(event, deferred.reject);
+        self.on(event, function(data) {
+            deferred.reject(new AudioError(data || event));
+        });
     });
 
     deferred.promise().then(cleanupEvents, cleanupEvents);
@@ -386,7 +388,7 @@ AudioPlayer.prototype.playPreloaded = function(src) {
     logger.info(this, "playPreloaded", src);
 
     if (!this.isPreloaded(src)) {
-        logger.warn(this, AudioError.NOT_PRELOADED);
+        logger.warn(this, "playPreloadedBadTrack", AudioError.NOT_PRELOADED);
         return reject(new AudioError(AudioError.NOT_PRELOADED));
     }
 
@@ -417,8 +419,9 @@ AudioPlayer.prototype.playPreloaded = function(src) {
     }.bind(this);
 
     var result = this.implementation.playPreloaded();
+
     if (!result) {
-        logger.warn(this, AudioError.NOT_PRELOADED);
+        logger.warn(this, "playPreloadedError", AudioError.NOT_PRELOADED);
         this._whenPlay.reject(new AudioError(AudioError.NOT_PRELOADED));
     }
 
@@ -442,6 +445,7 @@ AudioPlayer.prototype.preload = function(src, duration) {
         AudioPlayer.PRELOADER_EVENT + AudioPlayer.EVENT_ERROR,
         AudioPlayer.PRELOADER_EVENT + AudioPlayer.EVENT_STOP
     ]);
+
     promise.abort = function() {
         if (this._whenPreload) {
             this._whenPreload.reject.apply(this._whenPreload, arguments);

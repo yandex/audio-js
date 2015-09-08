@@ -1,8 +1,9 @@
+var config = require('../config');
 var Logger = require('../logger/logger');
 var logger = new Logger('FlashInterface');
 
 var FlashInterface = function(flash) {
-    this.flash = Ya.Music._flash = flash;
+    this.flash = ya.Audio._flash = flash;
 };
 
 FlashInterface.prototype._callFlash = function(fn) {

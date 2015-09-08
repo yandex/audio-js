@@ -9,7 +9,8 @@ import flash.net.URLRequest;
 public final class AudioLoader extends EventDispatcher {
     public var sound:Sound;
 
-    public var duration:int = 0;
+    private var _duration:int = 0;
+    private var guessDuration:int = -1;
     public var loaded:int = 0;
 
     public var isLoading:Boolean = false;
@@ -22,11 +23,19 @@ public final class AudioLoader extends EventDispatcher {
     public function AudioLoader() {
     }
 
+    public function get duration():int {
+        if (this._duration > 0) {
+            return this._duration
+        } else {
+            return this.guessDuration;
+        }
+    }
+
     public function load(src:String, duration:Number):void {
         this.abort();
 
         this.sound = new Sound();
-        this.duration = duration;
+        this._duration = duration;
 
         this.sound.addEventListener(Event.OPEN, this.onLoadingStart);
         this.sound.addEventListener(Event.COMPLETE, this.onLoadingEnd);
@@ -54,7 +63,7 @@ public final class AudioLoader extends EventDispatcher {
         }
         this.sound = null;
 
-        this.duration = 0;
+        this._duration = 0;
         this.loaded = 0;
         this.isLoaded = false;
         this.isLoading = false;
@@ -66,7 +75,7 @@ public final class AudioLoader extends EventDispatcher {
     }
 
     private function onLoadingEnd(event:Event):void {
-        this.duration = this.sound.length;
+        this._duration = this.sound.length;
         this.loaded = this.duration;
         this.isLoaded = true;
 
@@ -75,6 +84,7 @@ public final class AudioLoader extends EventDispatcher {
     }
 
     private function onLoadingProgress(event:ProgressEvent):void {
+        this.guessDuration = this.sound.length * event.bytesTotal / event.bytesLoaded;
         this.loaded = this.duration * event.bytesLoaded / event.bytesTotal;
         this.dispatchEvent(new Event(AudioEvent.EVENT_PROGRESS));
     }
