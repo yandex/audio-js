@@ -79,10 +79,10 @@ YandexAudio - это библиотека аудио-плеера для бра�
     audioPlayer.on(ya.Audio.EVENT_PAUSE, logEvent("Пауза воспроизведения"));
     
     audioPlayer.on(ya.Audio.EVENT_PROGRESS, logEvent("Обновление позиции воспроизведения"));
-    audioPlayer.on(ya.Audio.EVENT_LOADING, logEvent("Обновление длительности загруженной части"));
-    
-    audioPlayer.on(ya.Audio.EVENT_LOADED, logEvent("Трек загружен полностью"));
     audioPlayer.on(ya.Audio.EVENT_ENDED, logEvent("Воспроизведение трека завершено"));
+    
+    audioPlayer.on(ya.Audio.EVENT_LOADING, logEvent("Трек начал загружаться"));
+    audioPlayer.on(ya.Audio.EVENT_LOADED, logEvent("Трек загружен полностью"));
     
     audioPlayer.on(ya.Audio.EVENT_VOLUME, logEvent("Изменение громкости"));
     
@@ -91,6 +91,26 @@ YandexAudio - это библиотека аудио-плеера для бра�
     
     audioPlayer.on(ya.Audio.EVENT_SWAP, logEvent("Переключение между текущим и предзагруженным треком"));
 ```    
+
+### Прелоадер
+В большинство команд управления можно передать вторым аргументом 1, чтобы они применялись к прелоадеру вместо текущего плеера.
+Для прослушивания событий плероадера следует использовать префикс `ya.Audio.PRELOADER_EVENT`
+
+```javascript
+    audioPlayer.pause(1); // пауза
+    audioPlayer.resume(1); // продолжение воспроизведения
+    audioPlayer.stop(1); // остановка воспроизведения и загрузки трека
+    
+    var logEvent = function(text){ return function(data){ console.log(text, data); }; };
+    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_STOP, logEvent("Остановка загрузки"));
+    
+    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_PROGRESS, logEvent("Процесс загрузки"));    
+    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADING, logEvent("Трек начал загружаться"));
+    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADED, logEvent("Трек загружен полностью"));
+    
+    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_ERROR, logEvent("Возникла ошибка при загрузки"));
+```
+
 
 Сборка javascipt
 ----------------

@@ -1,0 +1,45 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": [
+            "src/"
+        ],
+        "exclude": [],
+        "includePattern": ".+\\.(js)(doc)?$"
+    },
+    "plugins": ["plugins/markdown"],
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": false
+    },
+
+    "templates": {
+        "applicationName": "YandexAudio",
+        "disqus": "",
+        "googleAnalytics": "",
+        "openGraph": {
+            "title": "",
+            "type": "website",
+            "image": "",
+            "site_name": "",
+            "url": ""
+        },
+        "meta": {
+            "title": "",
+            "description": "",
+            "keyword": ""
+        },
+        "linenums": true
+    },
+
+    "opts": {
+        "template": "jsdoc/jaguar",
+        "recurse": true,
+        "encoding": "utf8",
+        "destination": "dist/public-doc/",
+        "private": false,
+        "lenient": true
+    }
+}

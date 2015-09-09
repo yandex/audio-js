@@ -13,7 +13,7 @@ var AudioStatic = require('./audio-static');
 
 var playerId = 1;
 
-//TODO: сделать интерфейс для расширения
+//TODO: сделать интерфейс для возможности подключения новых типов
 var audioTypes = {
     html5: require('./html5/audio-html5'),
     flash: require('./flash/audio-flash')
@@ -29,6 +29,111 @@ audioTypes.html5.priority = config.html5.blacklist.some(function(item) { return 
 
 logger.debug(null, "audioTypes", audioTypes);
 
+/** Описание временных данных плеера
+ * @typedef {Object} AudioPlayerTimes
+ *
+ * @property {Number} duration - длительность трека
+ * @property {Number} loaded - длительность загруженной части
+ * @property {Number} position - позиция воспроизведения
+ * @property {Number} played - длительность воспроизведения
+ */
+
+//------------------------------------------------------------------------- Common Events
+/** Событие начала воспроизведения ({@link AudioPlayer.EVENT_PLAY})
+ * @event AudioPlayer#play
+ */
+/** Событие завершения воспроизведения ({@link AudioPlayer.EVENT_ENDED})
+ * @event AudioPlayer#ended
+ */
+/** Событие изменения громкости ({@link AudioPlayer.EVENT_VOLUME})
+ * @event AudioPlayer#volumechange
+ * @param {Number} volume - громкость
+ */
+/** Событие краха плеера ({@link AudioPlayer.EVENT_CRASHED})
+ * @event AudioPlayer#crashed
+ */
+/** Событие смены статуса плеера ({@link AudioPlayer.EVENT_STATE})
+ * @event AudioPlayer#state
+ * @param {String} state - новый статус плеера
+ */
+/** Событие переключения активного плеера и прелоадера ({@link AudioPlayer.EVENT_SWAP})
+ * @event AudioPlayer#swap
+ */
+
+//------------------------------------------------------------------------- Active Events
+/** Событие остановки воспроизведения ({@link AudioPlayer.EVENT_STOP})
+ * @event AudioPlayer#stop
+ */
+/** Событие начала воспроизведения ({@link AudioPlayer.EVENT_PAUSE})
+ * @event AudioPlayer#pause
+ */
+/** Событие обновления позиции воспроизведения/загруженной части ({@link AudioPlayer.EVENT_PROGRESS})
+ * @event AudioPlayer#progress
+ * @param {AudioPlayerTimes} times - информация о временных данных трека
+ */
+/** Событие начала загрузки трека ({@link AudioPlayer.EVENT_LOADING})
+ * @event AudioPlayer#loading
+ */
+/** Событие завершения загрузки трека ({@link AudioPlayer.EVENT_LOADED})
+ * @event AudioPlayer#loaded
+ */
+/** Событие ошибки воспроизведения ({@link AudioPlayer.EVENT_ERROR})
+ * @event AudioPlayer#error
+ */
+
+//------------------------------------------------------------------------- Preloader Events
+/** Событие остановки воспроизведения ({@link AudioPlayer.EVENT_STOP})
+ * @event AudioPlayer#preloader:stop
+ */
+/** Событие начала воспроизведения ({@link AudioPlayer.EVENT_PAUSE})
+ * @event AudioPlayer#preloader:pause
+ */
+/** Событие обновления позиции воспроизведения/загруженной части ({@link AudioPlayer.EVENT_PROGRESS})
+ * @event AudioPlayer#preloader:progress
+ * @param {AudioPlayerTimes} times - информация о временных данных трека
+ */
+/** Событие начала загрузки трека ({@link AudioPlayer.EVENT_LOADING})
+ * @event AudioPlayer#preloader:loading
+ */
+/** Событие завершения загрузки трека ({@link AudioPlayer.EVENT_LOADED})
+ * @event AudioPlayer#preloader:loaded
+ */
+/** Событие ошибки воспроизведения ({@link AudioPlayer.EVENT_ERROR})
+ * @event AudioPlayer#preloader:error
+ */
+
+/**
+ * @class Аудио-плеер для браузера.
+ * @alias ya.Audio
+ * @param {String} [preferredType] - preferred player type (html5/flash)
+ * @param {HTMLElement} [overlay] - dom element to show flash
+ *
+ * @extends Events
+ * @mixes AudioStatic
+ *
+ * @fires AudioPlayer#play
+ * @fires AudioPlayer#ended
+ * @fires AudioPlayer#volumechange
+ * @fires AudioPlayer#crashed
+ * @fires AudioPlayer#state
+ * @fires AudioPlayer#swap
+ *
+ * @fires AudioPlayer#stop
+ * @fires AudioPlayer#pause
+ * @fires AudioPlayer#progress
+ * @fires AudioPlayer#loading
+ * @fires AudioPlayer#loaded
+ * @fires AudioPlayer#error
+ *
+ * @fires AudioPlayer#preloader:stop
+ * @fires AudioPlayer#preloader:pause
+ * @fires AudioPlayer#preloader:progress
+ * @fires AudioPlayer#preloader:loading
+ * @fires AudioPlayer#preloader:loaded
+ * @fires AudioPlayer#preloader:error
+ *
+ * @constructor
+ */
 var AudioPlayer = function(preferredType, overlay) {
     this.name = playerId++;
     logger.debug(this, "constructor");
@@ -88,13 +193,28 @@ merge(AudioPlayer, AudioStatic, true);
 
 AudioPlayer.AudioError = AudioError;
 
+/**
+ * Список доступных плееров
+ * @type {Object}
+ * @static
+ */
 AudioPlayer.info = {
     html5: audioTypes.html5.available,
     flash: audioTypes.flash.available
 };
 
+/**
+ * Контекст для Web Audio API
+ * @type {AudioContext}
+ * @static
+ */
 AudioPlayer.audioContext = audioTypes.html5.audioContext;
 
+/**
+ * Установить статус плеера
+ * @param {String} state - новый статус
+ * @private
+ */
 AudioPlayer.prototype._setState = function(state) {
     logger.debug(this, "_setState", state);
 
@@ -107,6 +227,11 @@ AudioPlayer.prototype._setState = function(state) {
     }
 };
 
+/**
+ * Инициализация плеера
+ * @param {int} [retry=0] - количество попыток
+ * @private
+ */
 AudioPlayer.prototype._init = function(retry) {
     retry = retry || 0;
     logger.info(this, "_init", retry);
@@ -155,11 +280,22 @@ AudioPlayer.prototype._init = function(retry) {
     init();
 };
 
+/**
+ * Запуск реализации плеера с указанным типом
+ * @param {{type: string, AudioImplementation: function}} type - объект описания типа инициализации.
+ * @returns {Promise}
+ * @private
+ */
 AudioPlayer.prototype._initType = function(type) {
     logger.info(this, "_initType", type);
 
     var deferred = new Deferred();
     try {
+        /**
+         * Текущая реализация аудио-плеера
+         * @type {IAudioImplementation|null}
+         * @private
+         */
         this.implementation = new type.AudioImplementation(this.overlay);
         if (this.implementation.whenReady) {
             this.implementation.whenReady.then(deferred.resolve, deferred.reject);
@@ -173,6 +309,14 @@ AudioPlayer.prototype._initType = function(type) {
     return deferred.promise();
 };
 
+/**
+ * Создание обещания, которое разрешается при одном из списка событий
+ * @param {String} action - название действия
+ * @param {Array.<String>} resolve - список ожидаемых событий для разрешения обещания
+ * @param {Array.<String>} reject - список ожидаемый событий для отклонения обещания
+ * @returns {Promise} -- также создаёт Deferred свойство с названием _when<Action>, которое живёт до момента разрешения
+ * @private
+ */
 AudioPlayer.prototype._waitEvents = function(action, resolve, reject) {
     var deferred = new Deferred();
     var self = this;
@@ -205,6 +349,14 @@ AudioPlayer.prototype._waitEvents = function(action, resolve, reject) {
     return deferred.promise();
 };
 
+/**
+ * Расширение событий аудио-плеера дополнительными свойствами. Подписывается на все события аудио-плеера,
+ * триггерит итоговые события, разделяя их по типу активный плеер или прелоадер, дополняет события данными.
+ * @param {String} event - событие
+ * @param {int} offset - источник события. 0 - активный плеер. 1 - прелоадер.
+ * @param {*} data - дополнительные данные события.
+ * @private
+ */
 AudioPlayer.prototype._populateEvents = function(event, offset, data) {
     if (event !== AudioPlayer.EVENT_PROGRESS) {
         logger.debug(this, "_populateEvents", event, offset, data);
@@ -237,30 +389,57 @@ AudioPlayer.prototype._populateEvents = function(event, offset, data) {
     }
 };
 
+/**
+ * Генерация playId
+ * @private
+ */
 AudioPlayer.prototype._generatePlayId = function() {
     this._playId = Math.random().toString().slice(2);
 };
 
 //------------------------------------------------------------------------- Common
+/**
+ * Возвращает обещание, разрешающееся после завершения инициализации.
+ * @returns {Promise}
+ */
 AudioPlayer.prototype.initPromise = function() {
     return this.whenReady;
 };
 
+/**
+ * Возвращает статус плеера
+ * @returns {String}
+ */
 AudioPlayer.prototype.getState = function() {
     return this.state;
 };
 
+/**
+ * Возвращает тип реализации плеера
+ * @returns {String|null}
+ */
 AudioPlayer.prototype.getType = function() {
     return this.implementation && this.implementation.type;
 };
 
+/**
+ * Возвращает ссылку на текущий трек
+ * @param {int} [offset=0] - брать трек из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
+ * @returns {IAudioImplementation|null}
+ */
 AudioPlayer.prototype.getSrc = function(offset) {
     return this.implementation && this.implementation.getSrc(offset);
 };
 
 //------------------------------------------------------------------------- Playback
 
-//abortable
+/**
+ * Запуск воспроизведения
+ * @param {String} src - ссылка на трек
+ * @param {Number} [duration] - длительность трека. Актуально для флеш-реализации, в ней пока трек грузится
+ * длительность определяется с погрешностью.
+ * @returns {AbortablePromise}
+ */
 AudioPlayer.prototype.play = function(src, duration) {
     logger.info(this, "play", src, duration);
 
@@ -296,6 +475,11 @@ AudioPlayer.prototype.play = function(src, duration) {
     return promise;
 };
 
+/**
+ * Остановка воспроизведения
+ * @param {int} [offset=0] - активный плеер или прелоадер. 0 - активный плеер. 1 - прелоадер.
+ * @returns {AbortablePromise}
+ */
 AudioPlayer.prototype.stop = function(offset) {
     logger.info(this, "stop", offset);
 
@@ -329,11 +513,15 @@ AudioPlayer.prototype.stop = function(offset) {
     return promise;
 };
 
+/**
+ * Поставить плеер на паузу
+ * @returns {AbortablePromise}
+ */
 AudioPlayer.prototype.pause = function() {
     logger.info(this, "pause");
 
     if (this.state !== AudioPlayer.STATE_PLAYING) {
-        return false;
+        return reject(new AudioError(AudioError.BAD_STATE));
     }
 
     var promise;
@@ -358,6 +546,10 @@ AudioPlayer.prototype.pause = function() {
     return promise;
 };
 
+/**
+ * Снятие плеера с паузы
+ * @returns {AbortablePromise}
+ */
 AudioPlayer.prototype.resume = function() {
     logger.info(this, "resume");
 
@@ -365,7 +557,8 @@ AudioPlayer.prototype.resume = function() {
         return Promise.resolve();
     }
 
-    if (!(this.state === AudioPlayer.STATE_IDLE || this.state === AudioPlayer.STATE_PAUSED || this.state === AudioPlayer.STATE_PLAYING)) {
+    if (!(this.state === AudioPlayer.STATE_IDLE || this.state === AudioPlayer.STATE_PAUSED || this.state
+        === AudioPlayer.STATE_PLAYING)) {
         return reject(new AudioError(AudioError.BAD_STATE));
     }
 
@@ -391,6 +584,11 @@ AudioPlayer.prototype.resume = function() {
 };
 
 //abortable
+/**
+ * Запуск воспроизведения предзагруженного трека
+ * @param {String} src - ссылка на трек
+ * @returns {AbortablePromise}
+ */
 AudioPlayer.prototype.playPreloaded = function(src) {
     logger.info(this, "playPreloaded", src);
 
@@ -437,6 +635,13 @@ AudioPlayer.prototype.playPreloaded = function(src) {
 
 //------------------------------------------------------------------------- Preload
 //abortable
+/**
+ * Предзагрузка трека
+ * @param {String} src - ссылка на трек
+ * @param {Number} [duration] - длительность трека. Актуально для флеш-реализации, в ней пока трек грузится
+ * длительность определяется с погрешностью.
+ * @returns {Promise}
+ */
 AudioPlayer.prototype.preload = function(src, duration) {
     logger.info(this, "preload", src, duration);
 
@@ -465,19 +670,36 @@ AudioPlayer.prototype.preload = function(src, duration) {
     return promise;
 };
 
+/**
+ * Проверка, что трек предзагружен
+ * @param {String} src - ссылка на трек
+ */
 AudioPlayer.prototype.isPreloaded = function(src) {
     return this.implementation.isPreloaded(src);
 };
 
+/**
+ * Проверка, что трек предзагружается
+ * @param {String} src - ссылка на трек
+ */
 AudioPlayer.prototype.isPreloading = function(src) {
     return this.implementation.isPreloading(src, 1);
 };
 
 //------------------------------------------------------------------------- Timings
+/**
+ * Получение позиции воспроизведения
+ * @returns {Number}
+ */
 AudioPlayer.prototype.getPosition = function() {
     return this.implementation.getPosition();
 };
 
+/**
+ * Установка позиции воспроизведения
+ * @param {Number} position - новая позиция воспроизведения
+ * @returns {Number} -- конечная позиция воспроизведения
+ */
 AudioPlayer.prototype.setPosition = function(position) {
     logger.info(this, "setPosition", position);
 
@@ -495,14 +717,28 @@ AudioPlayer.prototype.setPosition = function(position) {
     return position;
 };
 
+/**
+ * Получение длительности трека
+ * @param {Boolean|int} preloader - активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик
+ * @returns {Number}
+ */
 AudioPlayer.prototype.getDuration = function(preloader) {
     return this.implementation.getDuration(preloader ? 1 : 0);
 };
 
+/**
+ * Получение длительности загруженной части
+ * @param {Boolean|int} preloader - активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик
+ * @returns {Number}
+ */
 AudioPlayer.prototype.getLoaded = function(preloader) {
     return this.implementation.getLoaded(preloader ? 1 : 0);
 };
 
+/**
+ * Получение длительности воспроизведения
+ * @returns {Number}
+ */
 AudioPlayer.prototype.getPlayed = function() {
     var position = this.getPosition();
     this._played += position - this._lastSkip;
@@ -512,6 +748,10 @@ AudioPlayer.prototype.getPlayed = function() {
 };
 
 //------------------------------------------------------------------------- Volume
+/**
+ * Получение громкости плеера
+ * @returns {Number}
+ */
 AudioPlayer.prototype.getVolume = function() {
     if (!this.implementation) {
         return 0;
@@ -520,6 +760,11 @@ AudioPlayer.prototype.getVolume = function() {
     return this.implementation.getVolume();
 };
 
+/**
+ * Установка громкости плеера
+ * @param {Number} volume - новое значение громкости
+ * @returns {Number} -- итоговое значение громкости
+ */
 AudioPlayer.prototype.setVolume = function(volume) {
     logger.info(this, "setVolume", volume);
 
@@ -530,6 +775,10 @@ AudioPlayer.prototype.setVolume = function(volume) {
     return this.implementation.setVolume(volume);
 };
 
+/**
+ * Проверка, что громкость управляется устройством, а не програмно
+ * @returns {Boolean}
+ */
 AudioPlayer.prototype.isDeviceVolume = function() {
     if (!this.implementation) {
         return true;
@@ -539,6 +788,16 @@ AudioPlayer.prototype.isDeviceVolume = function() {
 };
 
 //------------------------------------------------------------------------- Web Audio API
+/**
+ * Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.
+ *
+ * **Внимание!** - после включения режима Web Audio API он не отключается полностью, т.к. для этого требуется
+ * реинициализация плеера, которой требуется клик пользователя. При отключении из графа обработки исключаются
+ * все ноды кроме нод-источников и ноды вывода, управление громкостью переключается на элементы audio, без
+ * использования GainNode
+ * @param {Boolean} state - запрашиваемый статус
+ * @returns {Boolean} -- итоговый статус плеера
+ */
 AudioPlayer.prototype.toggleWebAudioAPI = function(state) {
     logger.info(this, "toggleWebAudioAPI", state);
     if (this.implementation.type !== "html5") {
@@ -549,6 +808,12 @@ AudioPlayer.prototype.toggleWebAudioAPI = function(state) {
     return this.implementation.toggleWebAudioAPI(state);
 };
 
+/**
+ * Подключение аудио препроцессора. Вход препроцессора подключается к аудио-элементу у которого выставлена
+ * 100% громкость. Выход препроцессора подключается к GainNode, которая регулирует итоговую громкость
+ * @param {{input: AudioNode, output: AudioNode}|null} preprocessor - препроцессор
+ * @returns {boolean} -- статус успеха
+ */
 AudioPlayer.prototype.setAudioPreprocessor = function(preprocessor) {
     logger.info(this, "setAudioPreprocessor");
     if (this.implementation.type !== "html5") {
@@ -560,10 +825,18 @@ AudioPlayer.prototype.setAudioPreprocessor = function(preprocessor) {
 };
 
 //------------------------------------------------------------------------- PlayId
+/**
+ * Получение playId
+ * @returns {String}
+ */
 AudioPlayer.prototype.getPlayId = function() {
     return this._playId;
 };
 
+/**
+ * Вспомогательная функция для отображение состояния плеера в логе.
+ * @private
+ */
 AudioPlayer.prototype._logger = function() {
     return {
         index: this.implementation && this.implementation.name,

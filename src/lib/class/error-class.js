@@ -5,7 +5,9 @@ var clearInstance = require('./clear-instance');
  * ErrorClass acts more like a class: ErrorClass.call(this, message) modify 'this' object.
  * @param {String} [message] - error message
  * @param {Number} [id] - error id
+ * @extends Error
  * @constructor
+ * @private
  */
 var ErrorClass = function(message, id) {
     var err = new Error(message, id);
