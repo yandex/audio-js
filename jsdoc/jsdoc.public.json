@@ -40,6 +40,7 @@
         "encoding": "utf8",
         "destination": "dist/public-doc/",
         "private": false,
-        "lenient": true
+        "lenient": true,
+        "readme": "readme.md"
     }
 }
