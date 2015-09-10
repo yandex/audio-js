@@ -30,7 +30,7 @@ audioTypes.html5.priority = config.html5.blacklist.some(function(item) { return 
 logger.debug(null, "audioTypes", audioTypes);
 
 /** Описание временных данных плеера
- * @typedef {Object} AudioPlayerTimes
+ * @typedef {Object} AudioPlayer~AudioPlayerTimes
  *
  * @property {Number} duration - длительность трека
  * @property {Number} loaded - длительность загруженной части
@@ -69,7 +69,7 @@ logger.debug(null, "audioTypes", audioTypes);
  */
 /** Событие обновления позиции воспроизведения/загруженной части ({@link AudioPlayer.EVENT_PROGRESS})
  * @event AudioPlayer#progress
- * @param {AudioPlayerTimes} times - информация о временных данных трека
+ * @param {AudioPlayer~AudioPlayerTimes} times - информация о временных данных трека
  */
 /** Событие начала загрузки трека ({@link AudioPlayer.EVENT_LOADING})
  * @event AudioPlayer#loading
@@ -90,7 +90,7 @@ logger.debug(null, "audioTypes", audioTypes);
  */
 /** Событие обновления позиции воспроизведения/загруженной части ({@link AudioPlayer.EVENT_PROGRESS})
  * @event AudioPlayer#preloader:progress
- * @param {AudioPlayerTimes} times - информация о временных данных трека
+ * @param {AudioPlayer~AudioPlayerTimes} times - информация о временных данных трека
  */
 /** Событие начала загрузки трека ({@link AudioPlayer.EVENT_LOADING})
  * @event AudioPlayer#preloader:loading
@@ -293,7 +293,7 @@ AudioPlayer.prototype._initType = function(type) {
     try {
         /**
          * Текущая реализация аудио-плеера
-         * @type {IAudioImplementation|null}
+         * @type {AudioPlayer~IAudioImplementation|null}
          * @private
          */
         this.implementation = new type.AudioImplementation(this.overlay);

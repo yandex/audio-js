@@ -73,6 +73,6 @@ module.exports = Promise;
 /**
  * Отмена действия связанного с обещаением
  * @abstract
- * @method {function} abort - оборвать выполнение действия
+ * @method AbortablePromise#abort
  * @param {String|Error} reason - причина отмены действия
  */

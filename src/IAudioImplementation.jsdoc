@@ -1,8 +1,10 @@
 /**
  * Интерфейс внутренней реализации плеера.
- * @typedef {class} IAudioImplementation
+ * @typedef {class} AudioPlayer~IAudioImplementation
  *
  * @mixes Events
  *
  * @property {string} type - Тип плеера
+ *
+ * @private
  */
