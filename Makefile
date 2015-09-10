@@ -14,10 +14,11 @@ all: clean build minify jsdoc_public
 
 
 clean:
-	rm -rf $(BUILDDIR)
+	-rm -rf $(BUILDDIR)
 
 
 prepare: clean
+	-npm install
 	mkdir $(BUILDDIR)
 	cp $(SOURCEDIR)/flash/build/player-2_0.swf $(BUILDDIR)/player-2_0.swf
 
@@ -48,12 +49,12 @@ jsdoc: jsdoc_public jsdoc_private
 
 
 jsdoc_public: prepare
-	rm -rf dist/public-doc/
+	-rm -rf dist/public-doc/
 	$(JSDOC) jsdoc/jsdoc.public.json
 
 
 jsdoc_private: prepare
-	rm -rf dist/dev-doc/
+	-rm -rf dist/dev-doc/
 	$(JSDOC) jsdoc/jsdoc.private.json
 
 

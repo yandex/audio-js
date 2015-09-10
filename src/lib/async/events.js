@@ -25,8 +25,8 @@ var Events = function() {
 
 /**
  * Расширить произвольный класс свойствами диспетчера событий
- * @param {class} classConstructor - конструктор класса
- * @returns {class} -- тот же конструктор класса, расширенный свойствами диспетчера событий
+ * @param {Function} classConstructor - конструктор класса
+ * @returns {Function} -- тот же конструктор класса, расширенный свойствами диспетчера событий
  */
 Events.mixin = function(classConstructor) {
     merge(classConstructor.prototype, Events.prototype, true);

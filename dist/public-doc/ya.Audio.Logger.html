@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Class: Logger</title>
     
     
     
@@ -529,128 +529,1390 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="index.html">Index</h1>
+        <h1 class="page-title" data-filename="ya.Audio.Logger.html">Class: Logger</h1>
         
 
 
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="ya.Audio.html">.Audio</a>.</span>
+    
+    Logger
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="Logger">
+            
+            new ya.Audio.Logger<span class="signature">(channel)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 10
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Настраиваемые логгер для аудио-плеера</p>
+    </div>
     
 
+    
+    
+    
+    
+    
+        
 
-    <h3> </h3>
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>channel</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
 
 
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>имя канала, за который будет отвечать экземляр логгера</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-
-
-
+    
+    
 
     
 
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".ignores"><span class="type-signature static">static</span>ya.Audio.Logger.ignores<span class="type-signature type array.<string>">Array.&lt;String></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Список игнорируемых каналов</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".logLevels"><span class="type-signature static">static</span>ya.Audio.Logger.logLevels<span class="type-signature type array.<string>">Array.&lt;String></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Список отображаемых в консоли уровней лога</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".log">
+            
+            <span class="type-signature static">static</span>ya.Audio.Logger.log<span class="signature">(level, channel, context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 81
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Сделать запись в лог</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>level</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
 
 
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>уровень лога</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>channel</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
 
-    <section>
-        <article class="readme"><h1>YandexAudio</h1><p>YandexAudio - это библиотека аудио-плеера для браузера. Текущее состояние дел с html5 audio и поддержкой flash в разных браузерах не позволяют легко и просто реализовать функционал воспроизведения музыки в браузере. Данная библиотека нацелена на то, чтобы устранить этот досадный недостаток. Вот краткий список возможностей данной библиотеки:</p>
-<ul>
-<li>автоматическое определение поддерживаемых браузером технологий</li>
-<li>подключение flash-плеера на страницу с возможностью отображения видимого (прозрачного) flash-апплета</li>
-<li>автоматическая реинициализация при крахе плеера (например из-за заблокированного flash-содержимого)</li>
-<li>предзагрузка следующего трека, параллельно с воспроизведением текущего</li>
-<li>детектирование и использование технологий web audio api</li>
-<li>эквалайзер (с пресетами от WINAMP) с возможностью настройки количества и частоты полос пропускания</li>
-</ul>
-<h2>Подключение</h2><p>Существует 3 способа подключения данной библиотеки:</p>
-<ul>
-<li><strong>npm</strong> если ваш проект использует сборку скриптов с помощью browserify или аналога, то можно просто подключать библиотку как npm-пакет <code>var YandexAudio = require('YandexAudio')</code></li>
-<li><strong>скрипт</strong> - достаточно подключить основной файл скрипта (dist/index.js или dist/index.min.js - минифицированную версию) в тело страницы и далее использовать глобально доступный объект <code>ya.Audio</code></li>
-<li><strong>modules</strong> - .... нужно описать как с этим работать... я сам если честно не до конца понимаю зачем и как...</li>
-</ul>
-<h2>Использование</h2><h3>Создание экземпляра плеера:</h3><pre class="prettyprint source lang-javascript"><code>    var audioPlayer = new ya.Audio(preferredPlayerType, flashOverlayElement);
-    audioPlayer.initPromise().then(function() {
-      console.log(&quot;Аудио-плеер готов к работе&quot;);
-    }, function(){
-      console.error(&quot;Не удалось инициализировать аудио-плеер&quot;);
-    });</code></pre><ul>
-<li><strong>preferredPlayerType</strong> - строка <code>&quot;html5&quot;</code>, <code>&quot;flash&quot;</code> или любое ложное значение (false, null, undefined, 0, &quot;&quot;), указывает на предпочитаемый тип плеера (если он окажется недоступен, будет запущен оставшийся тип)</li>
-<li><strong>flashOverlayElement</strong> - HTMLElement в который требуется встроить flash-апплет или ложное значение. Требуется для того, чтобы была возможность отобразить видимый flash-апплет для отключения различных блокировщиков flash'а.</li>
-</ul>
-<h3>Запуск воспроизведения</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.play(src).then(function(){
-      console.log(&quot;Воспроизведение успешно началось&quot;);
-    }, function(err){
-      console.error(&quot;Не удалось начать воспроизведенние&quot;, err);
-    });</code></pre><h3>Управление воспроизведением</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.pause(); // пауза
-    audioPlayer.resume(); // продолжение воспроизведения
-    audioPlayer.stop(); // остановка воспроизведения и загрузки трека
 
-    console.log(&quot;Длительность трека&quot;, audioPlayer.getDuration());
-    console.log(&quot;Текущая позиция воспроизведения&quot;, audioPlayer.getPosition());
-    console.log(&quot;Длительность загруженной части&quot;, audioPlayer.getLoaded());
-    console.log(&quot;Время воспроизведения трека&quot;, audioPlayer.getPlayed());
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>канал</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
 
-    console.log(&quot;Новая позиция воспроизведения&quot;, audioPlayer.setPosition(position));</code></pre><h3>Прослушивание событий</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.on(ya.Audio.EVENT_STATE, function(state){
-      switch(state) {
-        case ya.Audio.STATE_INIT: console.log(&quot;Инициализация плеера&quot;); break;
-        case ya.Audio.STATE_IDLE: console.log(&quot;Плеер готов и ожидает&quot;); break;
-        case ya.Audio.STATE_PLAYING: console.log(&quot;Плеер проигрывает музыку&quot;); break;
-        case ya.Audio.STATE_PAUSED: console.log(&quot;Плеер поставлен на паузу&quot;); break;
-        case ya.Audio.STATE_CRASHED: console.log(&quot;Не удалось инициализировать плеер&quot;); break;
-      }
-    });
 
-    var logEvent = function(text){ return function(data){ console.log(text, data); }; };
-    audioPlayer.on(ya.Audio.EVENT_PLAY, logEvent(&quot;Плеер начал воспроизведение трека&quot;));
-    audioPlayer.on(ya.Audio.EVENT_STOP, logEvent(&quot;Остановка воспроизведения&quot;));
-    audioPlayer.on(ya.Audio.EVENT_PAUSE, logEvent(&quot;Пауза воспроизведения&quot;));
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
 
-    audioPlayer.on(ya.Audio.EVENT_PROGRESS, logEvent(&quot;Обновление позиции воспроизведения&quot;));
-    audioPlayer.on(ya.Audio.EVENT_ENDED, logEvent(&quot;Воспроизведение трека завершено&quot;));
 
-    audioPlayer.on(ya.Audio.EVENT_LOADING, logEvent(&quot;Трек начал загружаться&quot;));
-    audioPlayer.on(ya.Audio.EVENT_LOADED, logEvent(&quot;Трек загружен полностью&quot;));
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
 
-    audioPlayer.on(ya.Audio.EVENT_VOLUME, logEvent(&quot;Изменение громкости&quot;));
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-    audioPlayer.on(ya.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при воспроизведении&quot;));
-    audioPlayer.on(ya.Audio.EVENT_CRASHED, logEvent(&quot;Крах инициализации&quot;));
+    
+    
 
-    audioPlayer.on(ya.Audio.EVENT_SWAP, logEvent(&quot;Переключение между текущим и предзагруженным треком&quot;));</code></pre><h3>Прелоадер</h3><p>В большинство команд управления можно передать вторым аргументом 1, чтобы они применялись к прелоадеру вместо текущего плеера.
-Для прослушивания событий плероадера следует использовать префикс <code>ya.Audio.PRELOADER_EVENT</code></p>
-<pre class="prettyprint source lang-javascript"><code>    audioPlayer.pause(1); // пауза
-    audioPlayer.resume(1); // продолжение воспроизведения
-    audioPlayer.stop(1); // остановка воспроизведения и загрузки трека
+    
 
-    var logEvent = function(text){ return function(data){ console.log(text, data); }; };
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_STOP, logEvent(&quot;Остановка загрузки&quot;));
+    
+    
+    
+    
+    
+    
+    
+</dd>
 
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_PROGRESS, logEvent(&quot;Процесс загрузки&quot;));    
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADING, logEvent(&quot;Трек начал загружаться&quot;));
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADED, logEvent(&quot;Трек загружен полностью&quot;));
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="debug">
+            
+            debug<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 26
+        </div>
+        
+    </div>
 
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при загрузки&quot;));</code></pre><h2>Сборка javascipt</h2><p>Сборка библиотеки производится с помощью npm-пакетов <a href="https://www.npmjs.com/package/browserify">browserify</a> и <a href="https://www.npmjs.com/package/uglify-js">uglify-js</a>.
-Для того чтобы подготовить окружение для сборки библиотеки требуется установить <a href="https://nodejs.org/en/">node-js</a> и выполнить <code>npm install</code> в корне репозитория.
-Сам процесс сборки доступен в двух вариантах: с помощью утилиты make (основой метод) и с помощью библиотеки <a href="http://gruntjs.com/">grunt</a>.</p>
-<h3>Makefile</h3><p>Является основным методом сборки. Доступные команды:</p>
-<ul>
-<li><strong>make all</strong> - делает полную сборку библиотеки</li>
-<li><strong>make clean</strong> - удаляет каталог сборки</li>
-<li><strong>make build</strong> - собирает библиотеку</li>
-<li><strong>make minify</strong> - собирает минифицированную версию библиотеки (не пересобирает библиотеку если она была уже собрана через make build)</li>
-</ul>
-<p>Без аргументов <strong>make</strong> выполняет сценарий <strong>make all</strong>.
-Перед тем как делать pull request следует сделать полную сборку библиотеки с помощью make.</p>
-<h3>Grunt</h3><p>Запасной вариант сборки для тех у кого по каким-то причинам нет возможности воспользоваться утилитой make.
-Чтобы использовать сборку через grunt требуется установить глобально пакет <a href="https://www.npmjs.com/package/grunt-cli">grunt-cli</a> (<code>npm install -g grunt-cli</code>).
-Доступные команды:</p>
-<ul>
-<li><strong>grunt all</strong> - делает полную сборку библиотеки</li>
-<li><strong>grunt clean</strong> - удаляет каталог сборки</li>
-<li><strong>grunt build</strong> - собирает библиотеку</li>
-</ul>
-<p>Без аргументов <strong>grunt</strong> выполняет сценарий <strong>grunt all</strong>.</p>
-<h2>Сборка flash</h2><p>Сборка flash-плеера в автоматическом режиме не доступна. Для ручной сборки требуется настроить какой-либо сборщик (наиболее удобные: IntelliJ IDEA, FlashDevelop). Параметры, используемые для сборки: FlexSDK 3.6.0, целевая версия плеера 9, основной класс - AudioManager, имя собранного файла player-2_0.swf</p></article>
-    </section>
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>debug</strong></p>
+    </div>
+    
 
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="error">
+            
+            error<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 58
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>error</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="info">
+            
+            info<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 42
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>info</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="log">
+            
+            log<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 34
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>log</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trace">
+            
+            trace<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 66
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>trace</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="warn">
+            
+            warn<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 50
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>warn</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
 
 
 

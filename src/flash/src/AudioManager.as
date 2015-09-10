@@ -17,7 +17,7 @@ public final class AudioManager extends Sprite {
     public static const EVENT_CLICK:String = "click";
     public static const EVENT_FAIL:String = "failed";
 
-    private static const FLASH2JS_CALLBACK:String = "__flash__YaMusicFlashCallback";
+    private static const FLASH2JS_CALLBACK:String = "ya.Audio._flashCallback";
     private static const JS2FLASH_CALLBACK:String = "call";
 
     public function AudioManager() {

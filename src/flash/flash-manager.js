@@ -29,7 +29,17 @@ var FlashManager = function(overlay) { // singleton!
     var deferred = this.deferred = new Deferred();
     this.whenReady = this.deferred.promise();
 
-    window[config.flash.callback] = this.onEvent.bind(this);
+    var callbackPath = config.flash.callback.split(".");
+    var callbackName = callbackPath.pop();
+    var callbackCont = window;
+    callbackPath.forEach(function(part) {
+        if (!callbackCont[part]) {
+            callbackCont[part] = {};
+        }
+        callbackCont = callbackCont[part];
+    });
+    callbackCont[callbackName] = this.onEvent.bind(this);
+
     this.__loadTimeout = setTimeout(this.onLoadTimeout, config.flash.loadTimeout);
     flashLoader(config.flash.path + "/"
         + config.flash.name, config.flash.version, config.flash.playerID, this.onLoad.bind(this), {}, overlay);
