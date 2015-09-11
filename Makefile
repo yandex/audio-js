@@ -7,7 +7,7 @@ JSDOC=$(NPM_BIN)/jsdoc -c
 UGLIFY_JS=$(NPM_BIN)/uglifyjs --mangle --compress --bare-returns --stats
 BROWSERIFY=$(NPM_BIN)/browserify -d
 
-MAKEFLAGS+=-j 2
+MAKEFLAGS+=-j 1
 
 
 all: clean build minify jsdoc_public

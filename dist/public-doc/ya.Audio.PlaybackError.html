@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Namespace: flash</title>
+    <title>Class: PlaybackError</title>
     
     
     
@@ -670,7 +670,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="ya.Audio.config.flash.html">Namespace: flash</h1>
+        <h1 class="page-title" data-filename="ya.Audio.PlaybackError.html">Class: PlaybackError</h1>
         
 
 
@@ -679,9 +679,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="ya.Audio.html">.Audio</a><a href="ya.Audio.config.html">.config</a>.</span>
+        <span class="ancestors"><a href="ya.Audio.html">.Audio</a>.</span>
     
-    flash
+    PlaybackError
     </h2>
     
 </header>  
@@ -692,10 +692,105 @@
     
     
         
-            <div class="description"><p>Настройки подключения flash-плеера</p></div>
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="PlaybackError">
+            
+            new ya.Audio.PlaybackError<span class="signature">(message, src)</span>
+        </h4>
+    
         
+        <div class="tag-source">
+            error/playback-error.js, line 15
+        </div>
         
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Класс ошибки воспроизведения</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
         
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>текст ошибки</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>src</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>ссылка на трек</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
 <dl class="details">
     
         
@@ -720,11 +815,29 @@
     
 </dl>
 
-        
-        
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
     
     </div>
     
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li>Error</li>
+        </ul>
     
     
     
@@ -742,7 +855,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".callback"><span class="type-signature static">static,constant</span>ya.Audio.config.flash.callback<span class="type-signature type string">String</span> </h4>
+        <h4 class="name" id=".BAD_DATA"><span class="type-signature static">static,constant</span>ya.Audio.PlaybackError.BAD_DATA<span class="type-signature type string">string</span> </h4>
     </div>
     
     
@@ -750,7 +863,7 @@
 <dd>
     
     <div class="description">
-        <p>Имя функции-обработчика событий flash-плеера</p>
+        <p>Не доступный источник</p>
     </div>
     
     
@@ -787,7 +900,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".clickTimeout"><span class="type-signature static">static</span>ya.Audio.config.flash.clickTimeout<span class="type-signature type number">Number</span> </h4>
+        <h4 class="name" id=".CONNECTION_ABORTED"><span class="type-signature static">static,constant</span>ya.Audio.PlaybackError.CONNECTION_ABORTED<span class="type-signature type string">string</span> </h4>
     </div>
     
     
@@ -795,7 +908,7 @@
 <dd>
     
     <div class="description">
-        <p>Таймаут инициализации после клика</p>
+        <p>Отмена соединенния</p>
     </div>
     
     
@@ -832,7 +945,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".heartBeatInterval"><span class="type-signature static">static</span>ya.Audio.config.flash.heartBeatInterval<span class="type-signature type number">Number</span> </h4>
+        <h4 class="name" id=".DECODE_ERROR"><span class="type-signature static">static,constant</span>ya.Audio.PlaybackError.DECODE_ERROR<span class="type-signature type string">string</span> </h4>
     </div>
     
     
@@ -840,7 +953,7 @@
 <dd>
     
     <div class="description">
-        <p>Интервал проверки доступности flash-плеера</p>
+        <p>Ошибка декодирования аудио</p>
     </div>
     
     
@@ -877,7 +990,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".initTimeout"><span class="type-signature static">static</span>ya.Audio.config.flash.initTimeout<span class="type-signature type number">Number</span> </h4>
+        <h4 class="name" id=".html5"><span class="type-signature static">static</span>ya.Audio.PlaybackError.html5<span class="type-signature type string">String</span> </h4>
     </div>
     
     
@@ -885,12 +998,158 @@
 <dd>
     
     <div class="description">
-        <p>Таймаут инициализации</p>
+        <p>Таблица соответствия кодов ошибок html5 плеера</p>
     </div>
     
     
     
 <dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>1</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    PlaybackError.CONNECTION_ABORTED
+                
+                </td>
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>2</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    PlaybackError.NETWORK_ERROR
+                
+                </td>
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>3</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    PlaybackError.DECODE_ERROR
+                
+                </td>
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>4</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    PlaybackError.BAD_DATA
+                
+                </td>
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
     
         
     
@@ -922,7 +1181,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".loadTimeout"><span class="type-signature static">static</span>ya.Audio.config.flash.loadTimeout<span class="type-signature type number">Number</span> </h4>
+        <h4 class="name" id=".NETWORK_ERROR"><span class="type-signature static">static,constant</span>ya.Audio.PlaybackError.NETWORK_ERROR<span class="type-signature type string">string</span> </h4>
     </div>
     
     
@@ -930,187 +1189,7 @@
 <dd>
     
     <div class="description">
-        <p>Таймаут загрузки</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".name"><span class="type-signature static">static</span>ya.Audio.config.flash.name<span class="type-signature type string">String</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Имя .swf файла флеш-плеера</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".path"><span class="type-signature static">static</span>ya.Audio.config.flash.path<span class="type-signature type string">String</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Путь к .swf файлу флеш-плеера</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".playerID"><span class="type-signature static">static</span>ya.Audio.config.flash.playerID<span class="type-signature type string">String</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>ID, который будет выставлен для элемента с flash-плеером</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".version"><span class="type-signature static">static</span>ya.Audio.config.flash.version<span class="type-signature type string">String</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Минимальная версия флеш-плеера</p>
+        <p>Сетевая ошибка</p>
     </div>
     
     
