@@ -1,4 +1,12 @@
-module.exports = function merge(initial) {
+/**
+ * Скопировать свойства всех перечисленных объектов в один.
+ * @param {Object} initial - если последний аргумент true, то новый объект не создаётся, а используется данный
+ * @param {...Object|Boolean} args - список объектов из которых копировать свойства. Последний аргумент может быть либо
+ * объектом, либо true.
+ * @returns {Object}
+ * @private
+ */
+var merge = function (initial) {
     var args = [].slice.call(arguments, 1);
     var object;
     var key;
@@ -25,3 +33,5 @@ module.exports = function merge(initial) {
 
     return object;
 };
+
+module.exports = merge;

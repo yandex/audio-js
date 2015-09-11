@@ -17,6 +17,28 @@ detect.flashVersion = flashVersion.major + "." + flashVersion.minor + "." + flas
 exports.available = swfobject.hasFlashPlayerVersion(config.flash.version);
 logger.info(this, "detection", exports.available);
 
+/**
+ * @class Класс flash аудио-плеера
+ * @extends IAudioImplementation
+ *
+ * @fires IAudioImplementation#play
+ * @fires IAudioImplementation#ended
+ * @fires IAudioImplementation#volumechange
+ * @fires IAudioImplementation#crashed
+ * @fires IAudioImplementation#swap
+ *
+ * @fires IAudioImplementation#stop
+ * @fires IAudioImplementation#pause
+ * @fires IAudioImplementation#progress
+ * @fires IAudioImplementation#loading
+ * @fires IAudioImplementation#loaded
+ * @fires IAudioImplementation#error
+ *
+ * @param {HMTLElement} [overlay] - место для встраивания плеера (актуально только для flash-плеера)
+ * @param {Boolean} [force=false] - создать новый экзепляр FlashManager
+ * @constructor
+ * @private
+ */
 var AudioFlash = function(overlay, force) {
     this.name = playerId++;
     logger.debug(this, "constructor");
@@ -57,10 +79,124 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
     }
 });
 
+/**
+ * Проиграть трек
+ * @method AudioFlash#play
+ * @param {String} src - ссылка на трек
+ * @param {Number} [duration] - Длительность трека (не используется)
+ */
+
+/**
+ * Поставить трек на паузу
+ * @method AudioFlash#pause
+ */
+
+/**
+ * Снять трек с паузы
+ * @method AudioFlash#resume
+ */
+
+/**
+ * Остановить воспроизведение и загрузку трека
+ * @method AudioFlash#stop
+ * @param {int} [offset=0] - 0: для текущего загрузчика, 1: для следующего загрузчика
+ */
+
+/**
+ * Предзагрузить трек
+ * @method AudioFlash#preload
+ * @param {String} src - Ссылка на трек
+ * @param {Number} [duration] - Длительность трека (не используется)
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ */
+
+/**
+ * Проверить что трек предзагружается
+ * @method AudioFlash#isPreloaded
+ * @param {String} src - ссылка на трек
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean}
+ */
+
+/**
+ * Проверить что трек предзагружается
+ * @param {String} src - ссылка на трек
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean}
+ */
+
+/**
+ * Проверить что трек начал предзагружаться
+ * @method AudioFlash#isPreloading
+ * @param {String} src - ссылка на трек
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean}
+ */
+
+/**
+ * Запустить воспроизведение предзагруженного трека
+ * @method AudioFlash#playPreloaded
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean} -- доступность данного действия
+ */
+
+/**
+ * Получить позицию воспроизведения
+ * @method AudioFlash#getPosition
+ * @returns {number}
+ */
+
+/**
+ * Установить текущую позицию воспроизведения
+ * @method AudioFlash#setPosition
+ * @param {number} position
+ */
+
+/**
+ * Получить длительность трека
+ * @method AudioFlash#getDuration
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ */
+
+/**
+ * Получить длительность загруженной части трека
+ * @method AudioFlash#getLoaded
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ */
+
+/**
+ * Получить текущее значение громкости
+ * @method AudioFlash#getVolume
+ * @returns {number}
+ */
+
+/**
+ * Установить значение громкости
+ * @method AudioFlash#setVolume
+ * @param {number} volume
+ */
+
+/**
+ * Получить ссылку на трек
+ * @method AudioFlash#getSrc
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {String|Boolean} -- Ссылка на трек или false, если нет загружаемого трека
+ */
+
+/**
+ * Проверить доступен ли программный контроль громкости
+ * @returns {boolean}
+ */
 AudioFlash.prototype.isDeviceVolume = function() {
     return true;
 };
 
+/**
+ * Вспомогательная функция для отображения состояния плеера в логе.
+ * @private
+ */
 AudioFlash.prototype._logger = function() {
     try {
         if (!this.hasOwnProperty("id")) {

@@ -1,10 +1,192 @@
 /**
  * Интерфейс внутренней реализации плеера.
- * @typedef {class} AudioPlayer~IAudioImplementation
+ * @typedef {function} IAudioImplementation
+ * @kind class
  *
- * @mixes Events
+ * @extends Events
+ *
+ * @param {HMTLElement} [overlay] - место для встраивания плеера (актуально только для flash-плеера)
  *
  * @property {string} type - Тип плеера
+ * @property {Boolean} available - Доступность реализации
  *
+ * @fires IAudioImplementation#play
+ * @fires IAudioImplementation#ended
+ * @fires IAudioImplementation#volumechange
+ * @fires IAudioImplementation#crashed
+ * @fires IAudioImplementation#swap
+ *
+ * @fires IAudioImplementation#stop
+ * @fires IAudioImplementation#pause
+ * @fires IAudioImplementation#progress
+ * @fires IAudioImplementation#loading
+ * @fires IAudioImplementation#loaded
+ * @fires IAudioImplementation#error
+ *
+ * @abstract
  * @private
+ */
+
+/** Событие начала воспроизведения ({@link ya.Audio.EVENT_PLAY})
+ * @event IAudioImplementation#play
+ */
+/** Событие завершения воспроизведения ({@link ya.Audio.EVENT_ENDED})
+ * @event IAudioImplementation#ended
+ */
+/** Событие изменения громкости ({@link ya.Audio.EVENT_VOLUME})
+ * @event IAudioImplementation#volumechange
+ * @param {Number} volume - громкость
+ */
+/** Событие краха плеера ({@link ya.Audio.EVENT_CRASHED})
+ * @event IAudioImplementation#crashed
+ */
+/** Событие переключения активного плеера и прелоадера ({@link ya.Audio.EVENT_SWAP})
+ * @event IAudioImplementation#swap
+ */
+
+/** Событие остановки воспроизведения ({@link ya.Audio.EVENT_STOP})
+ * @event IAudioImplementation#stop
+ */
+/** Событие начала воспроизведения ({@link ya.Audio.EVENT_PAUSE})
+ * @event IAudioImplementation#pause
+ */
+/** Событие обновления позиции воспроизведения/загруженной части ({@link ya.Audio.EVENT_PROGRESS})
+ * @event IAudioImplementation#progress
+ * @param {ya.Audio~AudioPlayerTimes} times - информация о временных данных трека
+ */
+/** Событие начала загрузки трека ({@link ya.Audio.EVENT_LOADING})
+ * @event IAudioImplementation#loading
+ */
+/** Событие завершения загрузки трека ({@link ya.Audio.EVENT_LOADED})
+ * @event IAudioImplementation#loaded
+ */
+/** Событие ошибки воспроизведения ({@link ya.Audio.EVENT_ERROR})
+ * @event IAudioImplementation#error
+ */
+
+/**
+ * Обещание, которое разрешается при завершении инициализации
+ * @member IAudioImplementation#whenReady
+ * @type {Promise}
+ */
+
+/**
+ * Проиграть трек
+ * @method IAudioImplementation#play
+ * @param {String} src - ссылка на трек
+ * @param {Number} [duration] - Длительность трека (не используется)
+ * @abstract
+ */
+
+/**
+ * Поставить трек на паузу
+ * @method IAudioImplementation#pause
+ * @abstract
+ */
+
+/**
+ * Снять трек с паузы
+ * @method IAudioImplementation#resume
+ * @abstract
+ */
+
+/**
+ * Остановить воспроизведение и загрузку трека
+ * @method IAudioImplementation#stop
+ * @param {int} [offset=0] - 0: для текущего загрузчика, 1: для следующего загрузчика
+ * @abstract
+ */
+
+/**
+ * Предзагрузить трек
+ * @method IAudioImplementation#preload
+ * @param {String} src - Ссылка на трек
+ * @param {Number} [duration] - Длительность трека (не используется)
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @abstract
+ */
+
+/**
+ * Проверить что трек предзагружается
+ * @method IAudioImplementation#isPreloaded
+ * @param {String} src - ссылка на трек
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean}
+ * @abstract
+ */
+
+/**
+ * Проверить что трек начал предзагружаться
+ * @method IAudioImplementation#isPreloading
+ * @param {String} src - ссылка на трек
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean}
+ * @abstract
+ */
+
+/**
+ * Запустить воспроизведение предзагруженного трека
+ * @method IAudioImplementation#playPreloaded
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean} -- доступность данного действия
+ * @abstract
+ */
+
+/**
+ * Получить позицию воспроизведения
+ * @method IAudioImplementation#getPosition
+ * @returns {number}
+ * @abstract
+ */
+
+/**
+ * Установить текущую позицию воспроизведения
+ * @method IAudioImplementation#setPosition
+ * @param {number} position
+ * @abstract
+ */
+
+/**
+ * Получить длительность трека
+ * @method IAudioImplementation#getDuration
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ * @abstract
+ */
+
+/**
+ * Получить длительность загруженной части трека
+ * @method IAudioImplementation#getLoaded
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ * @abstract
+ */
+
+/**
+ * Получить текущее значение громкости
+ * @method IAudioImplementation#getVolume
+ * @returns {number}
+ * @abstract
+ */
+
+/**
+ * Установить значение громкости
+ * @method IAudioImplementation#setVolume
+ * @param {number} volume - желаемая громкость
+ * @abstract
+ */
+
+/**
+ * Получить ссылку на трек
+ * @method IAudioImplementation#getSrc
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {String|Boolean} -- Ссылка на трек или false, если нет загружаемого трека
+ * @abstract
+ */
+
+/**
+ * Проверить доступен ли программный контроль громкости
+ * @method IAudioImplementation#isDeviceVolume
+ * @returns {boolean}
+ * @abstract
  */

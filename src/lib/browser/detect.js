@@ -1,9 +1,3 @@
-/**
- * Детектирование браузера, os и их возможностей
- * @namespace systemInfo
- * @private
- */
-
 var ua = navigator.userAgent.toLowerCase();
 
 // ------------------------------------------------------------------------------ Browser detection
@@ -90,8 +84,12 @@ try {
 }
 
 // ------------------------------------------------------------------------------ Экспорт
-
-module.exports = {
+/**
+ * Информация об окружении
+ * @namespace
+ * @private
+ */
+var detect = {
     /**
      * Информация о браузере
      * @type {object}
@@ -117,3 +115,5 @@ module.exports = {
      */
     onlyDeviceVolume: noVolume
 };
+
+module.exports = detect;

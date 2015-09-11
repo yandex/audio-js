@@ -1,15 +1,31 @@
 var Promise = require('./promise');
 var noop = require('../noop');
 
-var Deferred = module.exports = function() {
+/**
+ * @class Отложенное действие
+ * @constructor
+ * @private
+ */
+var Deferred = function() {
     var self = this;
 
     var _promise = new Promise(function(resolve, reject) {
+        /**
+         * Разрешить обещание
+         * @method Deferred#resolve
+         * @param {*} data - передать данные в обещание
+         */
         self.resolve = resolve;
+
+        /**
+         * Отклонить обещание
+         * @method Deferred#reject
+         * @param {Error} error - передать ошибку
+         */
         self.reject = reject;
     });
 
-    var promise = _promise.then(function(data) { // FIXME: убрать этот мусор
+    var promise = _promise.then(function(data) {
         self.resolved = true;
         self.pending = false;
         return data;
@@ -20,11 +36,31 @@ var Deferred = module.exports = function() {
     });
     promise["catch"](noop); // Don't throw errors to console
 
-    self.pending = true;
+    /**
+     * Выполнилось ли обещание
+     * @type {boolean}
+     */
+    this.pending = true;
 
-    self.promise = function() { return promise; };
+    /**
+     * Отклонилось ли обещание
+     * @type {boolean}
+     */
+    this.rejected = false;
+
+    /**
+     * Получить обещание
+     * @method Deferred#promise
+     * @returns {Promise}
+     */
+    this.promise = function() { return promise; };
 };
 
+/**
+ * Ожидание выполнения списка обещаний
+ * @param {...*} args - обещания, которые требуется ожидать
+ * @returns AbortablePromise
+ */
 Deferred.when = function() {
     var deferred = new Deferred();
 
@@ -48,3 +84,5 @@ Deferred.when = function() {
 
     return deferred.promise();
 };
+
+module.exports = Deferred;

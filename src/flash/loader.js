@@ -10,7 +10,7 @@ var CONTAINER_CLASS = "ya-flash-player-wrapper";
 /**
  * Загрузчик флеш-плеера
  *
- * @alias flashLoader
+ * @alias FlashManager~flashLoader
  *
  * @param {string} url - Ссылка на плеера
  * @param {string} minVersion - минимальная версия плеера

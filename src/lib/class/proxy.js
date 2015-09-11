@@ -1,5 +1,13 @@
 var Events = require('../async/events');
 
+/**
+ * @class Прокси-класс. Выдаёт наружу лишь публичные методы объекта и статические свойства.
+ * Не копирует методы из Object.prototype. Все методы имеют привязку контекста к проксируемому объекту.
+ *
+ * @param {Object} [object] - объект, который требуется проксировать
+ * @constructor
+ * @private
+ */
 var Proxy = function(object) {
     if (object) {
         for (var key in object) {
@@ -27,6 +35,12 @@ var Proxy = function(object) {
     }
 };
 
+/**
+ * Экспортирует статические свойства из одного объекта в другой, исключая указанные, приватные и прототип
+ * @param {Object} from - откуда копировать
+ * @param {Object} to - куда копировать
+ * @param {Array.<String>} [exclude] - свойства которые требуется исключить
+ */
 Proxy.exportStatic = function(from, to, exclude) {
     exclude = exclude || [];
 
@@ -42,6 +56,15 @@ Proxy.exportStatic = function(from, to, exclude) {
     });
 };
 
+/**
+ * Создание прокси-пласса привязанного к указанному классу. Можно назначить родительский класс.
+ * У родительского класса появляется приватный метод _proxy, который выдаёт прокси-объект для
+ * данного экземляра. Также появляется свойство __proxy, содержащее ссылку на созданный прокси-объект
+ *
+ * @param {function} OriginalClass - оригинальный класс
+ * @param {function} ParentProxyClass - родительский класс
+ * @returns {function} -- конструтор проксированного класса
+ */
 Proxy.createClass = function(OriginalClass, ParentProxyClass) {
 
     var ProxyClass = function() {

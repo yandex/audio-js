@@ -60,7 +60,12 @@ var config = {
          * Таймаут инициализации после клика
          * @type {Number}
          */
-        clickTimeout: 1000
+        clickTimeout: 1000,
+        /**
+         * Интервал проверки доступности flash-плеера
+         * @type {Number}
+         */
+        heartBeatInterval: 1000
     },
     /**
      * Описание настроек html5 плеера

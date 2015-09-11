@@ -12,14 +12,13 @@ var Deferred = require('../lib/async/deferred');
 var AudioError = require('../error/audio-error');
 var LoaderError = require('../lib/net/error/loader-error');
 
-var flashManager;
-
+/**
+ * @class Загрузка flash-плеера и обработка событий
+ * @param {HTMLElement} overlay - объект для загрузки и показа flash-плеера
+ * @constructor
+ * @private
+ */
 var FlashManager = function(overlay) { // singleton!
-    if (flashManager) {
-        return flashManager;
-    }
-    flashManager = this;
-
     logger.debug(this, "constructor", overlay);
 
     this.state = "init";
@@ -27,6 +26,10 @@ var FlashManager = function(overlay) { // singleton!
     this.emmiters = [];
 
     var deferred = this.deferred = new Deferred();
+    /**
+     * Обещание, которое разрешается при завершении инициализации
+     * @type {Promise}
+     */
     this.whenReady = this.deferred.promise();
 
     var callbackPath = config.flash.callback.split(".");
@@ -38,11 +41,11 @@ var FlashManager = function(overlay) { // singleton!
         }
         callbackCont = callbackCont[part];
     });
-    callbackCont[callbackName] = this.onEvent.bind(this);
+    callbackCont[callbackName] = this._onEvent.bind(this);
 
-    this.__loadTimeout = setTimeout(this.onLoadTimeout, config.flash.loadTimeout);
+    this.__loadTimeout = setTimeout(this._onLoadTimeout, config.flash.loadTimeout);
     flashLoader(config.flash.path + "/"
-        + config.flash.name, config.flash.version, config.flash.playerID, this.onLoad.bind(this), {}, overlay);
+        + config.flash.name, config.flash.version, config.flash.playerID, this._onLoad.bind(this), {}, overlay);
 
     if (overlay) {
         var timeout;
@@ -65,8 +68,13 @@ var FlashManager = function(overlay) { // singleton!
 FlashManager.EVENT_INIT = "init";
 FlashManager.EVENT_FAIL = "failed";
 
-FlashManager.prototype.onLoad = function(data) {
-    logger.debug(this, "onLoad", data);
+/**
+ * Обработчик события загрузки плеера
+ * @param data
+ * @private
+ */
+FlashManager.prototype._onLoad = function(data) {
+    logger.debug(this, "_onLoad", data);
 
     clearTimeout(this.__loadTimeout);
     delete this.__loadTimeout;
@@ -77,7 +85,7 @@ FlashManager.prototype.onLoad = function(data) {
         if (this.state === "ready") {
             this.deferred.resolve(data.ref);
         } else if (!this.overlay) {
-            this.__initTimeout = setTimeout(this.onInitTimeout.bind(this), config.flash.initTimeout);
+            this.__initTimeout = setTimeout(this._onInitTimeout.bind(this), config.flash.initTimeout);
         }
     } else {
         this.state = "failed";
@@ -85,18 +93,30 @@ FlashManager.prototype.onLoad = function(data) {
     }
 };
 
-FlashManager.prototype.onLoadTimeout = function() {
+/**
+ * Обработчик таймаута загрузки
+ * @private
+ */
+FlashManager.prototype._onLoadTimeout = function() {
     this.state = "failed";
     this.deferred.reject(new LoaderError(LoaderError.TIMEOUT));
 };
 
-FlashManager.prototype.onInitTimeout = function() {
+/**
+ * Обработчик таймаута инициализации
+ * @private
+ */
+FlashManager.prototype._onInitTimeout = function() {
     this.state = "failed";
     this.deferred.reject(new AudioError(AudioError.FLASH_INIT_TIMEOUT));
 };
 
-FlashManager.prototype.onInit = function() {
-    logger.debug(this, "onInit");
+/**
+ * Обработчик успешности инициализации
+ * @private
+ */
+FlashManager.prototype._onInit = function() {
+    logger.debug(this, "_onInit");
 
     this.state = "ready";
 
@@ -107,10 +127,19 @@ FlashManager.prototype.onInit = function() {
 
     if (this.flash) {
         this.deferred.resolve(this.flash);
+        this.__heartbeat = setInterval(this._onHeartBeat.bind(this), 1000);
     }
 };
 
-FlashManager.prototype.onEvent = function(event, id, offset, data) {
+/**
+ * Обработчик событий, создаваемых flash-плеером
+ * @param {String} event
+ * @param {int} id - id плеера
+ * @param {int} offset - 0: для текущего загрузчика, 1: для следующего загрузчика
+ * @param {*} data - данные переданные вместе с событием
+ * @private
+ */
+FlashManager.prototype._onEvent = function(event, id, offset, data) {
     if (event === "debug") {
         console.debug("flashDEBUG", id, offset, data);
     }
@@ -123,7 +152,7 @@ FlashManager.prototype.onEvent = function(event, id, offset, data) {
     logger.debug(this, "onEvent", event, id, offset);
 
     if (event === FlashManager.EVENT_INIT) {
-        return this.onInit();
+        return this._onInit();
     }
 
     if (event === FlashManager.EVENT_FAIL) {
@@ -143,26 +172,35 @@ FlashManager.prototype.onEvent = function(event, id, offset, data) {
     }
 };
 
-FlashManager.prototype.onHeartBeat = function() {
+/**
+ * Проверка доступности flash-плеера
+ * @private
+ */
+FlashManager.prototype._onHeartBeat = function() {
     try {
         this.flash._heartBeat();
     } catch(e) {
         logger.error(this, "crashed", e);
-        this.onEvent(AudioStatic.EVENT_CRASHED, -1, e);
+        this._onEvent(AudioStatic.EVENT_CRASHED, -1, e);
     }
 };
 
-FlashManager.prototype.createPlayer = function(player) {
+/**
+ * Создание нового плеера
+ * @param {AudioFlash} audioFlash - flash аудио-плеер, который будет обслуживать созданный плеер
+ * @returns {Promise} -- обещание, которое разрешается после завершения создания плеера
+ */
+FlashManager.prototype.createPlayer = function(audioFlash) {
     logger.debug(this, "createPlayer");
 
     var promise = this.whenReady.then(function() {
-        player.id = this.flash._addPlayer();
-        this.emmiters[player.id] = player;
-        return player.id;
+        audioFlash.id = this.flash._addPlayer();
+        this.emmiters[audioFlash.id] = audioFlash;
+        return audioFlash.id;
     }.bind(this));
 
-    promise.then(function(player) {
-        logger.debug(this, "createPlayerSuccess", player);
+    promise.then(function(playerId) {
+        logger.debug(this, "createPlayerSuccess", playerId);
     }.bind(this), function(err) {
         logger.error(this, "createPlayerError", err);
     }.bind(this));
