@@ -190,7 +190,7 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
  * @returns {boolean}
  */
 AudioFlash.prototype.isDeviceVolume = function() {
-    return true;
+    return false;
 };
 
 /**
