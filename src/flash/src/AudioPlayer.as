@@ -44,12 +44,13 @@ public final class AudioPlayer extends EventDispatcher {
     }
 
     private function setActive(offset:uint):void {
-        if (this.activeLoader > -1) {
-            this.stop();
-        }
-
         this.activeLoader = (this.activeLoader + offset) % this.loaders.length;
         this.dispatchEvent(new AudioEvent(AudioEvent.EVENT_SWAP, offset));
+
+        if (offset !== 0) {
+            //INFO: если релизовывать концепцию множества загрузчиков, то это нужно доработать.
+            this.stop(offset);
+        }
     }
 
     private function getLoader(offset:uint = 0):AudioLoader {

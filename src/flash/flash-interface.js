@@ -108,7 +108,7 @@ FlashInterface.prototype.resume = function(id) {
  * @returns {Boolean} -- возможность данного действия
  */
 FlashInterface.prototype.preload = function(id, src, duration, offset) {
-    return this._callFlash("preload", id, src, duration, offset == null ? 1 : 0);
+    return this._callFlash("preload", id, src, duration, offset == null ? 1 : offset);
 };
 
 /**
@@ -119,7 +119,7 @@ FlashInterface.prototype.preload = function(id, src, duration, offset) {
  * @returns {Boolean}
  */
 FlashInterface.prototype.isPreloaded = function(id, src, offset) {
-    return this._callFlash("isPreloaded", id, src, offset == null ? 1 : 0);
+    return this._callFlash("isPreloaded", id, src, offset == null ? 1 : offset);
 };
 
 /**
@@ -130,7 +130,7 @@ FlashInterface.prototype.isPreloaded = function(id, src, offset) {
  * @returns {Boolean}
  */
 FlashInterface.prototype.isPreloading = function(id, src, offset) {
-    return this._callFlash("isPreloading", id, src, offset == null ? 1 : 0);
+    return this._callFlash("isPreloading", id, src, offset == null ? 1 : offset);
 };
 
 /**
@@ -140,7 +140,7 @@ FlashInterface.prototype.isPreloading = function(id, src, offset) {
  * @returns {boolean} -- доступность данного действия
  */
 FlashInterface.prototype.playPreloaded = function(id, offset) {
-    return this._callFlash("playPreloaded", id, offset == null ? 1 : 0);
+    return this._callFlash("playPreloaded", id, offset == null ? 1 : offset);
 };
 
 /**

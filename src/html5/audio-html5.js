@@ -63,7 +63,9 @@ var AudioHTML5 = function() {
 
     Events.call(this);
     this.on("*", function(event) {
-        logger.debug(this, "onEvent", event);
+        if (event !== AudioStatic.EVENT_PROGRESS) {
+            logger.debug(this, "onEvent", event);
+        }
     }.bind(this));
 
     this.webAudioApi = false;
@@ -257,12 +259,13 @@ AudioHTML5.prototype._addSource = function(loader, source) {
 AudioHTML5.prototype._setActive = function(offset) {
     logger.debug(this, "_setActive", offset);
 
-    if (offset !== 0) {
-        this.stop();
-    }
-
     this.activeLoader = (this.activeLoader + offset) % this.loaders.length;
     this.trigger(AudioStatic.EVENT_SWAP, offset);
+
+    if (offset !== 0) {
+        //INFO: если релизовывать концепцию множества загрузчиков, то это нужно доработать.
+        this.stop(offset);
+    }
 };
 
 /**
@@ -466,7 +469,7 @@ AudioHTML5.prototype.stop = function(offset) {
     loader.notLoading = true;
     loader.load();
 
-    this.trigger(AudioStatic.EVENT_STOP);
+    this.trigger(AudioStatic.EVENT_STOP, offset);
 };
 
 /**
@@ -477,7 +480,7 @@ AudioHTML5.prototype.stop = function(offset) {
  */
 AudioHTML5.prototype.preload = function(src, duration, offset) {
     logger.info(this, "preload", src, offset);
-    offset = offset == null ? 1 : 0;
+    offset = offset == null ? 1 : offset;
     var loader = this._getLoader(true, offset);
 
     loader.src = src;
@@ -493,7 +496,7 @@ AudioHTML5.prototype.preload = function(src, duration, offset) {
  * @returns {boolean}
  */
 AudioHTML5.prototype.isPreloaded = function(src, offset) {
-    offset = offset == null ? 1 : 0;
+    offset = offset == null ? 1 : offset;
     var loader = this._getLoader(false, offset);
     return loader._src === src && !loader.notLoading;
 };
@@ -505,7 +508,7 @@ AudioHTML5.prototype.isPreloaded = function(src, offset) {
  * @returns {boolean}
  */
 AudioHTML5.prototype.isPreloading = function(src, offset) {
-    offset = offset == null ? 1 : 0;
+    offset = offset == null ? 1 : offset;
     var loader = this._getLoader(false, offset);
     return loader._src === src;
 };
@@ -517,7 +520,7 @@ AudioHTML5.prototype.isPreloading = function(src, offset) {
  */
 AudioHTML5.prototype.playPreloaded = function(offset) {
     logger.info(this, "playPreloaded", offset);
-    offset = offset == null ? 1 : 0;
+    offset = offset == null ? 1 : offset;
     var loader = this._getLoader(false, offset);
 
     if (!loader._src) {
@@ -525,7 +528,7 @@ AudioHTML5.prototype.playPreloaded = function(offset) {
     }
 
     this._setActive(offset);
-    this._play(this._getLoader(true));
+    this._play(this._getLoader(true, 0));
 
     return true;
 };
