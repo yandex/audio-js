@@ -468,6 +468,7 @@ AudioPlayer.prototype.play = function(src, duration) {
         }
     }.bind(this);
 
+    this._setState(AudioPlayer.STATE_PAUSED);
     this.implementation.play(src, duration);
 
     return promise;
@@ -621,6 +622,7 @@ AudioPlayer.prototype.playPreloaded = function(src) {
         }
     }.bind(this);
 
+    this._setState(AudioPlayer.STATE_PAUSED);
     var result = this.implementation.playPreloaded();
 
     if (!result) {
