@@ -223,9 +223,26 @@ AudioHTML5.prototype._addLoader = function() {
     loader.index = this.loaders.push(loader) - 1;
     this.listeners.push(listener);
 
+    var initLoader = this._initLoader.bind(this, loader);
+    loader.__initLoader = initLoader;
+    document.body.addEventListener("mousedown", initLoader);
+    document.body.addEventListener("keydown", initLoader);
+    document.body.addEventListener("touchstart", initLoader);
+
     if (this.webAudioApi) {
         this._addSource(loader);
     }
+};
+
+AudioHTML5.prototype._initLoader = function(loader) {
+    loader.play();
+    loader.pause();
+    // INFO: дублирование нужно для тупых мобил, которые не понимают с первого раза типа IE
+    setTimeout(function(){ loader.pause(); }, 0);
+    document.body.removeEventListener("mousedown", loader.__initLoader);
+    document.body.removeEventListener("keydown", loader.__initLoader);
+    document.body.removeEventListener("touchstart", loader.__initLoader);
+    delete loader.__initLoader;
 };
 
 /**
