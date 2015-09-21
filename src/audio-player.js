@@ -585,11 +585,15 @@ AudioPlayer.prototype.resume = function() {
 //abortable
 /**
  * Запуск воспроизведения предзагруженного трека
- * @param {String} src - ссылка на трек
+ * @param {String} [src] - ссылка на трек, для проверки, что в прелоадере нужный трек
  * @returns {AbortablePromise}
  */
 AudioPlayer.prototype.playPreloaded = function(src) {
     logger.info(this, "playPreloaded", src);
+
+    if (!src) {
+        src = this.getSrc(1);
+    }
 
     if (!this.isPreloaded(src)) {
         logger.warn(this, "playPreloadedBadTrack", AudioError.NOT_PRELOADED);

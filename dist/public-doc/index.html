@@ -714,26 +714,27 @@
 <h2>Использование</h2><h3>Создание экземпляра плеера:</h3><pre class="prettyprint source lang-javascript"><code>    var audioPlayer = new ya.Audio(preferredPlayerType, flashOverlayElement);
     audioPlayer.initPromise().then(function() {
       console.log(&quot;Аудио-плеер готов к работе&quot;);
-    }, function(){
+    }, function() {
       console.error(&quot;Не удалось инициализировать аудио-плеер&quot;);
     });</code></pre><ul>
 <li><strong>preferredPlayerType</strong> - строка <code>&quot;html5&quot;</code>, <code>&quot;flash&quot;</code> или любое ложное значение (false, null, undefined, 0, &quot;&quot;), указывает на предпочитаемый тип плеера (если он окажется недоступен, будет запущен оставшийся тип)</li>
 <li><strong>flashOverlayElement</strong> - HTMLElement в который требуется встроить flash-апплет или ложное значение. Требуется для того, чтобы была возможность отобразить видимый flash-апплет для отключения различных блокировщиков flash'а.</li>
 </ul>
-<h3>Запуск воспроизведения</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.play(src).then(function(){
+<h3>Запуск воспроизведения</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.play(src).then(function() {
       console.log(&quot;Воспроизведение успешно началось&quot;);
-    }, function(err){
+    }, function(err) {
       console.error(&quot;Не удалось начать воспроизведенние&quot;, err);
     });</code></pre><h3>Управление воспроизведением</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.pause(); // пауза
     audioPlayer.resume(); // продолжение воспроизведения
     audioPlayer.stop(); // остановка воспроизведения и загрузки трека
 
+    console.log(&quot;Ссылка на текущий трек&quot;, audioPlayer.getSrc());
     console.log(&quot;Длительность трека&quot;, audioPlayer.getDuration());
     console.log(&quot;Текущая позиция воспроизведения&quot;, audioPlayer.getPosition());
     console.log(&quot;Длительность загруженной части&quot;, audioPlayer.getLoaded());
     console.log(&quot;Время воспроизведения трека&quot;, audioPlayer.getPlayed());
 
-    console.log(&quot;Новая позиция воспроизведения&quot;, audioPlayer.setPosition(position));</code></pre><h3>Прослушивание событий</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.on(ya.Audio.EVENT_STATE, function(state){
+    console.log(&quot;Новая позиция воспроизведения&quot;, audioPlayer.setPosition(position));</code></pre><h3>Прослушивание событий</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.on(ya.Audio.EVENT_STATE, function(state) {
       switch(state) {
         case ya.Audio.STATE_INIT: console.log(&quot;Инициализация плеера&quot;); break;
         case ya.Audio.STATE_IDLE: console.log(&quot;Плеер готов и ожидает&quot;); break;
@@ -743,7 +744,7 @@
       }
     });
 
-    var logEvent = function(text){ return function(data){ console.log(text, data); }; };
+    var logEvent = function(text) { return function(data) { console.log(text, data); }; };
     audioPlayer.on(ya.Audio.EVENT_PLAY, logEvent(&quot;Плеер начал воспроизведение трека&quot;));
     audioPlayer.on(ya.Audio.EVENT_STOP, logEvent(&quot;Остановка воспроизведения&quot;));
     audioPlayer.on(ya.Audio.EVENT_PAUSE, logEvent(&quot;Пауза воспроизведения&quot;));
@@ -759,20 +760,40 @@
     audioPlayer.on(ya.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при воспроизведении&quot;));
     audioPlayer.on(ya.Audio.EVENT_CRASHED, logEvent(&quot;Крах инициализации&quot;));
 
-    audioPlayer.on(ya.Audio.EVENT_SWAP, logEvent(&quot;Переключение между текущим и предзагруженным треком&quot;));</code></pre><h3>Прелоадер</h3><p>В большинство команд управления можно передать вторым аргументом 1, чтобы они применялись к прелоадеру вместо текущего плеера.
+    audioPlayer.on(ya.Audio.EVENT_SWAP, logEvent(&quot;Переключение между текущим и предзагруженным треком&quot;));</code></pre><h3>Прелоадер</h3><p>В большинство команд управления можно передать вторым аргументом <code>1</code>, чтобы они применялись к прелоадеру вместо текущего плеера.
 Для прослушивания событий плероадера следует использовать префикс <code>ya.Audio.PRELOADER_EVENT</code></p>
-<pre class="prettyprint source lang-javascript"><code>    audioPlayer.pause(1); // пауза
-    audioPlayer.resume(1); // продолжение воспроизведения
-    audioPlayer.stop(1); // остановка воспроизведения и загрузки трека
+<pre class="prettyprint source lang-javascript"><code>    //Следует обратить внимание, что обещание разрешается, когда трек начал загружаться, а не когда загрузился
+    audioPlayer.preload(src).then(function() {
+        console.log(&quot;Началась предзагрузка трека&quot;);
+    }, function(err) {
+        console.error(&quot;Ну удалось начать загрузку трека&quot;, err);
+    });
 
-    var logEvent = function(text){ return function(data){ console.log(text, data); }; };
+    audioPlayer.playPreloaded().then(function() {
+        console.log(&quot;Воспроизведение успешно началось&quot;);
+    }, function(err) {
+        console.error(&quot;Не удалось начать воспроизведенние&quot;, err);
+    });
+
+    audioPlayer.stop(1); // остановка загрузки трека
+
+    console.log(&quot;Ссылка на текущий трек&quot;, audioPlayer.getSrc(1));
+    console.log(&quot;Длительность трека&quot;, audioPlayer.getDuration(1));
+    console.log(&quot;Длительность загруженной части&quot;, audioPlayer.getLoaded(1));
+
+    //Два похожих метода, но 1 является сахаром для audioPlayer.getSrc(1) == src, а 2 проверяет успех начала загрузки
+    console.log(&quot;Трек &quot; + (audioPlayer.isPreloading(src) ? &quot;загружается/ожидает загрузки&quot; : &quot;не загружается&quot;));
+    console.log(&quot;Трек &quot; + (audioPlayer.isPreloaded(src) ? &quot;начал загружаться&quot; : &quot;не загружается&quot;));
+
+    var logEvent = function(text) { return function(data) { console.log(text, data); }; };
     audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_STOP, logEvent(&quot;Остановка загрузки&quot;));
 
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_PROGRESS, logEvent(&quot;Процесс загрузки&quot;));    
+    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_PROGRESS, logEvent(&quot;Процесс загрузки&quot;));
+
     audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADING, logEvent(&quot;Трек начал загружаться&quot;));
     audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADED, logEvent(&quot;Трек загружен полностью&quot;));
 
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при загрузки&quot;));</code></pre><h2>Сборка javascipt</h2><p>Сборка библиотеки производится с помощью npm-пакетов <a href="https://www.npmjs.com/package/browserify">browserify</a> и <a href="https://www.npmjs.com/package/uglify-js">uglify-js</a>.
+    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при загрузке&quot;));</code></pre><h2>Сборка javascipt</h2><p>Сборка библиотеки производится с помощью npm-пакетов <a href="https://www.npmjs.com/package/browserify">browserify</a> и <a href="https://www.npmjs.com/package/uglify-js">uglify-js</a>.
 Для того чтобы подготовить окружение для сборки библиотеки требуется установить <a href="https://nodejs.org/en/">node-js</a> и выполнить <code>npm install</code> в корне репозитория.
 Сам процесс сборки доступен в двух вариантах: с помощью утилиты make (основой метод) и с помощью библиотеки <a href="http://gruntjs.com/">grunt</a>.</p>
 <h3>Makefile</h3><p>Является основным методом сборки. Доступные команды:</p>
@@ -804,7 +825,7 @@
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Sep 21 2015 14:58:30 GMT+0300 (MSK)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Sep 21 2015 15:32:47 GMT+0300 (MSK)
         </footer>
     </div>
 </div>
