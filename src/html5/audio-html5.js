@@ -157,6 +157,12 @@ AudioHTML5.prototype._addLoader = function() {
         loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
         loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.startPlay);
 
+        //INFO: IE (как всегда) не умеет сам отправлять событие начала трека после его завершения
+        if (loader._ended) {
+            delete loader._ended;
+            listener.trigger(AudioStatic.EVENT_PLAY);
+        }
+
         try {
             loader.play();
             logger.debug(self, "startPlay");
@@ -183,6 +189,7 @@ AudioHTML5.prototype._addLoader = function() {
     loader.addEventListener(AudioHTML5.EVENT_NATIVE_ENDED, function() {
         listener.trigger(AudioStatic.EVENT_PROGRESS);
         listener.trigger(AudioStatic.EVENT_ENDED);
+        loader._ended = true;
     });
 
     loader.addEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, updateProgress);
@@ -237,7 +244,8 @@ AudioHTML5.prototype._addLoader = function() {
 AudioHTML5.prototype._initLoader = function(loader) {
     loader.play();
     loader.pause();
-    // INFO: дублирование нужно для тупых мобил, которые не понимают с первого раза типа IE
+
+    //INFO: IE (как всегда) не умеет правильно работать - приходится повторять по 2 раза...
     setTimeout(function(){ loader.pause(); }, 0);
     document.body.removeEventListener("mousedown", loader.__initLoader);
     document.body.removeEventListener("keydown", loader.__initLoader);

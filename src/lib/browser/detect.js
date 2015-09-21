@@ -33,6 +33,11 @@ if (browser.name === 'msie') {
     }
 }
 
+//INFO: IE (как всегда) не корректно выставляет user-agent
+if (browser.name === "mozilla" && browser.version.split(".")[0] === "11") {
+    browser.name = "msie";
+}
+
 // ------------------------------------------------------------------------------ Platform detection
 // Useragent RegExp
 var rplatform = /(ipad|iphone|ipod|android|blackberry|playbook|windows ce|webos)/;
