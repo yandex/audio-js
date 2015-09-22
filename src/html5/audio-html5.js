@@ -147,6 +147,7 @@ AudioHTML5.prototype._addLoader = function() {
 
     var self = this;
 
+    //FIXME: Сделать отдельный класс для loader
     var loader = document.createElement('audio');
     var listener = new Events();
 
@@ -166,9 +167,53 @@ AudioHTML5.prototype._addLoader = function() {
         try {
             loader.play();
             logger.debug(self, "startPlay");
+
+            //INFO: проверяем, что воспроизведение реально началось (мобильные браузеры грешат тем, что роняют аудио-плееры)
+            loader.startCheck = {
+                counter: 0,
+                listener: function() {
+                    loader.startCheck.counter++;
+                    if (loader.startCheck.counter > 2) {
+                        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
+                        clearTimeout(loader.startCheck.timeout);
+                        delete loader.startCheck;
+                    }
+                },
+                timeout: setTimeout(function() {
+                    loader.removeEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
+                    delete loader.startCheck;
+
+                    var pos = loader.currentTime;
+                    var paused = loader.paused;
+                    loader.load();
+                    loader._restore = {
+                        pos: pos,
+                        paused: paused
+                    };
+
+                    self._restore(loader);
+                }, 2000)
+            };
+
+            loader.addEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
         } catch(e) {
             logger.error(self, "crashed", e);
             listener.trigger(AudioStatic.EVENT_CRASHED, e);
+        }
+    };
+
+    loader.restorePlay = function() {
+        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
+        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
+
+        if (loader._restore) {
+            loader.currentTime = loader._restore.pos;
+            if (!loader._restore.paused) {
+                loader.startPlay();
+                delete loader._restore;
+            }
+        } else {
+            loader.startPlay();
         }
     };
 
@@ -246,7 +291,7 @@ AudioHTML5.prototype._initLoader = function(loader) {
     loader.pause();
 
     //INFO: IE (как всегда) не умеет правильно работать - приходится повторять по 2 раза...
-    setTimeout(function(){ loader.pause(); }, 0);
+    setTimeout(function() { loader.pause(); }, 0);
     document.body.removeEventListener("mousedown", loader.__initLoader);
     document.body.removeEventListener("keydown", loader.__initLoader);
     document.body.removeEventListener("touchstart", loader.__initLoader);
@@ -306,9 +351,21 @@ AudioHTML5.prototype._getLoader = function(unsubscribe, offset) {
     if (unsubscribe) {
         loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
         loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.startPlay);
+
+        this._unckeckLoader(loader);
     }
 
     return loader;
+};
+
+AudioHTML5.prototype._unckeckLoader = function(loader) {
+    if (loader.startCheck) {
+        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
+        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
+        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
+        clearTimeout(loader.startCheck.timeout);
+        delete loader.startCheck;
+    }
 };
 
 //INFO: эта конструкция нужна, чтобы не менять логику при resume
@@ -320,6 +377,8 @@ AudioHTML5.prototype._getLoader = function(unsubscribe, offset) {
 AudioHTML5.prototype._play = function(loader) {
     logger.debug(this, "_play");
 
+    this._unckeckLoader(loader);
+
     if (loader.readyState > loader.HAVE_METADATA) {
         loader.startPlay();
     } else {
@@ -328,6 +387,23 @@ AudioHTML5.prototype._play = function(loader) {
         // so we use both events
         loader.addEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
         loader.addEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.startPlay);
+    }
+};
+
+AudioHTML5.prototype._restore = function(loader) {
+    logger.debug(this, "_restore");
+
+    loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
+    loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
+
+    if (loader.readyState > loader.HAVE_METADATA) {
+        loader.restorePlay();
+    } else {
+        // firefox waits too long till 'canplay' or 'canplaythrough'
+        // but it can play right after 'loadedmetadata'
+        // so we use both events
+        loader.addEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
+        loader.addEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
     }
 };
 

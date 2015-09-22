@@ -400,6 +400,7 @@ AudioPlayer.prototype._generatePlayId = function() {
  * Возвращает обещание, разрешающееся после завершения инициализации.
  * @returns {Promise}
  */
+//TODO: попробовать переделать класс на фабрику и убрать initPromise
 AudioPlayer.prototype.initPromise = function() {
     return this.whenReady;
 };

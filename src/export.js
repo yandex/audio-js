@@ -1,8 +1,10 @@
 if (typeof window.ya === "undefined") {
     window.ya = {};
 }
+
 var ya = window.ya;
 
+//TODO: перенести в ya.music.Audio
 if (typeof ya.Audio === "undefined") {
     ya.Audio = {};
 }
