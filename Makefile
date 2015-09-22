@@ -23,26 +23,18 @@ prepare: clean
 	cp $(SOURCEDIR)/flash/build/player-2_0.swf $(BUILDDIR)/player-2_0.swf
 
 
-build: $(BUILDDIR)/index.js $(BUILDDIR)/modules.js
+build: $(BUILDDIR)/index.js
 
 
-minify: $(BUILDDIR)/index.min.js $(BUILDDIR)/modules.min.js
+minify: $(BUILDDIR)/index.min.js
 
 
 $(BUILDDIR)/index.js: prepare
 	$(BROWSERIFY) $(SOURCEDIR)/index.js > $(BUILDDIR)/index.js
 
 
-$(BUILDDIR)/modules.js: prepare
-	$(BROWSERIFY) $(SOURCEDIR)/modules.js > $(BUILDDIR)/modules.js
-
-
 $(BUILDDIR)/index.min.js: $(BUILDDIR)/index.js
 	$(UGLIFY_JS) $(BUILDDIR)/index.js > $(BUILDDIR)/index.min.js --source-map $(BUILDDIR)/index.map.json
-
-
-$(BUILDDIR)/modules.min.js: $(BUILDDIR)/modules.js
-	$(UGLIFY_JS) $(BUILDDIR)/modules.js > $(BUILDDIR)/modules.min.js --source-map $(BUILDDIR)/modules.map.json
 
 
 jsdoc: jsdoc_public jsdoc_private

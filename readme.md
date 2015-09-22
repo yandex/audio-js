@@ -20,7 +20,6 @@ YandexAudio - это библиотека аудио-плеера для бра�
   ([dist/index.js](https://github.yandex-team.ru/pages/music/audio/dist/index.js) 
   или [dist/index.min.js](https://github.yandex-team.ru/pages/music/audio/dist/index.min.js)  - минифицированную версию) 
   в тело страницы и далее использовать глобально доступный объект {@link ya.Audio}
-  - **[modules](https://github.com/ymaps/modules)** - нужно подключить файл сборки [dist/modules.js](https://github.yandex-team.ru/pages/music/audio/dist/modules.js) (или минифицированную версию [dist/modules.min.js](https://github.yandex-team.ru/pages/music/audio/dist/modules.min.js)). Библиотека будет зарегестрирована как YandexAudio в ya.modules
 
 
 Использование
