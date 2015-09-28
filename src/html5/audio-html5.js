@@ -6,6 +6,8 @@ var Events = require('../lib/async/events');
 var AudioStatic = require('../audio-static');
 var PlaybackError = require('../error/playback-error');
 
+var AudioHTML5Loader = require('./audio-html5-loader');
+
 var playerId = 1;
 
 exports.available = (function() {
@@ -69,11 +71,8 @@ var AudioHTML5 = function() {
     }.bind(this));
 
     this.webAudioApi = false;
-
     this.activeLoader = 0;
-
     this.loaders = [];
-    this.listeners = [];
 
     this._addLoader();
     this._addLoader();
@@ -84,61 +83,6 @@ Events.mixin(AudioHTML5);
 AudioHTML5.type = AudioHTML5.prototype.type = "html5";
 
 /**
- * Нативное событие начала воспроизведения
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_PLAY = "play";
-/**
- * Нативное событие паузы
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_PAUSE = "pause";
-/**
- * Нативное событие обновление позиции воспроизведения
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_TIMEUPDATE = "timeupdate";
-/**
- * Нативное событие завершения трека
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_ENDED = "ended";
-/**
- * Нативное событие изменения длительности
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_DURATION = "durationchange";
-/**
- * Нативное событие изменения длительности загруженной части
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_LOADING = "progress";
-/**
- * Нативное событие доступности мета-данных трека
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_META = "loadedmetadata";
-/**
- * Нативное событие возможности начать воспроизведение
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_CANPLAY = "canplay";
-/**
- * Нативное событие ошибки
- * @type {string}
- * @const
- */
-AudioHTML5.EVENT_NATIVE_ERROR = "error";
-
-/**
  * Добавить загрузчик аудио-файлов
  * @private
  */
@@ -146,178 +90,16 @@ AudioHTML5.prototype._addLoader = function() {
     logger.debug(this, "_addLoader");
 
     var self = this;
+    var loader = new AudioHTML5Loader();
+    loader.index = this.loaders.push(loader) - 1;
 
-    //FIXME: Сделать отдельный класс для loader
-    var loader = document.createElement('audio');
-    var listener = new Events();
-
-    loader.loop = false; // for IE
-    loader.preload = loader.autobuffer = "auto"; // 100%
-
-    loader.startPlay = function() { //INFO: эта конструкция нужна, чтобы не менять логику при resume
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.startPlay);
-
-        //INFO: IE (как всегда) не умеет сам отправлять событие начала трека после его завершения
-        if (loader._ended) {
-            delete loader._ended;
-            listener.trigger(AudioStatic.EVENT_PLAY);
-        }
-
-        try {
-            loader.play();
-            logger.debug(self, "startPlay");
-
-            //INFO: проверяем, что воспроизведение реально началось (мобильные браузеры грешат тем, что роняют аудио-плееры)
-            loader.startCheck = {
-                counter: 0,
-                listener: function() {
-                    loader.startCheck.counter++;
-                    if (loader.startCheck.counter > 2) {
-                        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
-                        clearTimeout(loader.startCheck.timeout);
-                        delete loader.startCheck;
-                    }
-                },
-                timeout: setTimeout(function() {
-                    loader.removeEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
-                    delete loader.startCheck;
-
-                    var pos = loader.currentTime;
-                    var paused = loader.paused;
-                    loader.load();
-                    loader._restore = {
-                        pos: pos,
-                        paused: paused
-                    };
-
-                    self._restore(loader);
-                }, 2000)
-            };
-
-            loader.addEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
-        } catch(e) {
-            logger.error(self, "crashed", e);
-            listener.trigger(AudioStatic.EVENT_CRASHED, e);
-        }
-    };
-
-    loader.restorePlay = function() {
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
-
-        if (loader._restore) {
-            loader.currentTime = loader._restore.pos;
-            if (!loader._restore.paused) {
-                loader.startPlay();
-                delete loader._restore;
-            }
-        } else {
-            loader.startPlay();
-        }
-    };
-
-    var lastUpdate = 0;
-    var updateProgress = function() {
-        var currentTime = +new Date();
-        if (currentTime - lastUpdate < 30) {
-            return;
-        }
-
-        lastUpdate = currentTime;
-        listener.trigger(AudioStatic.EVENT_PROGRESS);
-    };
-
-    loader.addEventListener(AudioHTML5.EVENT_NATIVE_PAUSE, listener.trigger.bind(listener, AudioStatic.EVENT_PAUSE));
-    loader.addEventListener(AudioHTML5.EVENT_NATIVE_PLAY, listener.trigger.bind(listener, AudioStatic.EVENT_PLAY));
-
-    loader.addEventListener(AudioHTML5.EVENT_NATIVE_ENDED, function() {
-        listener.trigger(AudioStatic.EVENT_PROGRESS);
-        listener.trigger(AudioStatic.EVENT_ENDED);
-        loader._ended = true;
-    });
-
-    loader.addEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, updateProgress);
-    loader.addEventListener(AudioHTML5.EVENT_NATIVE_DURATION, updateProgress);
-    loader.addEventListener(AudioHTML5.EVENT_NATIVE_LOADING, function() {
-        updateProgress();
-
-        if (loader.buffered.length) {
-            var loaded = loader.buffered.end(0) - loader.buffered.start(0);
-
-            if (loader.notLoading && loaded) {
-                loader.notLoading = false;
-                listener.trigger(AudioStatic.EVENT_LOADING);
-            }
-
-            if (loaded >= loaded.duration - 0.1) {
-                listener.trigger(AudioStatic.EVENT_LOADED);
-            }
-        }
-    });
-
-    loader.addEventListener(AudioHTML5.EVENT_NATIVE_ERROR, function(e) {
-        if (!loader.fake) {
-            var error = new PlaybackError(loader.error
-                    ? PlaybackError.html5[loader.error.code]
-                    : e instanceof Error ? e.message : e,
-                loader.src);
-
-            listener.trigger(AudioStatic.EVENT_ERROR, error);
-        }
-    });
-
-    listener.on("*", function(event, data) {
+    loader.on("*", function(event, data) {
         var offset = (self.loaders.length + loader.index - self.activeLoader) % self.loaders.length;
         self.trigger(event, offset, data);
     });
 
-    loader.index = this.loaders.push(loader) - 1;
-    this.listeners.push(listener);
-
-    var initLoader = this._initLoader.bind(this, loader);
-    loader.__initLoader = initLoader;
-    document.body.addEventListener("mousedown", initLoader);
-    document.body.addEventListener("keydown", initLoader);
-    document.body.addEventListener("touchstart", initLoader);
-
     if (this.webAudioApi) {
-        this._addSource(loader);
-    }
-};
-
-AudioHTML5.prototype._initLoader = function(loader) {
-    loader.play();
-    loader.pause();
-
-    //INFO: IE (как всегда) не умеет правильно работать - приходится повторять по 2 раза...
-    setTimeout(function() { loader.pause(); }, 0);
-    document.body.removeEventListener("mousedown", loader.__initLoader);
-    document.body.removeEventListener("keydown", loader.__initLoader);
-    document.body.removeEventListener("touchstart", loader.__initLoader);
-    delete loader.__initLoader;
-};
-
-/**
- * Создать (если необходимо) и подключить источник звука для Web Audio API
- * @param {Audio} loader - загрузчик аудио
- * @param {AudioNode} source - экземпляр источника звука
- * @private
- */
-AudioHTML5.prototype._addSource = function(loader, source) {
-    logger.debug(this, "_addSource", loader);
-
-    if (!source) {
-        source = audioContext.createMediaElementSource(loader);
-        this.sources.push(source);
-    } else {
-        source.disconnect();
-    }
-
-    if (this.preprocessor) {
-        source.connect(this.preprocessor);
-    } else {
-        source.connect(this.audioOutput);
+        loader.createSource(audioContext);
     }
 };
 
@@ -340,71 +122,13 @@ AudioHTML5.prototype._setActive = function(offset) {
 
 /**
  * Получить загрузчик и отписать его от событий старта воспроизведения
- * @param {Boolean} unsubscribe - отписаться от событий
- * @param {int} offset - 0: текущий загрузчик, 1: следующий загрузчик
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
  * @returns {Audio}
  * @private
  */
-AudioHTML5.prototype._getLoader = function(unsubscribe, offset) {
+AudioHTML5.prototype._getLoader = function(offset) {
     offset = offset || 0;
-    var loader = this.loaders[(this.activeLoader + offset) % this.loaders.length];
-    if (unsubscribe) {
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.startPlay);
-
-        this._unckeckLoader(loader);
-    }
-
-    return loader;
-};
-
-AudioHTML5.prototype._unckeckLoader = function(loader) {
-    if (loader.startCheck) {
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
-        loader.removeEventListener(AudioHTML5.EVENT_NATIVE_TIMEUPDATE, loader.startCheck.listener);
-        clearTimeout(loader.startCheck.timeout);
-        delete loader.startCheck;
-    }
-};
-
-//INFO: эта конструкция нужна, чтобы не менять логику при resume
-/**
- * Запуск воспроизведения
- * @param {Audio} loader - загрузчик аудио
- * @private
- */
-AudioHTML5.prototype._play = function(loader) {
-    logger.debug(this, "_play");
-
-    this._unckeckLoader(loader);
-
-    if (loader.readyState > loader.HAVE_METADATA) {
-        loader.startPlay();
-    } else {
-        // firefox waits too long till 'canplay' or 'canplaythrough'
-        // but it can play right after 'loadedmetadata'
-        // so we use both events
-        loader.addEventListener(AudioHTML5.EVENT_NATIVE_META, loader.startPlay);
-        loader.addEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.startPlay);
-    }
-};
-
-AudioHTML5.prototype._restore = function(loader) {
-    logger.debug(this, "_restore");
-
-    loader.removeEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
-    loader.removeEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
-
-    if (loader.readyState > loader.HAVE_METADATA) {
-        loader.restorePlay();
-    } else {
-        // firefox waits too long till 'canplay' or 'canplaythrough'
-        // but it can play right after 'loadedmetadata'
-        // so we use both events
-        loader.addEventListener(AudioHTML5.EVENT_NATIVE_META, loader.restorePlay);
-        loader.addEventListener(AudioHTML5.EVENT_NATIVE_CANPLAY, loader.restorePlay);
-    }
+    return this.loaders[(this.activeLoader + offset) % this.loaders.length];
 };
 
 /**
@@ -431,29 +155,19 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
 
     if (state) {
         this.audioOutput = audioContext.createGain();
-        this.audioOutput.gain = this.volume;
+        this.audioOutput.gain.value = this.volume;
         this.audioOutput.connect(audioContext.destination);
 
         if (this.preprocessor) {
             this.preprocessor.output.connect(this.audioOutput);
         }
 
-        this.sources = this.sources || [];
-        this.loaders.forEach(function(loader, idx) {
-            loader.volume = 1;
-            var prepared = loader.crossOrigin;
-            loader.crossOrigin = "anonymous";
-            this._addSource(loader, this.sources[idx]);
+        this.loaders.forEach(function(loader) {
+            loader.audio.volume = 1;
+            loader.createSource(audioContext);
 
-            if (!prepared) { // INFO: после того как мы включили webAudioAPI его уже нельзя полностью выключить.
-                var pos = loader.currentTime;
-                var paused = loader.paused;
-                loader.load();
-                loader.currentTime = pos;
-                if (!paused) {
-                    loader.play();
-                }
-            }
+            loader.output.disconnect();
+            loader.output.connect(this.preprocessor ? this.preprocessor.input : this.audioOutput);
         }.bind(this));
 
     } else if (this.audioOutput) {
@@ -464,18 +178,12 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
         this.audioOutput.disconnect();
         delete this.audioOutput;
 
-        this.sources.forEach(function(source) {
-            source.disconnect();
-        });
-        //delete this.sources;
+        this.loaders.forEach(function(loader) {
+            loader.audio.volume = this.volume;
 
-        this.loaders.forEach(function(loader, idx) {
-            loader.volume = this.volume;
-
-            var source = this.sources[idx];
-            if (source) { // INFO: после того как мы включили webAudioAPI его уже нельзя полностью выключить.
-                source.connect(audioContext.destination);
-            }
+            //INFO: после того как мы включили webAudioAPI его уже нельзя просто так выключить.
+            loader.output.disconnect();
+            loader.output.connect(audioContext.destination);
         }.bind(this));
     }
 
@@ -493,13 +201,13 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
 AudioHTML5.prototype.setAudioPreprocessor = function(preprocessor) {
     if (!this.webAudioApi) {
         logger.warn(this, "setAudioPreprocessorError", preprocessor);
-        return;
+        return false;
     }
 
     logger.info(this, "setAudioPreprocessor");
 
     if (this.preprocessor === preprocessor) {
-        return;
+        return true;
     }
 
     if (this.preprocessor) {
@@ -509,18 +217,22 @@ AudioHTML5.prototype.setAudioPreprocessor = function(preprocessor) {
     this.preprocessor = preprocessor;
 
     if (!preprocessor) {
-        this.sources.forEach(function(source) {
-            source.disconnect();
-            source.connect(this.audioOutput);
+        this.loaders.forEach(function(loader) {
+            loader.output.disconnect();
+            loader.output.connect(this.audioOutput);
         }.bind(this));
-        return;
+
+        return true;
     }
 
-    this.sources.forEach(function(source) {
-        source.disconnect();
-        source.connect(preprocessor.input);
+    this.loaders.forEach(function(loader) {
+        loader.output.disconnect();
+        loader.output.connect(preprocessor.input);
     });
+
     preprocessor.output.connect(this.audioOutput);
+
+    return true;
 };
 
 /**
@@ -531,29 +243,24 @@ AudioHTML5.prototype.setAudioPreprocessor = function(preprocessor) {
 AudioHTML5.prototype.play = function(src, duration) {
     logger.info(this, "play", src);
 
-    var loader = this._getLoader(true);
+    var loader = this._getLoader();
 
-    loader.fake = false;
-    loader.src = src;
-    loader._src = src;
-    loader.notLoading = true;
-    loader.load();
-
-    this._play(loader);
+    loader.load(src);
+    loader.play();
 };
 
 /** Поставить трек на паузу */
 AudioHTML5.prototype.pause = function() {
     logger.info(this, "pause");
-    var loader = this._getLoader(true);
+    var loader = this._getLoader();
     loader.pause();
 };
 
 /** Снять трек с паузы */
 AudioHTML5.prototype.resume = function() {
     logger.info(this, "resume");
-    var loader = this._getLoader(true);
-    this._play(loader);
+    var loader = this._getLoader();
+    loader.play();
 };
 
 /**
@@ -562,13 +269,8 @@ AudioHTML5.prototype.resume = function() {
  */
 AudioHTML5.prototype.stop = function(offset) {
     logger.info(this, "stop");
-    var loader = this._getLoader(true, offset || 0);
-
-    loader.fake = true;
-    loader.src = "";
-    loader._src = false;
-    loader.notLoading = true;
-    loader.load();
+    var loader = this._getLoader(offset || 0);
+    loader.stop();
 
     this.trigger(AudioStatic.EVENT_STOP, offset);
 };
@@ -581,13 +283,10 @@ AudioHTML5.prototype.stop = function(offset) {
  */
 AudioHTML5.prototype.preload = function(src, duration, offset) {
     logger.info(this, "preload", src, offset);
-    offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(true, offset);
 
-    loader.src = src;
-    loader._src = src;
-    loader.notLoading = true;
-    loader.load();
+    offset = offset == null ? 1 : offset;
+    var loader = this._getLoader(offset);
+    loader.load(src);
 };
 
 /**
@@ -598,8 +297,8 @@ AudioHTML5.prototype.preload = function(src, duration, offset) {
  */
 AudioHTML5.prototype.isPreloaded = function(src, offset) {
     offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(false, offset);
-    return loader._src === src && !loader.notLoading;
+    var loader = this._getLoader(offset);
+    return loader.src === src && !loader.notLoading;
 };
 
 /**
@@ -610,8 +309,8 @@ AudioHTML5.prototype.isPreloaded = function(src, offset) {
  */
 AudioHTML5.prototype.isPreloading = function(src, offset) {
     offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(false, offset);
-    return loader._src === src;
+    var loader = this._getLoader(offset);
+    return loader.src === src;
 };
 
 /**
@@ -622,14 +321,14 @@ AudioHTML5.prototype.isPreloading = function(src, offset) {
 AudioHTML5.prototype.playPreloaded = function(offset) {
     logger.info(this, "playPreloaded", offset);
     offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(false, offset);
+    var loader = this._getLoader(offset);
 
-    if (!loader._src) {
+    if (!loader.src) {
         return false;
     }
 
     this._setActive(offset);
-    this._play(this._getLoader(true, 0));
+    loader.play();
 
     return true;
 };
@@ -639,7 +338,7 @@ AudioHTML5.prototype.playPreloaded = function(offset) {
  * @returns {number}
  */
 AudioHTML5.prototype.getPosition = function() {
-    return this._getLoader().currentTime;
+    return this._getLoader().audio.currentTime;
 };
 
 /**
@@ -648,7 +347,7 @@ AudioHTML5.prototype.getPosition = function() {
  */
 AudioHTML5.prototype.setPosition = function(position) {
     logger.info(this, "setPosition", position);
-    this._getLoader().currentTime = position - 0.001;
+    this._getLoader().setPosition(position - 0.001); //INFO: понять нафиг тут нужен 0.001
 };
 
 /**
@@ -657,7 +356,7 @@ AudioHTML5.prototype.setPosition = function(position) {
  * @returns {number}
  */
 AudioHTML5.prototype.getDuration = function(offset) {
-    return this._getLoader(false, offset).duration;
+    return this._getLoader(offset).audio.duration;
 };
 
 /**
@@ -666,10 +365,10 @@ AudioHTML5.prototype.getDuration = function(offset) {
  * @returns {number}
  */
 AudioHTML5.prototype.getLoaded = function(offset) {
-    var loader = this._getLoader(false, offset);
+    var loader = this._getLoader(offset);
 
-    if (loader.buffered.length) {
-        return loader.buffered.end(0) - loader.buffered.start(0);
+    if (loader.audio.buffered.length) {
+        return loader.audio.buffered.end(0) - loader.audio.buffered.start(0);
     }
     return 0;
 };
@@ -694,7 +393,7 @@ AudioHTML5.prototype.setVolume = function(volume) {
         this.audioOutput.gain.value = volume;
     } else {
         this.loaders.forEach(function(loader) {
-            loader.volume = volume;
+            loader.audio.volume = volume;
         });
     }
 
@@ -707,7 +406,7 @@ AudioHTML5.prototype.setVolume = function(volume) {
  * @returns {String|Boolean} -- Ссылка на трек или false, если нет загружаемого трека
  */
 AudioHTML5.prototype.getSrc = function(offset) {
-    return this._getLoader(false, offset)._src;
+    return this._getLoader(offset).src;
 };
 
 /**

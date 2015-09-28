@@ -302,6 +302,7 @@ AudioPlayer.prototype._initType = function(type) {
         }
     } catch(e) {
         deferred.reject(e);
+        logger.warn(this, "_initTypeError", type, e);
     }
 
     return deferred.promise();

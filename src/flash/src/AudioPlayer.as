@@ -7,7 +7,8 @@ import flash.media.SoundChannel;
 import flash.utils.Timer;
 
 public final class AudioPlayer extends EventDispatcher {
-    private static var timer:Timer = new Timer(500);
+    private static const updateInterval:int = 250;
+    private static var timer:Timer = new Timer(updateInterval);
 
     public var id:uint;
     public var isPlaying:Boolean = false;
@@ -70,7 +71,7 @@ public final class AudioPlayer extends EventDispatcher {
         }
 
         var currentTime:Number = new Date().valueOf();
-        if (currentTime - this.lastUpdate < 100) {
+        if (currentTime - this.lastUpdate < updateInterval) {
             return;
         }
 
