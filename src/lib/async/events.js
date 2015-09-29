@@ -3,6 +3,12 @@ var merge = require('../data/merge');
 var LISTENERS_NAME = "_listeners";
 var MUTE_OPTION = "_muted";
 
+// =================================================================
+
+//  Конструктор
+
+// =================================================================
+
 /**
  * Диспетчер событий
  * @constructor
@@ -22,6 +28,12 @@ var Events = function() {
      */
     this[MUTE_OPTION] = false;
 };
+
+// =================================================================
+
+//  Всяческий сахар
+
+// =================================================================
 
 /**
  * Расширить произвольный класс свойствами диспетчера событий
@@ -43,6 +55,12 @@ Events.eventize = function(object) {
     Events.call(object);
     return object;
 };
+
+// =================================================================
+
+//  Подписка и отписка от событий
+
+// =================================================================
 
 /**
  * Подписаться на событие
@@ -110,6 +128,26 @@ Events.prototype.once = function(event, callback) {
 };
 
 /**
+ * Отписаться от всех слушателей событий
+ * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ */
+Events.prototype.clearListeners = function() {
+    for (var key in this[LISTENERS_NAME]) {
+        if (this[LISTENERS_NAME].hasOwnProperty(key)) {
+            delete this[LISTENERS_NAME][key];
+        }
+    }
+
+    return this;
+};
+
+// =================================================================
+
+//  Триггер событий
+
+// =================================================================
+
+/**
  * Запустить событие
  * @param {String} event - имя события
  * @param {...args} args - параметры для передачи вместе с событием
@@ -139,20 +177,6 @@ Events.prototype.trigger = function(event, args) {
 };
 
 /**
- * Отписаться от всех слушателей событий
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
- */
-Events.prototype.clearListeners = function() {
-    for (var key in this[LISTENERS_NAME]) {
-        if (this[LISTENERS_NAME].hasOwnProperty(key)) {
-            delete this[LISTENERS_NAME][key];
-        }
-    }
-
-    return this;
-};
-
-/**
  * Делегировать все события другому диспетчеру событий
  * @param {Events} acceptor - получатель событий
  * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
@@ -161,6 +185,12 @@ Events.prototype.pipeEvents = function(acceptor) {
     this.on("*", Events.prototype.trigger.bind(acceptor));
     return this;
 };
+
+// =================================================================
+
+//  Включение/выключение триггера событий
+
+// =================================================================
 
 /**
  * Остановить запуск событий

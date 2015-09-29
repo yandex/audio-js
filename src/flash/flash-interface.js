@@ -2,6 +2,12 @@ var config = require('../config');
 var Logger = require('../logger/logger');
 var logger = new Logger('FlashInterface');
 
+// =================================================================
+
+//  Конструктор
+
+// =================================================================
+
 /**
  * @class Описание внешнего интерфейса flash-плеера
  * @param {Object} flash - swf-объект
@@ -11,6 +17,12 @@ var logger = new Logger('FlashInterface');
 var FlashInterface = function(flash) {
     this.flash = ya.Audio._flash = flash;
 };
+
+// =================================================================
+
+//  Общение с flash-плеером
+
+// =================================================================
 
 /**
  * Вызвать метод flash-плеера
@@ -46,6 +58,12 @@ FlashInterface.prototype._heartBeat = function() {
 FlashInterface.prototype._addPlayer = function() {
     return this._callFlash("addPlayer", -1);
 };
+
+// =================================================================
+
+//  Методы управления плеером
+
+// =================================================================
 
 /**
  * Установить громкость
@@ -100,6 +118,50 @@ FlashInterface.prototype.resume = function(id) {
 };
 
 /**
+ * Получить позицию воспроизведения
+ * @param {int} id - id плеера
+ * @returns {Number}
+ */
+FlashInterface.prototype.getPosition = function(id) {
+    return this._callFlash("getPosition", id);
+};
+
+/**
+ * Установить текущую позицию воспроизведения
+ * @param {int} id - id плеера
+ * @param {number} position
+ */
+FlashInterface.prototype.setPosition = function(id, position) {
+    this._callFlash("setPosition", id, position);
+};
+
+/**
+ * Получить длительность трека
+ * @param {int} id - id плеера
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {Number}
+ */
+FlashInterface.prototype.getDuration = function(id, offset) {
+    return this._callFlash("getDuration", id, offset || 0);
+};
+
+/**
+ * Получить длительность загруженной части трека
+ * @param {int} id - id плеера
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {Number}
+ */
+FlashInterface.prototype.getLoaded = function(id, offset) {
+    return this._callFlash("getLoaded", id, offset || 0);
+};
+
+// =================================================================
+
+//  Предзагрузка
+
+// =================================================================
+
+/**
  * Предзагрузить трек
  * @param {int} id - id плеера
  * @param {String} src - ссылка на трек
@@ -143,43 +205,11 @@ FlashInterface.prototype.playPreloaded = function(id, offset) {
     return this._callFlash("playPreloaded", id, offset == null ? 1 : offset);
 };
 
-/**
- * Получить позицию воспроизведения
- * @param {int} id - id плеера
- * @returns {Number}
- */
-FlashInterface.prototype.getPosition = function(id) {
-    return this._callFlash("getPosition", id);
-};
+// =================================================================
 
-/**
- * Установить текущую позицию воспроизведения
- * @param {int} id - id плеера
- * @param {number} position
- */
-FlashInterface.prototype.setPosition = function(id, position) {
-    this._callFlash("setPosition", id, position);
-};
+//  Получение данных о плеере
 
-/**
- * Получить длительность трека
- * @param {int} id - id плеера
- * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {Number}
- */
-FlashInterface.prototype.getDuration = function(id, offset) {
-    return this._callFlash("getDuration", id, offset || 0);
-};
-
-/**
- * Получить длительность загруженной части трека
- * @param {int} id - id плеера
- * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {Number}
- */
-FlashInterface.prototype.getLoaded = function(id, offset) {
-    return this._callFlash("getLoaded", id, offset || 0);
-};
+// =================================================================
 
 /**
  * Получить ссылку на трек

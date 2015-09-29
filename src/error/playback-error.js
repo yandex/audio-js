@@ -56,4 +56,6 @@ PlaybackError.html5 = {
     4: PlaybackError.BAD_DATA
 };
 
+//TODO: сделать классификатор ошибок flash-плеера
+
 module.exports = PlaybackError;

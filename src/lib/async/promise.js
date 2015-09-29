@@ -1,8 +1,14 @@
 var vow = require('vow');
 var detect = require('../browser/detect');
 
+// =================================================================
+
+// Promise
+
+// =================================================================
+
 /**
- * {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise|ES-6 Promise}
+ * {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise|ES 2015 Promise}
  * @constructor
  */
 var Promise;
@@ -63,7 +69,12 @@ module.exports = Promise;
  * @returns {Promise} -- новое обещание из результатов обработчика
  */
 
-//------------------------------------------------------------------------- AbortablePromise
+// =================================================================
+
+// AbortablePromise
+
+// =================================================================
+
 /**
  * Обещание с возможностью отмены связанного с ним действия.
  * @class AbortablePromise

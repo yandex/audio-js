@@ -1,4 +1,8 @@
 var Events = require('../../lib/async/events');
+var merge = require('../../lib/data/merge');
+
+var EqualizerStatic = require('./equalizer-static');
+var EqualizerBand = require('./equalizer-band');
 
 /**
  * Описание настроек эквалайзера
@@ -16,6 +20,12 @@ var Events = require('../../lib/async/events');
  * @param {Number} value - значение усиления
  */
 
+// =================================================================
+
+//  Конструктор
+
+// =================================================================
+
 /**
  * Эквалайзер
  * @alias ya.Audio.fx.Equalizer
@@ -23,6 +33,7 @@ var Events = require('../../lib/async/events');
  * @param {Array.<Number>} bands - список частот для полос эквалайзера
  *
  * @extends Events
+ * @mixes EqualizerStatic
  *
  * @fires ya.Audio.fx.Equalizer#change
  *
@@ -60,23 +71,35 @@ var Equalizer = function(audioContext, bands) {
     this.input = this.preamp.filter;
     this.output = this.bands[this.bands.length - 1].filter;
 };
-
 Events.mixin(Equalizer);
+merge(Equalizer, EqualizerStatic, true);
 
 /** @type {string}
  * @const
  */
 Equalizer.EVENT_CHANGE = "change";
 
+// =================================================================
+
+//  Настройки по-умолчанию
+
+// =================================================================
+
 /** @type {Array.<Number>}
  * @const
  */
-Equalizer.DEFAULT_BANDS = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000];
+Equalizer.DEFAULT_BANDS = require('./default.bands.js');
 
 /** @type {Object.<String, ya.Audio.fx.Equalizer~EqualizerPreset>}
  * @const
  */
 Equalizer.DEFAULT_PRESETS = require('./default.presets.js');
+
+// =================================================================
+
+//  Обработка событий
+
+// =================================================================
 
 /**
  * Обработка события полосы эквалайзера
@@ -88,6 +111,12 @@ Equalizer.DEFAULT_PRESETS = require('./default.presets.js');
 Equalizer.prototype._onBandEvent = function(band, event, data) {
     this.trigger(event, band.getFreq(), data);
 };
+
+// =================================================================
+
+//  Загрузка и сохранение настроек
+
+// =================================================================
 
 /**
  * Загрузить настройки
@@ -111,6 +140,12 @@ Equalizer.prototype.savePreset = function() {
     };
 };
 
+// =================================================================
+
+//  Математика
+
+// =================================================================
+
 //TODO: проверить предположение (скорее всего нужна карта весов для различных частот или даже некая функция)
 /**
  * **Экспериментально** - вычиляет оптимальное значние предусиления
@@ -124,69 +159,6 @@ Equalizer.prototype.guessPreamp = function() {
     }
 
     return -v / 2;
-};
-
-// =================================================================
-
-//  Фильтр эквалайзера
-
-// =================================================================
-/**
- * Событие изменения значения усиления ({@link ya.Audio.fx.Equalizer.EVENT_CHANGE})
- * @event ya.Audio.fx.Equalizer~EqualizerBand#change
- * @param {Number} value - новое значение
- */
-
-/**
- * Полоса пропускания эквалайзера
- * @alias ya.Audio.fx.Equalizer~EqualizerBand
- *
- * @extends Events
- *
- * @param {AudioContext} audioContext - контекст Web Audio API
- * @param {String} type - тип фильтра
- * @param {Number} frequency - частота фильтра
- *
- * @fires ya.Audio.fx.Equalizer~EqualizerBand#change
- *
- * @constructor
- */
-var EqualizerBand = function(audioContext, type, frequency) {
-    Events.call(this);
-
-    this.type = type;
-
-    this.filter = audioContext.createBiquadFilter();
-    this.filter.type = type;
-    this.filter.frequency.value = frequency;
-    this.filter.Q.value = 1;
-    this.filter.gain.value = 0;
-};
-Events.mixin(EqualizerBand);
-
-/**
- * Получить частоту полосы пропускания
- * @returns {Number}
- */
-EqualizerBand.prototype.getFreq = function() {
-    return this.filter.frequency.value;
-};
-
-/**
- * Получить значение усиления
- * @returns {Number}
- */
-EqualizerBand.prototype.getValue = function() {
-    return this.filter.gain.value;
-};
-
-/**
- * Установить значение усиления
- * @param value
- */
-EqualizerBand.prototype.setValue = function(value) {
-    this.filter.gain.value = value;
-    this.trigger(Equalizer.EVENT_CHANGE, value);
 };
 
 module.exports = Equalizer;

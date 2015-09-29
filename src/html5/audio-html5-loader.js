@@ -9,9 +9,27 @@ var noop = require('../lib/noop');
 
 var loaderId = 1;
 
+// =================================================================
+
+//  Конструктор
+
+// =================================================================
+
 /**
  * @class Обёртка для нативного класса Audio
+ * @extends Events
+ *
+ * @fires IAudioImplementation#play
+ * @fires IAudioImplementation#ended
+ * @fires IAudioImplementation#stop
+ * @fires IAudioImplementation#pause
+ * @fires IAudioImplementation#progress
+ * @fires IAudioImplementation#loading
+ * @fires IAudioImplementation#loaded
+ * @fires IAudioImplementation#error
+ *
  * @constructor
+ * @private
  */
 var AudioHTML5Loader = function() {
     this.name = loaderId++;
@@ -24,16 +42,48 @@ var AudioHTML5Loader = function() {
         }
     }.bind(this));
 
+    /**
+     * Контейнер для различных ожиданий событий
+     * @type {Object.<String, Deferred>}
+     * @private
+     */
     this.promises = {};
 
+    /**
+     * Ссылка на трек
+     * @type {string}
+     * @private
+     */
     this.src = "";
+    /**
+     * Назначенная позиция воспроизведения
+     * @type {number}
+     * @private
+     */
     this.position = 0;
 
+    /**
+     * Время последнего обновления данных
+     * @type {number}
+     * @private
+     */
     this.lastUpdate = 0;
+
+    /**
+     * Флаг начала загрузки
+     * @type {boolean}
+     * @private
+     */
     this.notLoading = true;
 
+    /**
+     * Выход для Web Audio API
+     * @type {AudioNode}
+     * @private
+     */
     this.output = null;
 
+    //--- Сахар для защиты от утечек памяти
     this.__startPlay = this._startPlay.bind(this);
     this.__restart = this._restart.bind(this);
     this.__startupAudio = this._startupAudio.bind(this);
@@ -50,7 +100,19 @@ var AudioHTML5Loader = function() {
 };
 Events.mixin(AudioHTML5Loader);
 
+/**
+ * Интервал обновления таймингов трека
+ * @type {number}
+ * @private
+ * @const
+ */
 AudioHTML5Loader._updateInterval = 250;
+
+// =================================================================
+
+//  Нативные события Audio
+
+// =================================================================
 
 /**
  * Нативное событие начала воспроизведения
@@ -115,6 +177,16 @@ AudioHTML5Loader.EVENT_NATIVE_CANPLAY = "canplay";
  */
 AudioHTML5Loader.EVENT_NATIVE_ERROR = "error";
 
+// =================================================================
+
+//  Обработчики событий
+
+// =================================================================
+
+/**
+ * Обработчик обновления таймингов трека
+ * @private
+ */
 AudioHTML5Loader.prototype._updateProgress = function() {
     var currentTime = +new Date();
     if (currentTime - this.lastUpdate < AudioHTML5Loader._updateInterval) {
@@ -125,6 +197,10 @@ AudioHTML5Loader.prototype._updateProgress = function() {
     this.trigger(AudioStatic.EVENT_PROGRESS);
 };
 
+/**
+ * Обработчик событий загрузки трека
+ * @private
+ */
 AudioHTML5Loader.prototype._onNativeLoading = function() {
     this._updateProgress();
 
@@ -142,12 +218,22 @@ AudioHTML5Loader.prototype._onNativeLoading = function() {
     }
 };
 
+/**
+ * Обработчик события окончания трека
+ * @private
+ */
 AudioHTML5Loader.prototype._onNativeEnded = function() {
     this.trigger(AudioStatic.EVENT_PROGRESS);
     this.trigger(AudioStatic.EVENT_ENDED);
     this.ended = true;
+    this.pause();
 };
 
+/**
+ * Обработчик ошибок воспроизведения
+ * @param {Event} e - Событие ошибки
+ * @private
+ */
 AudioHTML5Loader.prototype._onNativeError = function(e) {
     if (!this.src) {
         return;
@@ -161,7 +247,16 @@ AudioHTML5Loader.prototype._onNativeError = function(e) {
     this.trigger(AudioStatic.EVENT_ERROR, error);
 };
 
-//---
+// =================================================================
+
+//  Инициализация и деинициализация Audio
+
+// =================================================================
+
+/**
+ * Создание объекта Audio и назначение обработчиков событий
+ * @private
+ */
 AudioHTML5Loader.prototype._initAudio = function() {
     logger.debug(this, "_initAudio");
 
@@ -184,6 +279,10 @@ AudioHTML5Loader.prototype._initAudio = function() {
     this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__onNativeError);
 };
 
+/**
+ * Отключение обработчиков событий и удаление объекта Audio
+ * @private
+ */
 AudioHTML5Loader.prototype._deinitAudio = function() {
     logger.debug(this, "_deinitAudio");
 
@@ -204,6 +303,10 @@ AudioHTML5Loader.prototype._deinitAudio = function() {
     this.audio = null;
 };
 
+/**
+ * Инициализация объекта Audio. Для начала воспроизведение требуется любое пользовательское действие.
+ * @private
+ */
 AudioHTML5Loader.prototype._startupAudio = function() {
     logger.debug(this, "_startupAudio");
 
@@ -227,7 +330,20 @@ AudioHTML5Loader.prototype._startupAudio = function() {
     }.bind(this), 0);
 };
 
-//---
+// =================================================================
+
+//  Методы ожидания различных событий и генерации обещаний
+
+// =================================================================
+
+/**
+ * Дождаться определённого состояния плеера
+ * @param {String} name - имя состояния
+ * @param {Function} check - метод проверки, что мы находимся в нужном состоянии
+ * @param {Array.<String>} listen - список событий, при которых может смениться состояние
+ * @returns {Promise}
+ * @private
+ */
 AudioHTML5Loader.prototype._waitFor = function(name, check, listen) {
     if (!this.promises[name]) {
         var deferred = new Deferred();
@@ -259,6 +375,13 @@ AudioHTML5Loader.prototype._waitFor = function(name, check, listen) {
     return this.promises[name].promise();
 };
 
+/**
+ * Отмена ожидания состояния
+ * @param {String} name - имя состояния
+ * @param {String} reason - причина отмены ожидания
+ * @todo reason сделать наследником класса Error
+ * @private
+ */
 AudioHTML5Loader.prototype._cancelWait = function(name, reason) {
     var promise;
     if (promise = this.promises[name]) {
@@ -267,6 +390,12 @@ AudioHTML5Loader.prototype._cancelWait = function(name, reason) {
     }
 };
 
+/**
+ * Отмена всех ожиданий
+ * @param {String} reason - причина отмены ожидания
+ * @todo reason сделать наследником класса Error
+ * @private
+ */
 AudioHTML5Loader.prototype._abortPromises = function(reason) {
     for (var key in this.promises) {
         if (this.promises.hasOwnProperty(key)) {
@@ -275,43 +404,113 @@ AudioHTML5Loader.prototype._abortPromises = function(reason) {
     }
 };
 
-//---
+// =================================================================
+
+//  Ожидание получения метаданных трека
+
+// =================================================================
+
+/**
+ * Список событий плеера при которых можно ожидать готовности метаданных
+ * @type {Array.<String>}
+ * @private
+ */
 AudioHTML5Loader._promiseMetadataEvents = [AudioHTML5Loader.EVENT_NATIVE_META, AudioHTML5Loader.EVENT_NATIVE_CANPLAY];
 
+/**
+ * Проверка получения метаданных
+ * @returns {boolean}
+ * @private
+ */
 AudioHTML5Loader.prototype._promiseMetadataCheck = function() {
     return this.audio.readyState > this.audio.HAVE_METADATA;
 };
 
+/**
+ * Ожидание получения метаданных
+ * @returns {Promise}
+ * @private
+ */
 AudioHTML5Loader.prototype._promiseMetadata = function() {
     return this._waitFor("metadata", this._promiseMetadataCheck, AudioHTML5Loader._promiseMetadataEvents);
 };
 
-//---
+// =================================================================
+
+//  Ожидание загрузки нужной части трека
+
+// =================================================================
+
+/**
+ * Список событий плеера при которых можно ожидать загрузки
+ * @type {Array.<String>}
+ * @private
+ */
 AudioHTML5Loader._promiseLoadedEvents = [AudioHTML5Loader.EVENT_NATIVE_LOADING];
 
+/**
+ * Проверка, что загружена нужная часть трека
+ * @returns {boolean}
+ * @private
+ */
 AudioHTML5Loader.prototype._promiseLoadedCheck = function() {
     var loaded = Math.min(this.position + 1, this.audio.duration);
     return this.audio.buffered.length
         && this.audio.buffered.end(0) - this.audio.buffered.start(0) >= loaded;
 };
 
+/**
+ * Ожидание загрузки нужной части трека
+ * @returns {Promise}
+ * @private
+ */
 AudioHTML5Loader.prototype._promiseLoaded = function() {
     return this._waitFor("loaded", this._promiseLoadedCheck, AudioHTML5Loader._promiseLoadedEvents);
 };
 
-//---
+// =================================================================
+
+//  Ожидание проигрывания нужной части трека
+
+// =================================================================
+
+/**
+ * Список событий плеера при которых можно ожидать проигрывания нужно части
+ * @type {Array.<String>}
+ * @private
+ */
 AudioHTML5Loader._promisePlayingEvents = [AudioHTML5Loader.EVENT_NATIVE_TIMEUPDATE];
 
+/**
+ * Проверка, что проигрывается нужная часть трека
+ * @returns {boolean}
+ * @private
+ */
 AudioHTML5Loader.prototype._promisePlayingCheck = function() {
     var time = Math.min(this.position + 0.2, this.audio.duration);
     return this.audio.currentTime >= time;
 };
 
+/**
+ * Ожидание проигрывания нужной части трека
+ * @returns {Promise}
+ * @private
+ */
 AudioHTML5Loader.prototype._promisePlaying = function() {
     return this._waitFor("playing", this._promisePlayingCheck, AudioHTML5Loader._promisePlayingEvents);
 };
 
-//---
+// =================================================================
+
+//  Ожидание начала воспроизведения
+
+// =================================================================
+
+/**
+ * Ожидание начала воспроиведения, перезапуск трека, если воспроизведение не началось
+ * @returns {Promise}
+ * @private
+ */
 AudioHTML5Loader.prototype._promiseStartPlaying = function() {
     if (!this.promises["startPlaying"]) {
         var deferred = new Deferred();
@@ -337,7 +536,16 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
     return this.promises["startPlaying"].promise();
 };
 
-//---
+// =================================================================
+
+//  Управление элементом Audio
+
+// =================================================================
+
+/**
+ * Начать загрузку трека
+ * @param {String} src
+ */
 AudioHTML5Loader.prototype.load = function(src) {
     logger.debug(this, "load", src);
 
@@ -352,6 +560,7 @@ AudioHTML5Loader.prototype.load = function(src) {
     this.audio.load();
 };
 
+/** Остановить воспроизведение и загрузку трека */
 AudioHTML5Loader.prototype.stop = function() {
     logger.debug(this, "stop");
 
@@ -359,6 +568,10 @@ AudioHTML5Loader.prototype.stop = function() {
     this.load("");
 };
 
+/**
+ * Начать воспроизведение трека
+ * @private
+ */
 AudioHTML5Loader.prototype._startPlay = function() {
     logger.debug(this, "_startPlay");
 
@@ -374,6 +587,11 @@ AudioHTML5Loader.prototype._startPlay = function() {
     this._promiseStartPlaying().then(noop, this.__restart);
 };
 
+/**
+ * Перезапустить воспроизведение трека
+ * @param {String} [reason] - если причина вызова указана и не равна "timeout" ничего не происходит
+ * @private
+ */
 AudioHTML5Loader.prototype._restart = function(reason) {
     //TODO: подумать нужен ли тут какой-то счётик количества попыток
     if (reason && reason !== "timeout") {
@@ -395,6 +613,10 @@ AudioHTML5Loader.prototype._restart = function(reason) {
     }
 };
 
+/**
+ * Воспроизведение трека/отмена паузы
+ * @param {Number} [position] - позиция воспроизведения
+ */
 AudioHTML5Loader.prototype.play = function(position) {
     logger.debug(this, "play", position);
 
@@ -403,6 +625,7 @@ AudioHTML5Loader.prototype.play = function(position) {
     this._promiseMetadata().then(this.__startPlay, noop);
 };
 
+/** Пауза */
 AudioHTML5Loader.prototype.pause = function() {
     logger.debug(this, "pause");
 
@@ -412,6 +635,10 @@ AudioHTML5Loader.prototype.pause = function() {
     this.position = this.audio.currentTime;
 };
 
+/**
+ * Установить позицию воспроизведения
+ * @param {Number} position - позиция воспроизведения
+ */
 AudioHTML5Loader.prototype.setPosition = function(position) {
     logger.debug(this, "setPosition", position);
 
@@ -422,7 +649,19 @@ AudioHTML5Loader.prototype.setPosition = function(position) {
     }.bind(this), noop);
 };
 
-//---
+// =================================================================
+
+//  Подключение/отключение источника для Web Audio API
+
+// =================================================================
+
+/**
+ * Создать источник для Web Audio API
+ * !!!Внимание!!! - при использовании Web Audio API в браузере стоит учитывать, что все треки должны либо загружаться
+ * с того же домена, либо для них должны быть правильно выставлены заголовки CORS.
+ * При вызове данного метода трек будет перезапущен
+ * @param {AudioContext} audioContext - контекст Web Audio API
+ */
 AudioHTML5Loader.prototype.createSource = function(audioContext) {
     if (this.output) {
         return;
@@ -437,13 +676,13 @@ AudioHTML5Loader.prototype.createSource = function(audioContext) {
     this._restart();
 };
 
+/**
+ * Удалить источник для Web Audio API. Удаляет источник, пересоздаёт объект Audio.
+ * !!!Внимание!!! - Данный метод можно вызывать только в обработчике пользовательского события, т.к. свежесозданный
+ * элемент Audio нужно инициализировать - иначе будет недоступно воспроизведение. Инициализация элемента
+ * Audio возможна только в обработчике пользовательского события (клик, тач-событие или клавиатурное событие)
+ */
 AudioHTML5Loader.prototype.destroySource = function() {
-    /* !!!WARNING!!!
-       Данный метод можно вызывать только в обработчике пользовательского события, т.к. свежесозданный
-       элемент Audio нужно инициализировать - иначе будет недоступно воспроизведение. Инициализация элемента
-       Audio возможна только в обработчике пользовательского события (клик, тач-событие или клавиатурное событие)
-     */
-
     //INFO: единственный способ оторвать MediaElementSource от Audio - создать новый объект Audio
 
     if (!this.output) {
@@ -459,11 +698,18 @@ AudioHTML5Loader.prototype.destroySource = function() {
 
     this._deinitAudio();
     this._initAudio();
+    this._startupAudio();
 
     this._restart();
 };
 
-//---
+// =================================================================
+
+//  Удаление всех обработчиков и объекта Audio
+
+// =================================================================
+
+/** Удаление всех обработчиков и объекта Audio. После вызова данного метода этот объект будет нельзя использовать */
 AudioHTML5Loader.prototype.destroy = function() {
     logger.debug(this, "destroy");
 

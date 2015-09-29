@@ -1,9 +1,4 @@
 module.exports = [
-    { // сохраняется в localstorage
-        "id": "custom",
-        "preamp": 0,
-        "bands": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
     {
         "id": "default",
         "preamp": 0,

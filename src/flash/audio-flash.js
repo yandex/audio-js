@@ -11,11 +11,23 @@ var playerId = 1;
 
 var flashManager;
 
+// =================================================================
+
+//  Проверка доступности flash-плеера
+
+// =================================================================
+
 var flashVersion = swfobject.getFlashPlayerVersion();
 detect.flashVersion = flashVersion.major + "." + flashVersion.minor + "." + flashVersion.release;
 
 exports.available = swfobject.hasFlashPlayerVersion(config.flash.version);
 logger.info(this, "detection", exports.available);
+
+// =================================================================
+
+//  Конструктор
+
+// =================================================================
 
 /**
  * @class Класс flash аудио-плеера
@@ -60,6 +72,12 @@ Events.mixin(AudioFlash);
 
 AudioFlash.type = AudioFlash.prototype.type = "flash";
 
+// =================================================================
+
+//  Создание методов работы с плеером
+
+// =================================================================
+
 Object.keys(FlashInterface.prototype).filter(function(key) {
     return FlashInterface.prototype.hasOwnProperty(key) && key[0] !== "_";
 }).map(function(method) {
@@ -78,6 +96,12 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
         return flashManager.flash[method].apply(flashManager.flash, args);
     }
 });
+
+// =================================================================
+
+//  JSDOC
+
+// =================================================================
 
 /**
  * Проиграть трек
@@ -185,6 +209,12 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
  * @returns {String|Boolean} -- Ссылка на трек или false, если нет загружаемого трека
  */
 
+// =================================================================
+
+//  Получение данных о плеере
+
+// =================================================================
+
 /**
  * Проверить доступен ли программный контроль громкости
  * @returns {boolean}
@@ -192,6 +222,12 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
 AudioFlash.prototype.isDeviceVolume = function() {
     return false;
 };
+
+// =================================================================
+
+//  Логгирование
+
+// =================================================================
 
 /**
  * Вспомогательная функция для отображения состояния плеера в логе.

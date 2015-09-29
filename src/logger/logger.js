@@ -1,6 +1,12 @@
 var LEVELS = ["debug", "log", "info", "warn", "error", "trace"];
 var noop = require('../lib/noop');
 
+// =================================================================
+
+//  Конструктор
+
+// =================================================================
+
 /**
  * Настраиваемые логгер для аудио-плеера
  * @alias ya.Audio.Logger
@@ -10,6 +16,12 @@ var noop = require('../lib/noop');
 var Logger = function(channel) {
     this.channel = channel;
 };
+
+// =================================================================
+
+//  Настройки
+
+// =================================================================
 
 /**
  * Список игнорируемых каналов
@@ -22,6 +34,12 @@ Logger.ignores = [];
  * @type {Array.<String>}
  */
 Logger.logLevels = [];
+
+// =================================================================
+
+//  Синтаксический сахар
+
+// =================================================================
 
 /**
  * Запись в лог с уровнем **debug**
@@ -70,6 +88,21 @@ Logger.prototype.error = noop;
  * @param {...*} [args] - дополнительные аргументы
  */
 Logger.prototype.trace = noop;
+
+LEVELS.forEach(function(level) {
+    Logger.prototype[level] = function() {
+        var args = [].slice.call(arguments);
+        args.unshift(this.channel);
+        args.unshift(level);
+        Logger.log.apply(Logger, args);
+    };
+});
+
+// =================================================================
+
+//  Запись данных в лог
+
+// =================================================================
 
 /**
  * Сделать запись в лог
@@ -153,14 +186,5 @@ Logger._formatTimestamp = function(timestamp) {
     ms = ms > 100 ? ms : ms > 10 ? "0" + ms : "00" + ms;
     return date.toLocaleTimeString() + "." + ms;
 };
-
-LEVELS.forEach(function(level) {
-    Logger.prototype[level] = function() {
-        var args = [].slice.call(arguments);
-        args.unshift(this.channel);
-        args.unshift(level);
-        Logger.log.apply(Logger, args);
-    };
-});
 
 module.exports = Logger;

@@ -10,6 +10,12 @@ var AudioHTML5Loader = require('./audio-html5-loader');
 
 var playerId = 1;
 
+// =================================================================
+
+//  Проверки доступности HTML5 Audio и Web Audio API
+
+// =================================================================
+
 exports.available = (function() {
     // ------------------------------------------------------------------------------ Базовая проверка поддержки браузером
     var html5_available = true;
@@ -38,6 +44,12 @@ try {
     audioContext = null;
     logger.info(this, "WenAudioAPI not detected");
 }
+
+// =================================================================
+
+//  Конструктор
+
+// =================================================================
 
 /**
  * @class Класс html5 аудио-плеера
@@ -81,6 +93,12 @@ var AudioHTML5 = function() {
 };
 Events.mixin(AudioHTML5);
 AudioHTML5.type = AudioHTML5.prototype.type = "html5";
+
+// =================================================================
+
+//  Работа с загрузчиками
+
+// =================================================================
 
 /**
  * Добавить загрузчик аудио-файлов
@@ -130,6 +148,12 @@ AudioHTML5.prototype._getLoader = function(offset) {
     offset = offset || 0;
     return this.loaders[(this.activeLoader + offset) % this.loaders.length];
 };
+
+// =================================================================
+
+//  Подключение Web Audio API
+
+// =================================================================
 
 /**
  * Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.
@@ -235,6 +259,12 @@ AudioHTML5.prototype.setAudioPreprocessor = function(preprocessor) {
     return true;
 };
 
+// =================================================================
+
+//  Управление плеером
+
+// =================================================================
+
 /**
  * Проиграть трек
  * @param {String} src - ссылка на трек
@@ -273,64 +303,6 @@ AudioHTML5.prototype.stop = function(offset) {
     loader.stop();
 
     this.trigger(AudioStatic.EVENT_STOP, offset);
-};
-
-/**
- * Предзагрузить трек
- * @param {String} src - Ссылка на трек
- * @param {Number} [duration] - Длительность трека (не используется)
- * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- */
-AudioHTML5.prototype.preload = function(src, duration, offset) {
-    logger.info(this, "preload", src, offset);
-
-    offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(offset);
-    loader.load(src);
-};
-
-/**
- * Проверить что трек предзагружается
- * @param {String} src - ссылка на трек
- * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean}
- */
-AudioHTML5.prototype.isPreloaded = function(src, offset) {
-    offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(offset);
-    return loader.src === src && !loader.notLoading;
-};
-
-/**
- * Проверить что трек начал предзагружаться
- * @param {String} src - ссылка на трек
- * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean}
- */
-AudioHTML5.prototype.isPreloading = function(src, offset) {
-    offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(offset);
-    return loader.src === src;
-};
-
-/**
- * Запустить воспроизведение предзагруженного трека
- * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean} -- доступность данного действия
- */
-AudioHTML5.prototype.playPreloaded = function(offset) {
-    logger.info(this, "playPreloaded", offset);
-    offset = offset == null ? 1 : offset;
-    var loader = this._getLoader(offset);
-
-    if (!loader.src) {
-        return false;
-    }
-
-    this._setActive(offset);
-    loader.play();
-
-    return true;
 };
 
 /**
@@ -400,6 +372,76 @@ AudioHTML5.prototype.setVolume = function(volume) {
     this.trigger(AudioStatic.EVENT_VOLUME);
 };
 
+// =================================================================
+
+//  Предзагрузка
+
+// =================================================================
+
+/**
+ * Предзагрузить трек
+ * @param {String} src - Ссылка на трек
+ * @param {Number} [duration] - Длительность трека (не используется)
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ */
+AudioHTML5.prototype.preload = function(src, duration, offset) {
+    logger.info(this, "preload", src, offset);
+
+    offset = offset == null ? 1 : offset;
+    var loader = this._getLoader(offset);
+    loader.load(src);
+};
+
+/**
+ * Проверить что трек предзагружается
+ * @param {String} src - ссылка на трек
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean}
+ */
+AudioHTML5.prototype.isPreloaded = function(src, offset) {
+    offset = offset == null ? 1 : offset;
+    var loader = this._getLoader(offset);
+    return loader.src === src && !loader.notLoading;
+};
+
+/**
+ * Проверить что трек начал предзагружаться
+ * @param {String} src - ссылка на трек
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean}
+ */
+AudioHTML5.prototype.isPreloading = function(src, offset) {
+    offset = offset == null ? 1 : offset;
+    var loader = this._getLoader(offset);
+    return loader.src === src;
+};
+
+/**
+ * Запустить воспроизведение предзагруженного трека
+ * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {boolean} -- доступность данного действия
+ */
+AudioHTML5.prototype.playPreloaded = function(offset) {
+    logger.info(this, "playPreloaded", offset);
+    offset = offset == null ? 1 : offset;
+    var loader = this._getLoader(offset);
+
+    if (!loader.src) {
+        return false;
+    }
+
+    this._setActive(offset);
+    loader.play();
+
+    return true;
+};
+
+// =================================================================
+
+//  Получение данных о плеере
+
+// =================================================================
+
 /**
  * Получить ссылку на трек
  * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
@@ -416,6 +458,12 @@ AudioHTML5.prototype.getSrc = function(offset) {
 AudioHTML5.prototype.isDeviceVolume = function() {
     return detect.onlyDeviceVolume;
 };
+
+// =================================================================
+
+//  Логирование
+
+// =================================================================
 
 /**
  * Вспомогательная функция для отображения состояния плеера в логе.
