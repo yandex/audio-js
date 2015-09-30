@@ -681,7 +681,9 @@
 </header>
 
 <article>
-    <h1>Быстрый старт</h1><p>Простейший плеер на базе данной библиотеки можно сделать примерно так:</p>
+    <h1>Быстрый старт</h1><p>Данное руководство поможет разобраться с тем, как пользоваться данной библиотекой на примере создания простого плеера.</p>
+<p>Для начала создадим html каркас будущего плеера. Нам понадобятся кнопки play и stop, шкала с позицией воспроизведения 
+и шкала громкости. Также для инициализации флеш-плеера, отображения ошибок и блокировки управления потребуется оверлей.</p>
 <p><strong><em>index.html</em></strong></p>
 <pre class="prettyprint source lang-html"><code>&lt;div class=&quot;player&quot;>
     &lt;div class=&quot;controls&quot;>
@@ -702,22 +704,31 @@
 &lt;/div>
 
 &lt;script src=&quot;https://github.yandex-team.ru/pages/music/audio/dist/index.min.js&quot;>&lt;/script>
-&lt;script src=&quot;index.js&quot;>&lt;/script></code></pre><p><strong><em>index.js</em></strong></p>
+&lt;script src=&quot;index.js&quot;>&lt;/script></code></pre><p>Теперь инициализируем всю эту структуру и создадим экземпляр плеера</p>
+<p><strong><em>index.js</em></strong></p>
 <pre class="prettyprint source lang-javascript"><code>var AudioPlayer = ya.Audio;
 
 var dom = {
+    player: document.querySelector(&quot;.player&quot;),
+
     play: document.querySelector(&quot;.controls__play&quot;),
     stop: document.querySelector(&quot;.controls__stop&quot;),
 
     progress: {
+        bar: document.querySelector(&quot;.progress&quot;),
         loaded: document.querySelector(&quot;.progress__loaded&quot;),
         current: document.querySelector(&quot;.progress__current&quot;)
     },
 
-    volume: document.querySelector(&quot;.volume__bar&quot;),
+    volume: {
+        bar: document.querySelector(&quot;.volume&quot;),
+        value: document.querySelector(&quot;.volume__bar&quot;),        
+    },
+
     overlay: document.querySelector(&quot;.overlay&quot;)
 };
 
+// Предоставим плееру самому решать какой тип реализации использовать
 var audioPlayer = new AudioPlayer(null, dom.overlay);
 
 audioPlayer.initPromise().then(function() {
@@ -727,14 +738,107 @@ audioPlayer.initPromise().then(function() {
     // Показываем ошибку инициализации в оверлее
     dom.overlay.innerHTML = err.message;
     dom.overlay.classList.add(&quot;overlay_error&quot;);
-});
+});</code></pre><p>Настроим отображение статуса плеера. Для простого плеера нам достаточно знать запущено воспроизведение или нет.</p>
+<pre class="prettyprint source lang-javascript"><code>audioPlayer.on(ya.Audio.EVENT_STATE, function(state) {
+    if (state === ya.Audio.STATE_PLAYING) {
+        dom.player.classList.add(&quot;player_playing&quot;);
+    } else {
+        dom.player.classList.remove(&quot;player_playing&quot;);
+    }
+});</code></pre><p>Теперь настроим обновление прогресс-бара. В нём предусмотрены 2 шкалы - шкала загрузки и шкала текущей 
+позиции воспроизведения.</p>
+<pre class="prettyprint source lang-javascript"><code>audioPlayer.on(ya.Audio.EVENT_PROGRESS, function(timings) {
+    dom.progress.loaded.style.width = (timings.loaded / timings.duration * 100).toFixed(2) + &quot;%&quot;; 
+    dom.progress.current.style.width = (timings.position / timings.duration * 100).toFixed(2) + &quot;%&quot;; 
+});</code></pre><p>Аналогично будет работать шкала громкости</p>
+<pre class="prettyprint source lang-javascript"><code>audioPlayer.on(ya.Audio.EVENT_VOLUME, function(volume) {
+    dom.volume.value.style.height = (volume * 100).toFixed(2) + &quot;%&quot;;
+});</code></pre><p>Теперь нужно настроить взаимодействие с пользователем. Начнём с запуска воспроизведения.</p>
+<pre class="prettyprint source lang-javascript"><code>var trackUrls = [
+    &quot;http://some.domain.and.zone/Здесь-могла-быть-ваша-реклама-1.mp3&quot;,
+    &quot;http://some.domain.and.zone/Здесь-могла-быть-ваша-реклама-2.mp3&quot;,
+    &quot;http://some.domain.and.zone/Здесь-могла-быть-ваша-реклама-3.mp3&quot;
+];
+
+var trackIndex = 0;
+
+var startPlay = function() {
+    audioPlayer.play(trackUrls[trackIndex]);
+};
 
 dom.play.addEventListener(&quot;click&quot;, function() {
+    var state = audioPlayer.getState();
 
+    switch (state) {
+        case ya.Audio.STATE_PLAYING:
+            audioPlayer.pause();
+            break;
+
+        case ya.Audio.STATE_PAUSED:
+            audioPlayer.resume();
+            break;
+
+        default:
+            startPlay();
+            break;
+    }
 });
 
-dom.stop.addEventListener(&quot;click&quot;, function() {
-    audioPlayer.stop();
+audioPlayer.on(ya.Audio.EVENT_ENDED, function() {
+    trackIndex++;
+
+    if (trackIndex &lt; trackUrls.length) {
+        startPlay();
+    }
+});</code></pre><p>Добавим немножко удобства для пользователей: сделаем автозагрузку следующего трека после того, как текущий загрузился.
+Для этого потребуется немного изменить функцию <code>startPlay</code> и отслеживать момент загрузки трека</p>
+<pre class="prettyprint source lang-javascript"><code>var startPlay = function() {
+    var track = trackUrs[trackIndex];
+    if (audioPlayer.isPreloaded(track)) {
+        audioPlayer.playPreloaded(track);
+    } else {
+        audioPlayer.play(track);
+    }
+};
+
+audioPlayer.on(ya.Audio.EVENT_LOADED, function() {
+    if (trackIndex + 1 &lt; trackUrls.length) {
+        audioPlayer.preload(trackUrls[trackIndex + 1]);
+    }
+});</code></pre><p>Осталось только настроить навигацию по треку и регулирование громкости:</p>
+<pre class="prettyprint source lang-javascript"><code>var offsetLeft = function(node) {
+    var offset = node.offsetLeft;
+    if (node.offsetParent) {
+        offset += offsetLeft(node.offsetParent);
+    }
+    return offset;
+};
+
+var offsetTop = function(node) {
+    var offset = node.offsetTop;
+    if (node.offsetParent) {
+        offset += offsetTop(node.offsetParent);
+    }
+    return offset;
+};
+
+dom.progress.bar.addEventListener(&quot;click&quot;, function(evt) {
+    var fullWidth = dom.progress.bar.offsetWidth;
+    var offset = offsetLeft(dom.progress.bar);
+
+    var relativePosition = Math.max(0, Math.min(1, ((evt.pageX || evt.screenX) - offset) / fullWidth));
+    var duration = audioPlayer.getDuration();
+
+    audioPlayer.setPosition(duration * relativePosition);
+});
+
+dom.volume.bar.addEventListener(&quot;click&quot;, function(evt) {
+    var fullHeight = dom.volume.bar.offsetHeight;
+    var offset = offsetTop(dom.volume.bar);
+
+    // тут мы делаем &quot;1 -&quot; т.к. громость принято отмерять снизу, а не сверху
+    var volume = 1 - Math.max(0, Math.min(1, ((evt.pageY || evt.screenY) - offset) / fullHeight));
+    audioPlayer.setVolume(volume);
 });</code></pre>
 </article>
 
@@ -744,7 +848,7 @@ dom.stop.addEventListener(&quot;click&quot;, function() {
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Wed Sep 30 2015 17:15:25 GMT+0300 (MSK)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Wed Sep 30 2015 18:49:54 GMT+0300 (MSK)
         </footer>
     </div>
 </div>
