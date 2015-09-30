@@ -137,6 +137,6 @@ YandexAudio - это библиотека аудио-плеера для бра�
 
 ### Документация
   * [Справочник API](https://github.yandex-team.ru/pages/music/audio/)
-  * [Быстрый старт](https://github.yandex-team.ru/pages/music/audio/public-doc/tutorial-quick-start.html)
-  * [Подводные камни](https://github.yandex-team.ru/pages/music/audio/public-doc/tutorial-corner-case.html)
-  * [Инструкции для контрибьюторов](https://github.yandex-team.ru/pages/music/audio/public-doc/tutorial-contrib.html)
+  * [Быстрый старт](https://github.yandex-team.ru/pages/music/audio/tutorial-quick-start.html)
+  * [Подводные камни](https://github.yandex-team.ru/pages/music/audio/tutorial-corner-case.html)
+  * [Инструкции для контрибьюторов](https://github.yandex-team.ru/pages/music/audio/tutorial-contrib.html)
