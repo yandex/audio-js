@@ -7,8 +7,8 @@ import flash.media.SoundChannel;
 import flash.utils.Timer;
 
 public final class AudioPlayer extends EventDispatcher {
-    private static const updateInterval:int = 250;
-    private static var timer:Timer = new Timer(updateInterval);
+    private static const updateInterval:Number = 150;
+    private static var timer:Timer = new Timer(30);
 
     public var id:uint;
     public var isPlaying:Boolean = false;
