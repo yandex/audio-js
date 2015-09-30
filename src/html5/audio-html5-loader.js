@@ -92,8 +92,8 @@ var AudioHTML5Loader = function() {
     this.__onNativeLoading = this._onNativeLoading.bind(this);
     this.__onNativeEnded = this._onNativeEnded.bind(this);
     this.__onNativeError = this._onNativeError.bind(this);
+    this.__onNativePause = this._onNativePause.bind(this);
 
-    this.__onNativePause = this.trigger.bind(this, AudioStatic.EVENT_PAUSE);
     this.__onNativePlay = this.trigger.bind(this, AudioStatic.EVENT_PLAY);
 
     this._initAudio();
@@ -226,7 +226,8 @@ AudioHTML5Loader.prototype._onNativeEnded = function() {
     this.trigger(AudioStatic.EVENT_PROGRESS);
     this.trigger(AudioStatic.EVENT_ENDED);
     this.ended = true;
-    this.pause();
+    this.playing = false;
+    this.audio.pause();
 };
 
 /**
@@ -245,6 +246,12 @@ AudioHTML5Loader.prototype._onNativeError = function(e) {
         this.src);
 
     this.trigger(AudioStatic.EVENT_ERROR, error);
+};
+
+AudioHTML5Loader.prototype._onNativePause = function() {
+    if (!this.ended) {
+        this.trigger(AudioStatic.EVENT_PAUSE);
+    }
 };
 
 // =================================================================
@@ -455,7 +462,7 @@ AudioHTML5Loader._promiseLoadedEvents = [AudioHTML5Loader.EVENT_NATIVE_LOADING];
  */
 AudioHTML5Loader.prototype._promiseLoadedCheck = function() {
     this.__loaderTimer = this.__loaderTimer && clearTimeout(this.__loaderTimer) || setTimeout(function() {
-            this.promises["loaded"].reject("timeout");
+            this._cancelWait("loaded", "timeout");
         }.bind(this), 2000);
 
     //INFO: позицию нужно брать с большим запасом, т.к. данные записаны блоками и нам нужно дождаться загрузки блока
@@ -470,7 +477,16 @@ AudioHTML5Loader.prototype._promiseLoadedCheck = function() {
  * @private
  */
 AudioHTML5Loader.prototype._promiseLoaded = function() {
-    return this._waitFor("loaded", this._promiseLoadedCheck, AudioHTML5Loader._promiseLoadedEvents);
+    var promise = this._waitFor("loaded", this._promiseLoadedCheck, AudioHTML5Loader._promiseLoadedEvents);
+
+    if (!promise.cleanTimer) {
+        promise.cleanTimer = function() {
+            this.__loaderTimer = clearTimeout(this.__loaderTimer);
+        }.bind(this);
+        promise.then(promise.cleanTimer, promise.cleanTimer);
+    }
+
+    return promise;
 };
 
 // =================================================================
@@ -524,18 +540,26 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
         //INFO: если отменено ожидание загрузки или воспроизведения, то нужно отменить и это обещание
         var reject = this._cancelWait.bind(this, "startPlaying");
 
-        this._promiseLoaded().then(function() {
-            this._promisePlaying().then(function() {
-                deferred.resolve();
-                logger.debug(this, "startPlaying:success");
-            }.bind(this), reject);
+        var timer;
+        var cleanTimer = function() {
+            clearTimeout(timer);
+        };
 
-            setTimeout(function() {
+        this._promisePlaying().then(function() {
+            deferred.resolve();
+            logger.debug(this, "startPlaying:success");
+        }.bind(this), reject);
+
+        this._promiseLoaded().then(function() {
+            timer = setTimeout(function() {
                 deferred.reject("timeout");
                 this._cancelWait("playing", "timeout");
                 logger.warn(this, "startPlaying:failed");
             }.bind(this), 2000);
         }.bind(this), reject);
+
+        this._promiseLoaded().then(cleanTimer, cleanTimer);
+        this._promisePlaying().then(cleanTimer, cleanTimer);
     }
 
     return this.promises["startPlaying"].promise();
@@ -556,6 +580,7 @@ AudioHTML5Loader.prototype.load = function(src) {
 
     this._abortPromises("load");
 
+    this.ended = false;
     this.playing = false;
     this.notLoading = true;
     this.position = 0;
@@ -588,7 +613,7 @@ AudioHTML5Loader.prototype._startPlay = function() {
 
     this.audio.play();
 
-    //TODO: подумать нужно ли триггерить событие в случае успеха
+    //THINK: нужно ли триггерить событие в случае успеха
     this._promiseStartPlaying().then(noop, this.__restart);
 };
 
@@ -598,7 +623,7 @@ AudioHTML5Loader.prototype._startPlay = function() {
  * @private
  */
 AudioHTML5Loader.prototype._restart = function(reason) {
-    //TODO: подумать нужен ли тут какой-то счётик количества попыток
+    //THINK: нужен ли тут какой-то счётик количества попыток
     if (reason && reason !== "timeout") {
         return;
     }
@@ -625,6 +650,7 @@ AudioHTML5Loader.prototype._restart = function(reason) {
 AudioHTML5Loader.prototype.play = function(position) {
     logger.debug(this, "play", position);
 
+    this.ended = false;
     this.playing = true;
     this.position = position == null ? this.position || 0 : position;
     this._promiseMetadata().then(this.__startPlay, noop);

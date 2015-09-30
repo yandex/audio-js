@@ -445,11 +445,16 @@ AudioPlayer.prototype._populateEvents = function(event, offset, data) {
 
 // =================================================================
 
+/*
+INFO: данный метод было решено оставить, т.к. это удобнее чем использовать обещание - есть возможность в начале
+инициализации получить сразу ссылку на экземпляр плеера и обвешать его обработчиками событий. Плюс к тому при
+таком подходе реинициализацию делать проще - при ней не придётся переназначать обработчики и обновлять везде ссылку
+на текущий экземпляр плеера.
+ */
 /**
  * Возвращает обещание, разрешающееся после завершения инициализации.
  * @returns {Promise}
  */
-//TODO: попробовать переделать класс на фабрику и убрать initPromise
 AudioPlayer.prototype.initPromise = function() {
     return this.whenReady;
 };
@@ -610,8 +615,8 @@ AudioPlayer.prototype.resume = function() {
         return Promise.resolve();
     }
 
-    if (!(this.state === AudioPlayer.STATE_IDLE || this.state === AudioPlayer.STATE_PAUSED || this.state
-        === AudioPlayer.STATE_PLAYING)) {
+    if (!(this.state === AudioPlayer.STATE_IDLE || this.state === AudioPlayer.STATE_PAUSED
+        || this.state === AudioPlayer.STATE_PLAYING)) {
         return reject(new AudioError(AudioError.BAD_STATE));
     }
 

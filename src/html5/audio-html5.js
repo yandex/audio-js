@@ -319,7 +319,7 @@ AudioHTML5.prototype.getPosition = function() {
  */
 AudioHTML5.prototype.setPosition = function(position) {
     logger.info(this, "setPosition", position);
-    this._getLoader().setPosition(position - 0.001); //INFO: понять нафиг тут нужен 0.001
+    this._getLoader().setPosition(position - 0.001); //THINK: legacy-код. Понять нафиг тут нужен 0.001
 };
 
 /**
