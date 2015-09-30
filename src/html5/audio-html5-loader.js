@@ -454,7 +454,12 @@ AudioHTML5Loader._promiseLoadedEvents = [AudioHTML5Loader.EVENT_NATIVE_LOADING];
  * @private
  */
 AudioHTML5Loader.prototype._promiseLoadedCheck = function() {
-    var loaded = Math.min(this.position + 1, this.audio.duration);
+    this.__loaderTimer = this.__loaderTimer && clearTimeout(this.__loaderTimer) || setTimeout(function() {
+            this.promises["loaded"].reject("timeout");
+        }.bind(this), 2000);
+
+    //INFO: позицию нужно брать с большим запасом, т.к. данные записаны блоками и нам нужно дождаться загрузки блока
+    var loaded = Math.min(this.position + 30, this.audio.duration);
     return this.audio.buffered.length
         && this.audio.buffered.end(0) - this.audio.buffered.start(0) >= loaded;
 };
@@ -529,7 +534,7 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
                 deferred.reject("timeout");
                 this._cancelWait("playing", "timeout");
                 logger.warn(this, "startPlaying:failed");
-            }.bind(this), 1000);
+            }.bind(this), 2000);
         }.bind(this), reject);
     }
 
