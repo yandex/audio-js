@@ -41,6 +41,7 @@
         "destination": "dist/public-doc/",
         "private": false,
         "lenient": true,
-        "readme": "readme.md"
+        "readme": "readme.md",
+        "tutorials": "tutorial/"
     }
 }

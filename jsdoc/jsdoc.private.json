@@ -41,6 +41,7 @@
         "destination": "dist/dev-doc/",
         "private": true,
         "lenient": true,
-        "readme": "readme.md"
+        "readme": "readme.md",
+        "tutorials": "tutorial/"
     }
 }
