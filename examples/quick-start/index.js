@@ -2,6 +2,7 @@
     /* Теперь инициализируем всю эту структуру и создадим экземпляр плеера */
 
     var AudioPlayer = ya.Audio;
+    AudioPlayer.config.flash.path = "../../dist";
 
     var dom = {
         player: document.querySelector(".player"),
