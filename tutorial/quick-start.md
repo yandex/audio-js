@@ -202,5 +202,5 @@ dom.volume.bar.addEventListener("click", function(evt) {
 });
 ```
 
-Полный код можно [посмотреть тут](https://github.yandex-team.ru/music/audio/examples/quick-start/).
+Полный код можно [посмотреть тут](https://github.yandex-team.ru/music/audio/tree/master/examples/quick-start).
 Рабочий пример кода можно [посмотреть тут](https://github.yandex-team.ru/pages/music/audio/examples/quick-start/).
