@@ -84,6 +84,7 @@ var AudioHTML5 = function() {
 
     this.webAudioApi = false;
     this.activeLoader = 0;
+    this.volume = 1;
     this.loaders = [];
 
     this._addLoader();

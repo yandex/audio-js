@@ -11,7 +11,7 @@ import flash.system.Security;
 [SWF(width="10", height="10")]
 public final class AudioManager extends Sprite {
     private static var players:Array/*.<AudioFlash>*/ = [];
-    private static var volume:Number = 0;
+    private static var volume:Number = 1;
 
     public static const EVENT_INIT:String = "init";
     public static const EVENT_CLICK:String = "click";

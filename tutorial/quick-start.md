@@ -2,7 +2,7 @@
 =============
 Данное руководство поможет разобраться с тем, как пользоваться данной библиотекой на примере создания простого плеера.
 
-Для начала создадим html каркас будущего плеера. Нам понадобятся кнопки play и stop, шкала с позицией воспроизведения 
+Для начала создадим html каркас будущего плеера. Нам понадобятся кнопки play, шкала с позицией воспроизведения 
 и шкала громкости. Также для инициализации флеш-плеера, отображения ошибок и блокировки управления потребуется оверлей.
 
 ***index.html***
@@ -10,7 +10,6 @@
 <div class="player">
     <div class="controls">
         <button class="controls__play">Play</button>
-        <button class="controls__stop">Stop</button>
     </div>
 
     <div class="progress">
@@ -39,7 +38,6 @@ var dom = {
     player: document.querySelector(".player"),
 
     play: document.querySelector(".controls__play"),
-    stop: document.querySelector(".controls__stop"),
 
     progress: {
         bar: document.querySelector(".progress"),
@@ -93,8 +91,14 @@ audioPlayer.on(ya.Audio.EVENT_PROGRESS, function(timings) {
 Аналогично будет работать шкала громкости
 
 ```javascript
-audioPlayer.on(ya.Audio.EVENT_VOLUME, function(volume) {
+var updateVolume = function(volume) {
     dom.volume.value.style.height = (volume * 100).toFixed(2) + "%";
+};
+audioPlayer.on(ya.Audio.EVENT_VOLUME, updateVolume);
+
+// Отображаем начальную громкость
+audioPlayer.initPromise().then(function() {
+    updateVolume(audioPlayer.getVolume());
 });
 ```
 
@@ -145,7 +149,7 @@ audioPlayer.on(ya.Audio.EVENT_ENDED, function() {
 
 ```javascript
 var startPlay = function() {
-    var track = trackUrs[trackIndex];
+    var track = trackUrls[trackIndex];
     if (audioPlayer.isPreloaded(track)) {
         audioPlayer.playPreloaded(track);
     } else {
@@ -197,3 +201,6 @@ dom.volume.bar.addEventListener("click", function(evt) {
     audioPlayer.setVolume(volume);
 });
 ```
+
+Полный код можно [посмотреть тут](https://github.yandex-team.ru/music/audio/examples/quick-start/).
+Рабочий пример кода можно [посмотреть тут](https://github.yandex-team.ru/pages/music/audio/examples/quick-start/).
