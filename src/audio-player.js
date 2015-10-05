@@ -868,6 +868,14 @@ AudioPlayer.prototype.isDeviceVolume = function() {
 //  Web Audio API
 
 // =================================================================
+AudioPlayer.prototype.toggleCrossDomain = function(state) {
+    if (this.implementation.type !== "html5") {
+        logger.warn(this, "toggleCrossDomainFailed", this.implementation.type);
+        return false;
+    }
+
+    this.implementation.toggleCrossDomain(state);
+};
 
 /**
  * Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.

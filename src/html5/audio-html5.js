@@ -155,6 +155,11 @@ AudioHTML5.prototype._getLoader = function(offset) {
 //  Подключение Web Audio API
 
 // =================================================================
+AudioHTML5.prototype.toggleCrossDomain = function(state) {
+    this.loaders.forEach(function(loader) {
+        loader.toggleCrossDomain(state);
+    });
+};
 
 /**
  * Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.

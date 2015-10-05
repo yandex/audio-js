@@ -685,6 +685,19 @@ AudioHTML5Loader.prototype.setPosition = function(position) {
 //  Подключение/отключение источника для Web Audio API
 
 // =================================================================
+/**
+ * Включить режим crossDomain для HTML5 плеера
+ * @param {Boolean} state - включить/выключить
+ */
+AudioHTML5Loader.prototype.toggleCrossDomain = function(state) {
+    if (state) {
+        this.audio.crossOrigin = "anonymous";
+    } else {
+        this.audio.removeAttribute("crossOrigin");
+    }
+
+    this._restart();
+};
 
 /**
  * Создать источник для Web Audio API
@@ -700,11 +713,15 @@ AudioHTML5Loader.prototype.createSource = function(audioContext) {
 
     logger.debug(this, "createSource");
 
+    var needRestart = !this.audio.crossOrigin;
+
     this.audio.crossOrigin = "anonymous";
     this.output = audioContext.createMediaElementSource(this.audio);
     this.output.connect(audioContext.destination);
 
-    this._restart();
+    if (needRestart) {
+        this._restart();
+    }
 };
 
 /**
