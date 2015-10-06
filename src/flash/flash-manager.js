@@ -49,7 +49,7 @@ var FlashManager = function(overlay) { // singleton!
     });
     callbackCont[callbackName] = this._onEvent.bind(this);
 
-    this.__loadTimeout = setTimeout(this._onLoadTimeout, config.flash.loadTimeout);
+    this.__loadTimeout = setTimeout(this._onLoadTimeout.bind(this), config.flash.loadTimeout);
     flashLoader(config.flash.path + "/"
         + config.flash.name, config.flash.version, config.flash.playerID, this._onLoad.bind(this), {}, overlay);
 
@@ -66,7 +66,6 @@ var FlashManager = function(overlay) { // singleton!
         timeout = timeout && clearTimeout(timeout);
         logger.info(this, "ready", result);
     }.bind(this), function(e) {
-        flashManager = null; // если обломались удаляем экземпляр менеджера, чтобы можно было было пытаться снова
         logger.error(this, "failed", e);
     }.bind(this));
 };
