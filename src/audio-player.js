@@ -489,7 +489,6 @@ AudioPlayer.prototype.getSrc = function(offset) {
 //  Управление воспроизведением
 
 // =================================================================
-
 /**
  * Запуск воспроизведения
  * @param {String} src - ссылка на трек
@@ -531,6 +530,20 @@ AudioPlayer.prototype.play = function(src, duration) {
     this.implementation.play(src, duration);
 
     return promise;
+};
+
+/**
+ * Перезапуск воспроизведения
+ * @returns {AbortablePromise}
+ */
+AudioPlayer.prototype.restart = function() {
+    if (!this.getDuration()) {
+        return reject(new AudioError(AudioError.BAD_STATE));
+    }
+
+    this._generatePlayId();
+    this.setPosition(0);
+    return this.resume();
 };
 
 /**
