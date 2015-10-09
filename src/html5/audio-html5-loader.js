@@ -106,7 +106,7 @@ Events.mixin(AudioHTML5Loader);
  * @private
  * @const
  */
-AudioHTML5Loader._updateInterval = 150;
+AudioHTML5Loader._updateInterval = 30;
 
 // =================================================================
 
