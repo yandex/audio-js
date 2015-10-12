@@ -282,7 +282,7 @@ AudioHTML5.prototype.play = function(src, duration) {
     var loader = this._getLoader();
 
     loader.load(src);
-    loader.play();
+    loader.play(0);
 };
 
 /** Поставить трек на паузу */

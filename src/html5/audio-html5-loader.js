@@ -547,7 +547,7 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
 
         this._promisePlaying().then(function() {
             deferred.resolve();
-            logger.debug(this, "startPlaying:success");
+            logger.info(this, "startPlaying:success");
         }.bind(this), reject);
 
         this._promiseLoaded().then(function() {
@@ -624,11 +624,11 @@ AudioHTML5Loader.prototype._startPlay = function() {
  */
 AudioHTML5Loader.prototype._restart = function(reason) {
     //THINK: нужен ли тут какой-то счётик количества попыток
+    logger.info(this, "_restart", reason);
+
     if (reason && reason !== "timeout") {
         return;
     }
-
-    logger.info(this, "_restart", reason);
 
     //INFO: Запоминаем текущее состояние, т.к. оно сбросится после перезагрузки
     var position = this.position;
@@ -649,6 +649,10 @@ AudioHTML5Loader.prototype._restart = function(reason) {
  */
 AudioHTML5Loader.prototype.play = function(position) {
     logger.debug(this, "play", position);
+
+    if (this.playing) {
+        return;
+    }
 
     this.ended = false;
     this.playing = true;
@@ -772,6 +776,16 @@ AudioHTML5Loader.prototype.destroy = function() {
     this.__restart = null;
     this.__startPlay = null;
     this.promises = null;
+};
+
+AudioHTML5Loader.prototype._logger = function() {
+    return {
+        src: this.src,
+        playing: this.playing,
+        ended: this.ended,
+        notLoading: this.notLoading,
+        position: this.position
+    };
 };
 
 module.exports = AudioHTML5Loader;
