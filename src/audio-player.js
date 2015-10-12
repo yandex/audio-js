@@ -193,10 +193,11 @@ var AudioPlayer = function(preferredType, overlay) {
                         this._setState(AudioPlayer.STATE_PLAYING);
                         break;
 
+                    case AudioPlayer.EVENT_ENDED:
                     case AudioPlayer.EVENT_SWAP:
                     case AudioPlayer.EVENT_STOP:
-                    case AudioPlayer.EVENT_ENDED:
                     case AudioPlayer.EVENT_ERROR:
+                        logger.info(this, "onEnded", event, data);
                         this._setState(AudioPlayer.STATE_IDLE);
                         break;
 
