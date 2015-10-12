@@ -677,6 +677,11 @@ AudioHTML5Loader.prototype.pause = function() {
 AudioHTML5Loader.prototype.setPosition = function(position) {
     logger.debug(this, "setPosition", position);
 
+    if (!isFinite(position)) {
+        logger.warn(this, "setPositionFailed", position);
+        return;
+    }
+
     this.position = position;
 
     this._promiseMetadata().then(function() {

@@ -777,7 +777,7 @@ AudioPlayer.prototype.isPreloading = function(src) {
  * @returns {Number}
  */
 AudioPlayer.prototype.getPosition = function() {
-    return this.implementation.getPosition();
+    return this.implementation.getPosition() || 0;
 };
 
 /**
@@ -789,9 +789,9 @@ AudioPlayer.prototype.setPosition = function(position) {
     logger.info(this, "setPosition", position);
 
     if (this.implementation.type == "flash") {
-        position = Math.max(0, Math.min(this.getLoaded(), position));
+        position = Math.max(0, Math.min(this.getLoaded() - 1, position));
     } else {
-        position = Math.max(0, Math.min(this.getDuration(), position));
+        position = Math.max(0, Math.min(this.getDuration() - 1, position));
     }
 
     this._played += this.getPosition() - this._lastSkip;
@@ -808,7 +808,7 @@ AudioPlayer.prototype.setPosition = function(position) {
  * @returns {Number}
  */
 AudioPlayer.prototype.getDuration = function(preloader) {
-    return this.implementation.getDuration(preloader ? 1 : 0);
+    return this.implementation.getDuration(preloader ? 1 : 0) || 0;
 };
 
 /**
@@ -817,7 +817,7 @@ AudioPlayer.prototype.getDuration = function(preloader) {
  * @returns {Number}
  */
 AudioPlayer.prototype.getLoaded = function(preloader) {
-    return this.implementation.getLoaded(preloader ? 1 : 0);
+    return this.implementation.getLoaded(preloader ? 1 : 0) || 0;
 };
 
 /**
