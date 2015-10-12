@@ -723,6 +723,10 @@ AudioPlayer.prototype.playPreloaded = function(src) {
  * @returns {Promise}
  */
 AudioPlayer.prototype.preload = function(src, duration) {
+    if (detect.browser.name === "msie" && detect.browser.version[0] == "9") {
+        return reject(new AudioError(AudioError.NOT_PRELOADED));
+    }
+
     logger.info(this, "preload", src, duration);
 
     if (this._whenPreload) {
