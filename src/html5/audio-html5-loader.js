@@ -558,8 +558,8 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
             }.bind(this), 2000);
         }.bind(this), reject);
 
-        this._promiseLoaded().then(cleanTimer, cleanTimer);
         this._promisePlaying().then(cleanTimer, cleanTimer);
+        deferred.promise().then(cleanTimer, cleanTimer);
     }
 
     return this.promises["startPlaying"].promise();
@@ -628,7 +628,7 @@ AudioHTML5Loader.prototype._restart = function(reason) {
         return;
     }
 
-    logger.debug(this, "_restart", reason);
+    logger.info(this, "_restart", reason);
 
     //INFO: Запоминаем текущее состояние, т.к. оно сбросится после перезагрузки
     var position = this.position;
