@@ -9,14 +9,19 @@ var ua = navigator.userAgent.toLowerCase();
 // Useragent RegExp
 var rwebkit = /(webkit)[ \/]([\w.]+)/;
 var ryabro = /(yabrowser)[ \/]([\w.]+)/;
-var ropera = /(opera)(?:.*version)?[ \/]([\w.]+)/;
+var ropera = /(opr|opera)(?:.*version)?[ \/]([\w.]+)/;
 var rmsie = /(msie) ([\w.]+)/;
 var redge = /(edge)\/([\w.]+)/;
 var rmozilla = /(mozilla)(?:.*? rv:([\w.]+))?/;
 var rsafari = /^((?!chrome).)*version\/([\d\w\.]+).*(safari)/;
 
-var match = rsafari.exec(ua) || ryabro.exec(ua) || redge.exec(ua) || rwebkit.exec(ua) || ropera.exec(ua) || rmsie.exec(ua) || ua.indexOf("compatible") < 0
-    && rmozilla.exec(ua)
+var match = rsafari.exec(ua)
+    || ryabro.exec(ua)
+    || redge.exec(ua)
+    || ropera.exec(ua)
+    || rwebkit.exec(ua)
+    || rmsie.exec(ua)
+    || ua.indexOf("compatible") < 0 && rmozilla.exec(ua)
     || [];
 
 var browser = {name: match[1] || "", version: match[2] || "0"};
@@ -36,6 +41,10 @@ if (browser.name === 'msie') {
             }
         }
     }
+}
+
+if (browser.name === "opr") {
+    browser.name = "opera";
 }
 
 //INFO: IE (как всегда) не корректно выставляет user-agent
