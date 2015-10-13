@@ -538,19 +538,27 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
         this.promises["startPlaying"] = deferred;
 
         //INFO: если отменено ожидание загрузки или воспроизведения, то нужно отменить и это обещание
-        var reject = this._cancelWait.bind(this, "startPlaying");
+        var reject = function() {
+            ready = true;
+            this._cancelWait("startPlaying");
+        }.bind(this);
 
         var timer;
+        var ready = false;
         var cleanTimer = function() {
             clearTimeout(timer);
         };
 
         this._promisePlaying().then(function() {
+            ready = true;
             deferred.resolve();
             logger.info(this, "startPlaying:success");
         }.bind(this), reject);
 
         this._promiseLoaded().then(function() {
+            if (ready) {
+                return;
+            }
             timer = setTimeout(function() {
                 deferred.reject("timeout");
                 this._cancelWait("playing", "timeout");
