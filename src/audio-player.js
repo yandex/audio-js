@@ -33,7 +33,20 @@ var detectString = "@" + detect.platform.version +
 audioTypes.flash.priority = 0;
 audioTypes.html5.priority = config.html5.blacklist.some(function(item) { return detectString.match(item); }) ? -1 : 1;
 
-logger.debug(null, "audioTypes", audioTypes);
+//INFO: прям в момент инициализации всего модуля нельзя писать в лог - он проглатывает сообщения, т.к. ещё нет возможности настроить логгер.
+setTimeout(function() {
+    logger.info({
+        flash: {
+            available: audioTypes.flash.available,
+            priority: audioTypes.flash.priority
+        },
+        html5: {
+            available: audioTypes.html5.available,
+            priority: audioTypes.html5.priority,
+            audioContext: !!audioTypes.html5.audioContext
+        }
+    }, "audioTypes");
+}, 0);
 
 // =================================================================
 
