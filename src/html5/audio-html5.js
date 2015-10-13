@@ -37,12 +37,17 @@ exports.available = (function() {
     return html5_available;
 })();
 
-try {
-    var audioContext = new AudioContext();
-    logger.info(this, "WenAudioAPI context created");
-} catch(e) {
+if (detect.platform.mobile || detect.platform.tablet) {
     audioContext = null;
-    logger.info(this, "WenAudioAPI not detected");
+    logger.info(this, "WebAudioAPI not allowed for mobile");
+} else {
+    try {
+        var audioContext = new AudioContext();
+        logger.info(this, "WebAudioAPI context created");
+    } catch(e) {
+        audioContext = null;
+        logger.info(this, "WebAudioAPI not detected");
+    }
 }
 
 // =================================================================
