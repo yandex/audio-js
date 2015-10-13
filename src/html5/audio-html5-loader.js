@@ -463,10 +463,10 @@ AudioHTML5Loader._promiseLoadedEvents = [AudioHTML5Loader.EVENT_NATIVE_LOADING];
 AudioHTML5Loader.prototype._promiseLoadedCheck = function() {
     this.__loaderTimer = this.__loaderTimer && clearTimeout(this.__loaderTimer) || setTimeout(function() {
             this._cancelWait("loaded", "timeout");
-        }.bind(this), 2000);
+        }.bind(this), 5000);
 
     //INFO: позицию нужно брать с большим запасом, т.к. данные записаны блоками и нам нужно дождаться загрузки блока
-    var loaded = Math.min(this.position + 30, this.audio.duration);
+    var loaded = Math.min(this.position + 45, this.audio.duration);
     return this.audio.buffered.length
         && this.audio.buffered.end(0) - this.audio.buffered.start(0) >= loaded;
 };
@@ -538,9 +538,9 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
         this.promises["startPlaying"] = deferred;
 
         //INFO: если отменено ожидание загрузки или воспроизведения, то нужно отменить и это обещание
-        var reject = function() {
+        var reject = function(reason) {
             ready = true;
-            this._cancelWait("startPlaying");
+            this._cancelWait("startPlaying", reason);
         }.bind(this);
 
         var timer;
@@ -563,7 +563,7 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
                 deferred.reject("timeout");
                 this._cancelWait("playing", "timeout");
                 logger.warn(this, "startPlaying:failed");
-            }.bind(this), 2000);
+            }.bind(this), 5000);
         }.bind(this), reject);
 
         this._promisePlaying().then(cleanTimer, cleanTimer);
