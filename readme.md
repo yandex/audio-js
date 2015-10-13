@@ -19,7 +19,7 @@ YandexAudio - это библиотека аудио-плеера для бра�
   - **скрипт** - достаточно подключить основной файл скрипта 
   ([dist/index.js](https://github.yandex-team.ru/pages/music/audio/dist/index.js) 
   или [dist/index.min.js](https://github.yandex-team.ru/pages/music/audio/dist/index.min.js)  - минифицированную версию) 
-  в тело страницы и далее использовать глобально доступный объект {@link ya.Audio}
+  в тело страницы и далее использовать глобально доступный объект {@link ya.music.Audio}
 
 
 Использование
@@ -27,7 +27,7 @@ YandexAudio - это библиотека аудио-плеера для бра�
 ### Создание экземпляра плеера:
 
 ```javascript
-    var audioPlayer = new ya.Audio(preferredPlayerType, flashOverlayElement);
+    var audioPlayer = new ya.music.Audio(preferredPlayerType, flashOverlayElement);
     audioPlayer.initPromise().then(function() {
       console.log("Аудио-плеер готов к работе");
     }, function() {
@@ -67,38 +67,38 @@ YandexAudio - это библиотека аудио-плеера для бра�
 ### Прослушивание событий
 
 ```javascript
-    audioPlayer.on(ya.Audio.EVENT_STATE, function(state) {
+    audioPlayer.on(ya.music.Audio.EVENT_STATE, function(state) {
       switch(state) {
-        case ya.Audio.STATE_INIT: console.log("Инициализация плеера"); break;
-        case ya.Audio.STATE_IDLE: console.log("Плеер готов и ожидает"); break;
-        case ya.Audio.STATE_PLAYING: console.log("Плеер проигрывает музыку"); break;
-        case ya.Audio.STATE_PAUSED: console.log("Плеер поставлен на паузу"); break;
-        case ya.Audio.STATE_CRASHED: console.log("Не удалось инициализировать плеер"); break;
+        case ya.music.Audio.STATE_INIT: console.log("Инициализация плеера"); break;
+        case ya.music.Audio.STATE_IDLE: console.log("Плеер готов и ожидает"); break;
+        case ya.music.Audio.STATE_PLAYING: console.log("Плеер проигрывает музыку"); break;
+        case ya.music.Audio.STATE_PAUSED: console.log("Плеер поставлен на паузу"); break;
+        case ya.music.Audio.STATE_CRASHED: console.log("Не удалось инициализировать плеер"); break;
       }
     });
     
     var logEvent = function(text) { return function(data) { console.log(text, data); }; };
-    audioPlayer.on(ya.Audio.EVENT_PLAY, logEvent("Плеер начал воспроизведение трека"));
-    audioPlayer.on(ya.Audio.EVENT_STOP, logEvent("Остановка воспроизведения"));
-    audioPlayer.on(ya.Audio.EVENT_PAUSE, logEvent("Пауза воспроизведения"));
+    audioPlayer.on(ya.music.Audio.EVENT_PLAY, logEvent("Плеер начал воспроизведение трека"));
+    audioPlayer.on(ya.music.Audio.EVENT_STOP, logEvent("Остановка воспроизведения"));
+    audioPlayer.on(ya.music.Audio.EVENT_PAUSE, logEvent("Пауза воспроизведения"));
     
-    audioPlayer.on(ya.Audio.EVENT_PROGRESS, logEvent("Обновление позиции воспроизведения"));
-    audioPlayer.on(ya.Audio.EVENT_ENDED, logEvent("Воспроизведение трека завершено"));
+    audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, logEvent("Обновление позиции воспроизведения"));
+    audioPlayer.on(ya.music.Audio.EVENT_ENDED, logEvent("Воспроизведение трека завершено"));
     
-    audioPlayer.on(ya.Audio.EVENT_LOADING, logEvent("Трек начал загружаться"));
-    audioPlayer.on(ya.Audio.EVENT_LOADED, logEvent("Трек загружен полностью"));
+    audioPlayer.on(ya.music.Audio.EVENT_LOADING, logEvent("Трек начал загружаться"));
+    audioPlayer.on(ya.music.Audio.EVENT_LOADED, logEvent("Трек загружен полностью"));
     
-    audioPlayer.on(ya.Audio.EVENT_VOLUME, logEvent("Изменение громкости"));
+    audioPlayer.on(ya.music.Audio.EVENT_VOLUME, logEvent("Изменение громкости"));
     
-    audioPlayer.on(ya.Audio.EVENT_ERROR, logEvent("Возникла ошибка при воспроизведении"));
-    audioPlayer.on(ya.Audio.EVENT_CRASHED, logEvent("Крах инициализации"));
+    audioPlayer.on(ya.music.Audio.EVENT_ERROR, logEvent("Возникла ошибка при воспроизведении"));
+    audioPlayer.on(ya.music.Audio.EVENT_CRASHED, logEvent("Крах инициализации"));
     
-    audioPlayer.on(ya.Audio.EVENT_SWAP, logEvent("Переключение между текущим и предзагруженным треком"));
+    audioPlayer.on(ya.music.Audio.EVENT_SWAP, logEvent("Переключение между текущим и предзагруженным треком"));
 ```    
 
 ### Прелоадер
 В большинство команд управления можно передать вторым аргументом `1`, чтобы они применялись к прелоадеру вместо текущего плеера.
-Для прослушивания событий плероадера следует использовать префикс `ya.Audio.PRELOADER_EVENT`
+Для прослушивания событий плероадера следует использовать префикс `ya.music.Audio.PRELOADER_EVENT`
 
 ```javascript
     //Следует обратить внимание, что обещание разрешается, когда трек начал загружаться, а не когда загрузился
@@ -125,14 +125,14 @@ YandexAudio - это библиотека аудио-плеера для бра�
     console.log("Трек " + (audioPlayer.isPreloaded(src) ? "начал загружаться" : "не загружается"));
     
     var logEvent = function(text) { return function(data) { console.log(text, data); }; };
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_STOP, logEvent("Остановка загрузки"));
+    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_STOP, logEvent("Остановка загрузки"));
     
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_PROGRESS, logEvent("Процесс загрузки"));
+    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_PROGRESS, logEvent("Процесс загрузки"));
     
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADING, logEvent("Трек начал загружаться"));
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_LOADED, logEvent("Трек загружен полностью"));
+    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_LOADING, logEvent("Трек начал загружаться"));
+    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_LOADED, logEvent("Трек загружен полностью"));
     
-    audioPlayer.on(ya.Audio.PRELOADER_EVENT + ya.Audio.EVENT_ERROR, logEvent("Возникла ошибка при загрузке"));
+    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_ERROR, logEvent("Возникла ошибка при загрузке"));
 ```
 
 ### Документация

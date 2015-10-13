@@ -1,7 +1,7 @@
 (function() {
     /* Теперь инициализируем всю эту структуру и создадим экземпляр плеера */
 
-    var AudioPlayer = ya.Audio;
+    var AudioPlayer = ya.music.Audio;
     AudioPlayer.config.flash.path = "../../dist";
 
     var dom = {
@@ -37,8 +37,8 @@
 
     /* Настроим отображение статуса плеера. Для простого плеера нам достаточно знать запущено воспроизведение или нет. */
 
-    audioPlayer.on(ya.Audio.EVENT_STATE, function(state) {
-        if (state === ya.Audio.STATE_PLAYING) {
+    audioPlayer.on(ya.music.Audio.EVENT_STATE, function(state) {
+        if (state === ya.music.Audio.STATE_PLAYING) {
             dom.player.classList.add("player_playing");
         } else {
             dom.player.classList.remove("player_playing");
@@ -48,7 +48,7 @@
     /* Теперь настроим обновление прогресс-бара. В нём предусмотрены 2 шкалы - шкала загрузки и шкала текущей
     позиции воспроизведения. */
 
-    audioPlayer.on(ya.Audio.EVENT_PROGRESS, function(timings) {
+    audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, function(timings) {
         dom.progress.loaded.style.width = (timings.loaded / timings.duration * 100).toFixed(2) + "%";
         dom.progress.current.style.width = (timings.position / timings.duration * 100).toFixed(2) + "%";
     });
@@ -58,7 +58,7 @@
     var updateVolume = function(volume) {
         dom.volume.value.style.height = (volume * 100).toFixed(2) + "%";
     };
-    audioPlayer.on(ya.Audio.EVENT_VOLUME, updateVolume);
+    audioPlayer.on(ya.music.Audio.EVENT_VOLUME, updateVolume);
 
     // Отображаем начальную громкость
     audioPlayer.initPromise().then(function() {
@@ -88,11 +88,11 @@
         var state = audioPlayer.getState();
 
         switch (state) {
-            case ya.Audio.STATE_PLAYING:
+            case ya.music.Audio.STATE_PLAYING:
                 audioPlayer.pause();
                 break;
 
-            case ya.Audio.STATE_PAUSED:
+            case ya.music.Audio.STATE_PAUSED:
                 audioPlayer.resume();
                 break;
 
@@ -105,7 +105,7 @@
     /* Добавим немножко удобства для пользователей: сделаем автозагрузку следующего трека после того, как текущий загрузился.
     Для этого потребуется немного изменить функцию `startPlay` и отслеживать момент загрузки трека */
 
-    audioPlayer.on(ya.Audio.EVENT_ENDED, function() {
+    audioPlayer.on(ya.music.Audio.EVENT_ENDED, function() {
         trackIndex++;
 
         if (trackIndex < trackUrls.length) {
@@ -113,7 +113,7 @@
         }
     });
 
-    audioPlayer.on(ya.Audio.EVENT_LOADED, function() {
+    audioPlayer.on(ya.music.Audio.EVENT_LOADED, function() {
         if (trackIndex + 1 < trackUrls.length) {
             audioPlayer.preload(trackUrls[trackIndex + 1]);
         }

@@ -1,5 +1,5 @@
-var AudioPlayer = ya.Audio;
-ya.Audio.config.flash.path = "/api/audio/src/flash/build";
+var AudioPlayer = ya.music.Audio;
+ya.music.Audio.config.flash.path = "/api/audio/src/flash/build";
 
 //AudioPlayer.Logger.logLevels.push("debug");
 //AudioPlayer.Logger.logLevels.push("info");

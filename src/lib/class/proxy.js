@@ -64,7 +64,7 @@ Proxy.exportStatic = function(from, to, exclude) {
  * данного экземляра. Также появляется свойство __proxy, содержащее ссылку на созданный прокси-объект
  *
  * @param {function} OriginalClass - оригинальный класс
- * @param {function} ParentProxyClass - родительский класс
+ * @param {function} [ParentProxyClass=Proxy] - родительский класс
  * @returns {function} -- конструтор проксированного класса
  */
 Proxy.createClass = function(OriginalClass, ParentProxyClass) {

@@ -1,6 +1,6 @@
 /**
  * Настойки библиотеки
- * @alias ya.Audio.config
+ * @alias ya.music.Audio.config
  * @namespace
  */
 var config = {
@@ -59,7 +59,7 @@ var config = {
          * @type {String}
          * @const
          */
-        callback: "ya.Audio._flashCallback",
+        callback: "ya.music.Audio._flashCallback",
         /**
          * Таймаут инициализации
          * @type {Number}

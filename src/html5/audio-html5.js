@@ -225,7 +225,7 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
 /**
  * Подключение аудио препроцессора. Вход препроцессора подключается к аудио-элементу у которого выставлена
  * 100% громкость. Выход препроцессора подключается к GainNode, которая регулирует итоговую громкость
- * @param {ya.Audio~AudioPreprocessor} preprocessor - препроцессор
+ * @param {ya.music.Audio~AudioPreprocessor} preprocessor - препроцессор
  * @returns {boolean} -- статус успеха
  */
 AudioHTML5.prototype.setAudioPreprocessor = function(preprocessor) {

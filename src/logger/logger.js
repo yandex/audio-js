@@ -9,7 +9,7 @@ var noop = require('../lib/noop');
 
 /**
  * Настраиваемые логгер для аудио-плеера
- * @alias ya.Audio.Logger
+ * @alias ya.music.Audio.Logger
  * @param {String} channel - имя канала, за который будет отвечать экземляр логгера
  * @constructor
  */
@@ -43,7 +43,7 @@ Logger.logLevels = [];
 
 /**
  * Запись в лог с уровнем **debug**
- * @method ya.Audio.Logger#debug
+ * @method ya.music.Audio.Logger#debug
  * @param {Object} context - контекст вызова
  * @param {...*} [args] - дополнительные аргументы
  */
@@ -51,7 +51,7 @@ Logger.prototype.debug = noop;
 
 /**
  * Запись в лог с уровнем **log**
- * @method ya.Audio.Logger#log
+ * @method ya.music.Audio.Logger#log
  * @param {Object} context - контекст вызова
  * @param {...*} [args] - дополнительные аргументы
  */
@@ -59,7 +59,7 @@ Logger.prototype.log = noop;
 
 /**
  * Запись в лог с уровнем **info**
- * @method ya.Audio.Logger#info
+ * @method ya.music.Audio.Logger#info
  * @param {Object} context - контекст вызова
  * @param {...*} [args] - дополнительные аргументы
  */
@@ -67,7 +67,7 @@ Logger.prototype.info = noop;
 
 /**
  * Запись в лог с уровнем **warn**
- * @method ya.Audio.Logger#warn
+ * @method ya.music.Audio.Logger#warn
  * @param {Object} context - контекст вызова
  * @param {...*} [args] - дополнительные аргументы
  */
@@ -75,7 +75,7 @@ Logger.prototype.warn = noop;
 
 /**
  * Запись в лог с уровнем **error**
- * @method ya.Audio.Logger#error
+ * @method ya.music.Audio.Logger#error
  * @param {Object} context - контекст вызова
  * @param {...*} [args] - дополнительные аргументы
  */
@@ -83,7 +83,7 @@ Logger.prototype.error = noop;
 
 /**
  * Запись в лог с уровнем **trace**
- * @method ya.Audio.Logger#trace
+ * @method ya.music.Audio.Logger#trace
  * @param {Object} context - контекст вызова
  * @param {...*} [args] - дополнительные аргументы
  */
@@ -133,7 +133,7 @@ Logger.log = function(level, channel, context) {
 
 /**
  * Запись в логе
- * @typedef {Object} ya.Audio.Logger~LogEntry
+ * @typedef {Object} ya.music.Audio.Logger~LogEntry
  *
  * @property {Number} timestamp - время в timestamp формате
  * @property {String} level - уровень лога
@@ -146,7 +146,7 @@ Logger.log = function(level, channel, context) {
 
 /**
  * Записать сообщение лога в консоль
- * @param {ya.Audio.Logger~LogEntry} logEntry - сообщение лога
+ * @param {ya.music.Audio.Logger~LogEntry} logEntry - сообщение лога
  * @private
  */
 Logger._dumpEntry = function(logEntry) {

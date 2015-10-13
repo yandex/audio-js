@@ -2,4 +2,4 @@ require('../../../export');
 
 var LoaderError = require('./loader-error');
 
-ya.Audio.LoaderError = LoaderError;
+ya.music.Audio.LoaderError = LoaderError;

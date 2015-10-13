@@ -39,40 +39,40 @@
 
 // =================================================================
 
-/** Событие начала воспроизведения ({@link ya.Audio.EVENT_PLAY})
+/** Событие начала воспроизведения ({@link ya.music.Audio.EVENT_PLAY})
  * @event IAudioImplementation#play
  */
-/** Событие завершения воспроизведения ({@link ya.Audio.EVENT_ENDED})
+/** Событие завершения воспроизведения ({@link ya.music.Audio.EVENT_ENDED})
  * @event IAudioImplementation#ended
  */
-/** Событие изменения громкости ({@link ya.Audio.EVENT_VOLUME})
+/** Событие изменения громкости ({@link ya.music.Audio.EVENT_VOLUME})
  * @event IAudioImplementation#volumechange
  * @param {Number} volume - громкость
  */
-/** Событие краха плеера ({@link ya.Audio.EVENT_CRASHED})
+/** Событие краха плеера ({@link ya.music.Audio.EVENT_CRASHED})
  * @event IAudioImplementation#crashed
  */
-/** Событие переключения активного плеера и прелоадера ({@link ya.Audio.EVENT_SWAP})
+/** Событие переключения активного плеера и прелоадера ({@link ya.music.Audio.EVENT_SWAP})
  * @event IAudioImplementation#swap
  */
 
-/** Событие остановки воспроизведения ({@link ya.Audio.EVENT_STOP})
+/** Событие остановки воспроизведения ({@link ya.music.Audio.EVENT_STOP})
  * @event IAudioImplementation#stop
  */
-/** Событие начала воспроизведения ({@link ya.Audio.EVENT_PAUSE})
+/** Событие начала воспроизведения ({@link ya.music.Audio.EVENT_PAUSE})
  * @event IAudioImplementation#pause
  */
-/** Событие обновления позиции воспроизведения/загруженной части ({@link ya.Audio.EVENT_PROGRESS})
+/** Событие обновления позиции воспроизведения/загруженной части ({@link ya.music.Audio.EVENT_PROGRESS})
  * @event IAudioImplementation#progress
- * @param {ya.Audio~AudioPlayerTimes} times - информация о временных данных трека
+ * @param {ya.music.Audio~AudioPlayerTimes} times - информация о временных данных трека
  */
-/** Событие начала загрузки трека ({@link ya.Audio.EVENT_LOADING})
+/** Событие начала загрузки трека ({@link ya.music.Audio.EVENT_LOADING})
  * @event IAudioImplementation#loading
  */
-/** Событие завершения загрузки трека ({@link ya.Audio.EVENT_LOADED})
+/** Событие завершения загрузки трека ({@link ya.music.Audio.EVENT_LOADED})
  * @event IAudioImplementation#loaded
  */
-/** Событие ошибки воспроизведения ({@link ya.Audio.EVENT_ERROR})
+/** Событие ошибки воспроизведения ({@link ya.music.Audio.EVENT_ERROR})
  * @event IAudioImplementation#error
  */
 

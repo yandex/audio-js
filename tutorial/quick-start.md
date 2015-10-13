@@ -32,7 +32,7 @@
 
 ***index.js***
 ```javascript
-var AudioPlayer = ya.Audio;
+var AudioPlayer = ya.music.Audio;
 
 var dom = {
     player: document.querySelector(".player"),
@@ -69,8 +69,8 @@ audioPlayer.initPromise().then(function() {
 Настроим отображение статуса плеера. Для простого плеера нам достаточно знать запущено воспроизведение или нет.
 
 ```javascript
-audioPlayer.on(ya.Audio.EVENT_STATE, function(state) {
-    if (state === ya.Audio.STATE_PLAYING) {
+audioPlayer.on(ya.music.Audio.EVENT_STATE, function(state) {
+    if (state === ya.music.Audio.STATE_PLAYING) {
         dom.player.classList.add("player_playing");
     } else {
         dom.player.classList.remove("player_playing");
@@ -82,7 +82,7 @@ audioPlayer.on(ya.Audio.EVENT_STATE, function(state) {
 позиции воспроизведения.
 
 ```javascript
-audioPlayer.on(ya.Audio.EVENT_PROGRESS, function(timings) {
+audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, function(timings) {
     dom.progress.loaded.style.width = (timings.loaded / timings.duration * 100).toFixed(2) + "%"; 
     dom.progress.current.style.width = (timings.position / timings.duration * 100).toFixed(2) + "%"; 
 });
@@ -94,7 +94,7 @@ audioPlayer.on(ya.Audio.EVENT_PROGRESS, function(timings) {
 var updateVolume = function(volume) {
     dom.volume.value.style.height = (volume * 100).toFixed(2) + "%";
 };
-audioPlayer.on(ya.Audio.EVENT_VOLUME, updateVolume);
+audioPlayer.on(ya.music.Audio.EVENT_VOLUME, updateVolume);
 
 // Отображаем начальную громкость
 audioPlayer.initPromise().then(function() {
@@ -121,11 +121,11 @@ dom.play.addEventListener("click", function() {
     var state = audioPlayer.getState();
 
     switch (state) {
-        case ya.Audio.STATE_PLAYING:
+        case ya.music.Audio.STATE_PLAYING:
             audioPlayer.pause();
             break;
 
-        case ya.Audio.STATE_PAUSED:
+        case ya.music.Audio.STATE_PAUSED:
             audioPlayer.resume();
             break;
 
@@ -135,7 +135,7 @@ dom.play.addEventListener("click", function() {
     }
 });
 
-audioPlayer.on(ya.Audio.EVENT_ENDED, function() {
+audioPlayer.on(ya.music.Audio.EVENT_ENDED, function() {
     trackIndex++;
 
     if (trackIndex < trackUrls.length) {
@@ -157,7 +157,7 @@ var startPlay = function() {
     }
 };
 
-audioPlayer.on(ya.Audio.EVENT_LOADED, function() {
+audioPlayer.on(ya.music.Audio.EVENT_LOADED, function() {
     if (trackIndex + 1 < trackUrls.length) {
         audioPlayer.preload(trackUrls[trackIndex + 1]);
     }

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: AbortablePromise</title>
+    <title>Class: LoaderError</title>
     
     
     
@@ -674,7 +674,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="AbortablePromise.html">Class: AbortablePromise</h1>
+        <h1 class="page-title" data-filename="ya.music.Audio.LoaderError.html">Class: LoaderError</h1>
         
 
 
@@ -683,7 +683,9 @@
     
 <header>
     <h2>
-    AbortablePromise
+        <span class="ancestors"><a href="ya.music.Audio.html">.Audio</a>.</span>
+    
+    LoaderError
     </h2>
     
 </header>  
@@ -696,14 +698,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="AbortablePromise">
+        <h4 class="name" id="LoaderError">
             
-            new AbortablePromise<span class="signature">()</span>
+            new ya.music.Audio.LoaderError<span class="signature">(message)</span>
         </h4>
     
         
         <div class="tag-source">
-            lib/async/promise.js, line 78
+            lib/net/error/loader-error.js, line 13
         </div>
         
     </div>
@@ -714,7 +716,7 @@
     
     
     <div class="description">
-        <p>Обещание с возможностью отмены связанного с ним действия.</p>
+        <p>Класс ошибок загрузчика</p>
     </div>
     
 
@@ -722,6 +724,51 @@
     
     
     
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>текст ошибкки</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
     
     
     
@@ -770,7 +817,7 @@
         <h3 class="subsection-title">Extends</h3>
         
         <ul>
-            <li><a href="Promise.html">Promise</a></li>
+            <li>Error</li>
         </ul>
     
     
@@ -783,88 +830,22 @@
     
     
     
-    
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
         
         <dl>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="abort">
-            
-            <span class="type-signature ">abstract</span>abort<span class="signature">(reason)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 84
-        </div>
-        
+        <h4 class="name" id=".FAILED"><span class="type-signature static">static,constant</span>ya.music.Audio.LoaderError.FAILED<span class="type-signature type string">string</span> </h4>
     </div>
-
+    
     
 </dt>
 <dd>
     
-    
     <div class="description">
-        <p>Отмена действия связанного с обещаением</p>
+        <p>Ошибка запроса на загрузку</p>
     </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>reason</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Error</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>причина отмены действия</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
     
     
     
@@ -892,16 +873,6 @@
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
     
     
 </dd>
@@ -909,80 +880,17 @@
         
             
 <dt>
-    <div class="nameContainer inherited">
-        <h4 class="name" id="catch">
-            
-                <span class="inherited"><a href="Promise.html#catch">inherited</a></span>
-            
-            catch<span class="signature">(errback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 65
-        </div>
-        
+    <div class="nameContainer">
+        <h4 class="name" id=".TIMEOUT"><span class="type-signature static">static,constant</span>ya.music.Audio.LoaderError.TIMEOUT<span class="type-signature type string">string</span> </h4>
     </div>
-
+    
     
 </dt>
 <dd>
     
-    
     <div class="description">
-        <p>Назначить обработчик отклонения обещания</p>
+        <p>Таймаут загрузки</p>
     </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>errback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>обработчик ошибки</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
     
     
     
@@ -1010,195 +918,13 @@
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-
-<h5>Returns:</h5>
-новое обещание из результатов обработчика
-<br />
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer inherited">
-        <h4 class="name" id="then">
-            
-                <span class="inherited"><a href="Promise.html#then">inherited</a></span>
-            
-            then<span class="signature">(callback, <span class="optional">errback</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 57
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Назначить обработчики разрешения и отклонения обещания</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                <p>обработчик успеха</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>errback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">null</span>
-|
-
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>обработчик ошибки</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-
-<h5>Returns:</h5>
-новое обещание из результатов обработчика
-<br />
-
-    
     
     
 </dd>
 
         </dl>
+    
+    
     
     
     

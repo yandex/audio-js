@@ -1,3 +1,3 @@
 require('../export');
 
-ya.Audio.fx = {};
+ya.music.Audio.fx = {};

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: AbortablePromise</title>
+    <title>Class: Logger</title>
     
     
     
@@ -674,7 +674,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="AbortablePromise.html">Class: AbortablePromise</h1>
+        <h1 class="page-title" data-filename="ya.music.Audio.Logger.html">Class: Logger</h1>
         
 
 
@@ -683,7 +683,9 @@
     
 <header>
     <h2>
-    AbortablePromise
+        <span class="ancestors"><a href="ya.music.Audio.html">.Audio</a>.</span>
+    
+    Logger
     </h2>
     
 </header>  
@@ -696,14 +698,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="AbortablePromise">
+        <h4 class="name" id="Logger">
             
-            new AbortablePromise<span class="signature">()</span>
+            new ya.music.Audio.Logger<span class="signature">(channel)</span>
         </h4>
     
         
         <div class="tag-source">
-            lib/async/promise.js, line 78
+            logger/logger.js, line 16
         </div>
         
     </div>
@@ -714,7 +716,7 @@
     
     
     <div class="description">
-        <p>Обещание с возможностью отмены связанного с ним действия.</p>
+        <p>Настраиваемые логгер для аудио-плеера</p>
     </div>
     
 
@@ -722,6 +724,51 @@
     
     
     
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>channel</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>имя канала, за который будет отвечать экземляр логгера</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
     
     
     
@@ -767,11 +814,42 @@
     </div>
     
     
-        <h3 class="subsection-title">Extends</h3>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
         
-        <ul>
-            <li><a href="Promise.html">Promise</a></li>
-        </ul>
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".ignores"><span class="type-signature static">static</span>ya.music.Audio.Logger.ignores<span class="type-signature type array.<string>">Array.&lt;String></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Список игнорируемых каналов</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
     
     
     
@@ -782,6 +860,63 @@
     
     
     
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".logLevels"><span class="type-signature static">static</span>ya.music.Audio.Logger.logLevels<span class="type-signature type array.<string>">Array.&lt;String></span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Список отображаемых в консоли уровней лога</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
     
     
     
@@ -791,14 +926,14 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="abort">
+        <h4 class="name" id=".log">
             
-            <span class="type-signature ">abstract</span>abort<span class="signature">(reason)</span>
+            <span class="type-signature static">static</span>ya.music.Audio.Logger.log<span class="signature">(level, channel, context, <span class="optional">args</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            lib/async/promise.js, line 84
+            logger/logger.js, line 114
         </div>
         
     </div>
@@ -809,7 +944,7 @@
     
     
     <div class="description">
-        <p>Отмена действия связанного с обещаением</p>
+        <p>Сделать запись в лог</p>
     </div>
     
 
@@ -840,261 +975,13 @@
 	
         <tr>
             
-                <td class="name"><code>reason</code></td>
+                <td class="name"><code>level</code></td>
             
             
             <td class="type">
             
                 
 <span class="param-type">String</span>
-|
-
-<span class="param-type">Error</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>причина отмены действия</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer inherited">
-        <h4 class="name" id="catch">
-            
-                <span class="inherited"><a href="Promise.html#catch">inherited</a></span>
-            
-            catch<span class="signature">(errback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 65
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Назначить обработчик отклонения обещания</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>errback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>обработчик ошибки</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-
-<h5>Returns:</h5>
-новое обещание из результатов обработчика
-<br />
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer inherited">
-        <h4 class="name" id="then">
-            
-                <span class="inherited"><a href="Promise.html#then">inherited</a></span>
-            
-            then<span class="signature">(callback, <span class="optional">errback</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 57
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Назначить обработчики разрешения и отклонения обещания</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
 
 
             
@@ -1109,23 +996,76 @@
                         
                     
                 
-                <p>обработчик успеха</p></td>
+                <p>уровень лога</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>errback</code></td>
+                <td class="name"><code>channel</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">null</span>
-|
+<span class="param-type">String</span>
 
-<span class="param-type">function</span>
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>канал</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
 
 
             
@@ -1141,8 +1081,10 @@
                     
                         
                     
+                        <span class="repeatable">repeatable</span>
+                    
                 
-                <p>обработчик ошибки</p></td>
+                <p>дополнительные аргументы</p></td>
         </tr>
 	
 	
@@ -1187,12 +1129,921 @@
     
     
     
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="debug">
+            
+            debug<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 44
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>debug</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
 
 
-<h5>Returns:</h5>
-новое обещание из результатов обработчика
-<br />
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
 
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="error">
+            
+            error<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 76
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>error</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="info">
+            
+            info<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 60
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>info</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="log">
+            
+            log<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 52
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>log</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trace">
+            
+            trace<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 84
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>trace</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="warn">
+            
+            warn<span class="signature">(context, <span class="optional">args</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            logger/logger.js, line 68
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Запись в лог с уровнем <strong>warn</strong></p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>контекст вызова</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>дополнительные аргументы</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
     
     
     

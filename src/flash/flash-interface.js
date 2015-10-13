@@ -15,7 +15,7 @@ var logger = new Logger('FlashInterface');
  * @private
  */
 var FlashInterface = function(flash) {
-    this.flash = ya.Audio._flash = flash;
+    this.flash = ya.music.Audio._flash = flash;
 };
 
 // =================================================================

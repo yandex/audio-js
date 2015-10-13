@@ -1,3 +1,3 @@
 require('../export');
 
-ya.Audio.fx.Equalizer = require('./equalizer');
+ya.music.Audio.fx.Equalizer = require('./equalizer');
