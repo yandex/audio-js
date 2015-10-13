@@ -11,6 +11,8 @@ MAKEFLAGS+=-j 1
 
 
 all: clean build minify jsdoc_public
+	git add .
+	git commit
 
 
 clean:
