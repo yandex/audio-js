@@ -68,13 +68,13 @@ var swfobject = function() {
 			catch(e) {}
 		}
 		return { w3:w3cdom, pv:playerVersion, wk:webkit, ie:ie, win:windows, mac:mac };
-	}(),
+	}();
 	/* Cross-browser onDomLoad
 		- Will fire an event as soon as the DOM of a web page is loaded
 		- Internet Explorer workaround based on Diego Perini's solution: http://javascript.nwbox.com/IEContentLoaded/
 		- Regular onload serves as fallback
 	*/
-	onDomLoad = function() {
+	(function() {
 		if (!ua.w3) { return; }
 		if ((typeof doc.readyState != UNDEF && doc.readyState == "complete") || (typeof doc.readyState == UNDEF && (doc.getElementsByTagName("body")[0] || doc.body))) { // function is fired after onload, e.g. when script is inserted dynamically
 			callDomLoadFunctions();
@@ -116,7 +116,7 @@ var swfobject = function() {
 			}
 			addLoadEvent(callDomLoadFunctions);
 		}
-	}();
+	})();
 	function callDomLoadFunctions() {
 		if (isDomLoaded) { return; }
 		try { // test if we can really add/remove elements to/from the DOM; we don't want to fire it too early
@@ -566,7 +566,7 @@ var swfobject = function() {
 	}
 	/* Release memory to avoid memory leaks caused by closures, fix hanging audio/video threads and force open sockets/NetConnections to disconnect (Internet Explorer only)
 	*/
-	var cleanup = function() {
+	(function() {
 		if (ua.ie && ua.win) {
 			window.attachEvent("onunload", function() {
 				// remove listeners to avoid memory leaks
@@ -590,7 +590,7 @@ var swfobject = function() {
 				swfobject = null;
 			});
 		}
-	}();
+	})();
 	return {
 		/* Public API
 			- Reference: http://code.google.com/p/swfobject/wiki/documentation

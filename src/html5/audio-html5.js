@@ -4,7 +4,6 @@ var logger = new Logger('AudioHTML5');
 var detect = require('../lib/browser/detect');
 var Events = require('../lib/async/events');
 var AudioStatic = require('../audio-static');
-var PlaybackError = require('../error/playback-error');
 
 var AudioHTML5Loader = require('./audio-html5-loader');
 

@@ -177,6 +177,13 @@ AudioHTML5Loader.EVENT_NATIVE_CANPLAY = "canplay";
  */
 AudioHTML5Loader.EVENT_NATIVE_ERROR = "error";
 
+/**
+ * Заглушка для __initListener'а на время ожидания пользовательского действия
+ * @private
+ */
+AudioHTML5Loader._defaultInitListener = function() {};
+AudioHTML5Loader._defaultInitListener.step = "user";
+
 // =================================================================
 
 //  Обработчики событий
@@ -248,6 +255,10 @@ AudioHTML5Loader.prototype._onNativeError = function(e) {
     this.trigger(AudioStatic.EVENT_ERROR, error);
 };
 
+/**
+ * Обработчик события паузы
+ * @private
+ */
 AudioHTML5Loader.prototype._onNativePause = function() {
     if (!this.ended) {
         this.trigger(AudioStatic.EVENT_PAUSE);
@@ -261,6 +272,54 @@ AudioHTML5Loader.prototype._onNativePause = function() {
 // =================================================================
 
 /**
+ * Инициализация слушателей пользовательских событий для инициализации плеера
+ * @private
+ */
+AudioHTML5Loader.prototype._initUserEvents = function() {
+    document.body.addEventListener("mousedown", this.__startupAudio, true);
+    document.body.addEventListener("keydown", this.__startupAudio, true);
+    document.body.addEventListener("touchstart", this.__startupAudio, true);
+};
+
+/**
+ * Деинициализация слушателей пользовательских событий для инициализации плеера
+ * @private
+ */
+AudioHTML5Loader.prototype._deinitUserEvents = function() {
+    document.body.removeEventListener("mousedown", this.__startupAudio, true);
+    document.body.removeEventListener("keydown", this.__startupAudio, true);
+    document.body.removeEventListener("touchstart", this.__startupAudio, true);
+};
+
+/**
+ * Инициализация слушателей нативных событий audio-элемента
+ * @private
+ */
+AudioHTML5Loader.prototype._initNativeEvents = function() {
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__onNativePause);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__onNativePlay);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ENDED, this.__onNativeEnded);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_TIMEUPDATE, this.__updateProgress);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_DURATION, this.__updateProgress);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_LOADING, this.__onNativeLoading);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__onNativeError);
+};
+
+/**
+ * Деинициализация слушателей нативных событий audio-элемента
+ * @private
+ */
+AudioHTML5Loader.prototype._deinitNativeEvents = function() {
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__onNativePause);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__onNativePlay);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_ENDED, this.__onNativeEnded);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_TIMEUPDATE, this.__updateProgress);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_DURATION, this.__updateProgress);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_LOADING, this.__onNativeLoading);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__onNativeError);
+};
+
+/**
  * Создание объекта Audio и назначение обработчиков событий
  * @private
  */
@@ -272,18 +331,12 @@ AudioHTML5Loader.prototype._initAudio = function() {
     this.audio = document.createElement("audio");
     this.audio.loop = false; // for IE
     this.audio.preload = this.audio.autobuffer = "auto"; // 100%
+    this.audio.autoplay = false;
 
-    document.body.addEventListener("mousedown", this.__startupAudio);
-    document.body.addEventListener("keydown", this.__startupAudio);
-    document.body.addEventListener("touchstart", this.__startupAudio);
+    this._initUserEvents();
+    this.__initListener = AudioHTML5Loader._defaultInitListener;
 
-    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__onNativePause);
-    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__onNativePlay);
-    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ENDED, this.__onNativeEnded);
-    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_TIMEUPDATE, this.__updateProgress);
-    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_DURATION, this.__updateProgress);
-    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_LOADING, this.__onNativeLoading);
-    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__onNativeError);
+    this._initNativeEvents();
 };
 
 /**
@@ -295,46 +348,81 @@ AudioHTML5Loader.prototype._deinitAudio = function() {
 
     this.muteEvents();
 
-    document.body.removeEventListener("mousedown", this.__startupAudio);
-    document.body.removeEventListener("keydown", this.__startupAudio);
-    document.body.removeEventListener("touchstart", this.__startupAudio);
-
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__onNativePause);
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__onNativePlay);
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_ENDED, this.__onNativeEnded);
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_TIMEUPDATE, this.__updateProgress);
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_DURATION, this.__updateProgress);
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_LOADING, this.__onNativeLoading);
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__onNativeError);
+    this._deinitUserEvents();
+    this._deinitNativeEvents();
 
     this.audio = null;
 };
 
 /**
  * Инициализация объекта Audio. Для начала воспроизведение требуется любое пользовательское действие.
+ *
+ * Совершенно эзотеричный и магический метод. Для инициализации плеера требуется вызывать метод play в обработчике
+ * пользовательского события. После этого требуется поставить плеер обратно на паузу, т.к. некоторые браузеры
+ * в противном случае начинают проигрывать трек автоматически как только он загружается. При этом в некоторых браузерах
+ * после вызова метода load событие play никогда не наступает, так что приходится слушать события получения метаданных
+ * или ошибки загрузки (если src не указан). В некоторых браузерах также может не наступить событие pause. При этом
+ * стоит ещё учитывать, что трек может грузиться из кеша, тогда события получения мета-данных и возможности
+ * воспроизведения могут возникнуть быстрее события play или pause, так что нужно предусматривать прерывание процесса
+ * инициализации.
  * @private
  */
 AudioHTML5Loader.prototype._startupAudio = function() {
     logger.debug(this, "_startupAudio");
 
-    document.body.removeEventListener("mousedown", this.__startupAudio);
-    document.body.removeEventListener("keydown", this.__startupAudio);
-    document.body.removeEventListener("touchstart", this.__startupAudio);
+    this._deinitUserEvents();
+
+    //INFO: после инициализационного вызова play нужно дождаться события и вызвать pause.
+    this.__initListener = function() {
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__initListener);
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_CANPLAY, this.__initListener);
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_META, this.__initListener);
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__initListener);
+
+        //INFO: после вызова pause нужно дождаться события, завершить инициализацию и разрешить передачу событий
+        this.__initListener = function() {
+            this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
+            delete this.__initListener;
+            this.unmuteEvents();
+            logger.info(this, "_startupAudio:ready");
+        }.bind(this);
+        this.__initListener.step = "pause";
+
+        this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
+        this.audio.pause();
+
+    }.bind(this);
+    this.__initListener.step = "play";
+
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__initListener);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_CANPLAY, this.__initListener);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_META, this.__initListener);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__initListener);
 
     //INFO: перед использованием объект Audio требуется инициализировать, в обработчике пользовательского события
     this.audio.play();
+};
 
-    //INFO: некоторые браузеры слишком упортно пытаются запустить воспроизведение - нужно ограничивать
-    this.audio.pause();
+/**
+ * Если метод _startPlay вызван раньше, чем закончилась инициализация, нужно отменить текущий шаг инициализации.
+ * @private
+ */
+AudioHTML5Loader.prototype._breakStartup = function() {
+    this._deinitUserEvents();
+    this.unmuteEvents();
 
-    //INFO: IE (как всегда) не умеет правильно работать - приходится повторять по 2 раза...
-    setTimeout(function() {
-        this.audio.pause();
+    if (!this.__initListener) {
+        return;
+    }
 
-        //TODO: проверить, что не слишком рано разрешаем триггерить события
-        this.unmuteEvents();
-        logger.debug(this, "_startupAudio:ready");
-    }.bind(this), 0);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_CANPLAY, this.__initListener);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_META, this.__initListener);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__initListener);
+
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
+
+    logger.warn(this, "_startupAudio:interrupted", this.__initListener.step);
+    delete this.__initListener;
 };
 
 // =================================================================
@@ -619,6 +707,7 @@ AudioHTML5Loader.prototype._startPlay = function() {
         return;
     }
 
+    this._breakStartup();
     this.audio.play();
 
     //THINK: нужно ли триггерить событие в случае успеха
@@ -793,6 +882,7 @@ AudioHTML5Loader.prototype.destroy = function() {
 
 AudioHTML5Loader.prototype._logger = function() {
     return {
+        init: !!this.__initListener && this.__initListener.step,
         src: this.src,
         playing: this.playing,
         ended: this.ended,

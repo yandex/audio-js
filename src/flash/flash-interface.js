@@ -1,4 +1,3 @@
-var config = require('../config');
 var Logger = require('../logger/logger');
 var logger = new Logger('FlashInterface');
 

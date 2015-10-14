@@ -1,4 +1,3 @@
-var swfobject = require('../lib/browser/swfobject');
 var FlashBlockNotifier = require('./flashblocknotifier');
 var FlashEmbedder = require('./flashembedder');
 var detect = require('../lib/browser/detect');
