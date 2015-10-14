@@ -159,6 +159,12 @@ AudioHTML5.prototype._getLoader = function(offset) {
 //  Подключение Web Audio API
 
 // =================================================================
+/**
+ * Включение режима CORS. ***ВАЖНО!*** - если включить режим CORS, аудио элемент не сможет загружать данные со
+ * сторонних доменов, если в ответе не будет правильного заголовка Access-Control-Allow-Origin. Если не планируется
+ * использование Web Audio API, не стоит включать этот режим.
+ * @param state
+ */
 AudioHTML5.prototype.toggleCrossDomain = function(state) {
     this.loaders.forEach(function(loader) {
         loader.toggleCrossDomain(state);

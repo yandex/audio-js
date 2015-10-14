@@ -332,6 +332,7 @@ AudioHTML5Loader.prototype._initAudio = function() {
     this.audio.loop = false; // for IE
     this.audio.preload = this.audio.autobuffer = "auto"; // 100%
     this.audio.autoplay = false;
+    this.audio.src = "";
 
     this._initUserEvents();
     this.__initListener = AudioHTML5Loader._defaultInitListener;
@@ -368,12 +369,16 @@ AudioHTML5Loader.prototype._deinitAudio = function() {
  * @private
  */
 AudioHTML5Loader.prototype._startupAudio = function() {
-    logger.debug(this, "_startupAudio");
+    logger.info(this, "_startupAudio");
 
     this._deinitUserEvents();
 
     //INFO: после инициализационного вызова play нужно дождаться события и вызвать pause.
-    this.__initListener = function() {
+    this.__initListener = function(e) {
+        if (!this.__initListener) {
+            return;
+        }
+
         this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__initListener);
         this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_CANPLAY, this.__initListener);
         this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_META, this.__initListener);
@@ -381,6 +386,10 @@ AudioHTML5Loader.prototype._startupAudio = function() {
 
         //INFO: после вызова pause нужно дождаться события, завершить инициализацию и разрешить передачу событий
         this.__initListener = function() {
+            if (!this.__initListener) {
+                return;
+            }
+
             this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
             delete this.__initListener;
             this.unmuteEvents();
@@ -391,6 +400,7 @@ AudioHTML5Loader.prototype._startupAudio = function() {
         this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
         this.audio.pause();
 
+        logger.info(this, "_startupAudio:play", e.type);
     }.bind(this);
     this.__initListener.step = "play";
 
@@ -400,6 +410,7 @@ AudioHTML5Loader.prototype._startupAudio = function() {
     this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__initListener);
 
     //INFO: перед использованием объект Audio требуется инициализировать, в обработчике пользовательского события
+    this.audio.load();
     this.audio.play();
 };
 
@@ -407,7 +418,7 @@ AudioHTML5Loader.prototype._startupAudio = function() {
  * Если метод _startPlay вызван раньше, чем закончилась инициализация, нужно отменить текущий шаг инициализации.
  * @private
  */
-AudioHTML5Loader.prototype._breakStartup = function() {
+AudioHTML5Loader.prototype._breakStartup = function(reason) {
     this._deinitUserEvents();
     this.unmuteEvents();
 
@@ -415,13 +426,14 @@ AudioHTML5Loader.prototype._breakStartup = function() {
         return;
     }
 
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__initListener);
     this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_CANPLAY, this.__initListener);
     this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_META, this.__initListener);
-    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__initListener);
+    this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__initListener);
 
     this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
 
-    logger.warn(this, "_startupAudio:interrupted", this.__initListener.step);
+    logger.warn(this, "_startupAudio:interrupted", this.__initListener.step, reason);
     delete this.__initListener;
 };
 
@@ -675,6 +687,7 @@ AudioHTML5Loader.prototype.load = function(src) {
     logger.debug(this, "load", src);
 
     this._abortPromises("load");
+    this._breakStartup("load");
 
     this.ended = false;
     this.playing = false;
@@ -691,6 +704,8 @@ AudioHTML5Loader.prototype.stop = function() {
     logger.debug(this, "stop");
 
     this._abortPromises("stop");
+    this._breakStartup("stop");
+
     this.load("");
 };
 
@@ -707,7 +722,7 @@ AudioHTML5Loader.prototype._startPlay = function() {
         return;
     }
 
-    this._breakStartup();
+    this._breakStartup("startPlay");
     this.audio.play();
 
     //THINK: нужно ли триггерить событие в случае успеха
@@ -721,7 +736,7 @@ AudioHTML5Loader.prototype._startPlay = function() {
  */
 AudioHTML5Loader.prototype._restart = function(reason) {
     //THINK: нужен ли тут какой-то счётик количества попыток
-    logger.info(this, "_restart", reason);
+    logger.info(this, "_restart", reason, this.position, this.playing);
 
     if (reason && reason !== "timeout") {
         return;
@@ -751,6 +766,8 @@ AudioHTML5Loader.prototype.play = function(position) {
         return;
     }
 
+    this._breakStartup("play");
+
     this.ended = false;
     this.playing = true;
     this.position = position == null ? this.position || 0 : position;
@@ -762,7 +779,10 @@ AudioHTML5Loader.prototype.pause = function() {
     logger.debug(this, "pause");
 
     this.playing = false;
+
     this._cancelWait("startPlaying", "pause");
+    this._breakStartup("pause");
+
     this.audio.pause();
     this.position = this.audio.currentTime;
 };
@@ -848,7 +868,7 @@ AudioHTML5Loader.prototype.destroySource = function() {
     this.output.disconnect();
     this.output = null;
 
-    this._abortPromises();
+    this._abortPromises("destroy");
 
     this._deinitAudio();
     this._initAudio();
