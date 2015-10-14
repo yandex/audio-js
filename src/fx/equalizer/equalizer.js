@@ -10,7 +10,7 @@ var EqualizerBand = require('./equalizer-band');
  *
  * @property {String} [id] - идентификатор настроек
  * @property {Number} preamp - предусилитель
- * @property {Array.<Number>} - значения для полос эквалайзера
+ * @property {Array.<Number>} bands - значения для полос эквалайзера
  */
 
 /**
@@ -45,6 +45,8 @@ var Equalizer = function(audioContext, bands) {
     this.preamp = new EqualizerBand(audioContext, "highshelf", 0);
     this.preamp.on("*", this._onBandEvent.bind(this, this.preamp));
 
+    bands = bands || Equalizer.DEFAULT_BANDS;
+
     var prev;
     this.bands = bands.map(function(frequency, idx) {
         var band = new EqualizerBand(
@@ -74,23 +76,22 @@ var Equalizer = function(audioContext, bands) {
 Events.mixin(Equalizer);
 merge(Equalizer, EqualizerStatic, true);
 
-/** @type {string}
- * @const
- */
-Equalizer.EVENT_CHANGE = "change";
-
 // =================================================================
 
 //  Настройки по-умолчанию
 
 // =================================================================
 
-/** @type {Array.<Number>}
+/**
+ * Набор частот эквалайзера применяющийся по-умолчанию
+ * @type {Array.<Number>}
  * @const
  */
 Equalizer.DEFAULT_BANDS = require('./default.bands.js');
 
-/** @type {Object.<String, ya.music.Audio.fx.Equalizer~EqualizerPreset>}
+/**
+ * Набор распространённых пресетов эквалайзера для набора частот по-умолчанию.
+ * @type {Object.<String, ya.music.Audio.fx.Equalizer~EqualizerPreset>}
  * @const
  */
 Equalizer.DEFAULT_PRESETS = require('./default.presets.js');

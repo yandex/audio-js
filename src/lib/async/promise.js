@@ -82,7 +82,7 @@ module.exports = Promise;
  */
 
 /**
- * Отмена действия связанного с обещаением
+ * Отмена действия связанного с обещанием
  * @abstract
  * @method AbortablePromise#abort
  * @param {String|Error} reason - причина отмены действия

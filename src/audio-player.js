@@ -492,7 +492,7 @@ AudioPlayer.prototype.getType = function() {
 /**
  * Возвращает ссылку на текущий трек
  * @param {int} [offset=0] - брать трек из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
- * @returns {IAudioImplementation|null}
+ * @returns {String|null}
  */
 AudioPlayer.prototype.getSrc = function(offset) {
     return this.implementation && this.implementation.getSrc(offset);
@@ -661,6 +661,13 @@ AudioPlayer.prototype.resume = function() {
             AudioPlayer.EVENT_ERROR,
             AudioPlayer.EVENT_CRASHED
         ]);
+
+        promise.abort = function() {
+            if (this._whenPlay) {
+                this._whenPlay.reject.apply(this._whenPlay, arguments);
+                this.stop();
+            }
+        }.bind(this);
     }
 
     this.implementation.resume();
@@ -733,7 +740,7 @@ AudioPlayer.prototype.playPreloaded = function(src) {
  * @param {String} src - ссылка на трек
  * @param {Number} [duration] - длительность трека. Актуально для флеш-реализации, в ней пока трек грузится
  * длительность определяется с погрешностью.
- * @returns {Promise}
+ * @returns {AbortablePromise}
  */
 AudioPlayer.prototype.preload = function(src, duration) {
     if (detect.browser.name === "msie" && detect.browser.version[0] == "9") {
@@ -770,6 +777,7 @@ AudioPlayer.prototype.preload = function(src, duration) {
 /**
  * Проверка, что трек предзагружен
  * @param {String} src - ссылка на трек
+ * @returns {Boolean}
  */
 AudioPlayer.prototype.isPreloaded = function(src) {
     return this.implementation.isPreloaded(src);
@@ -778,6 +786,7 @@ AudioPlayer.prototype.isPreloaded = function(src) {
 /**
  * Проверка, что трек предзагружается
  * @param {String} src - ссылка на трек
+ * @returns {Boolean}
  */
 AudioPlayer.prototype.isPreloading = function(src) {
     return this.implementation.isPreloading(src, 1);

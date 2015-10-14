@@ -97,7 +97,7 @@ var config = {
          * Список идентификаторов для которых лучше не использовать html5 плеер. Используется при
          * авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону
          * `@<platform.version> <platform.os>:<browser.name>/<browser.version>`
-         * @type {Array.<Number>}
+         * @type {Array.<String>}
          */
         blacklist: ["linux:mozilla", "unix:mozilla", "macos:mozilla", ":opera", "@NT 5", "@NT 4", "msie/9"]
     }
