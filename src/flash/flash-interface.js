@@ -8,7 +8,7 @@ var logger = new Logger('FlashInterface');
 // =================================================================
 
 /**
- * @class Описание внешнего интерфейса flash-плеера
+ * @classdesc Описание внешнего интерфейса flash-плеера
  * @param {Object} flash - swf-объект
  * @constructor
  * @private

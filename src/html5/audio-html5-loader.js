@@ -16,7 +16,7 @@ var loaderId = 1;
 // =================================================================
 
 /**
- * @class Обёртка для нативного класса Audio
+ * @classdesc Обёртка для нативного класса Audio
  * @extends Events
  *
  * @fires IAudioImplementation#play

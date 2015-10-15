@@ -19,7 +19,7 @@ var LoaderError = require('../lib/net/error/loader-error');
 // =================================================================
 
 /**
- * @class Загрузка flash-плеера и обработка событий
+ * @classdesc Загрузка flash-плеера и обработка событий
  * @param {HTMLElement} overlay - объект для загрузки и показа flash-плеера
  * @constructor
  * @private

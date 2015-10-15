@@ -2,7 +2,7 @@ var Promise = require('./promise');
 var noop = require('../noop');
 
 /**
- * @class Отложенное действие
+ * @classdesc Отложенное действие
  * @constructor
  * @private
  */

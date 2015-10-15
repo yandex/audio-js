@@ -56,7 +56,7 @@ if (detect.platform.mobile || detect.platform.tablet) {
 // =================================================================
 
 /**
- * @class Класс html5 аудио-плеера
+ * @classdesc Класс html5 аудио-плеера
  * @extends IAudioImplementation
  *
  * @fires IAudioImplementation#play

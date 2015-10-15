@@ -149,7 +149,7 @@ setTimeout(function() {
 // =================================================================
 
 /**
- * @class Аудио-плеер для браузера.
+ * @classdesc Аудио-плеер для браузера.
  * @alias ya.music.Audio
  * @param {String} [preferredType] - preferred player type (html5/flash)
  * @param {HTMLElement} [overlay] - dom element to show flash

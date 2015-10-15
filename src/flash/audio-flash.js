@@ -30,7 +30,7 @@ logger.info(this, "detection", exports.available);
 // =================================================================
 
 /**
- * @class Класс flash аудио-плеера
+ * @classdesc Класс flash аудио-плеера
  * @extends IAudioImplementation
  *
  * @fires IAudioImplementation#play

@@ -77,7 +77,7 @@ module.exports = Promise;
 
 /**
  * Обещание с возможностью отмены связанного с ним действия.
- * @class AbortablePromise
+ * @classdesc AbortablePromise
  * @extends Promise
  */
 
