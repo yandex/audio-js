@@ -1,6 +1,7 @@
 /**
  * Методы конвертации значений громкости
- * @namespace ya.music.Audio.fx.volumeLib
+ * @namespace
+ * @alias ya.music.Audio.fx.volumeLib
  */
 var volumeLib = {};
 
@@ -14,7 +15,7 @@ volumeLib.EPSILON = 0.001;
 /**
  * Коэфициент для преобразований громкости из относительной шкалы в децибелы
  * @type {number}
- j * @private
+ * @private
  */
 volumeLib._DBFS_COEF = 20 / Math.log(10);
 
