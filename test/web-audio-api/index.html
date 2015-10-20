@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .test {
+            display: block;
+            margin: 10px;
+            float: left;
+        }
+        .test:nth-child(3n) {
+            clear: left;
+        }
+
+        .test__view {
+            display: inline-block;
+            border: 1px #000 solid;
+        }
+        .test__view svg {
+            display: block;
+        }
+        .main {
+            color: #5b9a1c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="template">
+    <div class="test__title">{{title}}</div>
+    <div class="test__view" id="{{name}}"></div>
+</div>
+
+<script src="raphael-min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
