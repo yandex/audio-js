@@ -1,25 +1,25 @@
 var template = document.querySelector(".template").innerHTML;
 document.body.removeChild(document.querySelector(".template"));
 
-var WIDTH = 300;
-var HEIGHT = 200;
-var GUTTER = 20;
+var WIDTH = 250;
+var HEIGHT = 150;
+var GUTTER = 2;
 
 var INNER_HEIGHT = HEIGHT - GUTTER * 2;
 var INNER_WIDTH = WIDTH - GUTTER * 2;
 
 var MIN_FREQ = 20;
 var MAX_FREQ = 20000;
-var FREQ_STEPS = 101;
+var FREQ_STEPS = INNER_WIDTH + 1;
 
 var A = Math.exp((Math.log(MAX_FREQ) - Math.log(MIN_FREQ)) / (FREQ_STEPS - 1));
 var B = Math.log(MIN_FREQ) / Math.log(A);
 
 var FILTER_LINE = 0.5;
+var MIN_DB = -2;
+var MAX_DB = 2;
 
-var norm = function(points) {
-    var min = Math.min.apply(Math, points) || 0;
-    var max = Math.max.apply(Math, points) || 0;
+var norm = function(points, min, max) {
     var k = INNER_HEIGHT / (max - min) || 1;
     var dy = min * k;
     var step = INNER_WIDTH / (points.length - 1);
@@ -42,20 +42,24 @@ var drawTest = function(name, data) {
 
     var canvas = Raphael(id, WIDTH, HEIGHT);
 
-    var l = (GUTTER + FILTER_LINE * INNER_WIDTH) + " 0";
+    var h = "0 " + (GUTTER + INNER_HEIGHT / 2);
+    var v = (GUTTER + FILTER_LINE * INNER_WIDTH) + " 0";
+
     canvas.path().attr({
-        path: "M" + l + "L" + l + " l0 " + HEIGHT,
+        path: "M" + v + "L" + v + " l0 " + HEIGHT,
         stroke: "#ff0000",
-        "stroke-width": 2,
+        "stroke-width": 1,
+        "stroke-linejoin": "round"
+    });
+
+    canvas.path().attr({
+        path: "M" + h + "L" + h + " l" + WIDTH + " 0",
+        stroke: "#000",
+        "stroke-width": 1,
         "stroke-linejoin": "round"
     });
 
     var draw = function(path, color, width) {
-        path.forEach(function(p) {
-            var point = p.split(" ");
-            canvas.circle(point[0], point[1], width).attr({fill: color});
-        });
-
         canvas.path().attr({
             path: "M" + path[0] + " L" + path.join(" "),
             stroke: color,
@@ -64,8 +68,8 @@ var drawTest = function(name, data) {
         });
     };
 
-    draw(norm(data[1]), "#5B9A1C", 1);
-    draw(norm(data[0]), "#134b9a", 2);
+    draw(norm(data[1], - Math.PI, Math.PI), "#5B9A1C", 3);
+    draw(norm(data[0], 0, MAX_DB), "#134b9a", 3);
 };
 
 var audioCtx = new AudioContext();
@@ -120,16 +124,25 @@ var tests = {
     "notch Q=1": testFilter({ type: "notch", Q: 1 }),
     "notch Q=5": testFilter({ type: "notch", Q: 5 }),
 
-    "peaking Q=0.2": testFilter({ type: "peaking", Q: 0.2, gain: 6 }),
-    "peaking Q=1": testFilter({ type: "peaking", Q: 1, gain: 6 }),
-    "peaking Q=5": testFilter({ type: "peaking", Q: 5, gain: 6 }),
+    "peaking gain=6 Q=0.2": testFilter({ type: "peaking", Q: 0.2, gain: 6 }),
+    "peaking gain=6 Q=1": testFilter({ type: "peaking", Q: 1, gain: 6 }),
+    "peaking gain=6 Q=5": testFilter({ type: "peaking", Q: 5, gain: 6 }),
+
+    "peaking gain=-6 Q=0.2": testFilter({ type: "peaking", Q: 0.2, gain: -6 }),
+    "peaking gain=-6 Q=1": testFilter({ type: "peaking", Q: 1, gain: -6 }),
+    "peaking gain=-6 Q=5": testFilter({ type: "peaking", Q: 5, gain: -6 }),
 
     "allpass Q=0.2": testFilter({ type: "allpass", Q: 0.2 }),
     "allpass Q=1": testFilter({ type: "allpass", Q: 1 }),
     "allpass Q=5": testFilter({ type: "allpass", Q: 5 }),
 
-    "lowshelf": testFilter({ type: "lowshelf", gain: 6 }),
-    "highshelf": testFilter({ type: "highshelf", gain: 6 })
+    "lowshelf gain=6": testFilter({ type: "lowshelf", gain: 6 }),
+    "lowshelf gain=0": testFilter({ type: "lowshelf", gain: 0 }),
+    "lowshelf gain=-6": testFilter({ type: "lowshelf", gain: -6 }),
+
+    "highshelf gain=6": testFilter({ type: "highshelf", gain: 6 }),
+    "highshelf gain=0": testFilter({ type: "highshelf", gain: 0 }),
+    "highshelf gain=-6": testFilter({ type: "highshelf", gain: -6 })
 };
 
 Object.keys(tests).forEach(function(testname) {
