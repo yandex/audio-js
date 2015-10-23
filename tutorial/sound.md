@@ -375,3 +375,51 @@ var volumeFromDBFS = function(dbfs) {
 Существует множество библиотек готовых аудио-буферов для данного фильтра, которые реализуют различные эффекты 
 ([1](https://www.freesound.org/people/jorickhoofd/packs/9893/), [2](http://www.voxengo.com/impulses/)), подобные
 библиотеки хорошо находятся по запросу "impulse response mp3".
+
+Материалы
+---------
+  - [О понятии громкости в цифровом представлении звука и о методах её повышения](http://audiophilesoft.ru/publ/my/digital_loudness/11-1-0-86)
+  - [Звук](https://ru.wikipedia.org/wiki/Звук)
+  - [Амплитуда](https://ru.wikipedia.org/wiki/Амплитуда)
+  - [Частота](https://ru.wikipedia.org/wiki/Частота)
+  - [Цифровой сигнал](https://ru.wikipedia.org/wiki/Цифровой_сигнал)
+  - [Аналоговый сигнал](https://ru.wikipedia.org/wiki/Аналоговый_сигнал)
+  - [Цифровая обработка сигналов](https://ru.wikipedia.org/wiki/Цифровая_обработка_сигналов)
+  - [Интерактивный пример сложения волн и оцифровки сигнала](https://www.desmos.com/calculator/aojmanpjrl)
+  - [Аналогово-цифровой преобразователь](https://ru.wikipedia.org/wiki/Аналого-цифровой_преобразователь)
+  - [Цифро-аналоговый преобразователь](https://ru.wikipedia.org/wiki/Цифро-аналоговый_преобразователь)
+  - [Импульсно-кодовая модуляция](https://ru.wikipedia.org/wiki/Импульсно-кодовая_модуляция)
+  - [Формат PCM WAV](http://wav-pcm.narod.ru/)
+  - [Сэмплирование (en)](https://en.wikipedia.org/wiki/Sampling_%28signal_processing%29)
+  - [Частота дискретизации](https://ru.wikipedia.org/wiki/Частота_дискретизации)
+  - [Теорема Котельникова](https://ru.wikipedia.org/wiki/Теорема_Котельникова)
+  - [Частота Найквиста](https://ru.wikipedia.org/wiki/Частота_Найквиста)
+  - [Глубина дискретизации](https://ru.wikipedia.org/wiki/Квантование_%28обработка_сигналов%29)
+  - [Alias](https://ru.wikipedia.org/wiki/Алиасинг)
+  - [Децибел](https://ru.wikipedia.org/wiki/Децибел)
+  - [Строение уха](https://ru.wikipedia.org/wiki/Ухо)
+  - [Звуковое давление](https://ru.wikipedia.org/wiki/Звуковое_давление)
+  - [Воспринимаемая громкость](https://ru.wikipedia.org/wiki/Громкость_звука)
+  - [Клиппинг](https://en.wikipedia.org/wiki/Clipping_%28audio%29)
+  - [ReplayGain описание](https://en.wikipedia.org/wiki/ReplayGain)
+  - [ReplayGain спецификация](http://wiki.hydrogenaud.io/index.php?title=ReplayGain_specification)
+  - [Быстрое преобразование Фурье](http://habrahabr.ru/post/196374/), [вики](https://ru.wikipedia.org/wiki/Быстрое_преобразование_Фурье), [wiki](https://en.wikipedia.org/wiki/Fast_Fourier_transform)
+  - [Импульсная характеристика](https://ru.wikipedia.org/wiki/Импульсная_переходная_функция)
+  - [Фазо-частотная характеристика](https://ru.wikipedia.org/wiki/Фазо-частотная_характеристика)
+  - [Амплитудо-частотная характеристика](https://ru.wikipedia.org/wiki/Амплитудно-частотная_характеристика)
+  - [HTML5 Audio W3C](http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element)
+  - [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext)
+  - [Вейвшейпер](http://wikisound.org/Waveshaper)
+  - [Дисторшн](https://ru.wikipedia.org/wiki/Дисторшн)
+  - [Овердрайв](https://ru.wikipedia.org/wiki/Овердрайв_%28звуковой_эффект%29)
+  - [Фузз](https://ru.wikipedia.org/wiki/Фузз_%28эффект%29)
+  - [Реверберации](https://ru.wikipedia.org/wiki/Реверберация)
+  - [Свёртка](https://ru.wikipedia.org/wiki/Свёртка_%28математический_анализ%29)
+  - [Эквалайзер](https://ru.wikipedia.org/wiki/Эквалайзер)
+
+Благодарности
+-------------
+Большое спасибо всем, кто помогал собрать материалы для этой статьи и давал полезные советы.
+
+Отдельное спасибо Тарасу Ковриженко за описание алгоритмов нормализации и максимизации громкости и Сергею Константинову
+за большое количество пояснений и советов по данной статье.
