@@ -2,6 +2,7 @@ html,
 body {
   font: 1em "jaf-bernino-sans", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
   background-color: #fff;
+  text-align: justify;
 }
 ul,
 ol {
@@ -25,9 +26,11 @@ li {
 .navigation {
   position: fixed;
   float: left;
-  width: 250px;
+  width: 300px;
   height: 100%;
   background-color: #1a1a1a;
+  box-shadow: 0 0 30px 3px #1a1a1a;
+  z-index: 1000;
 }
 .navigation .applicationName {
   margin: 0;
@@ -100,8 +103,8 @@ li {
   display: none;
 }
 .main {
-  padding: 20px 20px;
-  margin-left: 250px;
+  padding: 10px 50px;
+  margin-left: 300px;
 }
 .main .page-title {
   display: none;
@@ -109,27 +112,29 @@ li {
 .main h1 {
   font-weight: bold;
   font-size: 1.7em;
-  margin: 0.65em 0;
+  margin: 0.9em 0;
+  color: #3573A9;
 }
 .main h2 {
   font-weight: bold;
   font-size: 1.5em;
-  margin: 0.75em 0;
+  margin: 1em 0;
+  color: #3573A9;
 }
 .main h3 {
   font-weight: bold;
   font-size: 1.3em;
-  margin: 0.85em 0;
+  margin: 1.1em 0;
 }
 .main h4 {
   font-weight: bold;
   font-size: 1.1em;
-  margin: 0.45em 0;
+  margin: 0.7em 0;
 }
 .main h5 {
   font-weight: bold;
   font-size: 1em;
-  margin: 0.5em 0;
+  margin: 0.75em 0;
 }
 .main dd {
   font-size: 12px;
@@ -342,4 +347,50 @@ footer {
   font-family: "freight-text-pro", Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 0.8em;
   color: gray;
+}
+p { margin: 20px 0; }
+img {
+  display: block;
+  max-width: 750px;
+}
+
+@media (max-width: 900px) {
+  .navigation {
+    overflow: hidden;
+    width: 50px;
+    transition: width 0.2s ease;
+  }
+  .navigation:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: left 0s 0.2s ease;
+  }
+
+  .main {
+    margin-left: 50px;
+  }
+
+  .navigation .applicationName,
+  .navigation .search,
+  .navigation .list {
+    display: none;
+  }
+
+  .navigation:hover {
+    width: 300px;
+  }
+  .navigation:hover:after {
+    left: 300px;
+  }
+
+  .navigation:hover .applicationName,
+  .navigation:hover .search,
+  .navigation:hover .list {
+    display: block;
+  }
 }
