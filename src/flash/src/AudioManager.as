@@ -10,7 +10,7 @@ import flash.system.Security;
 
 [SWF(width="10", height="10")]
 public final class AudioManager extends Sprite {
-    private static var players:Array/*.<AudioFlash>*/ = [];
+    private static var players:Array/*AudioFlash*/ = [];
     private static var volume:Number = 1;
 
     public static const EVENT_INIT:String = "init";
@@ -65,26 +65,31 @@ public final class AudioManager extends Sprite {
     }
 
     public function call(methodName:String, id:int = -1, ...args):* {
-        if (id !== -1) {
-            var player:AudioPlayer = players[id];
-            if (!player) {
-                jsCall(AudioEvent.EVENT_ERROR, id, -1, "no such player");
-                return null;
-            }
+        try {
+            if (id !== -1) {
+                var player:AudioPlayer = players[id];
+                if (!player) {
+                    jsCall(AudioEvent.EVENT_ERROR, id, -1, "no such player");
+                    return null;
+                }
 
-            if (typeof player[methodName] === "function") {
-                return player[methodName].apply(player, args);
+                if (typeof player[methodName] === "function") {
+                    return player[methodName].apply(player, args);
+                } else {
+                    jsCall(AudioEvent.EVENT_ERROR, id, -1, "no such method");
+                    return null;
+                }
             } else {
-                jsCall(AudioEvent.EVENT_ERROR, id, -1, "no such method");
-                return null;
+                if (typeof this["export_" + methodName] === "function") {
+                    return this["export_" + methodName].apply(this, args);
+                } else {
+                    jsCall(AudioEvent.EVENT_ERROR, id, -1, "no such method");
+                    return null;
+                }
             }
-        } else {
-            if (typeof this["export_" + methodName] === "function") {
-                return this["export_" + methodName].apply(this, args);
-            } else {
-                jsCall(AudioEvent.EVENT_ERROR, id, -1, "no such method");
-                return null;
-            }
+        } catch (e:Error) {
+            jsCall(AudioEvent.EVENT_ERROR, id, args[0], e.message);
+            return null;
         }
     }
 

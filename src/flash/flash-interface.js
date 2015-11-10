@@ -35,7 +35,7 @@ FlashInterface.prototype._callFlash = function(fn) {
     try {
         return this.flash.call.apply(this.flash, arguments);
     } catch(e) {
-        logger.error(this, "_callFlashError", e);
+        logger.error(this, "_callFlashError", e, arguments[0], arguments[1], arguments[2]);
         return null;
     }
 };

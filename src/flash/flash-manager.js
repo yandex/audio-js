@@ -1,5 +1,5 @@
 var Logger = require('../logger/logger');
-var logger = new Logger('FlashBridge');
+var logger = new Logger('FlashManager');
 
 var config = require('../config');
 
@@ -7,6 +7,7 @@ var AudioStatic = require('../audio-static');
 var flashLoader = require('./loader');
 var FlashInterface = require('./flash-interface');
 
+var Promise = require('../lib/async/promise');
 var Deferred = require('../lib/async/deferred');
 
 var AudioError = require('../error/audio-error');
@@ -157,16 +158,16 @@ FlashManager.prototype._onInit = function() {
  * @private
  */
 FlashManager.prototype._onEvent = function(event, id, offset, data) {
-    if (event === "debug") {
-        console.debug("flashDEBUG", id, offset, data);
-    }
-
     if (this.state === "failed") {
         logger.warn(this, "onEventFailed", event, id, offset, data);
         return;
     }
 
-    logger.debug(this, "onEvent", event, id, offset);
+    if (event === "debug") {
+        logger.debug(this, "flashDEBUG", id, offset, data);
+    } else {
+        logger.debug(this, "onEvent", event, id, offset);
+    }
 
     if (event === FlashManager.EVENT_INIT) {
         return this._onInit();
@@ -178,12 +179,17 @@ FlashManager.prototype._onEvent = function(event, id, offset, data) {
         return;
     }
 
+    //INFO: в обработчике события переданного из флеша нельзя обращаться к флеш-объекту, поэтому делаем рассинхронизацию
     if (id == -1) {
-        this.emmiters.forEach(function(emmiter) {
-            emmiter.trigger(event, offset, data);
-        });
+        Promise.resolve().then(function() {
+            this.emmiters.forEach(function(emmiter) {
+                emmiter.trigger(event, offset, data);
+            });
+        }.bind(this));
     } else if (this.emmiters[id]) {
-        this.emmiters[id].trigger(event, offset, data);
+        Promise.resolve().then(function() {
+            this.emmiters[id].trigger(event, offset, data);
+        }.bind(this));
     } else {
         logger.error(this, AudioError.FLASH_EMMITER_NOT_FOUND, id);
     }

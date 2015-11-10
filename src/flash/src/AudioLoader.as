@@ -18,8 +18,6 @@ public final class AudioLoader extends EventDispatcher {
     public var preloaded:String = "";
     public var src:String = "";
 
-    private var muted:Boolean = true;
-
     public function AudioLoader() {
     }
 
@@ -59,7 +57,6 @@ public final class AudioLoader extends EventDispatcher {
         try {
             this.sound.close();
         } catch (e:Error) {
-
         }
         this.sound = null;
 

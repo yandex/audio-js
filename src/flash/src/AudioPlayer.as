@@ -23,8 +23,6 @@ public final class AudioPlayer extends EventDispatcher {
     public function AudioPlayer(id:uint) {
         timer.start();
 
-        timer.addEventListener(TimerEvent.TIMER, this.onTick);
-
         this.id = id;
 
         this.addLoader();
@@ -64,10 +62,9 @@ public final class AudioPlayer extends EventDispatcher {
 
     private function onProgress(event:Event):void {
         var offset:uint = event !== null && this.getOffset(event.currentTarget as AudioLoader) || 0;
-        if (offset === 0) {
-            if (this.soundChannel is SoundChannel) {
-                this.position = this.soundChannel.position;
-            }
+
+        if (offset === 0 && this.soundChannel is SoundChannel) {
+            this.position = this.soundChannel.position;
         }
 
         var currentTime:Number = new Date().valueOf();
@@ -102,9 +99,17 @@ public final class AudioPlayer extends EventDispatcher {
             return;
         }
 
+        if (this.soundChannel is SoundChannel) {
+            this.pause(false);
+            this.isPlaying = true;
+        }
+
         this.soundChannel = this.getLoader().sound.play(this.position);
         this.soundChannel.addEventListener(Event.SOUND_COMPLETE, this.onPlayEnd);
-        timer.addEventListener(TimerEvent.TIMER, this.onTick);
+
+        if (!timer.hasEventListener(TimerEvent.TIMER)) {
+            timer.addEventListener(TimerEvent.TIMER, this.onTick);
+        }
 
         this.dispatchEvent(new AudioEvent(AudioEvent.EVENT_PLAY, 0));
     }
@@ -142,12 +147,19 @@ public final class AudioPlayer extends EventDispatcher {
     public function pause(trigger:Boolean = true):void {
         this.isPlaying = false;
 
-        timer.removeEventListener(TimerEvent.TIMER, this.onTick);
+        if (timer.hasEventListener(TimerEvent.TIMER)) {
+            timer.removeEventListener(TimerEvent.TIMER, this.onTick);
+        }
 
         if (this.soundChannel is SoundChannel) {
             this.position = this.soundChannel.position;
-            this.soundChannel.removeEventListener(Event.SOUND_COMPLETE, this.onPlayEnd);
-            this.soundChannel.stop();
+            if (this.soundChannel.hasEventListener(Event.SOUND_COMPLETE)) {
+                this.soundChannel.removeEventListener(Event.SOUND_COMPLETE, this.onPlayEnd);
+            }
+            try {
+                this.soundChannel.stop();
+            } catch (e:Error) {
+            }
             this.soundChannel = null;
         }
 
