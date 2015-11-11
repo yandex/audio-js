@@ -434,6 +434,7 @@ AudioPlayer.prototype._populateEvents = function(event, offset, data) {
             this.trigger(event, data);
             break;
         case AudioPlayer.EVENT_ERROR:
+            logger.error(this, "error", outerEvent, data);
             this.trigger(outerEvent, data);
             break;
         case AudioPlayer.EVENT_VOLUME:
