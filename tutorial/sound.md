@@ -20,7 +20,7 @@
 осциллограммой и найти ближайшее целое значение по вертикальной шкале. Собственно набор таких значений и будет 
 простейшей записью цифрового сигнала.
 
-[<img src="images/discretization.jpg" alt="Рис. 2. Интерактивный пример сложения волн и оцифровки сигнала" width="100%" />](https://www.desmos.com/calculator/aojmanpjrl)
+[<img src="images/demo.png" alt="Рис. 2. Интерактивный пример сложения волн и оцифровки сигнала" width="100%" />](https://www.desmos.com/calculator/aojmanpjrl)
 
 *(Рис. 2. Интерактивный пример сложения волн и оцифровки сигнала: https://www.desmos.com/calculator/aojmanpjrl)*
 
@@ -50,7 +50,7 @@
 Процесс преобразования неприрывного аналогового сигнала в дискретный цифровой сигнал называется дискретизацией.
 Есть 2 основных характеристики цифрового сигнала - частота дискретизации и глубина дискретизации по уровню. 
 
-[<img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Signal_Sampling.png" alt="Рис. 3. Дискретизация сигнала." width="100%" />](https://en.wikipedia.org/wiki/Sampling_%28signal_processing%29)
+[<img src="images/discrete-signal.png" alt="Рис. 3. Дискретизация сигнала." width="100%" />](https://en.wikipedia.org/wiki/Sampling_%28signal_processing%29)
 
 *(Рис. 3. Дискретизация сигнала. Источник: https://en.wikipedia.org/wiki/Sampling_(signal_processing))*
 
@@ -63,7 +63,7 @@
 ([частота Найквиста](https://ru.wikipedia.org/wiki/Частота_Найквиста)) должна быть в районе 40КГц. У стандартных 
 аудио-CD частота дискретизации составляет 44.1КГц 
 
-[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Quantized.signal.svg/570px-Quantized.signal.svg.png?uselang=ru" alt='Рис. 4. Квантование сигнала.' width="100%" />](https://ru.wikipedia.org/wiki/Квантование_%28обработка_сигналов%29)
+[<img src="images/quatized-signal.png" alt='Рис. 4. Квантование сигнала.' width="100%" />](https://ru.wikipedia.org/wiki/Квантование_%28обработка_сигналов%29)
 
 *(Рис. 4. Квантование сигнала. Источник: https://ru.wikipedia.org/wiki/Квантование_(обработка_сигналов))*
 
@@ -96,7 +96,7 @@
 оригинальном сигнале. Данная ошибка получила название [alias](https://ru.wikipedia.org/wiki/Алиасинг). Этот эффект
 напрямую связан с частотой дискретизации, а точнее с [частотой Найквиста](https://ru.wikipedia.org/wiki/Частота_Найквиста).
 Проще всего понять это рассмотрев данное изображение:
-[<img src='https://upload.wikimedia.org/wikipedia/commons/2/28/AliasingSines.svg?uselang=ru' alt='Рис. 5. Алиас.' width='100%' />](https://ru.wikipedia.org/wiki/Алиасинг)
+[<img src='images/alias.png' alt='Рис. 5. Алиас.' width='100%' />](https://ru.wikipedia.org/wiki/Алиасинг)
 
 *(Рис. 5. Алиас. Источник: https://ru.wikipedia.org/wiki/Алиасинг)*
 
@@ -147,7 +147,7 @@ FS = Full Scale - полная шкала). Более низкие уровни
 давления), значения которой указываются всё в тех же децибелах. Стоит также заметить, что воспринимаемая громкость звука 
 зависит не только от уровня звукового давления, но ещё и от частоты звука:
   
-[<img src='https://upload.wikimedia.org/wikipedia/commons/3/37/Gromkost.png?uselang=ru' alt='Рис. 6. Зависимость воспринимаемой громкости от частоты и амплитуды звука.' width="100%" />](https://ru.wikipedia.org/wiki/Громкость_звука)
+[<img src='images/fon.png' alt='Рис. 6. Зависимость воспринимаемой громкости от частоты и амплитуды звука.' width="100%" />](https://ru.wikipedia.org/wiki/Громкость_звука)
 
 *(Рис. 6. Зависимость воспринимаемой громкости от частоты и амплитуды звука. Источник: https://ru.wikipedia.org/wiki/Громкость_звука)*
 
@@ -216,7 +216,7 @@ var volumeFromDBFS = function(dbfs) {
  
 Из того, что сигнал имеет верхнее ограничение уровня следует, что нельзя безопасно увеличивать громкость выше 
 единицы. При этом пики, которые окажутся выше границы будут "срезаны" и произойдёт потеря данных.
-[<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Clipping_waveform.svg" alt="Рис. 7. Клиппинг." width="100%" />](https://en.wikipedia.org/wiki/Clipping_%28audio%29)
+[<img src="images/clipping.png" alt="Рис. 7. Клиппинг." width="100%" />](https://en.wikipedia.org/wiki/Clipping_%28audio%29)
 
 *(Рис. 7. Клиппинг. Источник: https://en.wikipedia.org/wiki/Clipping_(audio))*
 
