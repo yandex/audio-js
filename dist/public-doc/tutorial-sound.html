@@ -886,33 +886,33 @@ var volumeFromDBFS = function(dbfs) {
 до Pi. Частота всех фильтров (632 Гц) отмечена красной чертой на графике.</em></p>
 <h3>Глушащие фильтры</h3><p>Самый простой в понимании вид фильтров - они просто заглушают определённые частоты. В зависимости от типа фильтра,
 применяются разные правила для выбора частот, которые заглушаются.</p>
-<h4>lowpass</h4><p><img src="images/lowpass.gif" alt="Рис. 8. Фильтр lowpass." width="100%" /></p>
+<h4>lowpass</h4><p><img src="images/lowpass.png" alt="Рис. 8. Фильтр lowpass." width="100%" /></p>
 <p><em>(Рис. 8. Фильтр lowpass.)</em></p>
 <p>Фильтр, который пропускает только частоты ниже заданной частоты.  </p>
-<h4>highpass</h4><p><img src="images/highpass.gif" alt="Рис. 9. Фильтр highpass." width="100%" /></p>
+<h4>highpass</h4><p><img src="images/highpass.png" alt="Рис. 9. Фильтр highpass." width="100%" /></p>
 <p><em>(Рис. 9. Фильтр highpass.)</em></p>
 <p>Фильтр действует аналогично lowpass, за исключением того, что он пропускает частоты выше заданной, а не ниже.</p>
-<h4>bandpass</h4><p><img src="images/bandpass.gif" alt="Рис. 10. Фильтр bandpass." width="100%" /></p>
+<h4>bandpass</h4><p><img src="images/bandpass.png" alt="Рис. 10. Фильтр bandpass." width="100%" /></p>
 <p><em>(Рис. 10. Фильтр bandpass.)</em></p>
 <p>Данный фильтр более изберателен - он пропускает только определённую полосу частот.</p>
-<h4>notch</h4><p><img src="images/notch.gif" alt="Рис. 11. Фильтр notch." width="100%" /></p>
+<h4>notch</h4><p><img src="images/notch.png" alt="Рис. 11. Фильтр notch." width="100%" /></p>
 <p><em>(Рис. 11. Фильтр notch.)</em></p>
 <p>Фильтр является противоположностью bandpass - он пропускает все частоты, вне заданной полосы. Стоит однако отметить разность в 
 графиках затухания воздействия и в фазовых характеристиках данных фильтров.</p>
 <h3>Усиливающие фильтры</h3><p>Данные фильтры могут усиливать или ослабрять определённые наборы частот в зависимости от типа и настроек.</p>
-<h4>lowshelf</h4><p><img src="images/lowshelf.gif" alt="Рис. 12. Фильтр lowshelf." width="100%" /></p>
+<h4>lowshelf</h4><p><img src="images/lowshelf.png" alt="Рис. 12. Фильтр lowshelf." width="100%" /></p>
 <p><em>(Рис. 12. Фильтр lowshelf.)</em></p>
 <p>Является более &quot;умной&quot; версией highpass - он усиливает или ослабляет частоты ниже заданной, частоты выше пропускает без
 изменений.</p>
-<h4>highshelf</h4><p><img src="images/highshelf.gif" alt="Рис. 13. Фильтр highshelf." width="100%" /></p>
+<h4>highshelf</h4><p><img src="images/highshelf.png" alt="Рис. 13. Фильтр highshelf." width="100%" /></p>
 <p><em>(Рис. 13. Фильтр highshelf.)</em></p>
 <p>Является более &quot;умной&quot; версией lowpass - он усиливает или ослабляет частоты выше заданной, частоты ниже пропускает без
 изменений.</p>
-<h4>peaking</h4><p><img src="images/peaking.gif" alt="Рис. 14. Фильтр peaking." width="100%" /></p>
+<h4>peaking</h4><p><img src="images/peaking.png" alt="Рис. 14. Фильтр peaking." width="100%" /></p>
 <p><em>(Рис. 14. Фильтр peaking.)</em></p>
 <p>Является более &quot;умной&quot; версией notch - он усиливает или ослабляет частоты в заднном диапазоне и пропускает остальные
 частоты без изменений.</p>
-<h3>Фильтр allpass</h3><p><img src="images/allpass.gif" alt="Рис. 15. Фильтр allpass." width="100%" /></p>
+<h3>Фильтр allpass</h3><p><img src="images/allpass.png" alt="Рис. 15. Фильтр allpass." width="100%" /></p>
 <p><em>(Рис. 15. Фильтр allpass.)</em></p>
 <p>Этот фильтр отличается от всех остальных - он не меняет амплитудные характеристики сигнала, вместо этого он делает фазовый 
 сдвиг заданных частот. Фильтр задаётся центральной частотой и силой фазового сдвига.</p>

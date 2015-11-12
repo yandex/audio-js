@@ -291,28 +291,28 @@ var volumeFromDBFS = function(dbfs) {
 применяются разные правила для выбора частот, которые заглушаются.
 
 #### lowpass
-<img src="images/lowpass.gif" alt="Рис. 8. Фильтр lowpass." width="100%" />
+<img src="images/lowpass.png" alt="Рис. 8. Фильтр lowpass." width="100%" />
 
 *(Рис. 8. Фильтр lowpass.)*
 
 Фильтр, который пропускает только частоты ниже заданной частоты.  
 
 #### highpass
-<img src="images/highpass.gif" alt="Рис. 9. Фильтр highpass." width="100%" />
+<img src="images/highpass.png" alt="Рис. 9. Фильтр highpass." width="100%" />
 
 *(Рис. 9. Фильтр highpass.)*
 
 Фильтр действует аналогично lowpass, за исключением того, что он пропускает частоты выше заданной, а не ниже.
 
 #### bandpass
-<img src="images/bandpass.gif" alt="Рис. 10. Фильтр bandpass." width="100%" />
+<img src="images/bandpass.png" alt="Рис. 10. Фильтр bandpass." width="100%" />
 
 *(Рис. 10. Фильтр bandpass.)*
 
 Данный фильтр более изберателен - он пропускает только определённую полосу частот.
 
 #### notch
-<img src="images/notch.gif" alt="Рис. 11. Фильтр notch." width="100%" />
+<img src="images/notch.png" alt="Рис. 11. Фильтр notch." width="100%" />
 
 *(Рис. 11. Фильтр notch.)*
 
@@ -323,7 +323,7 @@ var volumeFromDBFS = function(dbfs) {
 Данные фильтры могут усиливать или ослабрять определённые наборы частот в зависимости от типа и настроек.
 
 #### lowshelf
-<img src="images/lowshelf.gif" alt="Рис. 12. Фильтр lowshelf." width="100%" />
+<img src="images/lowshelf.png" alt="Рис. 12. Фильтр lowshelf." width="100%" />
 
 *(Рис. 12. Фильтр lowshelf.)*
 
@@ -331,7 +331,7 @@ var volumeFromDBFS = function(dbfs) {
 изменений.
 
 #### highshelf
-<img src="images/highshelf.gif" alt="Рис. 13. Фильтр highshelf." width="100%" />
+<img src="images/highshelf.png" alt="Рис. 13. Фильтр highshelf." width="100%" />
 
 *(Рис. 13. Фильтр highshelf.)*
 
@@ -339,7 +339,7 @@ var volumeFromDBFS = function(dbfs) {
 изменений.
 
 #### peaking
-<img src="images/peaking.gif" alt="Рис. 14. Фильтр peaking." width="100%" />
+<img src="images/peaking.png" alt="Рис. 14. Фильтр peaking." width="100%" />
 
 *(Рис. 14. Фильтр peaking.)*
 
@@ -347,7 +347,7 @@ var volumeFromDBFS = function(dbfs) {
 частоты без изменений.
 
 ### Фильтр allpass
-<img src="images/allpass.gif" alt="Рис. 15. Фильтр allpass." width="100%" />
+<img src="images/allpass.png" alt="Рис. 15. Фильтр allpass." width="100%" />
 
 *(Рис. 15. Фильтр allpass.)*
 
