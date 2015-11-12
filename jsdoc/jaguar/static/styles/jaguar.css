@@ -351,7 +351,7 @@ footer {
 p { margin: 20px 0; }
 img {
   display: block;
-  max-width: 750px;
+  max-width: 800px;
 }
 
 @media (max-width: 900px) {
