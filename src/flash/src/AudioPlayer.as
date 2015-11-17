@@ -49,6 +49,7 @@ public final class AudioPlayer extends EventDispatcher {
         if (offset !== 0) {
             //INFO: если релизовывать концепцию множества загрузчиков, то это нужно доработать.
             this.stop(offset);
+            this.pause(false);
         }
     }
 
