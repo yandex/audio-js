@@ -99,7 +99,7 @@ var config = {
          * `@<platform.version> <platform.os>:<browser.name>/<browser.version>`
          * @type {Array.<String>}
          */
-        blacklist: ["linux:mozilla", "unix:mozilla", "macos:mozilla", ":opera", "@NT 5", "@NT 4", "msie/9"]
+        blacklist: ["linux:mozilla", "unix:mozilla", "macos:mozilla", ":opera/12", "@NT 5", "@NT 4", ":msie/9"]
     }
 };
 
