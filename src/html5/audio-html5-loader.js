@@ -248,8 +248,9 @@ AudioHTML5Loader.prototype._onNativeError = function(e) {
     }
 
     if (this.audio.error.code == 2) {
-        logger.warn(this, "Network error. Restarting...");
+        logger.warn(this, "Network error. Restarting...", this.src);
         this._restart();
+        return;
     }
 
     var error = new PlaybackError(this.audio.error
