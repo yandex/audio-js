@@ -160,6 +160,7 @@ public final class AudioPlayer extends EventDispatcher {
             try {
                 this.soundChannel.stop();
             } catch (e:Error) {
+                this.dispatchEvent(new AudioEvent(AudioEvent.EVENT_DEBUG, 0, e.message));
             }
             this.soundChannel = null;
         }

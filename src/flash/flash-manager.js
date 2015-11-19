@@ -73,6 +73,8 @@ var FlashManager = function(overlay) { // singleton!
 
 FlashManager.EVENT_INIT = "init";
 FlashManager.EVENT_FAIL = "failed";
+FlashManager.EVENT_ERROR = "error";
+FlashManager.EVENT_DEBUG = "debug";
 
 // =================================================================
 
@@ -163,8 +165,10 @@ FlashManager.prototype._onEvent = function(event, id, offset, data) {
         return;
     }
 
-    if (event === "debug") {
-        logger.debug(this, "flashDEBUG", id, offset, data);
+    if (event === FlashManager.EVENT_DEBUG) {
+        logger.info(this, "flashDEBUG", id, offset, data);
+    } else if (event === FlashManager.EVENT_ERROR) {
+        logger.warn(this, "flashError", id, offset, data);
     } else {
         logger.debug(this, "onEvent", event, id, offset);
     }
