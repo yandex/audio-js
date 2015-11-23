@@ -22,7 +22,7 @@ clean:
 prepare: clean
 	-npm install
 	mkdir $(BUILDDIR)
-	cp $(SOURCEDIR)/flash/build/player-2_0.swf $(BUILDDIR)/player-2_0.swf
+	cp $(SOURCEDIR)/flash/build/*.swf $(BUILDDIR)/
 
 
 build: $(BUILDDIR)/index.js

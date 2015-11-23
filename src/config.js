@@ -43,7 +43,7 @@ var config = {
          * Имя .swf файла флеш-плеера
          * @type {String}
          */
-        name: "player-2_0.swf",
+        name: "player-2_1.swf",
         /**
          * Минимальная версия флеш-плеера
          * @type {String}
