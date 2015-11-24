@@ -233,6 +233,8 @@ public final class AudioPlayer extends EventDispatcher {
             this.position = position * 1000;
             this.resume();
         }
+
+        this.dispatchEvent(new AudioEvent(AudioEvent.EVENT_PROGRESS, 0));
     }
 
     public function getDuration(offset:uint = 0):Number {
