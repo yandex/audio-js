@@ -178,7 +178,7 @@ FlashManager.prototype._onEvent = function(event, id, offset, data) {
     }
 
     if (event === FlashManager.EVENT_FAIL) {
-        logger.warn(this, "failed", AudioError.FLASH_INTERNAL_ERROR);
+        logger.error(this, "failed", AudioError.FLASH_INTERNAL_ERROR);
         this.deferred.reject(new AudioError(AudioError.FLASH_INTERNAL_ERROR));
         return;
     }

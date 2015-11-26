@@ -883,7 +883,7 @@ AudioPlayer.prototype.getVolume = function() {
  * @returns {Number} -- итоговое значение громкости
  */
 AudioPlayer.prototype.setVolume = function(volume) {
-    logger.info(this, "setVolume", volume);
+    logger.debug(this, "setVolume", volume);
 
     if (!this.implementation) {
         return 0;
