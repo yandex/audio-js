@@ -275,6 +275,10 @@ AudioPlayer.audioContext = audioTypes.html5.audioContext;
 AudioPlayer.prototype._setState = function(state) {
     logger.debug(this, "_setState", state);
 
+    if (state === AudioPlayer.STATE_PAUSED && this.state !== AudioPlayer.STATE_PLAYING) {
+        return;
+    }
+
     var changed = this.state !== state;
     this.state = state;
 
