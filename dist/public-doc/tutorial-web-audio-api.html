@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Tutorial: web-audio-api</title>
     
     
     
@@ -660,141 +660,37 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="index.html">Index</h1>
-        
+        <h1 class="page-title" data-filename="tutorial-web-audio-api.html">Tutorial: web-audio-api</h1>
+        <section>
 
-
+<header>
     
 
+</header>
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-    
-
-
-
-
-    <section>
-        <article class="readme"><h1>YandexAudio</h1><p>YandexAudio - это библиотека аудио-плеера для браузера. Текущее состояние дел с html5 audio и поддержкой flash в разных браузерах не позволяют легко и просто реализовать функционал воспроизведения музыки в браузере. Данная библиотека нацелена на то, чтобы устранить этот досадный недостаток. Вот краткий список возможностей данной библиотеки:</p>
+<article>
+    <h1>Web Audio API</h1><p>Web Audio API - это технология, позволяющая существенно расширить возможности воспроизведения звука в браузере. К сожалению эта технология на данный момент очень молодая и её поддержка есть только в свежих версиях популярных десктопных браузеров и практически отсутствует в мобильных браузерах.</p>
+<p>У Web Audio API стоит выделить 3 основных аспекта, которые особо не пересекаются и их можно рассматривать отдельно:</p>
 <ul>
-<li>автоматическое определение поддерживаемых браузером технологий</li>
-<li>подключение flash-плеера на страницу с возможностью отображения видимого (прозрачного) flash-апплета</li>
-<li>автоматическая реинициализация при крахе плеера (например из-за заблокированного flash-содержимого)</li>
-<li>предзагрузка следующего трека, параллельно с воспроизведением текущего</li>
-<li>детектирование и использование технологий web audio api</li>
-<li>эквалайзер (с готовым набором пресетов) с возможностью настройки количества и частоты полос пропускания</li>
+<li>возможности работы с различными источниками данных</li>
+<li>возможности по цифровой обработке сигнала</li>
+<li>возможности по анализу сигнала</li>
 </ul>
-<h2>Подключение</h2><p>Существует 3 способа подключения данной библиотеки:</p>
+<h2>Источники данных</h2><p>В отличие от html5-элемента <code>&lt;audio&gt;</code> Web Audio API использует принципиально другой подход к указанию источника данных. Элемент <code>&lt;audio&gt;</code> использует в качестве указания источника URI-ссылку на трек, в то время как Web Audio API требует непосредственно указания объекта, который будет предоставлять доступ к данным. В качестве одно из таких объектов как раз может служить сам объект <code>&lt;audio&gt;</code>. Из подобного подхода следуют 2 вещи:</p>
 <ul>
-<li><strong>npm</strong> если ваш проект использует сборку скриптов с помощью browserify или аналога, то можно просто подключать 
-библиотку как npm-пакет <code>var YandexAudio = require('YandexAudio')</code></li>
-<li><strong>скрипт</strong> - достаточно подключить основной файл скрипта 
-(<a href="https://github.yandex-team.ru/pages/music/audio/dist/index.js">dist/index.js</a> 
-или <a href="https://github.yandex-team.ru/pages/music/audio/dist/index.min.js">dist/index.min.js</a>  - минифицированную версию) 
-в тело страницы и далее использовать глобально доступный объект <a href="ya.music.Audio.html">ya.music.Audio</a></li>
+<li>если требуется загружать данные по сети, это требуется делать вручную (что даёт дополнительный контроль за этим процессом) или использовать для этого элемент <code>&lt;audio&gt;</code></li>
+<li>возможна непосредственная генерация данных в браузере, причём даже в процессе воспроизведения</li>
 </ul>
-<h2>Использование</h2><h3>Создание экземпляра плеера:</h3><pre class="prettyprint source lang-javascript"><code>    var audioPlayer = new ya.music.Audio(preferredPlayerType, flashOverlayElement);
-    audioPlayer.initPromise().then(function() {
-      console.log(&quot;Аудио-плеер готов к работе&quot;);
-    }, function() {
-      console.error(&quot;Не удалось инициализировать аудио-плеер&quot;);
-    });</code></pre><ul>
-<li><strong>preferredPlayerType</strong> - строка <code>&quot;html5&quot;</code>, <code>&quot;flash&quot;</code> или любое ложное значение (false, null, undefined, 0, &quot;&quot;), указывает на предпочитаемый тип плеера (если он окажется недоступен, будет запущен оставшийся тип)</li>
-<li><strong>flashOverlayElement</strong> - HTMLElement в который требуется встроить flash-апплет или ложное значение. Требуется для того, чтобы была возможность отобразить видимый flash-апплет для отключения различных блокировщиков flash'а.</li>
+<h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode">MediaElementAudioSourceNode</a></h3><p>Начнём с самого простого. Данный элемент предоставляет из себя источник сигнала, источником данных которого является <code>&lt;audio&gt;</code> или <code>&lt;video&gt;</code> элемент. Этот элемент создаётся с помощью метода <code>AudioContext#createMediaElementSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaElementSource">doc</a>), который принимает в качестве единственного параметра медиа-элемент (<code>&lt;audio&gt;</code> или <code>&lt;video&gt;</code>). При этом создание <code>MediaElementAudioSourceNode</code> перенапрявляет вывод аудио-потока из медиа-элемента в данный объект. Остальное поведение медиа-элемента при этом не изменяется. Стоит отметить 2 вещи:</p>
+<ul>
+<li>у медиа-элемента по прежнему работают функции изменения громкости. Для целей воспроизведения это может не иметь особого значения, но если требуется проводить анализ сигнала лучше всего выставить медиа-элементу максимальную громкость, а итоговую громкость на выходе регулировать с помощью GainNode (об этом ещё будет рассказано позднее)</li>
+<li>Web Audio API требует специальных прав на получение данных из медиа-элемента. Если трек загружается с другого сервера, то для корректной работы <code>MediaElementAudioSourceNode</code> требуется, чтобы у медиа-элемента был выставлен параметр <code>crossOrigin</code> и в ответах сервера приходил корректный заголовок <code>Access-Control-Allow-Access</code>. В противном случае этот элемент будет нельзя использовать в качестве источника данных для Web Audio API.</li>
 </ul>
-<h3>Запуск воспроизведения</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.play(src).then(function() {
-      console.log(&quot;Воспроизведение успешно началось&quot;);
-    }, function(err) {
-      console.error(&quot;Не удалось начать воспроизведенние&quot;, err);
-    });</code></pre><h3>Управление воспроизведением</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.pause(); // пауза
-    audioPlayer.resume(); // продолжение воспроизведения
-    audioPlayer.stop(); // остановка воспроизведения и загрузки трека
+<h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode">MediaStreamAudioSourceNode</a></h3><p>Данный элемент представляет из себя источник сигнала, источником данных которого является аудио-вход или любой другой источник настроенный в системе или браузере пользователя. Этот элемент создаётся с помощью метода <code>AudioContext#createMediaStreamSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaStreamSource">doc</a>), который принимает в качестве единственного параметра медиа-поток, получаемый из метода <code>navigator#getUserMedia</code>. Основное применение данного источника - использование микрофона или линейного входа в качестве источника аудио-данных.</p>
+<h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode">AudioBufferSourceNode</a></h3><p>Данный элемент представляет из себя источник сигнала, источником данных которого является <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer">AudioBuffer</a>. Это пожалуй самый интересный тип источников сигнала, т.к. он предоставляет те возможности, которые отсутсвуют у медиа-элементов. С помощью аудио-буфера можно формировать любой сигнал непосредственно в браузере (например таким образом это делается здесь <a href="http://wavepot.com/">wavepot.com</a>). Данный источник создаётся с помощью метода <code>AudioContext#createBufferSource</code>. В отличие от предыдущих источников, в конструктор этого не передаётся элемент буфера, он устанавливается вручную после создания элемента (например <code>audioBufferSource.buffer = audioBuffer</code>).</p>
+</article>
 
-    console.log(&quot;Ссылка на текущий трек&quot;, audioPlayer.getSrc());
-    console.log(&quot;Длительность трека&quot;, audioPlayer.getDuration());
-    console.log(&quot;Текущая позиция воспроизведения&quot;, audioPlayer.getPosition());
-    console.log(&quot;Длительность загруженной части&quot;, audioPlayer.getLoaded());
-    console.log(&quot;Время воспроизведения трека&quot;, audioPlayer.getPlayed());
-
-    console.log(&quot;Новая позиция воспроизведения&quot;, audioPlayer.setPosition(position));</code></pre><h3>Прослушивание событий</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.on(ya.music.Audio.EVENT_STATE, function(state) {
-      switch(state) {
-        case ya.music.Audio.STATE_INIT: console.log(&quot;Инициализация плеера&quot;); break;
-        case ya.music.Audio.STATE_IDLE: console.log(&quot;Плеер готов и ожидает&quot;); break;
-        case ya.music.Audio.STATE_PLAYING: console.log(&quot;Плеер проигрывает музыку&quot;); break;
-        case ya.music.Audio.STATE_PAUSED: console.log(&quot;Плеер поставлен на паузу&quot;); break;
-        case ya.music.Audio.STATE_CRASHED: console.log(&quot;Не удалось инициализировать плеер&quot;); break;
-      }
-    });
-
-    var logEvent = function(text) { return function(data) { console.log(text, data); }; };
-    audioPlayer.on(ya.music.Audio.EVENT_PLAY, logEvent(&quot;Плеер начал воспроизведение трека&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_STOP, logEvent(&quot;Остановка воспроизведения&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_PAUSE, logEvent(&quot;Пауза воспроизведения&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, logEvent(&quot;Обновление позиции воспроизведения&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_ENDED, logEvent(&quot;Воспроизведение трека завершено&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_LOADING, logEvent(&quot;Трек начал загружаться&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_LOADED, logEvent(&quot;Трек загружен полностью&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_VOLUME, logEvent(&quot;Изменение громкости&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при воспроизведении&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_CRASHED, logEvent(&quot;Крах инициализации&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_SWAP, logEvent(&quot;Переключение между текущим и предзагруженным треком&quot;));</code></pre><h3>Прелоадер</h3><p>В большинство команд управления можно передать вторым аргументом <code>1</code>, чтобы они применялись к прелоадеру вместо текущего плеера.
-Для прослушивания событий плероадера следует использовать префикс <code>ya.music.Audio.PRELOADER_EVENT</code></p>
-<pre class="prettyprint source lang-javascript"><code>    //Следует обратить внимание, что обещание разрешается, когда трек начал загружаться, а не когда загрузился
-    audioPlayer.preload(src).then(function() {
-        console.log(&quot;Началась предзагрузка трека&quot;);
-    }, function(err) {
-        console.error(&quot;Ну удалось начать загрузку трека&quot;, err);
-    });
-
-    audioPlayer.playPreloaded().then(function() {
-        console.log(&quot;Воспроизведение успешно началось&quot;);
-    }, function(err) {
-        console.error(&quot;Не удалось начать воспроизведенние&quot;, err);
-    });
-
-    audioPlayer.stop(1); // остановка загрузки трека
-
-    console.log(&quot;Ссылка на текущий трек&quot;, audioPlayer.getSrc(1));
-    console.log(&quot;Длительность трека&quot;, audioPlayer.getDuration(1));
-    console.log(&quot;Длительность загруженной части&quot;, audioPlayer.getLoaded(1));
-
-    //Два похожих метода, но 1 является сахаром для audioPlayer.getSrc(1) == src, а 2 проверяет успех начала загрузки
-    console.log(&quot;Трек &quot; + (audioPlayer.isPreloading(src) ? &quot;загружается/ожидает загрузки&quot; : &quot;не загружается&quot;));
-    console.log(&quot;Трек &quot; + (audioPlayer.isPreloaded(src) ? &quot;начал загружаться&quot; : &quot;не загружается&quot;));
-
-    var logEvent = function(text) { return function(data) { console.log(text, data); }; };
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_STOP, logEvent(&quot;Остановка загрузки&quot;));
-
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_PROGRESS, logEvent(&quot;Процесс загрузки&quot;));
-
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_LOADING, logEvent(&quot;Трек начал загружаться&quot;));
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_LOADED, logEvent(&quot;Трек загружен полностью&quot;));
-
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при загрузке&quot;));</code></pre><h3>Документация</h3><ul>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/">Справочник API</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-quick-start.html">Быстрый старт</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-corner-case.html">Подводные камни</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-sound.html">Полезная теоретическая информация</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-web-audio-api.html">Web Audio API</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-contrib.html">Инструкции для контрибьюторов</a></li>
-</ul></article>
-    </section>
-
-
-
-
+</section>
 
 
         
