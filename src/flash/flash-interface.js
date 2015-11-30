@@ -14,6 +14,7 @@ var logger = new Logger('FlashInterface');
  * @private
  */
 var FlashInterface = function(flash) {
+    //FIXME: нужно придумать нормальный метод экспорта
     this.flash = ya.music.Audio._flash = flash;
 };
 
