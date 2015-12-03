@@ -673,24 +673,24 @@
 <p>У Web Audio API стоит выделить 3 основных аспекта, которые особо не пересекаются и их можно рассматривать отдельно:</p>
 <ul>
 <li>возможности работы с различными источниками сигнала</li>
-<li>возможности по цифровой обработке сигнала</li>
 <li>возможности по анализу сигнала</li>
+<li>возможности по цифровой обработке сигнала</li>
 </ul>
 <h2>Источники сигнала</h2><p>Web Audio API работает с цифровыми сигналами, которые могут быть получены из самых разных источников или созданы непосредственно с помощью скриптов. Элементы Web Audio API, которые могут генерировать некий сигнал будем называть источниками сигнала, а любые посторониие объекты, которые могут быть использованы для генерации этого сигнала будем называть источниками данных.</p>
 <p>В отличие от медиа-элементов у Web Audio API нет методов получения данных по сети или из файловой системы. Вместо этого есть 3 типа источников данных, которые позволяют решать проблему получения данных самыми разнообразными способами, которые не доступны медиа-элементам.</p>
 <h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode">MediaElementAudioSourceNode</a></h3><p>Начнём с самого простого. Источником данных этого элемента является <code>&lt;audio&gt;</code> или <code>&lt;video&gt;</code> элемент. </p>
-<p>Фабрика <code>AudioContext#createMediaElementSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaElementSource">doc</a>) принимает в качестве единственного параметра медиа-элемент (<code>&lt;audio&gt;</code> или <code>&lt;video&gt;</code>). При этом создание <code>MediaElementAudioSourceNode</code> перенапрявляет вывод аудио-потока из медиа-элемента в данный объект. Остальное поведение медиа-элемента при этом не изменяется. </p>
+<p>Фабрика <code>AudioContext#createMediaElementSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaElementSource">man</a>) принимает в качестве единственного параметра медиа-элемент (<code>&lt;audio&gt;</code> или <code>&lt;video&gt;</code>). При этом создание <code>MediaElementAudioSourceNode</code> перенапрявляет вывод аудио-потока из медиа-элемента в данный объект. Остальное поведение медиа-элемента при этом не изменяется. </p>
 <p>Стоит отметить 2 вещи:</p>
 <ul>
 <li>у медиа-элемента по прежнему работают функции изменения громкости. Для целей воспроизведения это может не иметь особого значения, но если требуется проводить анализ сигнала лучше всего выставить медиа-элементу максимальную громкость, а итоговую громкость на выходе регулировать с помощью GainNode (об этом ещё будет рассказано позднее)</li>
-<li>Web Audio API требует специальных прав на получение данных из медиа-элемента. Если трек загружается с другого сервера, то для корректной работы <code>MediaElementAudioSourceNode</code> требуется, чтобы у медиа-элемента был выставлен параметр <code>crossOrigin</code> и в ответах сервера приходил корректный заголовок <code>Access-Control-Allow-Access</code>. В противном случае этот элемент будет нельзя использовать в качестве источника данных для Web Audio API.</li>
+<li>Web Audio API требует специальных прав на получение данных из медиа-элемента. Если трек загружается с другого сервера, то для корректной работы <code>MediaElementAudioSourceNode</code> требуется, чтобы у медиа-элемента был выставлен параметр <code>crossOrigin</code> и в ответах сервера приходил корректный заголовок <code>Access-Control-Allow-Access</code>. В противном случае этот элемент нельзя будет использовать в качестве источника данных для Web Audio API.</li>
 </ul>
 <h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode">MediaStreamAudioSourceNode</a></h3><p>Источником данных этого элемента является аудио-вход или любой другой источник настроенный в системе или браузере пользователя. </p>
-<p>Фабрика <code>AudioContext#createMediaStreamSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaStreamSource">doc</a>) принимает в качестве единственного параметра медиа-поток, получаемый из метода <code>navigator#getUserMedia</code>. Основное применение данного источника - использование микрофона или линейного входа в качестве источника аудио-данных. Тут вроде подводных камней нет.</p>
+<p>Фабрика <code>AudioContext#createMediaStreamSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaStreamSource">man</a>) принимает в качестве единственного параметра медиа-поток, получаемый из метода <code>MediaDevices.getUserMedia</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">man</a>). Основное применение данного источника - использование микрофона или линейного входа в качестве источника аудио-данных. Тут вроде подводных камней нет.</p>
 <h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode">AudioBufferSourceNode</a></h3><p>Источником данных этого элемента является <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer">AudioBuffer</a>. Это пожалуй самый интересный тип источников сигнала, т.к. он предоставляет те возможности, которые отсутсвуют у медиа-элементов. С помощью аудио-буфера можно формировать любой сигнал непосредственно в браузере (например таким образом это делается здесь <a href="http://wavepot.com/">wavepot.com</a>). </p>
-<p>Фабрика <code>AudioContext#createBufferSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createBufferSource">doc</a>) в отличие от предыдущих источников не принимает элемент буфера в качестве аргумента - он устанавливается вручную после создания элемента (например <code>audioBufferSource.buffer = audioBuffer</code>).</p>
+<p>Фабрика <code>AudioContext#createBufferSource</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createBufferSource">man</a>) в отличие от предыдущих источников не принимает элемент буфера в качестве аргумента - он устанавливается вручную после создания элемента (например <code>audioBufferSource.buffer = audioBuffer</code>).</p>
 <p>AudioBuffer может быть сформирован множеством разных способов. </p>
-<p>Самый банальный метод - непосредственное создание и заполнение этого буфера. Конструктор <code>AudioContext#createBuffer</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createBuffer">doc</a>) принимает 3 параметра:</p>
+<h4>Непосредственное создание и заполнение буфера</h4><p>Самый банальный метод - непосредственное создание и заполнение этого буфера. Конструктор <code>AudioContext#createBuffer</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createBuffer">man</a>) принимает 3 параметра:</p>
 <ul>
 <li>количество каналов</li>
 <li>количество семплов</li>
@@ -701,21 +701,73 @@
 var samples = 22050; // 0.5 sec
 var sampleRate = 44100;
 
-audioContext.createBuffer(channels, samples, sampleRate);
+var audioBuffer = audioContext.createBuffer(channels, samples, sampleRate);
 
 var i, channel, channelData;
 for (channel = 0; channel &lt; channels; channel++) {
-    channelData = audioContext.getChannelData(channel);
+    channelData = audioBuffer.getChannelData(channel);
 
     for (i = 0; i &lt; samples; i++) {
         channelData[i] = Math.random() * 2 - 1;
     }
-}</code></pre><p>Также можно создать буфер из сжатых аудио-данных. Для этого используется метод <code>AudioContext#decodeAudioData</code>. Он принимает 2 параметра:</p>
+}</code></pre><h4>Декодирование сжатых аудио-данных</h4><p>Также можно создать буфер из сжатых аудио-данных. Для этого используется метод <code>AudioContext#decodeAudioData</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/decodeAudioData">man</a>). Он принимает 2 параметра:</p>
 <ul>
 <li>сжатые аудио-данные</li>
 <li>обработчик в который будет передан объект <code>AudioBuffer</code> с декодированными данными</li>
 </ul>
 <p>Благодаря этому методу можно не только вручную контролировать процесс загрузки данных, но и допустим сохранять их в localStorage (для больших файлов не подойдёт, но короткий &quot;блямк&quot; вполне можно сохранить). Однако стоит помнить про то, что буфер содержит несжатые данные. Каждый семпл в каждом канале - это 32 битное число с плавающей точкой, так что 5 минутный стерео-трек займёт 106 мегабайт памяти. Так что если вы решите загрузить целиком 9 симфонию Бетховена (длительность аудио-диска 74 минуты - длительность этой симфонии), то она займёт 783 мегабайта в моно-режиме и 1,5 гигабайта в стерео.</p>
+<h4>Использование <a href="https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext">OfflineAudioContext</a></h4><p>Самый нетривиальный метод создания аудио-буффера. Элемент <code>OfflineAudioContext</code> работает примерно также как обычный <code>AudioContext</code>, но вместо вывода аудио-потока на устройства воспроизведения, он рассчитывает аудио-буфер. Конструктор принимает те же параметры что и <code>AudioContext#createBuffer</code>. </p>
+<p>Фактически данный элемент позволяет произвести необходимые преобразования звука заранее, а затем многократно переиспользовать полученный аудио-буфер вместо повторных вычислений в рантайме. Возможности по формированию и обработке сигнала в данном случае ограничены только воображением.</p>
+<h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode">OscillatorNode</a></h3><p>Этот элемент - самый простой и логичный генератор сигналов. Он просто генерирует периодический сигнал с заданной частотой. Форму волны при этом можно задавать указывая один из заранее заданных <a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/type">типов</a> или с помощью элементов <code>PeriodicWave</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/PeriodicWave">man</a>).</p>
+<p>Фабрика <code>AudioContext#createOscillator</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createOscillator">man</a>) не принимает аргументов. Вся настройка происходит уже после создания. (Например <code>oscillator.frequency.value = 3000</code>).</p>
+<p><code>PeriodicWave</code> - является элементом, описывающим форму некоторой периодически повторяющейся волны. Форма волны задаётся с помощью коэффициентов для обратного Быстрого Преобразование Фурье. Максимальное колличество коэфициентов = 4096</p>
+<p>Фабрика <code>AudioContext#createPeriodicWave</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createPeriodicWave">man</a>) принимает 3 аргумента:</p>
+<ul>
+<li>массив коэффициентов для обратного Быстрого Преобразования Фурье (действительная часть)</li>
+<li>массив коэффициентов для обратного Быстрого Преобразования Фурье (мнимая часть)</li>
+<li>опциональный объект <code>{disableNormalization: true}</code>, отключающий нормализацию волны</li>
+</ul>
+<p>Чтобы понять как разные коэфициенты влияют на форму волны можно посмотреть данную <a href="https://www.desmos.com/calculator/lmzpimpbou">демонстрацию</a>. Под графиком расположены 8 контрольных точек, которые можно передвигать чтобы изменять коэффициенты. По оси x отсчитывается действительная часть коэффициента, по оси y - мнимая. Графики отображают действительную и мнимую часть волны после обратного Преобразования Фурье.</p>
+<p>Стоит учитывать однако, что вне зависимости от количеста коэффициентов, которые будут переданы в фабрику общее количество отсчётов, которое будет использовано для обратного преобразования будет равно 4096. <strong>ТРЕБУЕТСЯ ПЕРЕПРОВЕРИТЬ ПРАВИЛЬНО ЛИ Я РАЗОБРАЛСЯ В КОДЕ</strong></p>
+<h2>Анализ сигнала</h2><p>Для анализа данных аудио-потока можно использовать 2 различных подхода:</p>
+<ul>
+<li>анализ данных непосредственно из аудио-буффера (Web Audio API в этом нам не помощник, оно только предоставит массив данных - дальше нужно самостоятельно описывать функции обработки этих данных)</li>
+<li>анализ данных с помощью <code>AnalyserNode</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode">man</a>)</li>
+</ul>
+<h3>AudioBuffer</h3><p>Я не буду здесь расписывать каким образом можно использовать данные аудио-буфера, т.к. это не относится к Web Audio API напрямую. Получить данные любого канала можно с помощью методов <code>AudioBuffer#getChannelData</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer/getChannelData">man</a>) и <code>AudioBuffer#copyFromChannel</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer/copyFromChannel">man</a>)</p>
+<h3><a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode">AnalyzerNode</a></h3><p>Данный элемент используется для анализа данных аудио-потока в реальном времени. </p>
+<p>Фабрика <code>AudioContext#createAnalyser</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createAnalyser">man</a>) не принимает никаких аргументов. Все настройки осуществляются после создания элемента. (Например <code>analyser.fftSize = 2048;</code>)</p>
+<p>Фактически данный элемент содержит в себе буффер данных, который заполняется по мере воспроизведения потока. К этому буферу применяется Быстрое Преобразование Фурье. Данные преобразования можно получить с помощью методов <code>AnalyserNode#getFloatFrequencyData</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatFrequencyData">man</a>, передаёт данные в Float32Array) и <code>AnalyserNode#getByteFrequencyData</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData">man</a>, передаёт данные в Uint8Array). Данные анализируемого буфера можно получить с помощью методов <code>AnalyserNode#getFloatTimeDomainData</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatTimeDomainData">man</a>, передаёт данные в Float32Array) и <code>AnalyserNode#getByteTimeDomainData</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteTimeDomainData">man</a>, передаёт данные в Uint8Array).</p>
+<h3>Быстрое Преобразование Фурье</h3><p>В статье про <a href="https://github.yandex-team.ru/pages/music/audio/tutorial-sound.html">теорию звука</a> я постарался избежать описания данного алгоритма, но здесь стоит о нём рассказать, чтобы было понятно для чего он нужен и какие данные с помощью него можно получить.</p>
+<h2>Материалы</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</a></li>
+<li>Источники сигнала<ul>
+<li>Медиа-элементы<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode">MediaElementAudioSourceNode</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaElementSource">AudioContext#createMediaElementSource</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a></li>
+</ul>
+</li>
+<li>Устройства ввода<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode">MediaStreamAudioSourceNode</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaElementSource">AudioContext#createMediaStreamSource</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">MediaDevices.getUserMedia</a></li>
+</ul>
+</li>
+<li>Аудио-буфер<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode">AudioBufferSourceNode</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createBufferSource">AudioContext#createBufferSource</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer">AudioBuffer</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createBuffer">AudioContext#createBuffer</a></li>
+<li><a href="http://wavepot.com/">wavepot.com</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/decodeAudioData">AudioContext#decodeAudioData</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext">OfflineAudioContext</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </article>
 
 </section>
