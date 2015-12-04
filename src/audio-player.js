@@ -562,6 +562,8 @@ AudioPlayer.prototype.restart = function() {
 
     this._generatePlayId();
     this.setPosition(0);
+    this._played = 0;
+    this._lastSkip = 0;
     return this.resume();
 };
 
