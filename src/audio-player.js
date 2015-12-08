@@ -2,6 +2,7 @@ var Logger = require('./logger/logger');
 var logger = new Logger('AudioPlayer');
 
 var Events = require('./lib/async/events');
+var Promise = require('./lib/async/promise');
 var Deferred = require('./lib/async/deferred');
 var detect = require('./lib/browser/detect');
 var config = require('./config');
