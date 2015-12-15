@@ -353,6 +353,7 @@ img {
   display: block;
   max-width: 800px;
 }
+
 img.image__inline {
   display: inline-block;
 }
