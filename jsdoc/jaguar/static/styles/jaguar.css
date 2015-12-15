@@ -353,8 +353,18 @@ img {
   display: block;
   max-width: 800px;
 }
+
 img.image__inline {
   display: inline-block;
+}
+
+.main a:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e144";
+  vertical-align: middle;
+  font-size: 12px;
+  margin-left: 5px;
+  font-weight: normal;
 }
 
 @media (max-width: 900px) {
