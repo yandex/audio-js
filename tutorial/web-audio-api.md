@@ -370,5 +370,14 @@ Allpass отличается ото всех остальных - он не ме
 Материалы
 ---------
 
+  * [HTML5 Audio W3C](http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element)
   * [Документация Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
   * [Видео про WaveShaper](https://www.youtube.com/embed/SMaJ-MHyZE0?rel=0)
+  * [Быстрое преобразование Фурье](http://habrahabr.ru/post/196374/), [вики](https://ru.wikipedia.org/wiki/Быстрое_преобразование_Фурье), [wiki](https://en.wikipedia.org/wiki/Fast_Fourier_transform)
+  * [Вейвшейпер](http://wikisound.org/Waveshaper)
+  * [Дисторшн](https://ru.wikipedia.org/wiki/Дисторшн)
+  * [Овердрайв](https://ru.wikipedia.org/wiki/Овердрайв_%28звуковой_эффект%29)
+  * [Фузз](https://ru.wikipedia.org/wiki/Фузз_%28эффект%29)
+  * [Реверберации](https://ru.wikipedia.org/wiki/Реверберация)
+  * [Свёртка](https://ru.wikipedia.org/wiki/Свёртка_%28математический_анализ%29)
+  * [Эквалайзер](https://ru.wikipedia.org/wiki/Эквалайзер)

@@ -891,8 +891,17 @@ oscillator.connect(analyzer);</code></pre><h3><a href="https://developer.mozilla
 </ul>
 <p>Стоит отметить, что метод <code>AudioListener#setPosition(x, y, z)</code> и свойства <code>AudioListener#speedOfSound</code> и <code>AudioListener#dopplerFactor</code> в настоящий момент значатся как устаревшие в связи с большим количеством проблем в реализации рассчётов эффекта Доплера. Судя по всему дальнейшем рассчёт эффекта Доплера собираются вовсе убрать из Web Audio API (по крайней мере я не нашёл методов которыми заменят данный функционал). Также исключение метода <code>AudioListener#setPosition(x, y, z)</code> означает, что в будущем придётся все рассчёты придётся вести в системе кординат связанной со слушателем. При этом центр системы координат будет совпадать с позицией слушателя, в то время как ориентация системы будет незавимиса и совпадать с ориентацией глобальной системы координат - слушатель может иметь произвольную ориентацию в данной системе (однако никто не мешает установить для слушателя фиксированные вектора ориентацмии и вести все рассчёты в системе координат полностью связанной со слушателем, как это обычно делается в 3D-графике)</p>
 <h2>Материалы</h2><ul>
+<li><a href="http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element">HTML5 Audio W3C</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Документация Web Audio API</a></li>
 <li><a href="https://www.youtube.com/embed/SMaJ-MHyZE0?rel=0">Видео про WaveShaper</a></li>
+<li><a href="http://habrahabr.ru/post/196374/">Быстрое преобразование Фурье</a>, <a href="https://ru.wikipedia.org/wiki/Быстрое_преобразование_Фурье">вики</a>, <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">wiki</a></li>
+<li><a href="http://wikisound.org/Waveshaper">Вейвшейпер</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/Дисторшн">Дисторшн</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/Овердрайв_%28звуковой_эффект%29">Овердрайв</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/Фузз_%28эффект%29">Фузз</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/Реверберация">Реверберации</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/Свёртка_%28математический_анализ%29">Свёртка</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/Эквалайзер">Эквалайзер</a></li>
 </ul>
 </article>
 
