@@ -669,9 +669,9 @@
 </header>
 
 <article>
-    <h1>Быстрый старт</h1><p>Данное руководство поможет разобраться с тем, как пользоваться данной библиотекой на примере создания простого плеера.</p>
+    <h1>Быстрый старт</h1><p>В данном разделе на примере создания простого плеера проиллюстрированы основные принципы работы с YandexAudio. </p>
 <p>Для начала создадим html каркас будущего плеера. Нам понадобятся кнопки play, шкала с позицией воспроизведения 
-и шкала громкости. Также для инициализации флеш-плеера, отображения ошибок и блокировки управления потребуется оверлей.</p>
+и шкала громкости. Также для инициализации flash-плеера, отображения ошибок и блокировки управления потребуется оверлей.</p>
 <p><strong><em>index.html</em></strong></p>
 <pre class="prettyprint source lang-html"><code>&lt;div class=&quot;player&quot;>
     &lt;div class=&quot;controls&quot;>
@@ -691,7 +691,7 @@
 &lt;/div>
 
 &lt;script src=&quot;https://github.yandex-team.ru/pages/music/audio/dist/index.min.js&quot;>&lt;/script>
-&lt;script src=&quot;index.js&quot;>&lt;/script></code></pre><p>Теперь инициализируем всю эту структуру и создадим экземпляр плеера</p>
+&lt;script src=&quot;index.js&quot;>&lt;/script></code></pre><p>Теперь инициализируем всю эту структуру и создадим экземпляр плеера.</p>
 <p><strong><em>index.js</em></strong></p>
 <pre class="prettyprint source lang-javascript"><code>var AudioPlayer = ya.music.Audio;
 
@@ -714,7 +714,7 @@ var dom = {
     overlay: document.querySelector(&quot;.overlay&quot;)
 };
 
-// Предоставим плееру самому решать какой тип реализации использовать
+// Предоставим плееру самому решать, какой тип реализации использовать
 var audioPlayer = new AudioPlayer(null, dom.overlay);
 
 audioPlayer.initPromise().then(function() {
@@ -724,19 +724,19 @@ audioPlayer.initPromise().then(function() {
     // Показываем ошибку инициализации в оверлее
     dom.overlay.innerHTML = err.message;
     dom.overlay.classList.add(&quot;overlay_error&quot;);
-});</code></pre><p>Настроим отображение статуса плеера. Для простого плеера нам достаточно знать запущено воспроизведение или нет.</p>
+});</code></pre><p>Настроим отображение статуса плеера. Для простого плеера нам достаточно знать, запущено воспроизведение или нет.</p>
 <pre class="prettyprint source lang-javascript"><code>audioPlayer.on(ya.music.Audio.EVENT_STATE, function(state) {
     if (state === ya.music.Audio.STATE_PLAYING) {
         dom.player.classList.add(&quot;player_playing&quot;);
     } else {
         dom.player.classList.remove(&quot;player_playing&quot;);
     }
-});</code></pre><p>Теперь настроим обновление прогресс-бара. В нём предусмотрены 2 шкалы - шкала загрузки и шкала текущей 
+});</code></pre><p>Теперь настроим обновление прогресс-бара. В нем предусмотрены две шкалы - шкала загрузки и шкала текущей 
 позиции воспроизведения.</p>
 <pre class="prettyprint source lang-javascript"><code>audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, function(timings) {
     dom.progress.loaded.style.width = (timings.loaded / timings.duration * 100).toFixed(2) + &quot;%&quot;; 
     dom.progress.current.style.width = (timings.position / timings.duration * 100).toFixed(2) + &quot;%&quot;; 
-});</code></pre><p>Аналогично будет работать шкала громкости</p>
+});</code></pre><p>Аналогично будет работать шкала громкости.</p>
 <pre class="prettyprint source lang-javascript"><code>var updateVolume = function(volume) {
     dom.volume.value.style.height = (volume * 100).toFixed(2) + &quot;%&quot;;
 };
@@ -745,7 +745,7 @@ audioPlayer.on(ya.music.Audio.EVENT_VOLUME, updateVolume);
 // Отображаем начальную громкость
 audioPlayer.initPromise().then(function() {
     updateVolume(audioPlayer.getVolume());
-});</code></pre><p>Теперь нужно настроить взаимодействие с пользователем. Начнём с запуска воспроизведения.</p>
+});</code></pre><p>Теперь нужно настроить взаимодействие плеера с пользователем. Начнем с запуска воспроизведения.</p>
 <pre class="prettyprint source lang-javascript"><code>var trackUrls = [
     &quot;http://some.domain.and.zone/Здесь-могла-быть-ваша-реклама-1.mp3&quot;,
     &quot;http://some.domain.and.zone/Здесь-могла-быть-ваша-реклама-2.mp3&quot;,
@@ -783,7 +783,7 @@ audioPlayer.on(ya.music.Audio.EVENT_ENDED, function() {
         startPlay();
     }
 });</code></pre><p>Добавим немножко удобства для пользователей: сделаем автозагрузку следующего трека после того, как текущий загрузился.
-Для этого потребуется немного изменить функцию <code>startPlay</code> и отслеживать момент загрузки трека</p>
+Для этого потребуется немного изменить функцию <code>startPlay</code> и отслеживать момент загрузки трека:</p>
 <pre class="prettyprint source lang-javascript"><code>var startPlay = function() {
     var track = trackUrls[trackIndex];
     if (audioPlayer.isPreloaded(track)) {
