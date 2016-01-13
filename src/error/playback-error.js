@@ -9,7 +9,6 @@ var ErrorClass = require('../lib/class/error-class');
  *
  * @extends Error
  *
- * @enum {String}
  * @constructor
  */
 var PlaybackError = function(message, src) {
