@@ -70,25 +70,25 @@ setTimeout(function() {
 
 // =================================================================
 
-/** Событие начала воспроизведения ({@link ya.music.Audio.EVENT_PLAY})
- * @event ya.music.Audio#play
+/** Событие начала воспроизведения
+ * @event ya.music.Audio#EVENT_PLAY
  */
-/** Событие завершения воспроизведения ({@link ya.music.Audio.EVENT_ENDED})
- * @event ya.music.Audio#ended
+/** Событие завершения воспроизведения
+ * @event ya.music.Audio#EVENT_ENDED
  */
-/** Событие изменения громкости ({@link ya.music.Audio.EVENT_VOLUME})
- * @event ya.music.Audio#volumechange
+/** Событие изменения громкости
+ * @event ya.music.Audio#EVENT_VOLUME
  * @param {Number} volume - громкость
  */
-/** Событие краха плеера ({@link ya.music.Audio.EVENT_CRASHED})
- * @event ya.music.Audio#crashed
+/** Событие краха плеера
+ * @event ya.music.Audio#EVENT_CRASHED
  */
-/** Событие смены статуса плеера ({@link ya.music.Audio.EVENT_STATE})
- * @event ya.music.Audio#state
+/** Событие смены статуса плеера
+ * @event ya.music.Audio#EVENT_STATE
  * @param {String} state - новый статус плеера
  */
-/** Событие переключения активного плеера и прелоадера ({@link ya.music.Audio.EVENT_SWAP})
- * @event ya.music.Audio#swap
+/** Событие переключения активного плеера и прелоадера
+ * @event ya.music.Audio#EVENT_SWAP
  */
 
 // =================================================================
@@ -97,24 +97,24 @@ setTimeout(function() {
 
 // =================================================================
 
-/** Событие остановки воспроизведения ({@link ya.music.Audio.EVENT_STOP})
- * @event ya.music.Audio#stop
+/** Событие остановки воспроизведения
+ * @event ya.music.Audio#EVENT_STOP
  */
-/** Событие начала воспроизведения ({@link ya.music.Audio.EVENT_PAUSE})
- * @event ya.music.Audio#pause
+/** Событие паузы воспроизведения
+ * @event ya.music.Audio#EVENT_PAUSE
  */
-/** Событие обновления позиции воспроизведения/загруженной части ({@link ya.music.Audio.EVENT_PROGRESS})
- * @event ya.music.Audio#progress
+/** Событие обновления позиции воспроизведения/загруженной части
+ * @event ya.music.Audio#EVENT_PROGRESS
  * @param {ya.music.Audio~AudioPlayerTimes} times - информация о временных данных трека
  */
-/** Событие начала загрузки трека ({@link ya.music.Audio.EVENT_LOADING})
- * @event ya.music.Audio#loading
+/** Событие начала загрузки трека
+ * @event ya.music.Audio#EVENT_LOADING
  */
-/** Событие завершения загрузки трека ({@link ya.music.Audio.EVENT_LOADED})
- * @event ya.music.Audio#loaded
+/** Событие завершения загрузки трека
+ * @event ya.music.Audio#EVENT_LOADED
  */
-/** Событие ошибки воспроизведения ({@link ya.music.Audio.EVENT_ERROR})
- * @event ya.music.Audio#error
+/** Событие ошибки воспроизведения
+ * @event ya.music.Audio#EVENT_ERROR
  */
 
 // =================================================================
@@ -123,24 +123,21 @@ setTimeout(function() {
 
 // =================================================================
 
-/** Событие остановки воспроизведения ({@link ya.music.Audio.EVENT_STOP})
- * @event ya.music.Audio#preloader:stop
+/** Событие остановки воспроизведения
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_STOP
  */
-/** Событие начала воспроизведения ({@link ya.music.Audio.EVENT_PAUSE})
- * @event ya.music.Audio#preloader:pause
- */
-/** Событие обновления позиции воспроизведения/загруженной части ({@link ya.music.Audio.EVENT_PROGRESS})
- * @event ya.music.Audio#preloader:progress
+/** Событие обновления позиции загруженной части
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_PROGRESS
  * @param {ya.music.Audio~AudioPlayerTimes} times - информация о временных данных трека
  */
-/** Событие начала загрузки трека ({@link ya.music.Audio.EVENT_LOADING})
- * @event ya.music.Audio#preloader:loading
+/** Событие начала загрузки трека
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_LOADING
  */
-/** Событие завершения загрузки трека ({@link ya.music.Audio.EVENT_LOADED})
- * @event ya.music.Audio#preloader:loaded
+/** Событие завершения загрузки трека
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_LOADED
  */
-/** Событие ошибки воспроизведения ({@link ya.music.Audio.EVENT_ERROR})
- * @event ya.music.Audio#preloader:error
+/** Событие ошибки воспроизведения
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_ERROR
  */
 
 // =================================================================
@@ -158,26 +155,25 @@ setTimeout(function() {
  * @extends Events
  * @mixes AudioStatic
  *
- * @fires ya.music.Audio#play
- * @fires ya.music.Audio#ended
- * @fires ya.music.Audio#volumechange
- * @fires ya.music.Audio#crashed
- * @fires ya.music.Audio#state
- * @fires ya.music.Audio#swap
+ * @fires ya.music.Audio#EVENT_PLAY
+ * @fires ya.music.Audio#EVENT_ENDED
+ * @fires ya.music.Audio#EVENT_VOLUME
+ * @fires ya.music.Audio#EVENT_CRASHED
+ * @fires ya.music.Audio#EVENT_STATE
+ * @fires ya.music.Audio#EVENT_SWAP
  *
- * @fires ya.music.Audio#stop
- * @fires ya.music.Audio#pause
- * @fires ya.music.Audio#progress
- * @fires ya.music.Audio#loading
- * @fires ya.music.Audio#loaded
- * @fires ya.music.Audio#error
+ * @fires ya.music.Audio#EVENT_STOP
+ * @fires ya.music.Audio#EVENT_PAUSE
+ * @fires ya.music.Audio#EVENT_PROGRESS
+ * @fires ya.music.Audio#EVENT_LOADING
+ * @fires ya.music.Audio#EVENT_LOADED
+ * @fires ya.music.Audio#EVENT_ERROR
  *
- * @fires ya.music.Audio#preloader:stop
- * @fires ya.music.Audio#preloader:pause
- * @fires ya.music.Audio#preloader:progress
- * @fires ya.music.Audio#preloader:loading
- * @fires ya.music.Audio#preloader:loaded
- * @fires ya.music.Audio#preloader:error
+ * @fires ya.music.Audio#PRELOADER_EVENT+EVENT_STOP
+ * @fires ya.music.Audio#PRELOADER_EVENT+EVENT_PROGRESS
+ * @fires ya.music.Audio#PRELOADER_EVENT+EVENT_LOADING
+ * @fires ya.music.Audio#PRELOADER_EVENT+EVENT_LOADED
+ * @fires ya.music.Audio#PRELOADER_EVENT+EVENT_ERROR
  *
  * @constructor
  */
@@ -311,20 +307,20 @@ AudioPlayer.prototype._init = function(retry) {
         audioTypes.html5,
         audioTypes.flash
     ].sort(function(a, b) {
-            if (a.available !== b.available) {
-                return a.available ? -1 : 1;
-            }
+        if (a.available !== b.available) {
+            return a.available ? -1 : 1;
+        }
 
-            if (a.AudioImplementation.type === this.preferredType) {
-                return -1;
-            }
+        if (a.AudioImplementation.type === this.preferredType) {
+            return -1;
+        }
 
-            if (b.AudioImplementation.type === this.preferredType) {
-                return 1;
-            }
+        if (b.AudioImplementation.type === this.preferredType) {
+            return 1;
+        }
 
-            return b.priority - a.priority;
-        }.bind(this));
+        return b.priority - a.priority;
+    }.bind(this));
 
     var self = this;
 
@@ -466,10 +462,10 @@ AudioPlayer.prototype._populateEvents = function(event, offset, data) {
 // =================================================================
 
 /*
-INFO: данный метод было решено оставить, т.к. это удобнее чем использовать обещание - есть возможность в начале
-инициализации получить сразу ссылку на экземпляр плеера и обвешать его обработчиками событий. Плюс к тому при
-таком подходе реинициализацию делать проще - при ней не придётся переназначать обработчики и обновлять везде ссылку
-на текущий экземпляр плеера.
+ INFO: данный метод было решено оставить, т.к. это удобнее чем использовать обещание - есть возможность в начале
+ инициализации получить сразу ссылку на экземпляр плеера и обвешать его обработчиками событий. Плюс к тому при
+ таком подходе реинициализацию делать проще - при ней не придётся переназначать обработчики и обновлять везде ссылку
+ на текущий экземпляр плеера.
  */
 /**
  * Возвращает обещание, разрешающееся после завершения инициализации.
