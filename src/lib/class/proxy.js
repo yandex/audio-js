@@ -67,7 +67,7 @@ Proxy.exportStatic = function(from, to, exclude) {
  * @param {function} [ParentProxyClass=Proxy] - родительский класс
  * @returns {function} -- конструтор проксированного класса
  */
-Proxy.createClass = function(OriginalClass, ParentProxyClass) {
+Proxy.createClass = function(OriginalClass, ParentProxyClass, excludeStatic) {
 
     var ProxyClass = function() {
         var OriginalClassConstructor = function() {};
@@ -108,7 +108,9 @@ Proxy.createClass = function(OriginalClass, ParentProxyClass) {
         return this.__proxy;
     };
 
-    Proxy.exportStatic(OriginalClass, ProxyClass);
+    if (!excludeStatic) {
+        Proxy.exportStatic(OriginalClass, ProxyClass);
+    }
 
     return ProxyClass;
 };
