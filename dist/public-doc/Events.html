@@ -190,6 +190,33 @@
             </ul>
         </li>
     
+        <li class="item" data-name="AbortablePromise">
+            <span class="title">
+                <a href="AbortablePromise.html">AbortablePromise</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="AbortablePromise#abort"><a href="AbortablePromise.html#abort">abort</a></li>
+            
+                <li data-name="AbortablePromise#catch"><a href="AbortablePromise.html#catch">catch</a></li>
+            
+                <li data-name="AbortablePromise#then"><a href="AbortablePromise.html#then">then</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="Events">
             <span class="title">
                 <a href="Events.html">Events</a>
@@ -526,7 +553,7 @@
             
             <span class="subtitle">Events</span>
             
-                <li data-name="ya.music.Audio.fx.Equalizer#event:change"><a href="ya.music.Audio.fx.Equalizer.html#event:change">change</a></li>
+                <li data-name="ya.music.Audio.fx.Equalizer#event:EVENT_CHANGE"><a href="ya.music.Audio.fx.Equalizer.html#event:EVENT_CHANGE">EVENT_CHANGE</a></li>
             
             </ul>
         </li>
@@ -573,7 +600,7 @@
             
             <span class="subtitle">Events</span>
             
-                <li data-name="ya.music.Audio.fx.Equalizer~EqualizerBand#event:change"><a href="ya.music.Audio.fx.Equalizer-EqualizerBand.html#event:change">change</a></li>
+                <li data-name="ya.music.Audio.fx.Equalizer~EqualizerBand#event:EVENT_CHANGE"><a href="ya.music.Audio.fx.Equalizer-EqualizerBand.html#event:EVENT_CHANGE">EVENT_CHANGE</a></li>
             
             </ul>
         </li>
@@ -704,7 +731,7 @@
             
             new Events<span class="signature">()</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 16
@@ -715,7 +742,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Диспетчер событий</p>
@@ -723,11 +750,11 @@
     
 
     
+
     
+
     
-    
-    
-    
+
     
 <dl class="details">
     
@@ -753,17 +780,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -789,9 +816,9 @@
     <div class="nameContainer">
         <h4 class="name" id=".eventize">
             
-            <span class="type-signature static">static</span>Events.eventize<span class="signature">(object)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Object}</span>
+            <span class="type-signature static">static</span>eventize<span class="signature">(object)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Object}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 53
@@ -802,7 +829,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Расширить произвольный объект свойствами диспетчера событий</p>
@@ -810,9 +837,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -859,7 +886,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -885,15 +912,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -904,7 +931,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -914,9 +941,9 @@
     <div class="nameContainer">
         <h4 class="name" id=".mixin">
             
-            <span class="type-signature static">static</span>Events.mixin<span class="signature">(classConstructor)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{function}</span>
+            <span class="type-signature static">static</span>mixin<span class="signature">(classConstructor)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{function}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 43
@@ -927,7 +954,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Расширить произвольный класс свойствами диспетчера событий</p>
@@ -935,9 +962,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -984,7 +1011,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1010,15 +1037,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1029,7 +1056,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1041,7 +1068,7 @@
             
             clearListeners<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 134
@@ -1052,7 +1079,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Отписаться от всех слушателей событий</p>
@@ -1060,11 +1087,11 @@
     
 
     
+
     
+
     
-    
-    
-    
+
     
 <dl class="details">
     
@@ -1090,15 +1117,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1109,7 +1136,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1121,7 +1148,7 @@
             
             muteEvents<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 199
@@ -1132,7 +1159,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Остановить запуск событий</p>
@@ -1140,11 +1167,11 @@
     
 
     
+
     
+
     
-    
-    
-    
+
     
 <dl class="details">
     
@@ -1170,15 +1197,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1189,7 +1216,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1201,7 +1228,7 @@
             
             off<span class="signature">(event, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 86
@@ -1212,7 +1239,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Отписаться от события</p>
@@ -1220,9 +1247,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1292,7 +1319,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1318,15 +1345,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1337,7 +1364,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1349,7 +1376,7 @@
             
             on<span class="signature">(event, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 71
@@ -1360,7 +1387,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Подписаться на событие</p>
@@ -1368,9 +1395,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1440,7 +1467,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1466,15 +1493,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1485,7 +1512,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1497,7 +1524,7 @@
             
             once<span class="signature">(event, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 116
@@ -1508,7 +1535,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Подписаться на событие, отписаться сразу после первого возникновения события</p>
@@ -1516,9 +1543,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1588,7 +1615,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1614,15 +1641,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1633,7 +1660,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1645,7 +1672,7 @@
             
             pipeEvents<span class="signature">(acceptor)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 184
@@ -1656,7 +1683,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Делегировать все события другому диспетчеру событий</p>
@@ -1664,9 +1691,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1713,7 +1740,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1739,15 +1766,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1758,7 +1785,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1770,7 +1797,7 @@
             
             trigger<span class="signature">(event, args)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 156
@@ -1781,7 +1808,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Запустить событие</p>
@@ -1789,9 +1816,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1873,7 +1900,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1899,15 +1926,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1918,7 +1945,7 @@
 <br />
 
     
-    
+
     
 </dd>
 
@@ -1930,7 +1957,7 @@
             
             unmuteEvents<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             lib/async/events.js, line 208
@@ -1941,7 +1968,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Возобновить запуск событий</p>
@@ -1949,11 +1976,11 @@
     
 
     
+
     
+
     
-    
-    
-    
+
     
 <dl class="details">
     
@@ -1979,15 +2006,15 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
@@ -1998,7 +2025,7 @@
 <br />
 
     
-    
+
     
 </dd>
 

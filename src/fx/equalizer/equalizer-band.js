@@ -8,8 +8,8 @@ var EqualizerStatic = require('./equalizer-static');
 // =================================================================
 
 /**
- * Событие изменения значения усиления ({@link ya.music.Audio.fx.Equalizer.EVENT_CHANGE})
- * @event ya.music.Audio.fx.Equalizer~EqualizerBand#change
+ * Событие изменения значения усиления
+ * @event ya.music.Audio.fx.Equalizer~EqualizerBand#EVENT_CHANGE
  * @param {Number} value - новое значение
  */
 
@@ -23,7 +23,7 @@ var EqualizerStatic = require('./equalizer-static');
  * @param {String} type - тип фильтра
  * @param {Number} frequency - частота фильтра
  *
- * @fires ya.music.Audio.fx.Equalizer~EqualizerBand#change
+ * @fires ya.music.Audio.fx.Equalizer~EqualizerBand#EVENT_CHANGE
  *
  * @constructor
  */

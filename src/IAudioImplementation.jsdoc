@@ -11,23 +11,23 @@
  *
  * @extends Events
  *
- * @param {HMTLElement} [overlay] - место для встраивания плеера (актуально только для flash-плеера)
+ * @param {HTMLElement} [overlay] - место для встраивания плеера (актуально только для flash-плеера)
  *
  * @property {string} type - Тип плеера
  * @property {Boolean} available - Доступность реализации
  *
- * @fires IAudioImplementation#play
- * @fires IAudioImplementation#ended
- * @fires IAudioImplementation#volumechange
- * @fires IAudioImplementation#crashed
- * @fires IAudioImplementation#swap
+ * @fires IAudioImplementation#EVENT_PLAY
+ * @fires IAudioImplementation#EVENT_ENDED
+ * @fires IAudioImplementation#EVENT_VOLUME
+ * @fires IAudioImplementation#EVENT_CRASHED
+ * @fires IAudioImplementation#EVENT_SWAP
  *
- * @fires IAudioImplementation#stop
- * @fires IAudioImplementation#pause
- * @fires IAudioImplementation#progress
- * @fires IAudioImplementation#loading
- * @fires IAudioImplementation#loaded
- * @fires IAudioImplementation#error
+ * @fires IAudioImplementation#EVENT_STOP
+ * @fires IAudioImplementation#EVENT_PAUSE
+ * @fires IAudioImplementation#EVENT_PROGRESS
+ * @fires IAudioImplementation#EVENT_LOADING
+ * @fires IAudioImplementation#EVENT_LOADED
+ * @fires IAudioImplementation#EVENT_ERROR
  *
  * @abstract
  * @private
@@ -39,41 +39,41 @@
 
 // =================================================================
 
-/** Событие начала воспроизведения ({@link ya.music.Audio.EVENT_PLAY})
- * @event IAudioImplementation#play
+/** Событие начала воспроизведения
+ * @event IAudioImplementation#EVENT_PLAY
  */
-/** Событие завершения воспроизведения ({@link ya.music.Audio.EVENT_ENDED})
- * @event IAudioImplementation#ended
+/** Событие завершения воспроизведения
+ * @event IAudioImplementation#EVENT_ENDED
  */
-/** Событие изменения громкости ({@link ya.music.Audio.EVENT_VOLUME})
- * @event IAudioImplementation#volumechange
+/** Событие изменения громкости
+ * @event IAudioImplementation#EVENT_VOLUME
  * @param {Number} volume - громкость
  */
-/** Событие краха плеера ({@link ya.music.Audio.EVENT_CRASHED})
- * @event IAudioImplementation#crashed
+/** Событие краха плеера
+ * @event IAudioImplementation#EVENT_CRASHED
  */
-/** Событие переключения активного плеера и прелоадера ({@link ya.music.Audio.EVENT_SWAP})
- * @event IAudioImplementation#swap
+/** Событие переключения активного плеера и прелоадера
+ * @event IAudioImplementation#EVENT_SWAP
  */
 
-/** Событие остановки воспроизведения ({@link ya.music.Audio.EVENT_STOP})
- * @event IAudioImplementation#stop
+/** Событие остановки воспроизведения
+ * @event IAudioImplementation#EVENT_STOP
  */
-/** Событие начала воспроизведения ({@link ya.music.Audio.EVENT_PAUSE})
- * @event IAudioImplementation#pause
+/** Событие начала воспроизведения
+ * @event IAudioImplementation#EVENT_PAUSE
  */
-/** Событие обновления позиции воспроизведения/загруженной части ({@link ya.music.Audio.EVENT_PROGRESS})
- * @event IAudioImplementation#progress
+/** Событие обновления позиции воспроизведения/загруженной части
+ * @event IAudioImplementation#EVENT_PROGRESS
  * @param {ya.music.Audio~AudioPlayerTimes} times - информация о временных данных трека
  */
-/** Событие начала загрузки трека ({@link ya.music.Audio.EVENT_LOADING})
- * @event IAudioImplementation#loading
+/** Событие начала загрузки трека
+ * @event IAudioImplementation#EVENT_LOADING
  */
-/** Событие завершения загрузки трека ({@link ya.music.Audio.EVENT_LOADED})
- * @event IAudioImplementation#loaded
+/** Событие завершения загрузки трека
+ * @event IAudioImplementation#EVENT_LOADED
  */
-/** Событие ошибки воспроизведения ({@link ya.music.Audio.EVENT_ERROR})
- * @event IAudioImplementation#error
+/** Событие ошибки воспроизведения
+ * @event IAudioImplementation#EVENT_ERROR
  */
 
 // =================================================================

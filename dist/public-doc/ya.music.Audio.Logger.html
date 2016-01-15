@@ -190,6 +190,33 @@
             </ul>
         </li>
     
+        <li class="item" data-name="AbortablePromise">
+            <span class="title">
+                <a href="AbortablePromise.html">AbortablePromise</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="AbortablePromise#abort"><a href="AbortablePromise.html#abort">abort</a></li>
+            
+                <li data-name="AbortablePromise#catch"><a href="AbortablePromise.html#catch">catch</a></li>
+            
+                <li data-name="AbortablePromise#then"><a href="AbortablePromise.html#then">then</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="Events">
             <span class="title">
                 <a href="Events.html">Events</a>
@@ -526,7 +553,7 @@
             
             <span class="subtitle">Events</span>
             
-                <li data-name="ya.music.Audio.fx.Equalizer#event:change"><a href="ya.music.Audio.fx.Equalizer.html#event:change">change</a></li>
+                <li data-name="ya.music.Audio.fx.Equalizer#event:EVENT_CHANGE"><a href="ya.music.Audio.fx.Equalizer.html#event:EVENT_CHANGE">EVENT_CHANGE</a></li>
             
             </ul>
         </li>
@@ -573,7 +600,7 @@
             
             <span class="subtitle">Events</span>
             
-                <li data-name="ya.music.Audio.fx.Equalizer~EqualizerBand#event:change"><a href="ya.music.Audio.fx.Equalizer-EqualizerBand.html#event:change">change</a></li>
+                <li data-name="ya.music.Audio.fx.Equalizer~EqualizerBand#event:EVENT_CHANGE"><a href="ya.music.Audio.fx.Equalizer-EqualizerBand.html#event:EVENT_CHANGE">EVENT_CHANGE</a></li>
             
             </ul>
         </li>
@@ -704,9 +731,9 @@
     <div class="nameContainer">
         <h4 class="name" id="Logger">
             
-            new ya.music.Audio.Logger<span class="signature">(channel)</span>
+            new Logger<span class="signature">(channel)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 16
@@ -717,7 +744,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Настраиваемые логгер для аудио-плеера</p>
@@ -725,9 +752,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -774,7 +801,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -800,17 +827,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -931,9 +958,9 @@
     <div class="nameContainer">
         <h4 class="name" id=".log">
             
-            <span class="type-signature static">static</span>ya.music.Audio.Logger.log<span class="signature">(level, channel, context, <span class="optional">args</span>)</span>
+            <span class="type-signature static">static</span>log<span class="signature">(level, channel, context, <span class="optional">args</span>)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 114
@@ -944,7 +971,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Сделать запись в лог</p>
@@ -952,9 +979,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1094,7 +1121,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1120,17 +1147,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -1142,7 +1169,7 @@
             
             debug<span class="signature">(context, <span class="optional">args</span>)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 44
@@ -1153,7 +1180,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Запись в лог с уровнем <strong>debug</strong></p>
@@ -1161,9 +1188,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1247,7 +1274,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1273,17 +1300,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -1295,7 +1322,7 @@
             
             error<span class="signature">(context, <span class="optional">args</span>)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 76
@@ -1306,7 +1333,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Запись в лог с уровнем <strong>error</strong></p>
@@ -1314,9 +1341,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1400,7 +1427,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1426,17 +1453,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -1448,7 +1475,7 @@
             
             info<span class="signature">(context, <span class="optional">args</span>)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 60
@@ -1459,7 +1486,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Запись в лог с уровнем <strong>info</strong></p>
@@ -1467,9 +1494,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1553,7 +1580,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1579,17 +1606,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -1601,7 +1628,7 @@
             
             log<span class="signature">(context, <span class="optional">args</span>)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 52
@@ -1612,7 +1639,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Запись в лог с уровнем <strong>log</strong></p>
@@ -1620,9 +1647,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1706,7 +1733,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1732,17 +1759,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -1754,7 +1781,7 @@
             
             trace<span class="signature">(context, <span class="optional">args</span>)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 84
@@ -1765,7 +1792,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Запись в лог с уровнем <strong>trace</strong></p>
@@ -1773,9 +1800,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1859,7 +1886,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1885,17 +1912,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 
@@ -1907,7 +1934,7 @@
             
             warn<span class="signature">(context, <span class="optional">args</span>)</span>
         </h4>
-    
+
         
         <div class="tag-source">
             logger/logger.js, line 68
@@ -1918,7 +1945,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Запись в лог с уровнем <strong>warn</strong></p>
@@ -1926,9 +1953,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -2012,7 +2039,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -2038,17 +2065,17 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-    
-    
-    
-    
+
     
 </dd>
 

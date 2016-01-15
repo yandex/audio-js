@@ -59,18 +59,18 @@ if (detect.platform.mobile || detect.platform.tablet) {
  * @classdesc Класс html5 аудио-плеера
  * @extends IAudioImplementation
  *
- * @fires IAudioImplementation#play
- * @fires IAudioImplementation#ended
- * @fires IAudioImplementation#volumechange
- * @fires IAudioImplementation#crashed
- * @fires IAudioImplementation#swap
+ * @fires IAudioImplementation#EVENT_PLAY
+ * @fires IAudioImplementation#EVENT_ENDED
+ * @fires IAudioImplementation#EVENT_VOLUME
+ * @fires IAudioImplementation#EVENT_CRASHED
+ * @fires IAudioImplementation#EVENT_SWAP
  *
- * @fires IAudioImplementation#stop
- * @fires IAudioImplementation#pause
- * @fires IAudioImplementation#progress
- * @fires IAudioImplementation#loading
- * @fires IAudioImplementation#loaded
- * @fires IAudioImplementation#error
+ * @fires IAudioImplementation#EVENT_STOP
+ * @fires IAudioImplementation#EVENT_PAUSE
+ * @fires IAudioImplementation#EVENT_PROGRESS
+ * @fires IAudioImplementation#EVENT_LOADING
+ * @fires IAudioImplementation#EVENT_LOADED
+ * @fires IAudioImplementation#EVENT_ERROR
  *
  * @constructor
  * @private

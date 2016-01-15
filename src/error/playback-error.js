@@ -38,7 +38,7 @@ PlaybackError.NETWORK_ERROR = "Network error";
  */
 PlaybackError.DECODE_ERROR = "Decode error";
 /**
- * Не доступный источник
+ * Недоступный источник
  * @type {string}
  * @const
  */

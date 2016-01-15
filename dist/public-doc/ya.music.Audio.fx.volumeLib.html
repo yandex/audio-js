@@ -190,6 +190,33 @@
             </ul>
         </li>
     
+        <li class="item" data-name="AbortablePromise">
+            <span class="title">
+                <a href="AbortablePromise.html">AbortablePromise</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="AbortablePromise#abort"><a href="AbortablePromise.html#abort">abort</a></li>
+            
+                <li data-name="AbortablePromise#catch"><a href="AbortablePromise.html#catch">catch</a></li>
+            
+                <li data-name="AbortablePromise#then"><a href="AbortablePromise.html#then">then</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="Events">
             <span class="title">
                 <a href="Events.html">Events</a>
@@ -526,7 +553,7 @@
             
             <span class="subtitle">Events</span>
             
-                <li data-name="ya.music.Audio.fx.Equalizer#event:change"><a href="ya.music.Audio.fx.Equalizer.html#event:change">change</a></li>
+                <li data-name="ya.music.Audio.fx.Equalizer#event:EVENT_CHANGE"><a href="ya.music.Audio.fx.Equalizer.html#event:EVENT_CHANGE">EVENT_CHANGE</a></li>
             
             </ul>
         </li>
@@ -573,7 +600,7 @@
             
             <span class="subtitle">Events</span>
             
-                <li data-name="ya.music.Audio.fx.Equalizer~EqualizerBand#event:change"><a href="ya.music.Audio.fx.Equalizer-EqualizerBand.html#event:change">change</a></li>
+                <li data-name="ya.music.Audio.fx.Equalizer~EqualizerBand#event:EVENT_CHANGE"><a href="ya.music.Audio.fx.Equalizer-EqualizerBand.html#event:EVENT_CHANGE">EVENT_CHANGE</a></li>
             
             </ul>
         </li>
@@ -801,9 +828,9 @@
     <div class="nameContainer">
         <h4 class="name" id=".fromDBFS">
             
-            <span class="type-signature static">static</span>ya.music.Audio.fx.volumeLib.fromDBFS<span class="signature">(dbfs)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
+            <span class="type-signature static">static</span>fromDBFS<span class="signature">(dbfs)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             fx/volume/volume-lib.js, line 55
@@ -814,7 +841,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Получение значения относительной громкости из значения dBFS</p>
@@ -822,9 +849,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -871,7 +898,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -897,22 +924,22 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
 
 
     
-    
+
     
 </dd>
 
@@ -922,9 +949,9 @@
     <div class="nameContainer">
         <h4 class="name" id=".fromExponent">
             
-            <span class="type-signature static">static</span>ya.music.Audio.fx.volumeLib.fromExponent<span class="signature">(volume)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
+            <span class="type-signature static">static</span>fromExponent<span class="signature">(volume)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             fx/volume/volume-lib.js, line 37
@@ -935,7 +962,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Вычисление значения положения на логарифмической шкале по значению громкости</p>
@@ -943,9 +970,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -992,7 +1019,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1018,22 +1045,22 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
 
 
     
-    
+
     
 </dd>
 
@@ -1043,9 +1070,9 @@
     <div class="nameContainer">
         <h4 class="name" id=".toDBFS">
             
-            <span class="type-signature static">static</span>ya.music.Audio.fx.volumeLib.toDBFS<span class="signature">(volume)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
+            <span class="type-signature static">static</span>toDBFS<span class="signature">(volume)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             fx/volume/volume-lib.js, line 46
@@ -1056,7 +1083,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Получение значения dBFS из относительного значения громкости</p>
@@ -1064,9 +1091,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1113,7 +1140,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1139,22 +1166,22 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
 
 
     
-    
+
     
 </dd>
 
@@ -1164,9 +1191,9 @@
     <div class="nameContainer">
         <h4 class="name" id=".toExponent">
             
-            <span class="type-signature static">static</span>ya.music.Audio.fx.volumeLib.toExponent<span class="signature">(value)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
+            <span class="type-signature static">static</span>toExponent<span class="signature">(value)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{number}</span>
         </h4>
-    
+
         
         <div class="tag-source">
             fx/volume/volume-lib.js, line 27
@@ -1177,7 +1204,7 @@
     
 </dt>
 <dd>
-    
+
     
     <div class="description">
         <p>Вычисление значение громкости по значению на логарифмической шкале</p>
@@ -1185,9 +1212,9 @@
     
 
     
+
     
-    
-    
+
     
         
 
@@ -1234,7 +1261,7 @@
 	</tbody>
 </table>
     
-    
+
     
 <dl class="details">
     
@@ -1260,22 +1287,22 @@
     
 </dl>
 
+
     
+
     
 
     
 
     
-    
-    
-    
+
     
     
     
 
 
     
-    
+
     
 </dd>
 

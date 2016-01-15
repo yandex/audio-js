@@ -14,8 +14,9 @@ var EqualizerBand = require('./equalizer-band');
  */
 
 /**
- * Событие изменения полосы пропускания ({@link ya.music.Audio.fx.Equalizer.EVENT_CHANGE})
- * @event ya.music.Audio.fx.Equalizer#change
+ * Событие изменения полосы пропускания
+ * @event ya.music.Audio.fx.Equalizer#EVENT_CHANGE
+ *
  * @param {Number} freq - частота полосы пропускания
  * @param {Number} value - значение усиления
  */
@@ -35,7 +36,7 @@ var EqualizerBand = require('./equalizer-band');
  * @extends Events
  * @mixes EqualizerStatic
  *
- * @fires ya.music.Audio.fx.Equalizer#change
+ * @fires ya.music.Audio.fx.Equalizer#EVENT_CHANGE
  *
  * @constructor
  */
