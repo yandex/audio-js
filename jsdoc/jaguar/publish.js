@@ -20,7 +20,7 @@ function find(spec) {
 }
 
 function tutoriallink(tutorial) {
-    return helper.toTutorial(tutorial, null, { tag: 'em', classname: 'disabled', prefix: 'Tutorial: ' });
+    return helper.toTutorial(tutorial, null, {tag: 'em', classname: 'disabled', prefix: 'Tutorial: '});
 }
 
 function getAncestorLinks(doclet) {
@@ -28,7 +28,7 @@ function getAncestorLinks(doclet) {
 }
 
 function hashToLink(doclet, hash) {
-    if ( !/^(#.+)/.test(hash) ) { return hash; }
+    if (!/^(#.+)/.test(hash)) { return hash; }
 
     var url = helper.createLink(doclet);
 
@@ -60,30 +60,33 @@ function needsSignature(doclet) {
 function addSignatureParams(f) {
     var params = helper.getSignatureParams(f, 'optional');
 
-    f.signature = (f.signature || '') + '('+params.join(', ')+')';
+    f.signature = (f.signature || '') + '(' + params.join(', ') + ')';
 }
 
 function addSignatureReturns(f) {
     var returnTypes = helper.getSignatureReturns(f);
 
-    f.signature = '<span class="signature">'+(f.signature || '') + '</span>';
+    f.signature = '<span class="signature">' + (f.signature || '') + '</span>';
 
     if (returnTypes.length) {
-        f.signature += '<span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">'+(returnTypes.length ? '{'+returnTypes.join('|')+'}' : '')+'</span>';
+        f.signature += '<span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">'
+            + (returnTypes.length ? '{' + returnTypes.join('|') + '}' : '') + '</span>';
     }
 }
 
 function addSignatureTypes(f) {
     var types = helper.getSignatureTypes(f);
 
-    f.signature = (f.signature || '') + '<span class="type-signature">'+(types.length? ' :'+types.join('|') : '')+'</span>';
+    f.signature = (f.signature || '') + '<span class="type-signature">' + (types.length ? ' :' + types.join('|') : '')
+        + '</span>';
 }
 
 function addAttribs(f) {
     var attribs = helper.getAttribs(f);
 
     if (attribs.length) {
-        f.attribs = '<span class="type-signature ' + (attribs[0] === 'static' ? 'static' : '') + '">' + htmlsafe(attribs.length ? attribs.join(',') : '') + '</span>';
+        f.attribs = '<span class="type-signature ' + (attribs[0] === 'static' ? 'static' : '') + '">'
+            + htmlsafe(attribs.length ? attribs.join(',') : '') + '</span>';
     }
 }
 
@@ -109,7 +112,7 @@ function getPathFromDoclet(doclet) {
     }
 
     var filepath = doclet.meta.path && doclet.meta.path !== 'null' ?
-        doclet.meta.path + '/' + doclet.meta.filename :
+    doclet.meta.path + '/' + doclet.meta.filename :
         doclet.meta.filename;
 
     return filepath;
@@ -144,7 +147,7 @@ function generateSourceFiles(sourceFiles) {
         try {
             source = {
                 kind: 'source',
-                code: helper.htmlsafe( fs.readFileSync(sourceFiles[file].resolved, 'utf8') )
+                code: helper.htmlsafe(fs.readFileSync(sourceFiles[file].resolved, 'utf8'))
             };
         }
         catch(e) {
@@ -200,7 +203,7 @@ function buildNav(members) {
     var nav = [];
 
     if (members.namespaces.length) {
-        _.each(members.namespaces, function (v) {
+        _.each(members.namespaces, function(v) {
             nav.push({
                 type: 'namespace',
                 longname: v.longname,
@@ -226,7 +229,7 @@ function buildNav(members) {
     }
 
     if (members.classes.length) {
-        _.each(members.classes, function (v) {
+        _.each(members.classes, function(v) {
             nav.push({
                 type: 'class',
                 longname: v.longname,
@@ -254,11 +257,10 @@ function buildNav(members) {
     return nav;
 }
 
-
 /**
-    @param {TAFFY} taffyData See <http://taffydb.com/>.
-    @param {object} opts
-    @param {Tutorial} tutorials
+ @param {TAFFY} taffyData See <http://taffydb.com/>.
+ @param {object} opts
+ @param {Tutorial} tutorials
  */
 exports.publish = function(taffyData, opts, tutorials) {
     data = taffyData;
@@ -291,7 +293,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     var sourceFiles = {};
     var sourceFilePaths = [];
     data().each(function(doclet) {
-         doclet.attribs = '';
+        doclet.attribs = '';
 
         if (doclet.examples) {
             doclet.examples = doclet.examples.map(function(example) {
@@ -299,7 +301,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
                 if (example.match(/^\s*<caption>([\s\S]+?)<\/caption>(\s*[\n\r])([\s\S]+)$/i)) {
                     caption = RegExp.$1;
-                    code    = RegExp.$3;
+                    code = RegExp.$3;
                 }
 
                 return {
@@ -340,7 +342,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     var staticFiles = fs.ls(fromDir, 3);
 
     staticFiles.forEach(function(fileName) {
-        var toDir = fs.toDir( fileName.replace(fromDir, outdir) );
+        var toDir = fs.toDir(fileName.replace(fromDir, outdir));
         fs.mkPath(toDir);
         fs.copyFileSync(fileName, toDir);
     });
@@ -360,7 +362,7 @@ exports.publish = function(taffyData, opts, tutorials) {
             extraStaticFiles.forEach(function(fileName) {
                 var sourcePath = fs.statSync(filePath).isDirectory() ? filePath :
                     path.dirname(filePath);
-                var toDir = fs.toDir( fileName.replace(sourcePath, outdir) );
+                var toDir = fs.toDir(fileName.replace(sourcePath, outdir));
                 fs.mkPath(toDir);
                 fs.copyFileSync(fileName, toDir);
             });
@@ -368,8 +370,20 @@ exports.publish = function(taffyData, opts, tutorials) {
     }
 
     if (sourceFilePaths.length) {
-        sourceFiles = shortenPaths( sourceFiles, path.commonPrefix(sourceFilePaths) );
+        sourceFiles = shortenPaths(sourceFiles, path.commonPrefix(sourceFilePaths));
     }
+
+    var upperCase = /^[A-Z0-9_]*$/;
+    data().each(function(doclet) {
+        if (!(doclet.kind == "member" || doclet.kind == "constant")) {
+            return;
+        }
+
+        if (upperCase.test(doclet.name)) {
+            doclet.scope = "static"
+        }
+    });
+
     data().each(function(doclet) {
         var url = helper.createLink(doclet);
         helper.registerLink(doclet.longname, url);
@@ -395,7 +409,7 @@ exports.publish = function(taffyData, opts, tutorials) {
             doclet.id = doclet.name;
         }
 
-        if ( needsSignature(doclet) ) {
+        if (needsSignature(doclet)) {
             addSignatureParams(doclet);
             addSignatureReturns(doclet);
             addAttribs(doclet);
@@ -431,8 +445,8 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     // once for all
     view.nav = buildNav(members);
-    attachModuleSymbols( find({ kind: ['class', 'function'], longname: {left: 'module:'} }),
-        members.modules );
+    attachModuleSymbols(find({kind: ['class', 'function'], longname: {left: 'module:'}}),
+        members.modules);
 
     // only output pretty-printed source files if requested; do this before generating any other
     // pages, so the other pages can link to the source files
@@ -450,7 +464,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         packages.concat(
             [{kind: 'mainpage', readme: opts.readme, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
         ).concat(files),
-    indexUrl);
+        indexUrl);
 
     // set up the lists that we'll use to generate pages
     var classes = taffy(members.classes);
@@ -460,7 +474,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     var externals = taffy(members.externals);
 
     for (var longname in helper.longnameToUrl) {
-        if ( hasOwnProp.call(helper.longnameToUrl, longname) ) {
+        if (hasOwnProp.call(helper.longnameToUrl, longname)) {
             var myClasses = helper.find(classes, {longname: longname});
             if (myClasses.length) {
                 generate('Class: ' + myClasses[0].name, myClasses, helper.longnameToUrl[longname]);
@@ -514,5 +528,6 @@ exports.publish = function(taffyData, opts, tutorials) {
             saveChildren(child);
         });
     }
+
     saveChildren(tutorials);
 };
