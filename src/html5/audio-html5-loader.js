@@ -33,12 +33,12 @@ var loaderId = 1;
  */
 var AudioHTML5Loader = function() {
     this.name = loaderId++;
-    logger.debug(this, "constructor");
+    DEV && logger.debug(this, "constructor");
 
     Events.call(this);
     this.on("*", function(event) {
         if (event !== AudioStatic.EVENT_PROGRESS) {
-            logger.debug(this, "onEvent", event);
+            DEV && logger.debug(this, "onEvent", event);
         }
     }.bind(this));
 
@@ -333,7 +333,7 @@ AudioHTML5Loader.prototype._deinitNativeEvents = function() {
  * @private
  */
 AudioHTML5Loader.prototype._initAudio = function() {
-    logger.debug(this, "_initAudio");
+    DEV && logger.debug(this, "_initAudio");
 
     this.muteEvents();
 
@@ -354,7 +354,7 @@ AudioHTML5Loader.prototype._initAudio = function() {
  * @private
  */
 AudioHTML5Loader.prototype._deinitAudio = function() {
-    logger.debug(this, "_deinitAudio");
+    DEV && logger.debug(this, "_deinitAudio");
 
     this.muteEvents();
 
@@ -693,7 +693,7 @@ AudioHTML5Loader.prototype._promiseStartPlaying = function() {
  * @param {String} src
  */
 AudioHTML5Loader.prototype.load = function(src) {
-    logger.debug(this, "load", src);
+    DEV && logger.debug(this, "load", src);
 
     this._abortPromises("load");
     this._breakStartup("load");
@@ -710,7 +710,7 @@ AudioHTML5Loader.prototype.load = function(src) {
 
 /** Остановить воспроизведение и загрузку трека */
 AudioHTML5Loader.prototype.stop = function() {
-    logger.debug(this, "stop");
+    DEV && logger.debug(this, "stop");
 
     this._abortPromises("stop");
     this._breakStartup("stop");
@@ -723,7 +723,7 @@ AudioHTML5Loader.prototype.stop = function() {
  * @private
  */
 AudioHTML5Loader.prototype._startPlay = function() {
-    logger.debug(this, "_startPlay");
+    DEV && logger.debug(this, "_startPlay");
 
     this.audio.currentTime = this.position;
 
@@ -769,7 +769,7 @@ AudioHTML5Loader.prototype._restart = function(reason) {
  * @param {Number} [position] - позиция воспроизведения
  */
 AudioHTML5Loader.prototype.play = function(position) {
-    logger.debug(this, "play", position);
+    DEV && logger.debug(this, "play", position);
 
     if (this.playing) {
         return;
@@ -785,7 +785,7 @@ AudioHTML5Loader.prototype.play = function(position) {
 
 /** Пауза */
 AudioHTML5Loader.prototype.pause = function() {
-    logger.debug(this, "pause");
+    DEV && logger.debug(this, "pause");
 
     this.playing = false;
 
@@ -801,7 +801,7 @@ AudioHTML5Loader.prototype.pause = function() {
  * @param {Number} position - позиция воспроизведения
  */
 AudioHTML5Loader.prototype.setPosition = function(position) {
-    logger.debug(this, "setPosition", position);
+    DEV && logger.debug(this, "setPosition", position);
 
     if (!isFinite(position)) {
         logger.warn(this, "setPositionFailed", position);
@@ -846,7 +846,7 @@ AudioHTML5Loader.prototype.createSource = function(audioContext) {
         return;
     }
 
-    logger.debug(this, "createSource");
+    DEV && logger.debug(this, "createSource");
 
     var needRestart = !this.audio.crossOrigin;
 
@@ -894,7 +894,7 @@ AudioHTML5Loader.prototype.destroySource = function() {
 
 /** Удаление всех обработчиков и объекта Audio. После вызова данного метода этот объект будет нельзя использовать */
 AudioHTML5Loader.prototype.destroy = function() {
-    logger.debug(this, "destroy");
+    DEV && logger.debug(this, "destroy");
 
     if (this.output) {
         this.output.disconnect();

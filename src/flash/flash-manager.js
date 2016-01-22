@@ -26,7 +26,7 @@ var LoaderError = require('../lib/net/error/loader-error');
  * @private
  */
 var FlashManager = function(overlay) { // singleton!
-    logger.debug(this, "constructor", overlay);
+    DEV && logger.debug(this, "constructor", overlay);
 
     this.state = "init";
     this.overlay = overlay;
@@ -88,7 +88,7 @@ FlashManager.EVENT_DEBUG = "debug";
  * @private
  */
 FlashManager.prototype._onLoad = function(data) {
-    logger.debug(this, "_onLoad", data);
+    DEV && logger.debug(this, "_onLoad", data);
 
     clearTimeout(this.__loadTimeout);
     delete this.__loadTimeout;
@@ -130,7 +130,7 @@ FlashManager.prototype._onInitTimeout = function() {
  * @private
  */
 FlashManager.prototype._onInit = function() {
-    logger.debug(this, "_onInit");
+    DEV && logger.debug(this, "_onInit");
 
     this.state = "ready";
 
@@ -170,7 +170,7 @@ FlashManager.prototype._onEvent = function(event, id, offset, data) {
     } else if (event === FlashManager.EVENT_ERROR) {
         logger.warn(this, "flashError", id, offset, data);
     } else {
-        logger.debug(this, "onEvent", event, id, offset);
+        DEV && logger.debug(this, "onEvent", event, id, offset);
     }
 
     if (event === FlashManager.EVENT_INIT) {
@@ -224,7 +224,7 @@ FlashManager.prototype._onHeartBeat = function() {
  * @returns {Promise} -- обещание, которое разрешается после завершения создания плеера
  */
 FlashManager.prototype.createPlayer = function(audioFlash) {
-    logger.debug(this, "createPlayer");
+    DEV && logger.debug(this, "createPlayer");
 
     var promise = this.whenReady.then(function() {
         audioFlash.id = this.flash._addPlayer();
@@ -233,7 +233,7 @@ FlashManager.prototype.createPlayer = function(audioFlash) {
     }.bind(this));
 
     promise.then(function(playerId) {
-        logger.debug(this, "createPlayerSuccess", playerId);
+        DEV && logger.debug(this, "createPlayerSuccess", playerId);
     }.bind(this), function(err) {
         logger.error(this, "createPlayerError", err);
     }.bind(this));

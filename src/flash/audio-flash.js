@@ -53,7 +53,7 @@ logger.info(this, "detection", exports.available);
  */
 var AudioFlash = function(overlay, force) {
     this.name = playerId++;
-    logger.debug(this, "constructor");
+    DEV && logger.debug(this, "constructor");
 
     if (!flashManager || force) {
         flashManager = new FlashManager(overlay);
@@ -83,7 +83,7 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
 }).map(function(method) {
     AudioFlash.prototype[method] = function() {
         if (!/^get/.test(method)) {
-            logger.debug(this, method);
+            DEV && logger.debug(this, method);
         }
 
         if (!this.hasOwnProperty("id")) {

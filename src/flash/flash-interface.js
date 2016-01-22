@@ -31,7 +31,7 @@ var FlashInterface = function(flash) {
  * @private
  */
 FlashInterface.prototype._callFlash = function(fn) {
-    //logger.debug(this, fn, arguments);
+    //DEV && logger.debug(this, fn, arguments);
 
     try {
         return this.flash.call.apply(this.flash, arguments);

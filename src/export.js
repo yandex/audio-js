@@ -1,3 +1,7 @@
+if (typeof DEV === "undefined") {
+    window.DEV = true;
+}
+
 if (typeof window.ya === "undefined") {
     window.ya = {};
 }

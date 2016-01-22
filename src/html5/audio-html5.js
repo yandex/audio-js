@@ -77,12 +77,12 @@ if (detect.platform.mobile || detect.platform.tablet) {
  */
 var AudioHTML5 = function() {
     this.name = playerId++;
-    logger.debug(this, "constructor");
+    DEV && logger.debug(this, "constructor");
 
     Events.call(this);
     this.on("*", function(event) {
         if (event !== AudioStatic.EVENT_PROGRESS) {
-            logger.debug(this, "onEvent", event);
+            DEV && logger.debug(this, "onEvent", event);
         }
     }.bind(this));
 
@@ -110,7 +110,7 @@ AudioHTML5.type = AudioHTML5.prototype.type = "html5";
  * @private
  */
 AudioHTML5.prototype._addLoader = function() {
-    logger.debug(this, "_addLoader");
+    DEV && logger.debug(this, "_addLoader");
 
     var self = this;
     var loader = new AudioHTML5Loader();
@@ -132,7 +132,7 @@ AudioHTML5.prototype._addLoader = function() {
  * @private
  */
 AudioHTML5.prototype._setActive = function(offset) {
-    logger.debug(this, "_setActive", offset);
+    DEV && logger.debug(this, "_setActive", offset);
 
     this.activeLoader = (this.activeLoader + offset) % this.loaders.length;
     this.trigger(AudioStatic.EVENT_SWAP, offset);
@@ -287,7 +287,7 @@ AudioHTML5.prototype.setAudioPreprocessor = function(preprocessor) {
  * @param {Number} [duration] - Длительность трека (не используется)
  */
 AudioHTML5.prototype.play = function(src, duration) {
-    logger.debug(this, "play", src);
+    DEV && logger.debug(this, "play", src);
 
     var loader = this._getLoader();
 
@@ -297,14 +297,14 @@ AudioHTML5.prototype.play = function(src, duration) {
 
 /** Поставить трек на паузу */
 AudioHTML5.prototype.pause = function() {
-    logger.debug(this, "pause");
+    DEV && logger.debug(this, "pause");
     var loader = this._getLoader();
     loader.pause();
 };
 
 /** Снять трек с паузы */
 AudioHTML5.prototype.resume = function() {
-    logger.debug(this, "resume");
+    DEV && logger.debug(this, "resume");
     var loader = this._getLoader();
     loader.play();
 };
@@ -314,7 +314,7 @@ AudioHTML5.prototype.resume = function() {
  * @param {int} [offset=0] - 0: для текущего загрузчика, 1: для следующего загрузчика
  */
 AudioHTML5.prototype.stop = function(offset) {
-    logger.debug(this, "stop", offset);
+    DEV && logger.debug(this, "stop", offset);
     var loader = this._getLoader(offset || 0);
     loader.stop();
 
@@ -334,7 +334,7 @@ AudioHTML5.prototype.getPosition = function() {
  * @param {number} position
  */
 AudioHTML5.prototype.setPosition = function(position) {
-    logger.debug(this, "setPosition", position);
+    DEV && logger.debug(this, "setPosition", position);
     this._getLoader().setPosition(position - 0.001); //THINK: legacy-код. Понять нафиг тут нужен 0.001
 };
 
@@ -374,7 +374,7 @@ AudioHTML5.prototype.getVolume = function() {
  * @param {number} volume
  */
 AudioHTML5.prototype.setVolume = function(volume) {
-    logger.debug(this, "setVolume", volume);
+    DEV && logger.debug(this, "setVolume", volume);
     this.volume = volume;
 
     if (this.webAudioApi) {
@@ -401,7 +401,7 @@ AudioHTML5.prototype.setVolume = function(volume) {
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
  */
 AudioHTML5.prototype.preload = function(src, duration, offset) {
-    logger.debug(this, "preload", src, offset);
+    DEV && logger.debug(this, "preload", src, offset);
 
     offset = offset == null ? 1 : offset;
     var loader = this._getLoader(offset);
@@ -438,7 +438,7 @@ AudioHTML5.prototype.isPreloading = function(src, offset) {
  * @returns {boolean} -- доступность данного действия
  */
 AudioHTML5.prototype.playPreloaded = function(offset) {
-    logger.debug(this, "playPreloaded", offset);
+    DEV && logger.debug(this, "playPreloaded", offset);
     offset = offset == null ? 1 : offset;
     var loader = this._getLoader(offset);
 

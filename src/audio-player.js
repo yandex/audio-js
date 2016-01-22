@@ -179,7 +179,7 @@ setTimeout(function() {
  */
 var AudioPlayer = function(preferredType, overlay) {
     this.name = playerId++;
-    logger.debug(this, "constructor");
+    DEV && logger.debug(this, "constructor");
 
     Events.call(this);
 
@@ -270,7 +270,7 @@ AudioPlayer.audioContext = audioTypes.html5.audioContext;
  * @private
  */
 AudioPlayer.prototype._setState = function(state) {
-    logger.debug(this, "_setState", state);
+    DEV && logger.debug(this, "_setState", state);
 
     if (state === AudioPlayer.STATE_PAUSED && this.state !== AudioPlayer.STATE_PLAYING) {
         return;
@@ -424,7 +424,7 @@ AudioPlayer.prototype._waitEvents = function(action, resolve, reject) {
  */
 AudioPlayer.prototype._populateEvents = function(event, offset, data) {
     if (event !== AudioPlayer.EVENT_PROGRESS) {
-        logger.debug(this, "_populateEvents", event, offset, data);
+        DEV && logger.debug(this, "_populateEvents", event, offset, data);
     }
 
     var outerEvent = (offset ? AudioPlayer.PRELOADER_EVENT : "") + event;
@@ -886,7 +886,7 @@ AudioPlayer.prototype.getVolume = function() {
  * @returns {Number} -- итоговое значение громкости
  */
 AudioPlayer.prototype.setVolume = function(volume) {
-    logger.debug(this, "setVolume", volume);
+    DEV && logger.debug(this, "setVolume", volume);
 
     if (!this.implementation) {
         return 0;
