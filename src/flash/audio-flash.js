@@ -70,7 +70,7 @@ var AudioFlash = function(overlay, force) {
 };
 Events.mixin(AudioFlash);
 
-AudioFlash.type = AudioFlash.prototype.type = "flash";
+exports.type = AudioFlash.type = AudioFlash.prototype.type = "flash";
 
 // =================================================================
 

@@ -994,7 +994,7 @@ AudioPlayer.prototype.getPlayId = function() {
 AudioPlayer.prototype._logger = function() {
     return {
         index: this.implementation && this.implementation.name,
-        src: logger._showUrl(this.implementation && this.implementation._logger()),
+        src: this.implementation && this.implementation._logger(),
         type: this.implementation && this.implementation.type
     };
 };

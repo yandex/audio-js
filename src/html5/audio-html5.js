@@ -97,7 +97,7 @@ var AudioHTML5 = function() {
     this._setActive(0);
 };
 Events.mixin(AudioHTML5);
-AudioHTML5.type = AudioHTML5.prototype.type = "html5";
+exports.type = AudioHTML5.type = AudioHTML5.prototype.type = "html5";
 
 // =================================================================
 

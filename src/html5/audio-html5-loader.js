@@ -378,7 +378,7 @@ AudioHTML5Loader.prototype._deinitAudio = function() {
  * @private
  */
 AudioHTML5Loader.prototype._startupAudio = function() {
-    logger.info(this, "_startupAudio");
+    DEV && logger.debug(this, "_startupAudio");
 
     this._deinitUserEvents();
 
@@ -409,7 +409,7 @@ AudioHTML5Loader.prototype._startupAudio = function() {
         this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
         this.audio.pause();
 
-        logger.info(this, "_startupAudio:play", e.type);
+        DEV && logger.debug(this, "_startupAudio:play", e.type);
     }.bind(this);
     this.__initListener.step = "play";
 
@@ -747,7 +747,7 @@ AudioHTML5Loader.prototype._restart = function(reason) {
     //THINK: нужен ли тут какой-то счётик количества попыток
     logger.info(this, "_restart", reason, this.position, this.playing);
 
-    if (reason && reason !== "timeout") {
+    if (!this.src || reason && reason !== "timeout") {
         return;
     }
 
