@@ -513,7 +513,7 @@ AudioPlayer.prototype.getSrc = function(offset) {
  * @returns {AbortablePromise}
  */
 AudioPlayer.prototype.play = function(src, duration) {
-    logger.info(this, "play", src, duration);
+    logger.info(this, "play", logger._showUrl(src), duration);
 
     this._played = 0;
     this._lastSkip = 0;
@@ -685,7 +685,7 @@ AudioPlayer.prototype.resume = function() {
  * @returns {AbortablePromise}
  */
 AudioPlayer.prototype.playPreloaded = function(src) {
-    logger.info(this, "playPreloaded", src);
+    logger.info(this, "playPreloaded", logger._showUrl(src));
 
     if (!src) {
         src = this.getSrc(1);
@@ -751,7 +751,7 @@ AudioPlayer.prototype.preload = function(src, duration) {
         return reject(new AudioError(AudioError.NOT_PRELOADED));
     }
 
-    logger.info(this, "preload", src, duration);
+    logger.info(this, "preload", logger._showUrl(src), duration);
 
     if (this._whenPreload) {
         this._whenPreload.reject("preload");
@@ -994,7 +994,7 @@ AudioPlayer.prototype.getPlayId = function() {
 AudioPlayer.prototype._logger = function() {
     return {
         index: this.implementation && this.implementation.name,
-        src: this.implementation && this.implementation._logger(),
+        src: logger._showUrl(this.implementation && this.implementation._logger()),
         type: this.implementation && this.implementation.type
     };
 };

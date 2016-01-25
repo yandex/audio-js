@@ -248,7 +248,7 @@ AudioHTML5Loader.prototype._onNativeError = function(e) {
     }
 
     if (this.audio.error.code == 2) {
-        logger.warn(this, "Network error. Restarting...", this.src);
+        logger.warn(this, "Network error. Restarting...", logger._showUrl(this.src));
         this.position = this.audio.currentTime;
         this._restart();
         return;
@@ -912,7 +912,7 @@ AudioHTML5Loader.prototype.destroy = function() {
 AudioHTML5Loader.prototype._logger = function() {
     return {
         init: !!this.__initListener && this.__initListener.step,
-        src: this.src,
+        src: logger._showUrl(this.src),
         playing: this.playing,
         ended: this.ended,
         notLoading: this.notLoading,

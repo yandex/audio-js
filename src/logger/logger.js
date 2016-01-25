@@ -89,6 +89,24 @@ Logger.prototype.error = noop;
  */
 Logger.prototype.trace = noop;
 
+/**
+ * Метод для обработки ссылок передаваемых в лог.
+ * @param url
+ * @private
+ */
+Logger.prototype._showUrl = function(url) {
+    return Logger.showUrl(url);
+};
+
+/**
+ * Метод для обработки ссылок передаваемых в лог. Можно переопределять. По-умолчанию не делает ничего.
+ * @param {String} url - ссылка
+ * @returns {String}
+ */
+Logger.showUrl = function(url) {
+    return url;
+};
+
 LEVELS.forEach(function(level) {
     Logger.prototype[level] = function() {
         var args = [].slice.call(arguments);

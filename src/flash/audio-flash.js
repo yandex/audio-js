@@ -242,8 +242,8 @@ AudioFlash.prototype._logger = function() {
             };
         }
         return {
-            main: this.getSrc(0),
-            preloader: this.getSrc(1)
+            main: logger._showUrl(this.getSrc(0)),
+            preloader: logger._showUrl(this.getSrc(1))
         };
     } catch(e) {
         return "";
