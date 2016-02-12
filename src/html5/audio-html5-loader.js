@@ -735,7 +735,9 @@ AudioHTML5Loader.prototype._startPlay = function() {
     this.audio.play();
 
     //THINK: нужно ли триггерить событие в случае успеха
-    this._promiseStartPlaying().then(noop, this.__restart);
+    this._promiseStartPlaying().then(function() {
+        this.retry = 0;
+    }.bind(this), this.__restart);
 };
 
 /**
@@ -744,10 +746,17 @@ AudioHTML5Loader.prototype._startPlay = function() {
  * @private
  */
 AudioHTML5Loader.prototype._restart = function(reason) {
-    //THINK: нужен ли тут какой-то счётик количества попыток
     logger.info(this, "_restart", reason, this.position, this.playing);
 
     if (!this.src || reason && reason !== "timeout") {
+        return;
+    }
+
+    this.retry++;
+
+    if (this.retry > 5) {
+        this.playing = false;
+        this.trigger(AudioStatic.EVENT_ERROR, new PlaybackError(PlaybackError.DONT_START, this.src));
         return;
     }
 
@@ -758,7 +767,7 @@ AudioHTML5Loader.prototype._restart = function(reason) {
     this.load(this.src);
 
     if (playing) {
-        this.play(position);
+        this._play(position);
     } else {
         this.setPosition(position);
     }
@@ -770,6 +779,17 @@ AudioHTML5Loader.prototype._restart = function(reason) {
  */
 AudioHTML5Loader.prototype.play = function(position) {
     DEV && logger.debug(this, "play", position);
+    this.retry = 0;
+    return this._play(position);
+};
+
+/**
+ * Воспроизведение трека/отмена паузы - внутренний метод
+ * @param {Number} [position] - позиция воспроизведения
+ * @private
+ */
+AudioHTML5Loader.prototype._play = function(position) {
+    DEV && logger.debug(this, "_play", position);
 
     if (this.playing) {
         return;

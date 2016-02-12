@@ -45,6 +45,13 @@ PlaybackError.DECODE_ERROR = "Decode error";
 PlaybackError.BAD_DATA = "Bad data";
 
 /**
+ * Не запускается воспроизведение
+ * @type {string}
+ * @const
+ */
+PlaybackError.DONT_START = "Playback start error";
+
+/**
  * Таблица соответствия кодов ошибок html5 плеера
  * @enum {String}
  */
