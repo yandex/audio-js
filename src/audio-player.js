@@ -147,10 +147,12 @@ setTimeout(function() {
 // =================================================================
 
 /**
- * @classdesc Аудио-плеер для браузера.
- * @alias ya.music.Audio
- * @param {String} [preferredType] - preferred player type (html5/flash)
- * @param {HTMLElement} [overlay] - dom element to show flash
+ * @class Аудиоплеер для браузера.
+ * @name Audio
+ * @param {String} [preferredType] Предпочитаемый тип плеера. Может принимать значения: "html5", "flash" или
+ * любое ложное значение (false, null, undefined, 0, ""). Если выбранный тип плеера окажется недоступен, будет запущен
+ * оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера.
+ * @param {HTMLElement} [overlay] HTML-контейнер для отображения Flash-апплета.
  *
  * @extends Events
  * @mixes AudioStatic
@@ -252,8 +254,9 @@ AudioPlayer.info = {
 };
 
 /**
- * Контекст для Web Audio API
- * @type {AudioContext}
+ * Контекст для Web Audio API.
+ * @type AudioContext
+ * @field
  * @static
  */
 AudioPlayer.audioContext = audioTypes.html5.audioContext;
@@ -265,7 +268,7 @@ AudioPlayer.audioContext = audioTypes.html5.audioContext;
 // =================================================================
 
 /**
- * Установить статус плеера
+ * Установить статус плеера.
  * @param {String} state - новый статус
  * @private
  */
