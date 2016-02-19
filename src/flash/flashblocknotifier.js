@@ -101,8 +101,10 @@ var FlashBlockNotifier = {
      * @param callbackFn
      * @param {Boolean} [removeBlockedSWF=true] Remove swf if blocked
      */
-    embedSWF: function(swfUrlStr, replaceElemIdStr, widthStr, heightStr, swfVersionStr, xiSwfUrlStr, flashvarsObj,
-                       parObj, attObj, callbackFn, removeBlockedSWF) {
+    embedSWF: function(
+        swfUrlStr, replaceElemIdStr, widthStr, heightStr, swfVersionStr, xiSwfUrlStr, flashvarsObj,
+        parObj, attObj, callbackFn, removeBlockedSWF
+    ) {
         // var swfobject = window['swfobject'];
 
         if (!swfobject) {
@@ -123,65 +125,75 @@ var FlashBlockNotifier = {
             replaceElement.parentNode.replaceChild(wrapper, replaceElement);
             wrapper.appendChild(replaceElement);
 
-            swfobject.embedSWF(swfUrlStr, replaceElemIdStr, widthStr, heightStr, swfVersionStr, xiSwfUrlStr, flashvarsObj, parObj, attObj, function(e) {
-                // e.success === false means that browser don't have flash or flash is too old
-                // @see http://code.google.com/p/swfobject/wiki/api
-                if (!e || e.success === false) {
-                    callbackFn(e);
-
-                } else {
-                    var swfElement = e['ref'];
-                    // Opera 11.5 and above replaces flash with SVG button
-                    // msie (and canary chrome 32.0) crashes on swfElement['getSVGDocument']()
-                    var replacedBySVG = false;
-                    try {
-                        replacedBySVG = swfElement && swfElement['getSVGDocument'] && swfElement['getSVGDocument']();
-                    } catch(err) {
-                    }
-                    if (replacedBySVG) {
-                        onFailure(e);
+            swfobject.embedSWF(swfUrlStr,
+                replaceElemIdStr,
+                widthStr,
+                heightStr,
+                swfVersionStr,
+                xiSwfUrlStr,
+                flashvarsObj,
+                parObj,
+                attObj,
+                function(e) {
+                    // e.success === false means that browser don't have flash or flash is too old
+                    // @see http://code.google.com/p/swfobject/wiki/api
+                    if (!e || e.success === false) {
+                        callbackFn(e);
 
                     } else {
-                        //set timeout to let FlashBlock plugin detect swf and replace it some contents
-                        window.setTimeout(function() {
-                            var TESTS = FlashBlockNotifier.__TESTS;
-                            for (var i = 0, j = TESTS.length; i < j; i++) {
-                                if (TESTS[i](swfElement, wrapper)) {
-                                    onFailure(e);
-                                    return;
+                        var swfElement = e['ref'];
+                        // Opera 11.5 and above replaces flash with SVG button
+                        // msie (and canary chrome 32.0) crashes on swfElement['getSVGDocument']()
+                        var replacedBySVG = false;
+                        try {
+                            replacedBySVG = swfElement && swfElement['getSVGDocument']
+                                && swfElement['getSVGDocument']();
+                        } catch(err) {
+                        }
+                        if (replacedBySVG) {
+                            onFailure(e);
+
+                        } else {
+                            //set timeout to let FlashBlock plugin detect swf and replace it some contents
+                            window.setTimeout(function() {
+                                var TESTS = FlashBlockNotifier.__TESTS;
+                                for (var i = 0, j = TESTS.length; i < j; i++) {
+                                    if (TESTS[i](swfElement, wrapper)) {
+                                        onFailure(e);
+                                        return;
+                                    }
                                 }
+                                callbackFn(e);
+                            }, FlashBlockNotifier.__TIMEOUT);
+                        }
+                    }
+
+                    function onFailure(e) {
+                        if (removeBlockedSWF !== false) {
+                            //remove swf
+                            swfobject.removeSWF(replaceElemIdStr);
+                            //remove wrapper
+                            remove(wrapper);
+
+                            //remove extension artefacts
+
+                            //ClickToFlash artefacts
+                            var ctf = document.getElementById('CTFstack');
+                            if (ctf) {
+                                remove(ctf);
                             }
-                            callbackFn(e);
-                        }, FlashBlockNotifier.__TIMEOUT);
-                    }
-                }
 
-                function onFailure(e) {
-                    if (removeBlockedSWF !== false) {
-                        //remove swf
-                        swfobject.removeSWF(replaceElemIdStr);
-                        //remove wrapper
-                        remove(wrapper);
-
-                        //remove extension artefacts
-
-                        //ClickToFlash artefacts
-                        var ctf = document.getElementById('CTFstack');
-                        if (ctf) {
-                            remove(ctf);
+                            //Chrome FlashBlock artefact
+                            var lastBodyChild = document.body.lastChild;
+                            if (lastBodyChild && lastBodyChild.className == 'ujs_flashblock_placeholder') {
+                                remove(lastBodyChild);
+                            }
                         }
-
-                        //Chrome FlashBlock artefact
-                        var lastBodyChild = document.body.lastChild;
-                        if (lastBodyChild && lastBodyChild.className == 'ujs_flashblock_placeholder') {
-                            remove(lastBodyChild);
-                        }
+                        e.success = false;
+                        e.__fbn = true;
+                        callbackFn(e);
                     }
-                    e.success = false;
-                    e.__fbn = true;
-                    callbackFn(e);
-                }
-            });
+                });
         });
     }
 };

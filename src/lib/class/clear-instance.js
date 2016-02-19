@@ -5,7 +5,7 @@
  * @private
  */
 var clearInstance = function(OriginalClass) {
-    var ClearClass = function(){};
+    var ClearClass = function() {};
     ClearClass.prototype = OriginalClass.prototype;
     return new ClearClass();
 };

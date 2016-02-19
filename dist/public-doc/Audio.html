@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Class: Promise</title>
+    <title>Class: Audio</title>
     
     
     
@@ -615,7 +615,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="Promise.html">Class: Promise</h1>
+        <h1 class="page-title" data-filename="Audio.html">Class: Audio</h1>
         
 
 
@@ -624,8 +624,10 @@
 
 <header>
     <h2>
-    Promise
+    Audio
     </h2>
+    
+        <div class="class-description"><p>Аудиоплеер для браузера.</p></div>
     
 </header>
 
@@ -637,14 +639,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="Promise">
+        <h4 class="name" id="Audio">
             
-            new Promise<span class="signature">()</span>
+            new Audio<span class="signature">(<span class="optional">preferredType</span>, <span class="optional">overlay</span>)</span>
         </h4>
 
         
         <div class="tag-source">
-            lib/async/promise.js, line 14
+            audio-player.js, line 149
         </div>
         
     </div>
@@ -654,15 +656,95 @@
 <dd>
 
     
-    <div class="description">
-        <p><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">ES 2015 Promise</a></p>
-    </div>
-    
 
     
 
     
 
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>preferredType</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Предпочитаемый тип плеера. Может принимать значения: &quot;html5&quot;, &quot;flash&quot; или
+любое ложное значение (false, null, undefined, 0, &quot;&quot;). Если выбранный тип плеера окажется недоступен, будет запущен
+оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>overlay</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>HTML-контейнер для отображения Flash-апплета.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
     
 
     
@@ -692,6 +774,43 @@
 
 
     
+    <h5>Fires:</h5>
+    <ul>
+        <li><a href="ya.music.Audio.html#event:EVENT_PLAY">ya.music.Audio#event:EVENT_PLAY</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_ENDED">ya.music.Audio#event:EVENT_ENDED</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_VOLUME">ya.music.Audio#event:EVENT_VOLUME</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_CRASHED">ya.music.Audio#event:EVENT_CRASHED</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_STATE">ya.music.Audio#event:EVENT_STATE</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_SWAP">ya.music.Audio#event:EVENT_SWAP</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_STOP">ya.music.Audio#event:EVENT_STOP</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_PAUSE">ya.music.Audio#event:EVENT_PAUSE</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_PROGRESS">ya.music.Audio#event:EVENT_PROGRESS</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_LOADING">ya.music.Audio#event:EVENT_LOADING</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_LOADED">ya.music.Audio#event:EVENT_LOADED</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:EVENT_ERROR">ya.music.Audio#event:EVENT_ERROR</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:PRELOADER_EVENT+EVENT_STOP">ya.music.Audio#event:PRELOADER_EVENT+EVENT_STOP</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:PRELOADER_EVENT+EVENT_PROGRESS">ya.music.Audio#event:PRELOADER_EVENT+EVENT_PROGRESS</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:PRELOADER_EVENT+EVENT_LOADING">ya.music.Audio#event:PRELOADER_EVENT+EVENT_LOADING</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:PRELOADER_EVENT+EVENT_LOADED">ya.music.Audio#event:PRELOADER_EVENT+EVENT_LOADED</a></li>
+    
+        <li><a href="ya.music.Audio.html#event:PRELOADER_EVENT+EVENT_ERROR">ya.music.Audio#event:PRELOADER_EVENT+EVENT_ERROR</a></li>
+    </ul>
+    
 
     
 
@@ -708,13 +827,762 @@
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
 
+        <ul>
+            <li><a href="Events.html">Events</a></li>
+        </ul>
     
 
     
 
     
 
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_CRASHED"><span class="type-signature static">static,constant</span>EVENT_CRASHED<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_ENDED"><span class="type-signature static">static,constant</span>EVENT_ENDED<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_ERROR"><span class="type-signature static">static,constant</span>EVENT_ERROR<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_LOADED"><span class="type-signature static">static,constant</span>EVENT_LOADED<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_LOADING"><span class="type-signature static">static,constant</span>EVENT_LOADING<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_PAUSE"><span class="type-signature static">static,constant</span>EVENT_PAUSE<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_PLAY"><span class="type-signature static">static,constant</span>EVENT_PLAY<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_PROGRESS"><span class="type-signature static">static,constant</span>EVENT_PROGRESS<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_STATE"><span class="type-signature static">static,constant</span>EVENT_STATE<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_STOP"><span class="type-signature static">static,constant</span>EVENT_STOP<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_SWAP"><span class="type-signature static">static,constant</span>EVENT_SWAP<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EVENT_VOLUME"><span class="type-signature static">static,constant</span>EVENT_VOLUME<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".PRELOADER_EVENT"><span class="type-signature static">static,constant</span>PRELOADER_EVENT<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".STATE_CRASHED"><span class="type-signature static">static,constant</span>STATE_CRASHED<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".STATE_IDLE"><span class="type-signature static">static,constant</span>STATE_IDLE<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".STATE_INIT"><span class="type-signature static">static,constant</span>STATE_INIT<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".STATE_PAUSED"><span class="type-signature static">static,constant</span>STATE_PAUSED<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".STATE_PLAYING"><span class="type-signature static">static,constant</span>STATE_PLAYING<span class="type-signature type string">String</span> </h4>
+    </div>
+
+    
+</dt>
+<dd>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -723,15 +1591,17 @@
         <dl>
             
 <dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".all">
+    <div class="nameContainer inherited">
+        <h4 class="name" id="clearListeners">
             
-            <span class="type-signature static">static</span>all<span class="signature">(promises)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
+                <span class="inherited"><a href="Events.html#clearListeners">inherited</a></span>
+            
+            clearListeners<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
 
         
         <div class="tag-source">
-            lib/async/promise.js, line 41
+            lib/async/events.js, line 134
         </div>
         
     </div>
@@ -742,7 +1612,7 @@
 
     
     <div class="description">
-        <p>Создать обещание, которое выполнится тогда, когда будут выполнены все переданные обещания.</p>
+        <p>Отписаться от всех слушателей событий</p>
     </div>
     
 
@@ -750,535 +1620,6 @@
 
     
 
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>promises</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;<a href="Promise.html">Promise</a>></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>список обещаний</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-
-    
-
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".race">
-            
-            <span class="type-signature static">static</span>race<span class="signature">(promises)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 49
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Создать обещание, которое выполнится тогда, когда будет выполнено хотя бы одно из переданных обещаний.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>promises</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;<a href="Promise.html">Promise</a>></span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>список обещаний</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-
-    
-
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".reject">
-            
-            <span class="type-signature static">static</span>reject<span class="signature">(data)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 33
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Создать обещание отклонённое переданными данными</p>
-    </div>
-    
-
-    
-
-    
-
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>данные, которыми отклонить обещание</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-
-    
-
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".resolve">
-            
-            <span class="type-signature static">static</span>resolve<span class="signature">(data)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 25
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Создать обещание разрешённое переданными данными</p>
-    </div>
-    
-
-    
-
-    
-
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>данные, которыми разрешить обещание</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-
-    
-
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="catch">
-            
-            catch<span class="signature">(errback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
-        </h4>
-
-        
-        <div class="tag-source">
-            lib/async/promise.js, line 65
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Назначить обработчик отклонения обещания</p>
-    </div>
-    
-
-    
-
-    
-
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>errback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                <p>обработчик ошибки</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
     
 
     
@@ -1321,7 +1662,7 @@
 
 
 <h5>Returns:</h5>
-новое обещание из результатов обработчика
+цепочный метод, возвращает ссылку на контекст
 <br />
 
     
@@ -1332,15 +1673,17 @@
         
             
 <dt>
-    <div class="nameContainer">
-        <h4 class="name" id="then">
+    <div class="nameContainer inherited">
+        <h4 class="name" id="muteEvents">
             
-            then<span class="signature">(callback, <span class="optional">errback</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Promise.html">Promise</a>}</span>
+                <span class="inherited"><a href="Events.html#muteEvents">inherited</a></span>
+            
+            muteEvents<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
         </h4>
 
         
         <div class="tag-source">
-            lib/async/promise.js, line 57
+            lib/async/events.js, line 199
         </div>
         
     </div>
@@ -1351,7 +1694,89 @@
 
     
     <div class="description">
-        <p>Назначить обработчики разрешения и отклонения обещания</p>
+        <p>Остановить запуск событий</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+
+<h5>Returns:</h5>
+цепочный метод, возвращает ссылку на контекст
+<br />
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="off">
+            
+                <span class="inherited"><a href="Events.html#off">inherited</a></span>
+            
+            off<span class="signature">(event, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
+        </h4>
+
+        
+        <div class="tag-source">
+            lib/async/events.js, line 86
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Отписаться от события</p>
     </div>
     
 
@@ -1378,6 +1803,29 @@
 	</thead>
 	
 	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>имя события</p></td>
+        </tr>
+	
 	
 	
         <tr>
@@ -1398,45 +1846,7 @@
             
             <td class="description last">
                 
-                    
-                    
-                        
-                    
-                
-                <p>обработчик успеха</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>errback</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">null</span>
-|
-
-<span class="param-type">function</span>
-
-
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>обработчик ошибки</p></td>
+                <p>обработчик события</p></td>
         </tr>
 	
 	
@@ -1484,7 +1894,678 @@
 
 
 <h5>Returns:</h5>
-новое обещание из результатов обработчика
+цепочный метод, возвращает ссылку на контекст
+<br />
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="on">
+            
+                <span class="inherited"><a href="Events.html#on">inherited</a></span>
+            
+            on<span class="signature">(event, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
+        </h4>
+
+        
+        <div class="tag-source">
+            lib/async/events.js, line 71
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Подписаться на событие</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>имя события</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>обработчик события</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+
+<h5>Returns:</h5>
+цепочный метод, возвращает ссылку на контекст
+<br />
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="once">
+            
+                <span class="inherited"><a href="Events.html#once">inherited</a></span>
+            
+            once<span class="signature">(event, callback)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
+        </h4>
+
+        
+        <div class="tag-source">
+            lib/async/events.js, line 116
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Подписаться на событие, отписаться сразу после первого возникновения события</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>имя события</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>обработчик события</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+
+<h5>Returns:</h5>
+цепочный метод, возвращает ссылку на контекст
+<br />
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="pipeEvents">
+            
+                <span class="inherited"><a href="Events.html#pipeEvents">inherited</a></span>
+            
+            pipeEvents<span class="signature">(acceptor)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
+        </h4>
+
+        
+        <div class="tag-source">
+            lib/async/events.js, line 184
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Делегировать все события другому диспетчеру событий</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>acceptor</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Events.html">Events</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>получатель событий</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+
+<h5>Returns:</h5>
+цепочный метод, возвращает ссылку на контекст
+<br />
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="trigger">
+            
+                <span class="inherited"><a href="Events.html#trigger">inherited</a></span>
+            
+            trigger<span class="signature">(event, args)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
+        </h4>
+
+        
+        <div class="tag-source">
+            lib/async/events.js, line 156
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Запустить событие</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>имя события</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">args</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                        <span class="repeatable">repeatable</span>
+                    
+                
+                <p>параметры для передачи вместе с событием</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+
+<h5>Returns:</h5>
+цепочный метод, возвращает ссылку на контекст
+<br />
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="unmuteEvents">
+            
+                <span class="inherited"><a href="Events.html#unmuteEvents">inherited</a></span>
+            
+            unmuteEvents<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Events.html">Events</a>}</span>
+        </h4>
+
+        
+        <div class="tag-source">
+            lib/async/events.js, line 208
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Возобновить запуск событий</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+
+<h5>Returns:</h5>
+цепочный метод, возвращает ссылку на контекст
 <br />
 
     

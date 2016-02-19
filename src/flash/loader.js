@@ -37,8 +37,9 @@ module.exports = function(url, minVersion, id, loadCallback, flashVars, containe
 
     if (container && !winSafari) {
         embedder = FlashEmbedder;
-        flashSizeX = sizeX; flashSizeY = sizeY;
-        options = { allowscriptaccess: "always", wmode: "transparent" };
+        flashSizeX = sizeX;
+        flashSizeY = sizeY;
+        options = {allowscriptaccess: "always", wmode: "transparent"};
 
         $flashPlayer.className = CONTAINER_CLASS;
         $flashPlayer.style.cssText = 'position: relative; width: 100%; height: 100%; overflow: hidden;';
@@ -46,7 +47,7 @@ module.exports = function(url, minVersion, id, loadCallback, flashVars, containe
     } else {
         embedder = FlashBlockNotifier;
         flashSizeX = flashSizeY = "1";
-        options = { allowscriptaccess: "always" };
+        options = {allowscriptaccess: "always"};
 
         $flashPlayer.style.cssText = 'position: absolute; left: -1px; top: -1px; width: 0px; height: 0px; overflow: hidden;';
         document.body.appendChild($flashPlayer);

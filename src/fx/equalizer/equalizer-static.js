@@ -4,7 +4,6 @@
  */
 var EqualizerStatic = {};
 
-
 /** @type {String}
  * @const*/
 EqualizerStatic.EVENT_CHANGE = "change";

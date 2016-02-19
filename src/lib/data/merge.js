@@ -6,7 +6,7 @@
  * @returns {Object}
  * @private
  */
-var merge = function (initial) {
+var merge = function(initial) {
     var args = [].slice.call(arguments, 1);
     var object;
     var key;

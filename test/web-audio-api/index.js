@@ -68,7 +68,7 @@ var drawTest = function(name, data) {
         });
     };
 
-    draw(norm(data[1], - Math.PI, Math.PI), "#5B9A1C", 3);
+    draw(norm(data[1], -Math.PI, Math.PI), "#5B9A1C", 3);
     draw(norm(data[0], 0, MAX_DB), "#134b9a", 3);
 };
 
@@ -108,41 +108,41 @@ var testFilter = function(options, phase) {
 };
 
 var tests = {
-    "lowpass Q=0.2": testFilter({ type: "lowpass", Q: 0.2 }),
-    "lowpass Q=1": testFilter({ type: "lowpass", Q: 1 }),
-    "lowpass Q=5": testFilter({ type: "lowpass", Q: 5 }),
+    "lowpass Q=0.2": testFilter({type: "lowpass", Q: 0.2}),
+    "lowpass Q=1": testFilter({type: "lowpass", Q: 1}),
+    "lowpass Q=5": testFilter({type: "lowpass", Q: 5}),
 
-    "highpass Q=0.2": testFilter({ type: "highpass", Q: 0.2 }),
-    "highpass Q=1": testFilter({ type: "highpass", Q: 1 }),
-    "highpass Q=5": testFilter({ type: "highpass", Q: 5 }),
+    "highpass Q=0.2": testFilter({type: "highpass", Q: 0.2}),
+    "highpass Q=1": testFilter({type: "highpass", Q: 1}),
+    "highpass Q=5": testFilter({type: "highpass", Q: 5}),
 
-    "bandpass Q=0.2": testFilter({ type: "bandpass", Q: 0.2 }),
-    "bandpass Q=1": testFilter({ type: "bandpass", Q: 1 }),
-    "bandpass Q=5": testFilter({ type: "bandpass", Q: 5 }),
+    "bandpass Q=0.2": testFilter({type: "bandpass", Q: 0.2}),
+    "bandpass Q=1": testFilter({type: "bandpass", Q: 1}),
+    "bandpass Q=5": testFilter({type: "bandpass", Q: 5}),
 
-    "notch Q=0.2": testFilter({ type: "notch", Q: 0.2 }),
-    "notch Q=1": testFilter({ type: "notch", Q: 1 }),
-    "notch Q=5": testFilter({ type: "notch", Q: 5 }),
+    "notch Q=0.2": testFilter({type: "notch", Q: 0.2}),
+    "notch Q=1": testFilter({type: "notch", Q: 1}),
+    "notch Q=5": testFilter({type: "notch", Q: 5}),
 
-    "peaking gain=6 Q=0.2": testFilter({ type: "peaking", Q: 0.2, gain: 6 }),
-    "peaking gain=6 Q=1": testFilter({ type: "peaking", Q: 1, gain: 6 }),
-    "peaking gain=6 Q=5": testFilter({ type: "peaking", Q: 5, gain: 6 }),
+    "peaking gain=6 Q=0.2": testFilter({type: "peaking", Q: 0.2, gain: 6}),
+    "peaking gain=6 Q=1": testFilter({type: "peaking", Q: 1, gain: 6}),
+    "peaking gain=6 Q=5": testFilter({type: "peaking", Q: 5, gain: 6}),
 
-    "peaking gain=-6 Q=0.2": testFilter({ type: "peaking", Q: 0.2, gain: -6 }),
-    "peaking gain=-6 Q=1": testFilter({ type: "peaking", Q: 1, gain: -6 }),
-    "peaking gain=-6 Q=5": testFilter({ type: "peaking", Q: 5, gain: -6 }),
+    "peaking gain=-6 Q=0.2": testFilter({type: "peaking", Q: 0.2, gain: -6}),
+    "peaking gain=-6 Q=1": testFilter({type: "peaking", Q: 1, gain: -6}),
+    "peaking gain=-6 Q=5": testFilter({type: "peaking", Q: 5, gain: -6}),
 
-    "allpass Q=0.2": testFilter({ type: "allpass", Q: 0.2 }),
-    "allpass Q=1": testFilter({ type: "allpass", Q: 1 }),
-    "allpass Q=5": testFilter({ type: "allpass", Q: 5 }),
+    "allpass Q=0.2": testFilter({type: "allpass", Q: 0.2}),
+    "allpass Q=1": testFilter({type: "allpass", Q: 1}),
+    "allpass Q=5": testFilter({type: "allpass", Q: 5}),
 
-    "lowshelf gain=6": testFilter({ type: "lowshelf", gain: 6 }),
-    "lowshelf gain=0": testFilter({ type: "lowshelf", gain: 0 }),
-    "lowshelf gain=-6": testFilter({ type: "lowshelf", gain: -6 }),
+    "lowshelf gain=6": testFilter({type: "lowshelf", gain: 6}),
+    "lowshelf gain=0": testFilter({type: "lowshelf", gain: 0}),
+    "lowshelf gain=-6": testFilter({type: "lowshelf", gain: -6}),
 
-    "highshelf gain=6": testFilter({ type: "highshelf", gain: 6 }),
-    "highshelf gain=0": testFilter({ type: "highshelf", gain: 0 }),
-    "highshelf gain=-6": testFilter({ type: "highshelf", gain: -6 })
+    "highshelf gain=6": testFilter({type: "highshelf", gain: 6}),
+    "highshelf gain=0": testFilter({type: "highshelf", gain: 0}),
+    "highshelf gain=-6": testFilter({type: "highshelf", gain: -6})
 };
 
 Object.keys(tests).forEach(function(testname) {
