@@ -56,7 +56,7 @@ setTimeout(function() {
 // =================================================================
 
 /** Описание временных данных плеера
- * @typedef {Object} ya.music.Audio~AudioPlayerTimes
+ * @typedef {Object} Audio~AudioPlayerTimes
  *
  * @property {Number} duration - длительность трека
  * @property {Number} loaded - длительность загруженной части
@@ -70,25 +70,32 @@ setTimeout(function() {
 
 // =================================================================
 
-/** Событие начала воспроизведения
- * @event ya.music.Audio#EVENT_PLAY
+/**
+ * Событие начала воспроизведения.
+ * @name Audio#EVENT_PLAY
+ * @event
  */
 /** Событие завершения воспроизведения
- * @event ya.music.Audio#EVENT_ENDED
+ * @name Audio#EVENT_ENDED
+ * @event
  */
 /** Событие изменения громкости
- * @event ya.music.Audio#EVENT_VOLUME
+ * @name Audio#EVENT_VOLUME
+ * @event
  * @param {Number} volume - громкость
  */
 /** Событие краха плеера
- * @event ya.music.Audio#EVENT_CRASHED
+ * @name Audio#EVENT_CRASHED
+ * @event
  */
 /** Событие смены статуса плеера
- * @event ya.music.Audio#EVENT_STATE
+ * @name Audio#EVENT_STATE
+ * @event
  * @param {String} state - новый статус плеера
  */
 /** Событие переключения активного плеера и прелоадера
- * @event ya.music.Audio#EVENT_SWAP
+ * @name Audio#EVENT_SWAP
+ * @event
  */
 
 // =================================================================
@@ -97,24 +104,41 @@ setTimeout(function() {
 
 // =================================================================
 
-/** Событие остановки воспроизведения
- * @event ya.music.Audio#EVENT_STOP
+/**
+ * Событие остановки воспроизведения.
+ * @name Audio#EVENT_STOP
+ * @event
  */
-/** Событие паузы воспроизведения
- * @event ya.music.Audio#EVENT_PAUSE
+
+/**
+ * Событие паузы воспроизведения.
+ * @name Audio#EVENT_PAUSE
+ * @event
  */
-/** Событие обновления позиции воспроизведения/загруженной части
- * @event ya.music.Audio#EVENT_PROGRESS
+
+/**
+ * Событие обновления позиции воспроизведения/загруженной части.
+ * @name Audio#EVENT_PROGRESS
+ * @event
  * @param {ya.music.Audio~AudioPlayerTimes} times - информация о временных данных трека
  */
-/** Событие начала загрузки трека
- * @event ya.music.Audio#EVENT_LOADING
+
+/**
+ * Событие начала загрузки трека.
+ * @name Audio#EVENT_LOADING
+ * @event
  */
-/** Событие завершения загрузки трека
- * @event ya.music.Audio#EVENT_LOADED
+
+/**
+ * Событие завершения загрузки трека.
+ * @name Audio#EVENT_LOADED
+ * @event
  */
-/** Событие ошибки воспроизведения
- * @event ya.music.Audio#EVENT_ERROR
+
+/**
+ * Событие ошибки воспроизведения.
+ * @name Audio#EVENT_ERROR
+ * @event
  */
 
 // =================================================================
@@ -123,21 +147,35 @@ setTimeout(function() {
 
 // =================================================================
 
-/** Событие остановки воспроизведения
- * @event ya.music.Audio#PRELOADER_EVENT+EVENT_STOP
+/**
+ * Событие остановки воспроизведения.
+ * @name Audio#PRELOADER_EVENT+EVENT_STOP
+ * @event
  */
-/** Событие обновления позиции загруженной части
- * @event ya.music.Audio#PRELOADER_EVENT+EVENT_PROGRESS
- * @param {ya.music.Audio~AudioPlayerTimes} times - информация о временных данных трека
+
+/**
+ * Событие обновления позиции загруженной части.
+ * @name Audio#PRELOADER_EVENT+EVENT_PROGRESS
+ * @event
+ * @param {Audio~AudioPlayerTimes} times - информация о временных данных трека
  */
-/** Событие начала загрузки трека
- * @event ya.music.Audio#PRELOADER_EVENT+EVENT_LOADING
+
+/**
+ * Событие начала загрузки трека.
+ * @event
+ * @name Audio#PRELOADER_EVENT+EVENT_LOADING
  */
-/** Событие завершения загрузки трека
- * @event ya.music.Audio#PRELOADER_EVENT+EVENT_LOADED
+
+/**
+ * Событие завершения загрузки трека.
+ * @event
+ * @name Audio#PRELOADER_EVENT+EVENT_LOADED
  */
-/** Событие ошибки воспроизведения
- * @event ya.music.Audio#PRELOADER_EVENT+EVENT_ERROR
+
+/**
+ * Событие ошибки воспроизведения.
+ * @event
+ * @name Audio#PRELOADER_EVENT+EVENT_ERROR
  */
 
 // =================================================================
