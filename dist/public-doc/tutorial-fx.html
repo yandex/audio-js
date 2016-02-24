@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Tutorial: fx</title>
     
     
     
@@ -389,9 +389,9 @@
             
                 <li data-name="ya.music.Audio.AudioError.FLASH_UNKNOWN_CRASH"><a href="ya.music.Audio.AudioError.html#.FLASH_UNKNOWN_CRASH">FLASH_UNKNOWN_CRASH</a></li>
             
-                <li data-name="ya.music.Audio.AudioError.NO_IMPLEMENTATION"><a href="ya.music.Audio.AudioError.html#.NO_IMPLEMENTATION">NO_IMPLEMENTATION</a></li>
-            
                 <li data-name="ya.music.Audio.AudioError.NOT_PRELOADED"><a href="ya.music.Audio.AudioError.html#.NOT_PRELOADED">NOT_PRELOADED</a></li>
+            
+                <li data-name="ya.music.Audio.AudioError.NO_IMPLEMENTATION"><a href="ya.music.Audio.AudioError.html#.NO_IMPLEMENTATION">NO_IMPLEMENTATION</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -596,9 +596,9 @@
             
                 <li data-name="ya.music.Audio.PlaybackError.DONT_START"><a href="ya.music.Audio.PlaybackError.html#.DONT_START">DONT_START</a></li>
             
-                <li data-name="ya.music.Audio.PlaybackError.html5"><a href="ya.music.Audio.PlaybackError.html#.html5">html5</a></li>
-            
                 <li data-name="ya.music.Audio.PlaybackError.NETWORK_ERROR"><a href="ya.music.Audio.PlaybackError.html#.NETWORK_ERROR">NETWORK_ERROR</a></li>
+            
+                <li data-name="ya.music.Audio.PlaybackError.html5"><a href="ya.music.Audio.PlaybackError.html#.html5">html5</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -615,143 +615,75 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="index.html">Index</h1>
-        
+        <h1 class="page-title" data-filename="tutorial-fx.html">Tutorial: fx</h1>
+        <section>
 
-
+<header>
     
 
+</header>
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-    
-
-
-
-
-    <section>
-        <article class="readme"><h1>YandexAudio</h1><p>YandexAudio —  JavaScript-библиотека, предназначенная  для воспроизведения аудиоданных в браузере. Работа YandexAudio базируется на технологиях html5 audio и flash. Библиотека предоставляет удобный интерфейс для добавления этих технологий на страницу и управления их настройками. При этом YandexAudio решает основные проблемы, связанные с использованием audio и flash – неполная поддержка браузерами, трудная отладка ошибок и др.</p>
-<p>Основные возможности YandexAudio:</p>
+<article>
+    <h1>Обработка звука</h1><p>В состав данной библиотеки входят 2 подмодуля:</p>
 <ul>
-<li>автоматическое определение поддерживаемых браузером технологий;</li>
-<li>подключение flash-плеера на страницу с возможностью отображения видимого flash-апплета;</li>
-<li>автоматическая перезагрузка плеера при возникновении ошибки (например из-за заблокированного flash-содержимого);</li>
-<li>предзагрузка следующего трека, параллельно с воспроизведением текущего;</li>
-<li>детектирование и использование технологий Web Audio API;</li>
-<li>эквалайзер (с готовым набором пресетов) с возможностью настройки количества и частоты полос пропускания.</li>
+<li>эквалайзер</li>
+<li>набор функций для работы с разными единицами и шкалами для измерения громкости</li>
 </ul>
-<h2>Подключение</h2><p>Существует 3 способа подключения данной библиотеки:</p>
+<p>Оба подмодуля несут исключительно вспомогательную функцию, для работы самой библиотеки их использование не требуется. Также эти модули можно применять не только к самому плееру.</p>
+<h2>Эквалайзер</h2><p>Эквалайзер - это инструмент для фильтрации звука, позволяющий настраивать различную громкость для разных полос пропускания. Он используется преимущественно для компенсации недостатков записывающей и/или воспроизводящей аппаратуры, но может применяться и для придания большей выразительности звучанию.</p>
+<p>Стоит сразу упомянуть, что эквалайзер реализован только для html5-версии плеера, т.к. он использует технологию <a href="https://github.yandex-team.ru/pages/music/audio/tutorial-web-audio-api.html">Web Audio API</a>. Рассмотрим небольшой пример того как подключить и использовать эквалайзер:</p>
+<pre class="prettyprint source lang-(javascript)"><code>// Сахар для удобства доступа
+var YandexAudio = ya.music.Audio;
+var Equalizer = YandexAudio.fx.Equalizer;
+
+// При создании плеера непосредственно указываем html5, т.к. эквалайзер не будет работать с flash-плеером
+var player = new YandexAudio(&quot;html5&quot;);
+var equalizer = null;
+
+// Дожидаемся завершения инициализации плеера
+player.initPromise().then(function() {
+    if (!player.toggleWebAudioAPI(true)) {
+        // Если не удаётся включить Web Audio API, значит либо запустился flash-плеер, либо нет поддержки Web Audio API
+        console.warn(&quot;Эквалайзер недоступен&quot;);
+    } else {
+        // Создаём эквалайзер со стандартным набором полос пропускания
+        equalizer = new Equalizer(YandexAudio.audioContext, Equalizer.DEFAULT_BANDS);
+
+        // Находим нужный пресет из списка стандартных
+        for (var i = 0, l = Equalizer.DEFAULT_PRESETS.length; i &lt; l; i++) {
+            if (Equalizer.DEFAULT_PRESETS[i].id === &quot;Full Bass & Treble&quot;) {
+                var preset = Equalizer.DEFAULT_PRESETS[i];
+                break;
+            }
+        }
+
+        // Загружаем пресет в эквалайзер
+        equalizer.loadPreset(preset);
+
+        // Подключаем эквалайзер к плееру
+        player.setAudioPreprocessor(equalizer);
+    }
+});</code></pre><p>Тут стоит пояснить некоторые вещи. </p>
+<p>Полосой пропускания называется диапазон частот к которому применяется некий фильтр. В нашем случае этот фильтр реализован с помощью <code>BiquadFilterNode</code>, для первой и последней полосы он имеет тип <code>lowshelf</code> и <code>highshelf</code> соответственно, а для всех остальных - <code>peaking</code>. Подробнее про это можно почитать в статье <a href="https://github.yandex-team.ru/pages/music/audio/tutorial-web-audio-api.html">Web Audio API</a> в разделе <strong>BiquadFilterNode</strong>. Фильтры для каждой полосы соединены последовательно начиная с самой маленькой частоты и заканчивая самой высокой. В данном примере используется стандартный набор из 10 полос с частотами <code>[60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000]</code> (значения указаны в герцах).</p>
+<p>Пресеты эквалайзера - это набор настроек усиления для каждой полосы пропускания, плюс значение предусиления. Предусиление выбирается таким образом, чтобы после применения эквалайзера громкость общая громкость звука сохранялась неизменной. Алтернативный подход - использовать предусиление с отрицательным значением равным максимальному усилению среди всех полос, чтобы гарантированно избежать клиппинга сигнала в результате последующей обработки (однако в данном случае общая громкость будет ниже чем у входного сигнала)</p>
+<p>Теперь собственно про подключение эквалайзера. Web Audio API не умеет напрямую использовать элементы <code>audio</code> в графе. Для их использования требуется создать элемент <code>MediaElementAudioSourceNode</code>, указав <code>audio</code> элемент как источник звука (опять же, подробнее в статье <a href="https://github.yandex-team.ru/pages/music/audio/tutorial-web-audio-api.html">Web Audio API</a> в разделе <strong>Источники сигнала</strong>). Далее, т.к. мы хотим работать с изначальным сигналом без всяких искажений (включая изменение громкости, которое очень критично для некоторых фильтров), нам тебуется создать элемент <code>GainNode</code>, который будет управлять итоговой громкостью, а самому элементу <code>audio</code> выставить максимальную громкость. Именно это проделывает вызов <code>player.toggleWebAudioAPI(true)</code> - создаёт необходимое окружение для использования Web Audio API.</p>
+<p>Сам процесс подключения различных препроцессоров и фильтров предельно прост. Препроцессор описывается двумя нодами - входной и выходной (для простых фильтров это может быть одна и та же нода). Выход <code>MediaElementAudioSourceNode</code> подключается ко входу входной ноды, а выход выходной ноды препроцессора подключается к входу <code>GainNode</code>. Таким образом, если требуется подключить более одного фильтра, то достаточно соединить их в нужной последовательности и передать в качестве входной и выходной ноды соответствующие ноды этой конструкции.</p>
+<pre class="prettyprint source lang-(javascript)"><code>equalizer.output.connect(convolverNode);
+convolverNode.connect(dynamicsCompressorNode);
+dynamicsCompressorNode.connect(analyzerNode);
+
+player.setAudioPreprocessor({
+    input: equalizer.input,
+    output: dynamicsCompressorNode // нам не нужен выход analyzerNode, и её не обязательно подключать к какому-либо выходу
+});</code></pre><h2>Громкость</h2><p>С данным подмодулем всё намного проще - это всего лишь набор формул для перевода величин, так что опишу лишь что это за величины: </p>
 <ul>
-<li><strong>npm</strong> - если ваш проект использует сборку скриптов с помощью browserify или аналога, то можно просто подключать
-библиотку как npm-пакет <code>var YandexAudio = require('YandexAudio')</code>;</li>
-<li><strong>скрипт</strong> - достаточно подключить основной файл скрипта 
-(<a href="https://github.yandex-team.ru/pages/music/audio/dist/index.js">dist/index.js</a> 
-или <a href="https://github.yandex-team.ru/pages/music/audio/dist/index.min.js">dist/index.min.js</a>  - минифицированную версию) 
-в тело страницы и далее использовать глобально доступный объект <a href="ya.music.Audio.html">ya.music.Audio</a>.</li>
+<li><strong>dBFS</strong> - полный динамический диапазон. Шкала в децибелах от минус бесконечности до нуля (подробнее в статье про <a href="https://github.yandex-team.ru/pages/music/audio/tutorial-sound.html">теорию звука</a> в разделе <strong>Уровень сигнала</strong>),</li>
+<li>экспоненциальная шкала - шкала относительной громкости (от 0 до 1) с экспоненциальным шагом. Позволяет более точно регулировать громкость вблизи нижней границы и делает более существенные изменения громкости вблизи верхней границы.</li>
 </ul>
-<h2>Использование</h2><h3>Создание экземпляра плеера:</h3><pre class="prettyprint source lang-javascript"><code>    var audioPlayer = new ya.music.Audio(preferredPlayerType, flashOverlayElement);
-    audioPlayer.initPromise().then(function() {
-      console.log(&quot;Аудио-плеер готов к работе&quot;);
-    }, function() {
-      console.error(&quot;Не удалось инициализировать аудио-плеер&quot;);
-    });</code></pre><ul>
-<li><strong>preferredPlayerType</strong> - предпочитаемый тип плеера. Может принимать значения: <code>&quot;html5&quot;</code>, <code>&quot;flash&quot;</code> или любое ложное значение (false, null, undefined, 0, &quot;&quot;). Если выбранный тип плеера окажется недоступен, будет запущен оставшийся тип. Если параметр не передан, либо указано ложное значение, то API автоматически выберет поддерживаемый тип плеера.</li>
-<li><strong>flashOverlayElement</strong> - HTMLElement, в который требуется встроить flash-апплет. Передается в том случае, если необходимо отобразить видимый flash-апплет для отключения различных блокировщиков flash'а.</li>
-</ul>
-<h3>Запуск воспроизведения</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.play(src).then(function() {
-      console.log(&quot;Воспроизведение успешно началось&quot;);
-    }, function(err) {
-      console.error(&quot;Не удалось начать воспроизведенние&quot;, err);
-    });</code></pre><h3>Управление воспроизведением</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.pause(); // пауза
-    audioPlayer.resume(); // продолжение воспроизведения
-    audioPlayer.stop(); // остановка воспроизведения и загрузки трека
+<p>Оригинальная шкала громкости, является линейной шкалой относительной громкости (от 0 до 1). Все методы данного подмодуля переводят значения из этой шкалы или в эту шкалу.</p>
+</article>
 
-    console.log(&quot;Ссылка на текущий трек&quot;, audioPlayer.getSrc());
-    console.log(&quot;Длительность трека&quot;, audioPlayer.getDuration());
-    console.log(&quot;Текущая позиция воспроизведения&quot;, audioPlayer.getPosition());
-    console.log(&quot;Длительность загруженной части&quot;, audioPlayer.getLoaded());
-    console.log(&quot;Время воспроизведения трека&quot;, audioPlayer.getPlayed());
-
-    console.log(&quot;Новая позиция воспроизведения&quot;, audioPlayer.setPosition(position));</code></pre><h3>Прослушивание событий</h3><pre class="prettyprint source lang-javascript"><code>    audioPlayer.on(ya.music.Audio.EVENT_STATE, function(state) {
-      switch(state) {
-        case ya.music.Audio.STATE_INIT: console.log(&quot;Инициализация плеера&quot;); break;
-        case ya.music.Audio.STATE_IDLE: console.log(&quot;Плеер готов и ожидает&quot;); break;
-        case ya.music.Audio.STATE_PLAYING: console.log(&quot;Плеер проигрывает музыку&quot;); break;
-        case ya.music.Audio.STATE_PAUSED: console.log(&quot;Плеер поставлен на паузу&quot;); break;
-        case ya.music.Audio.STATE_CRASHED: console.log(&quot;Не удалось инициализировать плеер&quot;); break;
-      }
-    });
-
-    var logEvent = function(text) { return function(data) { console.log(text, data); }; };
-    audioPlayer.on(ya.music.Audio.EVENT_PLAY, logEvent(&quot;Плеер начал воспроизведение трека&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_STOP, logEvent(&quot;Остановка воспроизведения&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_PAUSE, logEvent(&quot;Пауза воспроизведения&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, logEvent(&quot;Обновление позиции воспроизведения&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_ENDED, logEvent(&quot;Воспроизведение трека завершено&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_LOADING, logEvent(&quot;Трек начал загружаться&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_LOADED, logEvent(&quot;Трек загружен полностью&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_VOLUME, logEvent(&quot;Изменение громкости&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при воспроизведении&quot;));
-    audioPlayer.on(ya.music.Audio.EVENT_CRASHED, logEvent(&quot;Крах инициализации&quot;));
-
-    audioPlayer.on(ya.music.Audio.EVENT_SWAP, logEvent(&quot;Переключение между текущим и предзагруженным треком&quot;));</code></pre><h3>Прелоадер</h3><p>В большинство команд управления можно передать вторым аргументом <code>1</code>, чтобы они применялись к прелоадеру вместо текущего плеера.
-Для прослушивания событий плероадера следует использовать префикс <code>ya.music.Audio.PRELOADER_EVENT</code>.</p>
-<pre class="prettyprint source lang-javascript"><code>    // Следует обратить внимание, что обещание разрешится, когда трек начал загружаться, а не когда загрузился
-    audioPlayer.preload(src).then(function() {
-        console.log(&quot;Началась предзагрузка трека&quot;);
-    }, function(err) {
-        console.error(&quot;Ну удалось начать загрузку трека&quot;, err);
-    });
-
-    audioPlayer.playPreloaded().then(function() {
-        console.log(&quot;Воспроизведение успешно началось&quot;);
-    }, function(err) {
-        console.error(&quot;Не удалось начать воспроизведенние&quot;, err);
-    });
-
-    audioPlayer.stop(1); // остановка загрузки трека
-
-    console.log(&quot;Ссылка на текущий трек&quot;, audioPlayer.getSrc(1));
-    console.log(&quot;Длительность трека&quot;, audioPlayer.getDuration(1));
-    console.log(&quot;Длительность загруженной части&quot;, audioPlayer.getLoaded(1));
-
-    // Два похожих метода, но первый является сахаром для audioPlayer.getSrc(1) == src, а второй проверяет успех начала загрузки
-    console.log(&quot;Трек &quot; + (audioPlayer.isPreloading(src) ? &quot;загружается/ожидает загрузки&quot; : &quot;не загружается&quot;));
-    console.log(&quot;Трек &quot; + (audioPlayer.isPreloaded(src) ? &quot;начал загружаться&quot; : &quot;не загружается&quot;));
-
-    var logEvent = function(text) { return function(data) { console.log(text, data); }; };
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_STOP, logEvent(&quot;Остановка загрузки&quot;));
-
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_PROGRESS, logEvent(&quot;Процесс загрузки&quot;));
-
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_LOADING, logEvent(&quot;Трек начал загружаться&quot;));
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_LOADED, logEvent(&quot;Трек загружен полностью&quot;));
-
-    audioPlayer.on(ya.music.Audio.PRELOADER_EVENT + ya.music.Audio.EVENT_ERROR, logEvent(&quot;Возникла ошибка при загрузке&quot;));</code></pre><h3>Документация</h3><ul>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/">Справочник API</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-quick-start.html">Быстрый старт</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-fx.html">Обработка звука</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-corner-case.html">Подводные камни</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-sound.html">Полезная теоретическая информация</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-web-audio-api.html">Web Audio API</a></li>
-<li><a href="https://github.yandex-team.ru/pages/music/audio/tutorial-contrib.html">Инструкции для контрибьюторов</a></li>
-</ul></article>
-    </section>
-
-
-
-
+</section>
 
 
         

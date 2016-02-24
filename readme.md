@@ -140,6 +140,7 @@ YandexAudio —  JavaScript-библиотека, предназначенная
 ### Документация
   * [Справочник API](https://github.yandex-team.ru/pages/music/audio/)
   * [Быстрый старт](https://github.yandex-team.ru/pages/music/audio/tutorial-quick-start.html)
+  * [Обработка звука](https://github.yandex-team.ru/pages/music/audio/tutorial-fx.html)
   * [Подводные камни](https://github.yandex-team.ru/pages/music/audio/tutorial-corner-case.html)
   * [Полезная теоретическая информация](https://github.yandex-team.ru/pages/music/audio/tutorial-sound.html)
   * [Web Audio API](https://github.yandex-team.ru/pages/music/audio/tutorial-web-audio-api.html)
