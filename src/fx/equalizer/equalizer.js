@@ -5,20 +5,19 @@ var EqualizerStatic = require('./equalizer-static');
 var EqualizerBand = require('./equalizer-band');
 
 /**
- * Описание настроек эквалайзера
- * @typedef {Object} ya.music.Audio.fx.Equalizer~EqualizerPreset
- *
- * @property {String} [id] - идентификатор настроек
- * @property {Number} preamp - предусилитель
- * @property {Array.<Number>} bands - значения для полос эквалайзера
+ * Описание настроек эквалайзера.
+ * @typedef {Object} Audio.fx.Equalizer.EqualizerPreset
+ * @property {String} [id] Идентификатор настроек.
+ * @property {Number} preamp Предусилитель.
+ * @property {Number[]} bands Значения для полос эквалайзера.
  */
 
 /**
  * Событие изменения полосы пропускания
- * @event ya.music.Audio.fx.Equalizer#EVENT_CHANGE
+ * @event Audio.fx.Equalizer#EVENT_CHANGE
  *
- * @param {Number} freq - частота полосы пропускания
- * @param {Number} value - значение усиления
+ * @param {Number} freq Частота полосы пропускания.
+ * @param {Number} value Значение усиления.
  */
 
 // =================================================================
@@ -28,10 +27,11 @@ var EqualizerBand = require('./equalizer-band');
 // =================================================================
 
 /**
- * Эквалайзер
- * @alias ya.music.Audio.fx.Equalizer
- * @param {AudioContext} audioContext - контекст Web Audio API
- * @param {Array.<Number>} bands - список частот для полос эквалайзера
+ * @name Audio.fx.Equalizer
+ * @class Эквалайзер.
+ * @namespace ya.music
+ * @param {AudioContext} audioContext Контекст Web Audio API.
+ * @param {Number[]} bands Список частот для полос эквалайзера.
  *
  * @extends Events
  * @mixes EqualizerStatic
@@ -84,16 +84,18 @@ merge(Equalizer, EqualizerStatic, true);
 // =================================================================
 
 /**
- * Набор частот эквалайзера применяющийся по-умолчанию
- * @type {Array.<Number>}
- * @const
+ * Набор частот эквалайзера применяющийся по умолчанию.
+ * @type Number[]
+ * @const 
+ * @name Audio.fx.Equalizer.DEFAULT_BANDS
  */
 Equalizer.DEFAULT_BANDS = require('./default.bands.js');
 
 /**
- * Набор распространённых пресетов эквалайзера для набора частот по-умолчанию.
- * @type {Object.<String, ya.music.Audio.fx.Equalizer~EqualizerPreset>}
+ * Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
+ * @type Object.<String, Audio.fx.Equalizer.EqualizerPreset>
  * @const
+ * @name Audio.fx.Equalizer.DEFAULT_PRESETS
  */
 Equalizer.DEFAULT_PRESETS = require('./default.presets.js');
 
@@ -121,8 +123,10 @@ Equalizer.prototype._onBandEvent = function(band, event, data) {
 // =================================================================
 
 /**
- * Загрузить настройки
- * @param {ya.music.Audio.fx.Equalizer~EqualizerPreset} preset - настройки
+ * Загрузить настройки.
+ * @function
+ * @name Audio.fx.Equalizer.loadPreset
+ * @param {Audio.fx.Equalizer.EqualizerPreset} preset Настройки.
  */
 Equalizer.prototype.loadPreset = function(preset) {
     preset.bands.forEach(function(value, idx) {
@@ -132,8 +136,10 @@ Equalizer.prototype.loadPreset = function(preset) {
 };
 
 /**
- * Сохранить текущие настройки
- * @returns {ya.music.Audio.fx.Equalizer~EqualizerPreset}
+ * Сохранить текущие настройки.
+ * @function
+ * @name Audio.fx.Equalizer.savePreset
+ * @returns {Audio.fx.Equalizer.EqualizerPreset}
  */
 Equalizer.prototype.savePreset = function() {
     return {
@@ -150,9 +156,11 @@ Equalizer.prototype.savePreset = function() {
 
 //TODO: проверить предположение (скорее всего нужна карта весов для различных частот или даже некая функция)
 /**
- * **Экспериментально** - вычиляет оптимальное значние предусиления
+ * Вычиляет оптимальное значние предусиления. Функция является экспериментальной.
  * @experimental
- * @returns {number}
+ * @function
+ * @name Audio.fx.Equalizer.guessPreamp
+ * @returns {number} значние предусиления.
  */
 Equalizer.prototype.guessPreamp = function() {
     var v = 0;

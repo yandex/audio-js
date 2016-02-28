@@ -8,22 +8,21 @@ var EqualizerStatic = require('./equalizer-static');
 // =================================================================
 
 /**
- * Событие изменения значения усиления
- * @event ya.music.Audio.fx.Equalizer~EqualizerBand#EVENT_CHANGE
- * @param {Number} value - новое значение
+ * Событие изменения значения усиления.
+ * @event Audio.fx.Equalizer.EqualizerBand#EVENT_CHANGE
+ * @param {Number} value Новое значение.
  */
 
 /**
- * Полоса пропускания эквалайзера
- * @alias ya.music.Audio.fx.Equalizer~EqualizerBand
- *
+ * @name Audio.fx.Equalizer.EqualizerBand
+ * @class Полоса пропускания эквалайзера.
  * @extends Events
  *
- * @param {AudioContext} audioContext - контекст Web Audio API
- * @param {String} type - тип фильтра
- * @param {Number} frequency - частота фильтра
+ * @param {AudioContext} audioContext контекст Web Audio API.
+ * @param {String} type Тип фильтра.
+ * @param {Number} frequency Частота фильтра.
  *
- * @fires ya.music.Audio.fx.Equalizer~EqualizerBand#EVENT_CHANGE
+ * @fires Audio.fx.Equalizer.EqualizerBand#EVENT_CHANGE
  *
  * @constructor
  */
@@ -47,24 +46,28 @@ Events.mixin(EqualizerBand);
 // =================================================================
 
 /**
- * Получить частоту полосы пропускания
- * @returns {Number}
+ * @name Audio.fx.Equalizer.EqualizerBand.getFreq
+ * @function
+ * @returns {Number} частоту полосы пропускания.
  */
 EqualizerBand.prototype.getFreq = function() {
     return this.filter.frequency.value;
 };
 
 /**
- * Получить значение усиления
- * @returns {Number}
+ * @name Audio.fx.Equalizer.EqualizerBand.getValue
+ * @function
+ * @returns {Number} Значение усиления.
  */
 EqualizerBand.prototype.getValue = function() {
     return this.filter.gain.value;
 };
 
 /**
- * Установить значение усиления
- * @param value
+ * Установить значение усиления.
+ * @name Audio.fx.Equalizer.EqualizerBand.setValue
+ * @function
+ * @param {Number} value Значение.
  */
 EqualizerBand.prototype.setValue = function(value) {
     this.filter.gain.value = value;
