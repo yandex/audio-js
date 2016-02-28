@@ -15,6 +15,7 @@ var EqualizerStatic = require('./equalizer-static');
 
 /**
  * @name Audio.fx.Equalizer.EqualizerBand
+ * @namespace ya.music
  * @class Полоса пропускания эквалайзера.
  * @extends Events
  *
