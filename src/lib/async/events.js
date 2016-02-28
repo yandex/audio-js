@@ -10,10 +10,9 @@ var MUTE_OPTION = "_muted";
 // =================================================================
 
 /**
- * Диспетчер событий.
  * @name Events
  * @namespace ya.music
- * @class
+ * @class Диспетчер событий.
  * @constructor
  */
 var Events = function() {

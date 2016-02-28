@@ -161,7 +161,7 @@ setTimeout(function() {
  * Событие обновления позиции загруженной части.
  * @name Audio#PRELOADER_EVENT+EVENT_PROGRESS
  * @event
- * @param {Audio~AudioPlayerTimes} times Информация о временных данных трека.
+ * @param {Audio.AudioPlayerTimes} times Информация о временных данных трека.
  */
 
 /**
@@ -514,6 +514,8 @@ AudioPlayer.prototype._populateEvents = function(event, offset, data) {
  таком подходе реинициализацию делать проще - при ней не придется переназначать обработчики и обновлять везде ссылку
  на текущий экземпляр плеера.
  */
+/** @lends Audio.prototype */
+
 /**
  * @returns {Promise} обещание, разрешающееся после завершения инициализации.
  */
