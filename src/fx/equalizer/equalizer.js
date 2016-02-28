@@ -93,7 +93,7 @@ Equalizer.DEFAULT_BANDS = require('./default.bands.js');
 
 /**
  * Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
- * @type Object.<String, Audio.fx.Equalizer.EqualizerPreset>
+ * @type Object|String|Audio.fx.Equalizer.EqualizerPreset
  * @const
  * @name Audio.fx.Equalizer.DEFAULT_PRESETS
  */
