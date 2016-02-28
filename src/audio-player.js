@@ -57,7 +57,6 @@ setTimeout(function() {
 
 /** Описание временных данных плеера
  * @typedef {Object} Audio.AudioPlayerTimes
- *
  * @property {Number} duration Длительность трека.
  * @property {Number} loaded Длительность загруженной части.
  * @property {Number} position Позиция воспроизведения.
@@ -192,6 +191,7 @@ setTimeout(function() {
 /**
  * @class Аудиоплеер для браузера.
  * @name Audio
+ * @namespace ya.music
  * @param {String} [preferredType] Предпочитаемый тип плеера. Может принимать значения: "html5", "flash" или
  * любое ложное значение (false, null, undefined, 0, ""). Если выбранный тип плеера окажется недоступен, будет запущен
  * оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера.

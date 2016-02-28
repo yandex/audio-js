@@ -8,7 +8,9 @@ var detect = require('../browser/detect');
 // =================================================================
 
 /**
- * {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise|ES 2015 Promise}
+ * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise|ES 2015 Promise}
+ * @class
+ * @name Promise
  * @constructor
  */
 var Promise;
@@ -23,39 +25,39 @@ if (typeof window.Promise !== "function"
 module.exports = Promise;
 
 /**
- * Создать обещание разрешённое переданными данными
+ * Создать обещание, разрешенное переданными данными.
  * @method Promise.resolve
- * @param {*} data - данные, которыми разрешить обещание
+ * @param {*} data Данные, которыми разрешить обещание.
  * @static
- * @returns {Promise}
+ * @returns {Promise} Promise-объект.
  */
 
 /**
- * Создать обещание отклонённое переданными данными
+ * Создать обещание, отклоненное переданными данными.
  * @method Promise.reject
- * @param {*} data - данные, которыми отклонить обещание
+ * @param {*} data Данные, которыми отклонить обещание.
  * @static
- * @returns {Promise}
+ * @returns {Promise} Promise-объект.
  */
 
 /**
  * Создать обещание, которое выполнится тогда, когда будут выполнены все переданные обещания.
  * @method Promise.all
- * @param {Array.<Promise>} promises - список обещаний
+ * @param {Array.<Promise>} promises Список обещаний.
  * @static
- * @returns {Promise}
+ * @returns {Promise} Promise-объект.
  */
 
 /**
  * Создать обещание, которое выполнится тогда, когда будет выполнено хотя бы одно из переданных обещаний.
  * @method Promise.race
- * @param {Array.<Promise>} promises - список обещаний
+ * @param {Array.<Promise>} promises Список обещаний.
  * @static
- * @returns {Promise}
+ * @returns {Promise} Promise-объект.
  */
 
 /**
- * Назначить обработчики разрешения и отклонения обещания
+ * Назначить обработчики разрешения и отклонения обещания.
  * @method Promise#then
  * @param {function} callback - обработчик успеха
  * @param {null|function} [errback] - обработчик ошибки
@@ -63,10 +65,10 @@ module.exports = Promise;
  */
 
 /**
- * Назначить обработчик отклонения обещания
+ * Назначить обработчик отклонения обещания.
  * @method Promise#catch
- * @param {function} errback -  обработчик ошибки
- * @returns {Promise} -- новое обещание из результатов обработчика
+ * @param {function} errback Обработчик ошибки.
+ * @returns {Promise} новое обещание из результатов обработчика.
  */
 
 // =================================================================
@@ -77,7 +79,8 @@ module.exports = Promise;
 
 /**
  * Обещание с возможностью отмены связанного с ним действия.
- * @class AbortablePromise
+ * @class
+ * @name AbortablePromise
  * @extends Promise
  */
 

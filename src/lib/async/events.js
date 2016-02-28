@@ -10,11 +10,15 @@ var MUTE_OPTION = "_muted";
 // =================================================================
 
 /**
- * Диспетчер событий
+ * Диспетчер событий.
+ * @name Events
+ * @namespace ya.music
+ * @class
  * @constructor
  */
 var Events = function() {
-    /** Контейнер для списков слушателей событий
+    /**
+     * Контейнер для списков слушателей событий.
      * @alias Events#_listeners
      * @type {Object.<String, Array.<Function>>}
      * @private
@@ -36,9 +40,9 @@ var Events = function() {
 // =================================================================
 
 /**
- * Расширить произвольный класс свойствами диспетчера событий
- * @param {Function} classConstructor - конструктор класса
- * @returns {Function} -- тот же конструктор класса, расширенный свойствами диспетчера событий
+ * Расширить произвольный класс свойствами диспетчера событий.
+ * @param {Function} classConstructor Rонструктор класса.
+ * @returns {Function} тот же конструктор класса, расширенный свойствами диспетчера событий.
  */
 Events.mixin = function(classConstructor) {
     merge(classConstructor.prototype, Events.prototype, true);
@@ -46,9 +50,9 @@ Events.mixin = function(classConstructor) {
 };
 
 /**
- * Расширить произвольный объект свойствами диспетчера событий
- * @param {Object} object - объект
- * @returns {Object} -- тот же объект, расширенный свойствами диспетчера событий
+ * Расширить произвольный объект свойствами диспетчера событий.
+ * @param {Object} object Объект.
+ * @returns {Object} тот же объект, расширенный свойствами диспетчера событий.
  */
 Events.eventize = function(object) {
     merge(object, Events.prototype, true);
@@ -63,10 +67,10 @@ Events.eventize = function(object) {
 // =================================================================
 
 /**
- * Подписаться на событие
- * @param {String} event - имя события
- * @param {function} callback - обработчик события
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Подписаться на событие (цепочный метод).
+ * @param {String} event Имя события.
+ * @param {function} callback Обработчик события.
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.on = function(event, callback) {
     if (!this[LISTENERS_NAME][event]) {
@@ -78,10 +82,10 @@ Events.prototype.on = function(event, callback) {
 };
 
 /**
- * Отписаться от события
- * @param {String} event - имя события
- * @param {function} callback - обработчик события
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Отписаться от события (цепочный метод).
+ * @param {String} event Имя события.
+ * @param {function} callback Обработчик события.
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.off = function(event, callback) {
     if (!this[LISTENERS_NAME][event]) {
@@ -108,10 +112,10 @@ Events.prototype.off = function(event, callback) {
 };
 
 /**
- * Подписаться на событие, отписаться сразу после первого возникновения события
- * @param {String} event - имя события
- * @param {function} callback - обработчик события
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Подписаться на событие, отписаться сразу после первого возникновения события (цепочный метод).
+ * @param {String} event Имя события.
+ * @param {function} callback Обработчик события.
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.once = function(event, callback) {
     var self = this;
@@ -128,8 +132,8 @@ Events.prototype.once = function(event, callback) {
 };
 
 /**
- * Отписаться от всех слушателей событий
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Отписаться от всех слушателей событий (цепочный метод).
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.clearListeners = function() {
     for (var key in this[LISTENERS_NAME]) {
@@ -148,10 +152,10 @@ Events.prototype.clearListeners = function() {
 // =================================================================
 
 /**
- * Запустить событие
- * @param {String} event - имя события
- * @param {...args} args - параметры для передачи вместе с событием
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Запустить событие (цепочный метод).
+ * @param {String} event Имя события.
+ * @param {...args} args Параметры для передачи вместе с событием.
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.trigger = function(event, args) {
     if (this[MUTE_OPTION]) {
@@ -177,9 +181,9 @@ Events.prototype.trigger = function(event, args) {
 };
 
 /**
- * Делегировать все события другому диспетчеру событий
- * @param {Events} acceptor - получатель событий
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Делегировать все события другому диспетчеру событий (цепочный метод).
+ * @param {Events} acceptor Получатель событий.
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.pipeEvents = function(acceptor) {
     this.on("*", Events.prototype.trigger.bind(acceptor));
@@ -193,8 +197,8 @@ Events.prototype.pipeEvents = function(acceptor) {
 // =================================================================
 
 /**
- * Остановить запуск событий
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Остановить запуск событий (цепочный метод).
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.muteEvents = function() {
     this[MUTE_OPTION] = true;
@@ -202,8 +206,8 @@ Events.prototype.muteEvents = function() {
 };
 
 /**
- * Возобновить запуск событий
- * @returns {Events} -- цепочный метод, возвращает ссылку на контекст
+ * Возобновить запуск событий (цепочный метод).
+ * @returns {Events} ссылку на контекст.
  */
 Events.prototype.unmuteEvents = function() {
     delete this[MUTE_OPTION];
