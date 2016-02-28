@@ -1,10 +1,10 @@
 var ErrorClass = require('../../class/error-class');
 
 /**
- * Класс ошибок загрузчика
- * @alias ya.music.Audio.LoaderError
- *
- * @param {String} message - текст ошибкки
+ * Класс ошибок загрузчика.
+ * @name ya.music.Audio.LoaderError
+ * @class
+ * @param {String} message Текст ошибки.
  *
  * @extends Error
  *
@@ -16,13 +16,13 @@ var LoaderError = function(message) {
 LoaderError.prototype = ErrorClass.create("LoaderError");
 
 /**
- * Таймаут загрузки
+ * Таймаут загрузки.
  * @type {string}
  * @const
  */
 LoaderError.TIMEOUT = "request timeout";
 /**
- * Ошибка запроса на загрузку
+ * Ошибка запроса на загрузку.
  * @type {string}
  * @const
  */
