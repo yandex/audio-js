@@ -1,9 +1,8 @@
 var ErrorClass = require('../lib/class/error-class');
 
 /**
- * Класс ошибки воспроизведения
  * @name Audio.PlaybackError
- * @class
+ * @class Класс ошибки воспроизведения.
  * @namespace ya.music
  * @param {String} message Текст ошибки.
  * @param {String} src Ссылка на трек.
