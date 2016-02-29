@@ -10,7 +10,7 @@ var MUTE_OPTION = "_muted";
 // =================================================================
 
 /**
- * @name Audio.Events
+ * @name Events
  * @class Диспетчер событий.
  * @constructor
  */
