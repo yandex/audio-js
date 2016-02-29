@@ -1,7 +1,6 @@
 /**
- * Настойки библиотеки
- * @alias ya.music.Audio.config
- * @namespace
+ * @name Audio.config
+ * @namespace Настройки библиотеки.
  */
 var config = {
 
@@ -12,8 +11,12 @@ var config = {
     // =================================================================
 
     /**
-     * Общие настройки
-     * @namespace
+     * Общие настройки. Содержит поле:
+     * <ul>
+     *  <li> retry {Number} — количество попыток реинициализации (по умолчанию 3).</li>
+     * </ul>
+     * @field
+     * @name Audio.config.audio
      */
     audio: {
         /**
@@ -30,8 +33,20 @@ var config = {
     // =================================================================
 
     /**
-     * Настройки подключения flash-плеера
-     * @namespace
+     * Настройки подключения Flash-плеера. Содержит следующие поля:
+     * <ul>
+     *  <li> path {String} — путь к .swf файлу Flash-плеера (по умолчанию 'dist').</li>
+     *  <li> name {String} — имя .swf файла Flash-пеера (по умолчанию 'player-2_1.swf').</li>
+     *  <li> vesrion {Number} — минимальная версия Flash-плеера (по умолчанию 9.0.28).</li>
+     *  <li> playerID {Number} — ID, который будет выставлен для элемента с Flash-плеером (по умолчанию 'YandexAudioFlashPlayer').</li>
+     *  <li> callback {String} — имя функции-обработчика событий flash-плеера.</li>
+     *  <li> initTimeout {Number} — таймаут инициализации (по умолчанию 3000).</li>
+     *  <li> loadTimeout {Number} — таймаут загрузки (по умолчанию 5000).</li>
+     *  <li> clickTimeout {Number} — таймаут инициализации после клика (по умолчанию 1000).</li>
+     *  <li> heartBeatInterval {Number} — интервал проверки доступности Flash-плеера (по умолчанию 1000).</li>
+     * </ul>
+     * @field
+     * @name Audio.config.flash
      */
     flash: {
         /**
@@ -89,8 +104,16 @@ var config = {
     // =================================================================
 
     /**
-     * Описание настроек html5 плеера
-     * @namespace
+     * Описание настроек HTML5 плеера. Содержит поле:
+     * <ul>
+     *  <li> <p>blacklist {String[]} — список браузеров, для которых лучше не использовать HTML5 плеер. Используется при
+     * автоопределении типа плеера. Идентификаторы сравниваются со строкой, построенной по шаблону
+     * `@&lt;platform.version&gt; &lt;platform.os&gt;:&lt;browser.name&gt;/&lt;browser.version&gt;`</p>
+     * <p>По умолчанию содержит следующие значения: ["linux:mozilla", "unix:mozilla", "macos:mozilla", ":opera", "@NT 5", "@NT 4", ":msie/9"].</p>
+     * </li>
+     * </ul>
+     * @field
+     * @name Audio.config.html5
      */
     html5: {
         /**
