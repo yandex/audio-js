@@ -76,7 +76,7 @@ AudioStatic.EVENT_CRASHED = "crashed";
  */
 AudioStatic.EVENT_ERROR = "error";
 /**
- *
+ * Изменение статуса плеера.
  * @type String
  * @const
  * @name Audio.EVENT_STATE
@@ -90,7 +90,7 @@ AudioStatic.EVENT_STATE = "state";
  */
 AudioStatic.EVENT_SWAP = "swap";
 /**
- *
+ * Событие предзагрузчика. Используется в качестве префикса.
  * @type String
  * @const
  * @name Audio.PRELOADER_EVENT

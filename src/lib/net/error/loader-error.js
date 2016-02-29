@@ -15,14 +15,16 @@ LoaderError.prototype = ErrorClass.create("LoaderError");
 
 /**
  * Таймаут загрузки.
- * @type {string}
+ * @type String
  * @const
+ * @name Audio.LoaderError.TIMEOUT
  */
 LoaderError.TIMEOUT = "request timeout";
 /**
  * Ошибка запроса на загрузку.
- * @type {string}
+ * @type String
  * @const
+ * @name Audio.LoaderError.FAILED
  */
 LoaderError.FAILED = "request failed";
 
