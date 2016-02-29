@@ -55,11 +55,13 @@ PlaybackError.BAD_DATA = "Bad data";
 PlaybackError.DONT_START = "Playback start error";
 
 /**
- * Таблица соответствия кодов ошибок HTML5 плеера. Содержит поля:<br/>
- * 1: PlaybackError.CONNECTION_ABORTED,<br/>
- * 2: PlaybackError.NETWORK_ERROR,<br/>
- * 3: PlaybackError.DECODE_ERROR,<br/>
- * 4: PlaybackError.BAD_DATA
+ * Таблица соответствия кодов ошибок HTML5 плеера. Содержит поля:
+ * <ul>
+ *  <li>1: PlaybackError.CONNECTION_ABORTED,</li>
+ *  <li>2: PlaybackError.NETWORK_ERROR,</li>
+ *  <li>3: PlaybackError.DECODE_ERROR,</li>
+ *  <li>4: PlaybackError.BAD_DATA</li>
+ * </ul>
  * @const
  * @type Object
  * @name Audio.PlaybackError.html5

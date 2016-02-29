@@ -4,66 +4,132 @@
  */
 var AudioStatic = {};
 
-/** @type {String}
- * @const*/
+/**
+ * Начало воспроизведения трека.
+ * @type String
+ * @const
+ * @name Audio.EVENT_PLAY
+ */
 AudioStatic.EVENT_PLAY = "play";
-/** @type {String}
- * @const */
+/**
+ * Остановка воспроизведения.
+ * @type String
+ * @const
+ * @name Audio.EVENT_STOP
+ */
 AudioStatic.EVENT_STOP = "stop";
-
-/** @type {String}
- * @const */
+/**
+ * Пауза воспроизведения.
+ * @type String
+ * @const
+ * @name Audio.EVENT_PAUSE
+ */
 AudioStatic.EVENT_PAUSE = "pause";
-/** @type {String}
- * @const */
+/**
+ * Обновление позиции воспроизведения.
+ * @type String
+ * @const
+ * @name Audio.EVENT_PROGRESS
+ */
 AudioStatic.EVENT_PROGRESS = "progress";
-
-/** @type {String}
- * @const */
+/**
+ * Началась загрузка трека.
+ * @type String
+ * @const
+ * @name Audio.EVENT_LOADED
+ */
 AudioStatic.EVENT_LOADING = "loading";
-/** @type {String}
- * @const */
+/**
+ * Загрузка трека завершена.
+ * @type String
+ * @const
+ * @name Audio.
+ */
 AudioStatic.EVENT_LOADED = "loaded";
-
-/** @type {String}
- * @const */
+/**
+ * Изменение громкости.
+ * @type String
+ * @const
+ * @name Audio.EVENT_VOLUME
+ */
 AudioStatic.EVENT_VOLUME = "volumechange";
 
-/** @type {String}
- * @const */
+/**
+ * Воспроизведение трека завершено.
+ * @type String
+ * @const
+ * @name Audio.EVENT_ENDED
+ */
 AudioStatic.EVENT_ENDED = "ended";
-/** @type {String}
- * @const */
+/**
+ * Возникла ошибка при инициализации плеера.
+ * @type String
+ * @const
+ * @name Audio.EVENT_CRASHED
+ */
 AudioStatic.EVENT_CRASHED = "crashed";
-/** @type {String}
- * @const */
+/**
+ * Возникла ошибка при воспроизведении.
+ * @type String
+ * @const
+ * @name Audio.EVENT_ERROR
+ */
 AudioStatic.EVENT_ERROR = "error";
-
-/** @type {String}
- * @const */
+/**
+ *
+ * @type String
+ * @const
+ * @name Audio.EVENT_STATE
+ */
 AudioStatic.EVENT_STATE = "state";
-/** @type {String}
- * @const */
+/**
+ * Переключение между текущим и предзагруженным треком.
+ * @type String
+ * @const
+ * @name Audio.EVENT_SWAP
+ */
 AudioStatic.EVENT_SWAP = "swap";
-
-/** @type {String}
- * @const */
+/**
+ *
+ * @type String
+ * @const
+ * @name Audio.PRELOADER_EVENT
+ */
 AudioStatic.PRELOADER_EVENT = "preloader:";
-
-/** @type {String}
- * @const */
+/**
+ * Плеер находится в состоянии инициализации.
+ * @type String
+ * @const
+ * @name Audio.STATE_INIT
+ */
 AudioStatic.STATE_INIT = "init";
-/** @type {String}
- * @const */
+/**
+ * Не удалось инициализировать плеер.
+ * @type String
+ * @const
+ * @name Audio.STATE_CRASHED
+ */
 AudioStatic.STATE_CRASHED = "crashed";
-/** @type {String}
- * @const */
+/**
+ * Плеер готов и ожидает.
+ * @type String
+ * @const
+ * @name Audio.STATE_IDLE
+ */
 AudioStatic.STATE_IDLE = "idle";
-/** @type {String}
- * @const */
+/**
+ * Плеер проигрывает трек.
+ * @type String
+ * @const
+ * @name Audio.STATE_PLAYING
+ */
 AudioStatic.STATE_PLAYING = "playing";
-/** @type {String}
- * @const */
+/**
+ * Плеер поставлен на паузу.
+ * @type String
+ * @const
+ * @name Audio.STATE_PAUSED
+ */
 AudioStatic.STATE_PAUSED = "paused";
 
 module.exports = AudioStatic;
