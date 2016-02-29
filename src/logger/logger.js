@@ -10,7 +10,6 @@ var noop = require('../lib/noop');
 /**
  * @name Audio.Logger
  * @class Настраиваемый логгер для аудиоплеера.
- * @namespace ya.music
  * @param {String} channel Имя канала, за который будет отвечать экземляр логгера.
  * @constructor
  */
@@ -166,7 +165,6 @@ Logger.log = function(level, channel, context) {
 /**
  * Запись в логе.
  * @typedef {Object} Audio.Logger.LogEntry
- * @namespace ya.music
  * @property {Number} timestamp Время в timestamp формате.
  * @property {String} level Уровень лога.
  * @property {String} channel Канал.

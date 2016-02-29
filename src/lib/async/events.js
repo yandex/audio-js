@@ -10,15 +10,14 @@ var MUTE_OPTION = "_muted";
 // =================================================================
 
 /**
- * @name Events
- * @namespace ya.music
+ * @name Audio.Events
  * @class Диспетчер событий.
  * @constructor
  */
 var Events = function() {
     /**
      * Контейнер для списков слушателей событий.
-     * @alias Events#_listeners
+     * @alias Audio.Events#_listeners
      * @type {Object.<String, Array.<Function>>}
      * @private
      */
@@ -40,7 +39,7 @@ var Events = function() {
 
 /**
  * Расширить произвольный класс свойствами диспетчера событий.
- * @param {Function} classConstructor Rонструктор класса.
+ * @param {Function} classConstructor Конструктор класса.
  * @returns {Function} тот же конструктор класса, расширенный свойствами диспетчера событий.
  */
 Events.mixin = function(classConstructor) {
