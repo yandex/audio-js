@@ -11,6 +11,7 @@ var detect = require('../browser/detect');
  * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise|ES 2015 Promise}
  * @class
  * @name Promise
+ * @private
  * @constructor
  */
 var Promise;
