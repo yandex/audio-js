@@ -17,6 +17,7 @@ var config = {
      * </ul>
      * @field
      * @name Audio.config.audio
+     * @static
      */
     audio: {
         /**
@@ -46,6 +47,8 @@ var config = {
      *  <li> heartBeatInterval {Number} — интервал проверки доступности Flash-плеера (по умолчанию 1000).</li>
      * </ul>
      * @field
+     * @type Object
+     * @static
      * @name Audio.config.flash
      */
     flash: {
@@ -113,7 +116,9 @@ var config = {
      * </li>
      * </ul>
      * @field
+     * @type Object
      * @name Audio.config.html5
+     * @static
      */
     html5: {
         /**
