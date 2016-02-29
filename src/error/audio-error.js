@@ -3,9 +3,8 @@ var ErrorClass = require('../lib/class/error-class');
 /**
  * @name Audio.AudioError
  * @class Класс ошибки аудиопллеера.
+ * <p>Расширяет <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref>.</p>
  * @param {String} message Текст ошибки.
- *
- * @extends Error
  *
  * @constructor
  */

@@ -3,10 +3,9 @@ var ErrorClass = require('../../class/error-class');
 /**
  * @name Audio.LoaderError
  * @class Класс ошибок загрузчика.
+ * <p>Расширяет <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref>.</p>
  * @namespace ya.music
  * @param {String} message Текст ошибки.
- *
- * @extends Error
  *
  * @constructor
  */

@@ -191,13 +191,12 @@ setTimeout(function() {
 
 /**
  * @class Аудиоплеер для браузера.
+ * <p>Расширяет <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref>.</p>
  * @name Audio
  * @param {String} [preferredType] Предпочитаемый тип плеера. Может принимать значения: "html5", "flash" или
  * любое ложное значение (false, null, undefined, 0, ""). Если выбранный тип плеера окажется недоступен, будет запущен
  * оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера.
  * @param {HTMLElement} [overlay] HTML-контейнер для отображения Flash-апплета.
- *
- * @extends Events
  * @mixes AudioStatic
  *
  * @fires ya.music.Audio#EVENT_PLAY
