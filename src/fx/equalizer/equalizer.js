@@ -124,7 +124,7 @@ Equalizer.prototype._onBandEvent = function(band, event, data) {
 /**
  * Загрузить настройки.
  * @function
- * @name Audio.fx.Equalizer.loadPreset
+ * @name Audio.fx.Equalizer#loadPreset
  * @param {Audio.fx.Equalizer.EqualizerPreset} preset Настройки.
  */
 Equalizer.prototype.loadPreset = function(preset) {
@@ -137,7 +137,7 @@ Equalizer.prototype.loadPreset = function(preset) {
 /**
  * Сохранить текущие настройки.
  * @function
- * @name Audio.fx.Equalizer.savePreset
+ * @name Audio.fx.Equalizer#savePreset
  * @returns {Audio.fx.Equalizer.EqualizerPreset}
  */
 Equalizer.prototype.savePreset = function() {
@@ -158,7 +158,7 @@ Equalizer.prototype.savePreset = function() {
  * Вычиляет оптимальное значние предусиления. Функция является экспериментальной.
  * @experimental
  * @function
- * @name Audio.fx.Equalizer.guessPreamp
+ * @name Audio.fx.Equalizer#guessPreamp
  * @returns {number} значние предусиления.
  */
 Equalizer.prototype.guessPreamp = function() {

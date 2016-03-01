@@ -46,7 +46,7 @@ Events.mixin(EqualizerBand);
 // =================================================================
 
 /**
- * @name Audio.fx.Equalizer.EqualizerBand.getFreq
+ * @name Audio.fx.Equalizer.EqualizerBand#getFreq
  * @function
  * @returns {Number} частоту полосы пропускания.
  */
@@ -55,7 +55,7 @@ EqualizerBand.prototype.getFreq = function() {
 };
 
 /**
- * @name Audio.fx.Equalizer.EqualizerBand.getValue
+ * @name Audio.fx.Equalizer.EqualizerBand#getValue
  * @function
  * @returns {Number} Значение усиления.
  */
@@ -65,7 +65,7 @@ EqualizerBand.prototype.getValue = function() {
 
 /**
  * Установить значение усиления.
- * @name Audio.fx.Equalizer.EqualizerBand.setValue
+ * @name Audio.fx.Equalizer.EqualizerBand#setValue
  * @function
  * @param {Number} value Значение.
  */

@@ -32,6 +32,7 @@ module.exports = Promise;
  * @param {*} data Данные, которыми разрешить обещание.
  * @static
  * @returns {Promise} Promise-объект.
+ * @private
  */
 
 /**
@@ -41,6 +42,7 @@ module.exports = Promise;
  * @param {*} data Данные, которыми отклонить обещание.
  * @static
  * @returns {Promise} Promise-объект.
+ * @private
  */
 
 /**
@@ -50,6 +52,7 @@ module.exports = Promise;
  * @param {Promise[]} promises Список обещаний.
  * @static
  * @returns {Promise} Promise-объект.
+ * @private
  */
 
 /**
@@ -59,12 +62,13 @@ module.exports = Promise;
  * @param {Promise[]} promises Список обещаний.
  * @static
  * @returns {Promise} Promise-объект.
+ * @private
  */
 
 /**
  * Назначить обработчики разрешения и отклонения обещания.
  * @function
- * @name Promise.then
+ * @name Promise#then
  * @param {function} callback Обработчик успеха.
  * @param {null|function} [errback] Обработчик ошибки.
  * @returns {Promise} новое обещание из результатов обработчика.
@@ -72,7 +76,7 @@ module.exports = Promise;
 
 /**
  * Назначить обработчик отклонения обещания.
- * @name Promise.catch
+ * @name Promise#catch
  * @function
  * @param {function} errback Обработчик ошибки.
  * @returns {Promise} новое обещание из результатов обработчика.
@@ -92,9 +96,11 @@ module.exports = Promise;
  */
 
 /**
- * Отмена действия связанного с обещанием.
+ * Отмена действия связанного с обещанием. Абстрактный метод.
  * @abstract
  * @function
  * @name AbortablePromise.abort
+ * @borrows Promise#then as #then
+ * @borrows Promise#catch as #catch
  * @param {String|Error} reason Причина отмены действия.
  */
