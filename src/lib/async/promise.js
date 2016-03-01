@@ -90,6 +90,7 @@ module.exports = Promise;
 
 /**
  * Обещание с возможностью отмены связанного с ним действия.
+ * <p>Расширяет <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
  * @class
  * @name AbortablePromise
  * @extends Promise
@@ -97,10 +98,30 @@ module.exports = Promise;
 
 /**
  * Отмена действия связанного с обещанием. Абстрактный метод.
+ * <p>Унаследован от <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
  * @abstract
  * @function
- * @name AbortablePromise.abort
- * @borrows Promise#then as #then
- * @borrows Promise#catch as #catch
+ * @name AbortablePromise#abort
  * @param {String|Error} reason Причина отмены действия.
+ */
+
+/**
+ * Назначить обработчики разрешения и отклонения обещания.
+ * <p>Унаследован от <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
+ * @function
+ * @name AbortablePromise#then
+ * @inherited
+ * @param {function} callback Обработчик успеха.
+ * @param {null|function} [errback] Обработчик ошибки.
+ * @returns {Promise} новое обещание из результатов обработчика.
+ */
+
+/**
+ * Назначить обработчик отклонения обещания.
+ * <p>Унаследован от <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
+ * @name AbortablePromise#catch
+ * @inherited
+ * @function
+ * @param {function} errback Обработчик ошибки.
+ * @returns {Promise} новое обещание из результатов обработчика.
  */
