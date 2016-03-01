@@ -27,7 +27,8 @@ module.exports = Promise;
 
 /**
  * Создать обещание, разрешенное переданными данными.
- * @method Promise.resolve
+ * @function
+ * @name Promise.resolve
  * @param {*} data Данные, которыми разрешить обещание.
  * @static
  * @returns {Promise} Promise-объект.
@@ -35,7 +36,8 @@ module.exports = Promise;
 
 /**
  * Создать обещание, отклоненное переданными данными.
- * @method Promise.reject
+ * @function
+ * @name Promise.reject
  * @param {*} data Данные, которыми отклонить обещание.
  * @static
  * @returns {Promise} Promise-объект.
@@ -43,31 +45,35 @@ module.exports = Promise;
 
 /**
  * Создать обещание, которое выполнится тогда, когда будут выполнены все переданные обещания.
- * @method Promise.all
- * @param {Array.<Promise>} promises Список обещаний.
+ * @function
+ * @name Promise.all
+ * @param {Promise[]} promises Список обещаний.
  * @static
  * @returns {Promise} Promise-объект.
  */
 
 /**
  * Создать обещание, которое выполнится тогда, когда будет выполнено хотя бы одно из переданных обещаний.
- * @method Promise.race
- * @param {Array.<Promise>} promises Список обещаний.
+ * @name Promise.race
+ * @function
+ * @param {Promise[]} promises Список обещаний.
  * @static
  * @returns {Promise} Promise-объект.
  */
 
 /**
  * Назначить обработчики разрешения и отклонения обещания.
- * @method Promise#then
- * @param {function} callback - обработчик успеха
- * @param {null|function} [errback] - обработчик ошибки
- * @returns {Promise} -- новое обещание из результатов обработчика
+ * @function
+ * @name Promise.then
+ * @param {function} callback Обработчик успеха.
+ * @param {null|function} [errback] Обработчик ошибки.
+ * @returns {Promise} новое обещание из результатов обработчика.
  */
 
 /**
  * Назначить обработчик отклонения обещания.
- * @method Promise#catch
+ * @name Promise.catch
+ * @function
  * @param {function} errback Обработчик ошибки.
  * @returns {Promise} новое обещание из результатов обработчика.
  */
@@ -86,8 +92,9 @@ module.exports = Promise;
  */
 
 /**
- * Отмена действия связанного с обещанием
+ * Отмена действия связанного с обещанием.
  * @abstract
- * @method AbortablePromise#abort
- * @param {String|Error} reason - причина отмены действия
+ * @function
+ * @name AbortablePromise.abort
+ * @param {String|Error} reason Причина отмены действия.
  */
