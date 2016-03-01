@@ -96,7 +96,6 @@ module.exports = Promise;
 
 /**
  * Отмена действия связанного с обещанием. Абстрактный метод.
- * <p>Унаследован от <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
  * @abstract
  * @function
  * @name AbortablePromise#abort
