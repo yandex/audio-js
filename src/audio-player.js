@@ -198,7 +198,7 @@ setTimeout(function() {
  * оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера.
  * @param {HTMLElement} [overlay] HTML-контейнер для отображения Flash-апплета.
  * @mixes AudioStatic
- *
+ * @extends Events
  * @fires ya.music.Audio#EVENT_PLAY
  * @fires ya.music.Audio#EVENT_ENDED
  * @fires ya.music.Audio#EVENT_VOLUME

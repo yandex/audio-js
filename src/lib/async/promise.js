@@ -89,11 +89,9 @@ module.exports = Promise;
 // =================================================================
 
 /**
- * Обещание с возможностью отмены связанного с ним действия.
+ * @class Обещание с возможностью отмены связанного с ним действия.
  * <p>Расширяет <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
- * @class
  * @name AbortablePromise
- * @extends Promise
  */
 
 /**
