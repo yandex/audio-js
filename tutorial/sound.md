@@ -280,7 +280,6 @@ var volumeFromDBFS = function(dbfs) {
 Материалы
 ---------
 
-**ПОЧИСТИТЬ СПИСОК МАТЕРИАЛОВ**
 
   - [О понятии громкости в цифровом представлении звука и о методах ее повышения](http://audiophilesoft.ru/publ/my/digital_loudness/11-1-0-86)
   - [Звук](https://ru.wikipedia.org/wiki/Звук)
