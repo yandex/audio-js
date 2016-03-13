@@ -12,7 +12,7 @@ var MUTE_OPTION = "_muted";
 /**
  * @name Events
  * @class Диспетчер событий.
- * @constructor
+ * @noconstructor
  */
 var Events = function() {
     /**
@@ -41,6 +41,7 @@ var Events = function() {
  * Расширить произвольный класс свойствами диспетчера событий.
  * @param {Function} classConstructor Конструктор класса.
  * @returns {Function} тот же конструктор класса, расширенный свойствами диспетчера событий.
+ * @static
  */
 Events.mixin = function(classConstructor) {
     merge(classConstructor.prototype, Events.prototype, true);
@@ -154,6 +155,7 @@ Events.prototype.clearListeners = function() {
  * @param {String} event Имя события.
  * @param {...args} args Параметры для передачи вместе с событием.
  * @returns {Events} ссылку на контекст.
+ * @private
  */
 Events.prototype.trigger = function(event, args) {
     if (this[MUTE_OPTION]) {
@@ -182,6 +184,7 @@ Events.prototype.trigger = function(event, args) {
  * Делегировать все события другому диспетчеру событий (цепочный метод).
  * @param {Events} acceptor Получатель событий.
  * @returns {Events} ссылку на контекст.
+ * @private
  */
 Events.prototype.pipeEvents = function(acceptor) {
     this.on("*", Events.prototype.trigger.bind(acceptor));
