@@ -12,12 +12,14 @@ var ryabro = /(yabrowser)[ \/]([\w.]+)/;
 var ropera = /(opr|opera)(?:.*version)?[ \/]([\w.]+)/;
 var rmsie = /(msie) ([\w.]+)/;
 var redge = /(edge)\/([\w.]+)/;
+var rmmsie = /(iemobile)\/([\d\.]+)/;
 var rmozilla = /(mozilla)(?:.*? rv:([\w.]+))?/;
 var rsafari = /^((?!chrome).)*version\/([\d\w\.]+).*(safari)/;
 
 var match = rsafari.exec(ua)
     || ryabro.exec(ua)
     || redge.exec(ua)
+    || rmmsie.exec(ua)
     || ropera.exec(ua)
     || rwebkit.exec(ua)
     || rmsie.exec(ua)
@@ -59,7 +61,7 @@ if (browser.name === "mozilla" && browser.version.split(".")[0] === "11") {
 // =================================================================
 
 // Useragent RegExp
-var rplatform = /(ipad|iphone|ipod|android|blackberry|playbook|windows ce|webos)/;
+var rplatform = /(windows phone|ipad|iphone|ipod|android|blackberry|playbook|windows ce|webos)/;
 var rtablet = /(ipad|playbook)/;
 var randroid = /(android)/;
 var rmobile = /(mobile)/;
@@ -85,7 +87,7 @@ if (platform.type === 'ipad' || platform.type === 'iphone' || platform.type === 
     platform.os = 'ios';
 } else if (platform.type === 'android') {
     platform.os = 'android';
-} else if (navigator.appVersion.indexOf("Win") !== -1) {
+} else if (platform.type === "windows phone" || navigator.appVersion.indexOf("Win") !== -1) {
     platform.os = "windows";
     platform.version = navigator.userAgent.match(/win[^ ]* ([^;]*)/i);
     platform.version = platform.version && platform.version[1];

@@ -10,10 +10,9 @@ BROWSERIFY=$(NPM_BIN)/browserify -d
 MAKEFLAGS+=-j 1
 
 
-all: clean build minify jsdoc_public
+all: clean build minify
 	git add -A
 	git commit
-
 
 clean:
 	-rm -rf $(BUILDDIR)
@@ -22,6 +21,7 @@ clean:
 prepare: clean
 	-npm install
 	mkdir $(BUILDDIR)
+	git co HEAD -- $(BUILDDIR)/public-doc/
 	cp $(SOURCEDIR)/flash/build/*.swf $(BUILDDIR)/
 
 
