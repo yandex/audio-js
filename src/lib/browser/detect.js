@@ -7,6 +7,7 @@ var ua = navigator.userAgent.toLowerCase();
 // =================================================================
 
 // Useragent RegExp
+var ruc = /(ucbrowser)\/([\w.]+)/;
 var rwebkit = /(webkit)[ \/]([\w.]+)/;
 var ryabro = /(yabrowser)[ \/]([\w.]+)/;
 var ropera = /(opr|opera)(?:.*version)?[ \/]([\w.]+)/;
@@ -16,7 +17,8 @@ var rmmsie = /(iemobile)\/([\d\.]+)/;
 var rmozilla = /(mozilla)(?:.*? rv:([\w.]+))?/;
 var rsafari = /^((?!chrome).)*version\/([\d\w\.]+).*(safari)/;
 
-var match = rsafari.exec(ua)
+var match = ruc.exec(ua)
+    || rsafari.exec(ua)
     || ryabro.exec(ua)
     || redge.exec(ua)
     || rmmsie.exec(ua)
