@@ -29,7 +29,7 @@ var EqualizerBand = require('./equalizer-band');
 /**
  * @name Audio.fx.Equalizer
  * @class Эквалайзер.
- * @param {AudioContext} audioContext Контекст Web Audio API.
+ * @param {<xref scope="external" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</xref>} audioContext Контекст Web Audio API.
  * @param {Number[]} bands Список частот для полос эквалайзера.
  *
  * @extends Events
@@ -83,7 +83,7 @@ merge(Equalizer, EqualizerStatic, true);
 // =================================================================
 
 /**
- * Набор частот эквалайзера применяющийся по умолчанию.
+ * Набор частот эквалайзера, применяющийся по умолчанию.
  * @type Number[]
  * @const 
  * @name Audio.fx.Equalizer.DEFAULT_BANDS
@@ -155,11 +155,11 @@ Equalizer.prototype.savePreset = function() {
 
 //TODO: проверить предположение (скорее всего нужна карта весов для различных частот или даже некая функция)
 /**
- * Вычиляет оптимальное значние предусиления. Функция является экспериментальной.
+ * Вычисляет оптимальное значение предусиления. Функция является экспериментальной.
  * @experimental
  * @function
  * @name Audio.fx.Equalizer#guessPreamp
- * @returns {number} значние предусиления.
+ * @returns {number} значение предусиления.
  */
 Equalizer.prototype.guessPreamp = function() {
     var v = 0;

@@ -18,7 +18,7 @@ var EqualizerStatic = require('./equalizer-static');
  * @class Полоса пропускания эквалайзера.
  * @extends Events
  *
- * @param {AudioContext} audioContext контекст Web Audio API.
+ * @param {<xref scope="external" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</xref>} audioContext Контекст Web Audio API.
  * @param {String} type Тип фильтра.
  * @param {Number} frequency Частота фильтра.
  *
