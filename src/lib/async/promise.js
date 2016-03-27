@@ -95,7 +95,7 @@ module.exports = Promise;
  */
 
 /**
- * Отмена действия связанного с обещанием. Абстрактный метод.
+ * Отмена действия, связанного с обещанием. Абстрактный метод.
  * @abstract
  * @function
  * @name AbortablePromise#abort

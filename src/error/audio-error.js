@@ -14,21 +14,21 @@ var AudioError = function(message) {
 AudioError.prototype = ErrorClass.create("AudioError");
 
 /**
- * Не найдена реализация плеера или все доступные реализации потерпели крах при инициализации.
+ * Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
  * @type String
  * @const
  * @name Audio.AudioError.NO_IMPLEMENTATION
  */
 AudioError.NO_IMPLEMENTATION = "cannot find suitable implementation";
 /**
- * Трек не был предзагружен или во время загрузки произошла ошибка.
+ * Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
  * @type String
  * @const
  * @name Audio.AudioError.NOT_PRELOADED
  */
 AudioError.NOT_PRELOADED = "track is not preloaded";
 /**
- * Действие не доступно из текущего состояния.
+ * Действие недоступно из текущего состояния.
  * @type String
  * @const
  * @name Audio.AudioError.BAD_STATE
@@ -43,14 +43,14 @@ AudioError.BAD_STATE = "action is not permited from current state";
  */
 AudioError.FLASH_BLOCKER = "flash is rejected by flash blocker plugin";
 /**
- * Flash-плеер потерпел крах при инициализации по неизвестным причинам.
+ * Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
  * @type String
  * @const
  * @name Audio.AudioError.FLASH_UNKNOWN_CRASH
  */
 AudioError.FLASH_UNKNOWN_CRASH = "flash is crashed without reason";
 /**
- * Flash-плеер потерпел крах при инициализации из-за таймаута.
+ * Возникла ошибка при инициализации Flash-плеера из-за таймаута.
  * @type String
  * @const
  * @name Audio.AudioError.FLASH_INIT_TIMEOUT

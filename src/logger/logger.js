@@ -100,7 +100,7 @@ Logger.prototype.error = noop;
 Logger.prototype.trace = noop;
 
 /**
- * Метод для обработки ссылок передаваемых в лог.
+ * Метод для обработки ссылок, передаваемых в лог.
  * @param url
  * @private
  */
@@ -109,7 +109,7 @@ Logger.prototype._showUrl = function(url) {
 };
 
 /**
- * Метод для обработки ссылок передаваемых в лог. Можно переопределять. По умолчанию не делает ничего.
+ * Метод для обработки ссылок, передаваемых в лог. Можно переопределять. По умолчанию не выполняет никаких действий.
  * @name Audio.Logger#showUrl
  * @param {String} url Ссылка.
  * @returns {String} ссылку.
@@ -175,8 +175,8 @@ Logger.log = function(level, channel, context) {
  */
 
 /**
- * Записать сообщение лога в консоль
- * @param {ya.music.Audio.Logger~LogEntry} logEntry - сообщение лога
+ * Записать сообщение лога в консоль.
+ * @param {ya.music.Audio.Logger~LogEntry} logEntry Сообщение лога.
  * @private
  */
 Logger._dumpEntry = function(logEntry) {
@@ -205,7 +205,7 @@ Logger._dumpEntry = function(logEntry) {
 };
 
 /**
- * Вспомогательная функция форматирования даты для вывода в коносоль
+ * Вспомогательная функция форматирования даты для вывода в коносоль.
  * @param timestamp
  * @returns {string}
  * @private

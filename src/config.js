@@ -41,7 +41,7 @@ var config = {
      *  <li><codeph>name</codeph> {String} — имя .swf файла Flash-пеера (по умолчанию 'player-2_1.swf').</li>
      *  <li><codeph>vesrion</codeph> {Number} — минимальная версия Flash-плеера (по умолчанию 9.0.28).</li>
      *  <li><codeph>playerID</codeph> {Number} — ID, который будет выставлен для элемента с Flash-плеером (по умолчанию 'YandexAudioFlashPlayer').</li>
-     *  <li><codeph>callback</codeph> {String} — имя функции-обработчика событий flash-плеера.</li>
+     *  <li><codeph>callback</codeph> {String} — имя функции-обработчика событий Flash-плеера.</li>
      *  <li><codeph>initTimeout</codeph> {Number} — таймаут инициализации (по умолчанию 3000).</li>
      *  <li><codeph>loadTimeout</codeph> {Number} — таймаут загрузки (по умолчанию 5000).</li>
      *  <li><codeph>clickTimeout</codeph> {Number} — таймаут инициализации после клика (по умолчанию 1000).</li>
@@ -69,12 +69,12 @@ var config = {
          */
         version: "9.0.28",
         /**
-         * ID, который будет выставлен для элемента с flash-плеером
+         * ID, который будет выставлен для элемента с Flash-плеером
          * @type {String}
          */
         playerID: "YandexAudioFlashPlayer",
         /**
-         * Имя функции-обработчика событий flash-плеера
+         * Имя функции-обработчика событий Flash-плеера
          * @type {String}
          * @const
          */
@@ -95,7 +95,7 @@ var config = {
          */
         clickTimeout: 1000,
         /**
-         * Интервал проверки доступности flash-плеера
+         * Интервал проверки доступности Flash-плеера
          * @type {Number}
          */
         heartBeatInterval: 1000
@@ -110,7 +110,9 @@ var config = {
     /**
      * Описание настроек HTML5 плеера. Содержит поле:
      * <ul>
-     *  <li><p><codeph>blacklist</codeph> {String[]} — список браузеров, для которых лучше не использовать HTML5 плеер. Используется при
+     *  <li><p><codeph>blacklist</codeph> {String[]} — список браузеров, для которых изначально будет запущен Flash-плеер.
+     *  В случае если Flash не поддерживается браузером, будет создан HTML5-плеер.</p>
+     *  <p>Данная настройка используется только при
      * автоопределении типа плеера. Идентификаторы сравниваются со строкой, построенной по шаблону
      * `@&lt;platform.version&gt; &lt;platform.os&gt;:&lt;browser.name&gt;/&lt;browser.version&gt;`</p>
      * <p>По умолчанию содержит следующие значения: ["linux:mozilla", "unix:mozilla", "macos:mozilla", ":opera", "@NT 5", "@NT 4", ":msie/9"].</p>
