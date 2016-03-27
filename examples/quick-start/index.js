@@ -1,41 +1,42 @@
 (function() {
-    /* Теперь инициализируем всю эту структуру и создадим экземпляр плеера */
 
+    // Теперь инициализируем всю эту структуру и создадим экземпляр плеера.
     var AudioPlayer = ya.music.Audio;
     AudioPlayer.config.flash.path = "../../dist";
 
     var dom = {
         player: document.querySelector(".player"),
 
-        play: document.querySelector(".controls__play"),
+        play: document.querySelector(".controls_play"),
 
         progress: {
             bar: document.querySelector(".progress"),
-            loaded: document.querySelector(".progress__loaded"),
-            current: document.querySelector(".progress__current")
+            loaded: document.querySelector(".progress_loaded"),
+            current: document.querySelector(".progress_current")
         },
 
         volume: {
             bar: document.querySelector(".volume"),
-            value: document.querySelector(".volume__bar")
+            value: document.querySelector(".volume_bar")
         },
 
         overlay: document.querySelector(".overlay")
     };
 
-    // Предоставим плееру самому решать какой тип реализации использовать
+    // Предоставим плееру самому решать, какой тип реализации использовать.
     var audioPlayer = new AudioPlayer(null, dom.overlay);
 
     audioPlayer.initPromise().then(function() {
-        // Скрываем оверлей, кнопки управления становятся доступны
+        // Скрываем оверлей, кнопки управления становятся доступными.
         dom.overlay.classList.add("overlay_hidden");
     }, function(err) {
-        // Показываем ошибку инициализации в оверлее
+        // Показываем ошибку инициализации в оверлее.
         dom.overlay.innerHTML = err.message;
         dom.overlay.classList.add("overlay_error");
     });
 
-    /* Настроим отображение статуса плеера. Для простого плеера нам достаточно знать запущено воспроизведение или нет. */
+    // Настроим отображение статуса плеера.
+    // Для простого плеера нам достаточно знать, запущено воспроизведение или нет.
 
     audioPlayer.on(ya.music.Audio.EVENT_STATE, function(state) {
         if (state === ya.music.Audio.STATE_PLAYING) {
@@ -45,7 +46,7 @@
         }
     });
 
-    /* Теперь настроим обновление прогресс-бара. В нём предусмотрены 2 шкалы - шкала загрузки и шкала текущей
+    /* Теперь настроим обновление прогресс-бара. В нем предусмотрены 2 шкалы - шкала загрузки и шкала текущей
      позиции воспроизведения. */
 
     audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, function(timings) {
@@ -65,12 +66,12 @@
         updateVolume(audioPlayer.getVolume());
     });
 
-    /* Теперь нужно настроить взаимодействие с пользователем. Начнём с запуска воспроизведения. */
+    /* Теперь нужно настроить взаимодействие с пользователем. Начнем с запуска воспроизведения. */
 
     var trackUrls = [
-        "http://storage.mp3.cc/download/4598134/MnpDemgvLzlGcklLbXh0WHppZWEwdzVkL01BUHczbHNFcUFjMmI0b0NNMFFqYkNzT0FHeWdQSTFQQ1pzYmlQbEJyS2VkSkN3QVhyaEROZkpEOHVIL3ZocVlnWlB5TWZDSnlxQnFmSWcxcGgwdUUzLzlnQU9xZEpLY1F5YVByVmk/The_Doors_-_Riders_On_The_Storm-The_Doors_-_Riders_On_The_Storm_(mp3.cc).mp3",
-        "http://storage.mp3.cc/download/1392098/MnpDemgvLzlGcklLbXh0WHppZWEwdzVkL01BUHczbHNFcUFjMmI0b0NNMVd4OHhGUnBiSVY0WnRtdVc0VTVoK1F6YU1vcDBqbXhkNlJWMjJpdkNZT0p6dEZMVDZSek9iUDJ2OVFISDRPTGZ3NGtINXk4dnBFQTlRMnd1Q0twdHg/Marty_Robbins-The_Master_s_Call_(mp3.cc).mp3",
-        "http://storage.mp3.cc/download/16317365/MnpDemgvLzlGcklLbXh0WHppZWEwdzVkL01BUHczbHNFcUFjMmI0b0NNMXdQbzhRUkNpV0FWZ0xXUkx5TzlqdlJ5VnV3VzFrMlRhSzlrNWpFWmhwTEM1Z1ptMXJ2UHZpb1NPc0NUUGtZbUJpQk56U3IrT2FhSjFtQW9xa3pZN04/Dzho_Koker-My_father_son_(mp3.cc).mp3"
+        "https://download.cdn.yandex.net/tech/ru/audio/doc/examples/files/audio_src/Tchaikovsky1.mp3",
+        "https://download.cdn.yandex.net/tech/ru/audio/doc/examples/files/audio_src/Tchaikovsky2.mp3",
+        "https://download.cdn.yandex.net/tech/ru/audio/doc/examples/files/audio_src/Tchaikovsky3.mp3"
     ];
 
     var trackIndex = 0;
@@ -103,7 +104,7 @@
     });
 
     /* Добавим немножко удобства для пользователей: сделаем автозагрузку следующего трека после того, как текущий загрузился.
-     Для этого потребуется немного изменить функцию `startPlay` и отслеживать момент загрузки трека */
+     Для этого потребуется немного изменить функцию `startPlay` и отслеживать момент загрузки трека. */
 
     audioPlayer.on(ya.music.Audio.EVENT_ENDED, function() {
         trackIndex++;

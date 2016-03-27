@@ -30,14 +30,14 @@
     color: #ff0000;
 }
 
-.controls__play {
+.controls_play {
     padding: 5px 10px;
     background: #fff;
     border: 1px #aaa solid;
     cursor: pointer;
 }
 
-.controls__play:hover {
+.controls_play:hover {
     border-color: #666;
 }
 
@@ -54,7 +54,7 @@
     margin: 10px 0;
 }
 
-.progress__loaded, .progress__current {
+.progress_loaded, .progress_current {
     display: block;
     position: absolute;
     height: 100%;
@@ -62,12 +62,12 @@
     left: 0;
 }
 
-.progress__loaded {
+.progress_loaded {
     background: #ccc;
     z-index: 1;
 }
 
-.progress__current {
+.progress_current {
     background: #535BC3;
     z-index: 2;
 }
@@ -82,7 +82,7 @@
     border: 1px #ccc solid;
 }
 
-.volume__bar {
+.volume_bar {
     display: block;
     position: absolute;
     bottom: 0;
