@@ -1,8 +1,7 @@
 /**
- * @classdecs Методы конвертации значений громкости.
- * @static
- * @class volumeLib
+ * Методы конвертации значений громкости.
  * @alias ya.music.Audio.fx.volumeLib
+ * @namespace
  */
 var volumeLib = {};
 

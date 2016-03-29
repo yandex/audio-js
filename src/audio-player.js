@@ -174,15 +174,18 @@ setTimeout(function() {
 
 /**
  * @classdecs Аудиоплеер для браузера.
- * @class Audio
+ * @class AudioPlayer
  * @alias ya.music.Audio
+ *
  * @param {String} [preferredType="html5"] Предпочитаемый тип плеера. Может принимать значения: "html5", "flash" или
  * любое ложное значение (false, null, undefined, 0, ""). Если выбранный тип плеера окажется недоступен, будет запущен
  * оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера.
- * Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5. 
+ * Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5.
  * @param {HTMLElement} [overlay] HTML-контейнер для отображения Flash-апплета.
+ *
  * @mixes AudioStatic
  * @extends Events
+ *
  * @fires ya.music.Audio#EVENT_PLAY
  * @fires ya.music.Audio#EVENT_ENDED
  * @fires ya.music.Audio#EVENT_VOLUME

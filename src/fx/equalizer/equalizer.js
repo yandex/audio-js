@@ -9,7 +9,7 @@ var EqualizerBand = require('./equalizer-band');
  * @typedef {Object} Audio.fx.Equalizer.EqualizerPreset
  * @property {String} [id] Идентификатор настроек.
  * @property {Number} preamp Предусилитель.
- * @property {Number[]} bands Значения для полос эквалайзера.
+ * @property {Array.<Number>} bands Значения для полос эквалайзера.
  */
 
 /**
@@ -27,9 +27,10 @@ var EqualizerBand = require('./equalizer-band');
 // =================================================================
 
 /**
+ * @classdecs Эквалайзер.
  * @class Equalizer
  * @alias ya.music.Audio.fx.Equalizer
- * @classdecs Эквалайзер.
+ *
  * @param {AudioContext} audioContext Контекст Web Audio API.
  * @param {Array.<Number>} bands Список частот для полос эквалайзера.
  *
@@ -92,7 +93,7 @@ Equalizer.DEFAULT_BANDS = require('./default.bands.js');
 
 /**
  * Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
- * @type {Object|String|ya.music.Audio.fx.Equalizer~EqualizerPreset}
+ * @type {Object.<String, ya.music.Audio.fx.Equalizer~EqualizerPreset>}
  * @const
  */
 Equalizer.DEFAULT_PRESETS = require('./default.presets.js');

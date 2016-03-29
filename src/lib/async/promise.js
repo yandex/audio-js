@@ -10,8 +10,6 @@ var detect = require('../browser/detect');
 /**
  * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise|ES 2015 Promise}
  * @class
- * @name Promise
- * @private
  * @constructor
  */
 var Promise;
@@ -26,47 +24,8 @@ if (typeof window.Promise !== "function"
 module.exports = Promise;
 
 /**
- * Создать обещание, разрешенное переданными данными.
- * @function
- * @name Promise.resolve
- * @param {*} data Данные, которыми разрешить обещание.
- * @static
- * @returns {Promise} Promise-объект.
- * @private
- */
-
-/**
- * Создать обещание, отклоненное переданными данными.
- * @function
- * @name Promise.reject
- * @param {*} data Данные, которыми отклонить обещание.
- * @static
- * @returns {Promise} Promise-объект.
- * @private
- */
-
-/**
- * Создать обещание, которое выполнится тогда, когда будут выполнены все переданные обещания.
- * @function
- * @name Promise.all
- * @param {Promise[]} promises Список обещаний.
- * @static
- * @returns {Promise} Promise-объект.
- * @private
- */
-
-/**
- * Создать обещание, которое выполнится тогда, когда будет выполнено хотя бы одно из переданных обещаний.
- * @name Promise.race
- * @function
- * @param {Promise[]} promises Список обещаний.
- * @static
- * @returns {Promise} Promise-объект.
- * @private
- */
-
-/**
  * Назначить обработчики разрешения и отклонения обещания.
+ * @method Promise#then
  * @param {function} callback Обработчик успеха.
  * @param {null|function} [errback] Обработчик ошибки.
  * @returns {Promise} новое обещание из результатов обработчика.
@@ -74,6 +33,7 @@ module.exports = Promise;
 
 /**
  * Назначить обработчик отклонения обещания.
+ * @method Promise#catch
  * @param {function} errback Обработчик ошибки.
  * @returns {Promise} новое обещание из результатов обработчика.
  */
@@ -85,15 +45,16 @@ module.exports = Promise;
 // =================================================================
 
 /**
- * @classdecs Обещание с возможностью отмены связанного с ним действия.
- * Расширяет Promise.
  * @class AbortablePromise
+ * @classdecs Обещание с возможностью отмены связанного с ним действия.
+ * @extends Promise
  */
 
 /**
  * Отмена действия, связанного с обещанием. Абстрактный метод.
- * @abstract
+ * @method AbortablePromise#abort
  * @param {String|Error} reason Причина отмены действия.
+ * @abstract
  */
 
 

@@ -60,7 +60,7 @@ AudioError.FLASH_INTERNAL_ERROR = "flash internal error";
 /**
  * Попытка вызвать недоступный экземляр Flash-плеера.
  * @type {String}
- * @const @name ya.music.Audio~AudioError.FLASH_EMMITER_NOT_FOUND
+ * @const
  */
 AudioError.FLASH_EMMITER_NOT_FOUND = "flash event emmiter not found";
 /**
