@@ -14,15 +14,16 @@ var EqualizerStatic = require('./equalizer-static');
  */
 
 /**
- * @name Audio.fx.Equalizer.EqualizerBand
- * @class Полоса пропускания эквалайзера.
+ * @class EqualizerBand
+ * @alias ya.music.Audio.fx.Equalizer~EqualizerBand
+ * @classdecs Полоса пропускания эквалайзера.
  * @extends Events
  *
- * @param {<xref scope="external" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</xref>} audioContext Контекст Web Audio API.
+ * @param {AudioContext} audioContext Контекст Web Audio API.
  * @param {String} type Тип фильтра.
  * @param {Number} frequency Частота фильтра.
  *
- * @fires Audio.fx.Equalizer.EqualizerBand#EVENT_CHANGE
+ * @fires ya.music.Audio.fx.Equalizer~EqualizerBand#EVENT_CHANGE
  *
  * @constructor
  */
@@ -46,8 +47,6 @@ Events.mixin(EqualizerBand);
 // =================================================================
 
 /**
- * @name Audio.fx.Equalizer.EqualizerBand#getFreq
- * @function
  * @returns {Number} частоту полосы пропускания.
  */
 EqualizerBand.prototype.getFreq = function() {
@@ -55,8 +54,6 @@ EqualizerBand.prototype.getFreq = function() {
 };
 
 /**
- * @name Audio.fx.Equalizer.EqualizerBand#getValue
- * @function
  * @returns {Number} Значение усиления.
  */
 EqualizerBand.prototype.getValue = function() {
@@ -65,8 +62,6 @@ EqualizerBand.prototype.getValue = function() {
 
 /**
  * Установить значение усиления.
- * @name Audio.fx.Equalizer.EqualizerBand#setValue
- * @function
  * @param {Number} value Значение.
  */
 EqualizerBand.prototype.setValue = function(value) {

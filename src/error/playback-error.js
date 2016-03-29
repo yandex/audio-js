@@ -1,9 +1,10 @@
 var ErrorClass = require('../lib/class/error-class');
 
 /**
- * @name Audio.PlaybackError
- * @class Класс ошибки воспроизведения.
- * @extends <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref>
+ * @class PlaybackError
+ * @alias ya.music.Audio~PlaybackError
+ * @classdecs Класс ошибки воспроизведения.
+ * @extends Error
  * @param String message Текст ошибки.
  * @param String src Ссылка на трек.
  *
@@ -19,52 +20,41 @@ PlaybackError.prototype = ErrorClass.create("PlaybackError");
 
 /**
  * Отмена соединенния.
- * @type String
+ * @type {String}
  * @const
- * @name Audio.PlaybackError.CONNECTION_ABORTED
  */
 PlaybackError.CONNECTION_ABORTED = "Connection aborted";
 /**
  * Сетевая ошибка.
- * @type String
+ * @type {String}
  * @const
- * @name Audio.PlaybackError.NETWORK_ERROR
  */
 PlaybackError.NETWORK_ERROR = "Network error";
 /**
  * Ошибка декодирования аудио.
- * @type String
+ * @type {String}
  * @const
- * @name Audio.PlaybackError.DECODE_ERROR
  */
 PlaybackError.DECODE_ERROR = "Decode error";
 /**
  * Недоступный источник.
- * @type String
+ * @type {String}
  * @const
- * @name Audio.PlaybackError.BAD_DATA
  */
 PlaybackError.BAD_DATA = "Bad data";
 
 /**
  * Не запускается воспроизведение.
- * @type String
+ * @type {String}
  * @const
- * @name Audio.PlaybackError.DONT_START
  */
 PlaybackError.DONT_START = "Playback start error";
 
 /**
- * Таблица соответствия кодов ошибок HTML5 плеера. Содержит поля:
- * <ul>
- *  <li>1: PlaybackError.CONNECTION_ABORTED,</li>
- *  <li>2: PlaybackError.NETWORK_ERROR,</li>
- *  <li>3: PlaybackError.DECODE_ERROR,</li>
- *  <li>4: PlaybackError.BAD_DATA</li>
- * </ul>
+ * Таблица соответствия кодов ошибок HTML5 плеера. 
+ * 
  * @const
- * @type Object
- * @name Audio.PlaybackError.html5
+ * @type {Object}
  */
 PlaybackError.html5 = {
     1: PlaybackError.CONNECTION_ABORTED,

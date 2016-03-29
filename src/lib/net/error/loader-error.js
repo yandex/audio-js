@@ -1,9 +1,10 @@
 var ErrorClass = require('../../class/error-class');
 
 /**
- * @name Audio.LoaderError
- * @class Класс ошибок загрузчика.
- * <p>Расширяет <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref>.</p>
+ * @class LoaderError
+ * @alias ya.music.Audio~LoaderError
+ * @classdecs Класс ошибок загрузчика.
+ * Расширяет Error.
  * @param {String} message Текст ошибки.
  *
  * @constructor
@@ -15,16 +16,14 @@ LoaderError.prototype = ErrorClass.create("LoaderError");
 
 /**
  * Таймаут загрузки.
- * @type String
+ * @type {String}
  * @const
- * @name Audio.LoaderError.TIMEOUT
  */
 LoaderError.TIMEOUT = "request timeout";
 /**
  * Ошибка запроса на загрузку.
- * @type String
+ * @type {String}
  * @const
- * @name Audio.LoaderError.FAILED
  */
 LoaderError.FAILED = "request failed";
 

@@ -1,5 +1,5 @@
 /**
- * @name Audio.config
+ * @name ya.music.Audio.config
  * @namespace Настройки библиотеки.
  */
 var config = {
@@ -11,14 +11,10 @@ var config = {
     // =================================================================
 
     /**
-     * Общие настройки. Содержит поле:
-     * <ul>
-     *  <li><codeph>retry</codeph> {Number} — количество попыток реинициализации (по умолчанию 3).</li>
-     * </ul>
-     * @field
-     * @name Audio.config.audio
+     * Общие настройки. 
+     *
      * @static
-     * @type Object
+     * @type {Object}
      */
     audio: {
         /**
@@ -35,22 +31,10 @@ var config = {
     // =================================================================
 
     /**
-     * Настройки подключения Flash-плеера. Содержит следующие поля:
-     * <ul>
-     *  <li><codeph>path</codeph> {String} — путь к .swf файлу Flash-плеера (по умолчанию 'dist').</li>
-     *  <li><codeph>name</codeph> {String} — имя .swf файла Flash-пеера (по умолчанию 'player-2_1.swf').</li>
-     *  <li><codeph>vesrion</codeph> {Number} — минимальная версия Flash-плеера (по умолчанию 9.0.28).</li>
-     *  <li><codeph>playerID</codeph> {Number} — ID, который будет выставлен для элемента с Flash-плеером (по умолчанию 'YandexAudioFlashPlayer').</li>
-     *  <li><codeph>callback</codeph> {String} — имя функции-обработчика событий Flash-плеера.</li>
-     *  <li><codeph>initTimeout</codeph> {Number} — таймаут инициализации (по умолчанию 3000).</li>
-     *  <li><codeph>loadTimeout</codeph> {Number} — таймаут загрузки (по умолчанию 5000).</li>
-     *  <li><codeph>clickTimeout</codeph> {Number} — таймаут инициализации после клика (по умолчанию 1000).</li>
-     *  <li><codeph>heartBeatInterval</codeph> {Number} — интервал проверки доступности Flash-плеера (по умолчанию 1000).</li>
-     * </ul>
-     * @field
-     * @type Object
+     * Настройки подключения Flash-плеера. 
+     *
+     * @type {Object}
      * @static
-     * @name Audio.config.flash
      */
     flash: {
         /**
@@ -108,19 +92,9 @@ var config = {
     // =================================================================
 
     /**
-     * Описание настроек HTML5 плеера. Содержит поле:
-     * <ul>
-     *  <li><p><codeph>blacklist</codeph> {String[]} — список браузеров, для которых изначально будет запущен Flash-плеер.
-     *  В случае если Flash не поддерживается браузером, будет создан HTML5-плеер.</p>
-     *  <p>Данная настройка используется только при
-     * автоопределении типа плеера. Идентификаторы сравниваются со строкой, построенной по шаблону
-     * `@&lt;platform.version&gt; &lt;platform.os&gt;:&lt;browser.name&gt;/&lt;browser.version&gt;`</p>
-     * <p>По умолчанию содержит следующие значения: ["linux:mozilla", "unix:mozilla", "macos:mozilla", ":opera", "@NT 5", "@NT 4", ":msie/9"].</p>
-     * </li>
-     * </ul>
-     * @field
-     * @type Object
-     * @name Audio.config.html5
+     * Описание настроек HTML5 плеера. 
+     *
+     * @type {Object}
      * @static
      */
     html5: {

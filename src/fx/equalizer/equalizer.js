@@ -27,10 +27,11 @@ var EqualizerBand = require('./equalizer-band');
 // =================================================================
 
 /**
- * @name Audio.fx.Equalizer
- * @class Эквалайзер.
- * @param {<xref scope="external" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</xref>} audioContext Контекст Web Audio API.
- * @param {Number[]} bands Список частот для полос эквалайзера.
+ * @class Equalizer
+ * @alias ya.music.Audio.fx.Equalizer
+ * @classdecs Эквалайзер.
+ * @param {AudioContext} audioContext Контекст Web Audio API.
+ * @param {Array.<Number>} bands Список частот для полос эквалайзера.
  *
  * @extends Events
  * @mixes EqualizerStatic
@@ -84,17 +85,15 @@ merge(Equalizer, EqualizerStatic, true);
 
 /**
  * Набор частот эквалайзера, применяющийся по умолчанию.
- * @type Number[]
- * @const 
- * @name Audio.fx.Equalizer.DEFAULT_BANDS
+ * @type {Array.<Number>}
+ * @const
  */
 Equalizer.DEFAULT_BANDS = require('./default.bands.js');
 
 /**
  * Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
- * @type Object|String|Audio.fx.Equalizer.EqualizerPreset
+ * @type {Object|String|ya.music.Audio.fx.Equalizer~EqualizerPreset}
  * @const
- * @name Audio.fx.Equalizer.DEFAULT_PRESETS
  */
 Equalizer.DEFAULT_PRESETS = require('./default.presets.js');
 
@@ -123,9 +122,7 @@ Equalizer.prototype._onBandEvent = function(band, event, data) {
 
 /**
  * Загрузить настройки.
- * @function
- * @name Audio.fx.Equalizer#loadPreset
- * @param {Audio.fx.Equalizer.EqualizerPreset} preset Настройки.
+ * @param {ya.music.Audio.fx.Equalizer~EqualizerPreset} preset Настройки.
  */
 Equalizer.prototype.loadPreset = function(preset) {
     preset.bands.forEach(function(value, idx) {
@@ -136,9 +133,7 @@ Equalizer.prototype.loadPreset = function(preset) {
 
 /**
  * Сохранить текущие настройки.
- * @function
- * @name Audio.fx.Equalizer#savePreset
- * @returns {Audio.fx.Equalizer.EqualizerPreset}
+ * @returns {ya.music.Audio.fx.Equalizer~EqualizerPreset}
  */
 Equalizer.prototype.savePreset = function() {
     return {
@@ -157,8 +152,6 @@ Equalizer.prototype.savePreset = function() {
 /**
  * Вычисляет оптимальное значение предусиления. Функция является экспериментальной.
  * @experimental
- * @function
- * @name Audio.fx.Equalizer#guessPreamp
  * @returns {number} значение предусиления.
  */
 Equalizer.prototype.guessPreamp = function() {

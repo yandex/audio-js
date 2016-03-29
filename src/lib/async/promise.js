@@ -67,8 +67,6 @@ module.exports = Promise;
 
 /**
  * Назначить обработчики разрешения и отклонения обещания.
- * @function
- * @name Promise#then
  * @param {function} callback Обработчик успеха.
  * @param {null|function} [errback] Обработчик ошибки.
  * @returns {Promise} новое обещание из результатов обработчика.
@@ -76,8 +74,6 @@ module.exports = Promise;
 
 /**
  * Назначить обработчик отклонения обещания.
- * @name Promise#catch
- * @function
  * @param {function} errback Обработчик ошибки.
  * @returns {Promise} новое обещание из результатов обработчика.
  */
@@ -89,36 +85,17 @@ module.exports = Promise;
 // =================================================================
 
 /**
- * @class Обещание с возможностью отмены связанного с ним действия.
- * <p>Расширяет <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
- * @name AbortablePromise
+ * @classdecs Обещание с возможностью отмены связанного с ним действия.
+ * Расширяет Promise.
+ * @class AbortablePromise
  */
 
 /**
  * Отмена действия, связанного с обещанием. Абстрактный метод.
  * @abstract
- * @function
- * @name AbortablePromise#abort
  * @param {String|Error} reason Причина отмены действия.
  */
 
-/**
- * Назначить обработчики разрешения и отклонения обещания.
- * <p>Унаследован от <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
- * @function
- * @name AbortablePromise#then
- * @inherited
- * @param {function} callback Обработчик успеха.
- * @param {null|function} [errback] Обработчик ошибки.
- * @returns {Promise} новое обещание из результатов обработчика.
- */
 
-/**
- * Назначить обработчик отклонения обещания.
- * <p>Унаследован от <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</xref>.</p>
- * @name AbortablePromise#catch
- * @inherited
- * @function
- * @param {function} errback Обработчик ошибки.
- * @returns {Promise} новое обещание из результатов обработчика.
- */
+
+

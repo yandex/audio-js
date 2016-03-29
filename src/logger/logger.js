@@ -8,8 +8,9 @@ var noop = require('../lib/noop');
 // =================================================================
 
 /**
- * @name Audio.Logger
- * @class Настраиваемый логгер для аудиоплеера.
+ * @class Logger
+ * @alias ya.music.Audio.Logger
+ * @classdecs Настраиваемый логгер для аудиоплеера.
  * @param {String} channel Имя канала, за который будет отвечать экземляр логгера.
  * @constructor
  */
@@ -25,17 +26,13 @@ var Logger = function(channel) {
 
 /**
  * Список игнорируемых каналов.
- * @field
- * @type String[]
- * @name Audio.Logger.ignores
+ * @type {Array.<String>}
  */
 Logger.ignores = [];
 
 /**
  * Список отображаемых в консоли уровней лога.
- * @name Audio.Logger.logLevels
- * @field
- * @type String[]
+ * @type {Array.<String>}
  */
 Logger.logLevels = [];
 
@@ -47,8 +44,6 @@ Logger.logLevels = [];
 
 /**
  * Запись в лог с уровнем **debug**.
- * @function
- * @name Audio.Logger#debug
  * @param {Object} context Контекст вызова.
  * @param {...*} [args] Дополнительные аргументы.
  */
@@ -56,8 +51,6 @@ Logger.prototype.debug = noop;
 
 /**
  * Запись в лог с уровнем **log**.
- * @name Audio.Logger#log
- * @function
  * @param {Object} context Контекст вызова.
  * @param {...*} [args] Дополнительные аргументы.
  */
@@ -65,8 +58,6 @@ Logger.prototype.log = noop;
 
 /**
  * Запись в лог с уровнем **info**.
- * @function
- * @name Audio.Logger#info
  * @param {Object} context Контекст вызова.
  * @param {...*} [args] Дополнительные аргументы.
  */
@@ -74,8 +65,6 @@ Logger.prototype.info = noop;
 
 /**
  * Запись в лог с уровнем **warn**.
- * @function
- * @name Audio.Logger#warn
  * @param {Object} context Контекст вызова.
  * @param {...*} [args] Дополнительные аргументы.
  */
@@ -83,8 +72,6 @@ Logger.prototype.warn = noop;
 
 /**
  * Запись в лог с уровнем **error**.
- * @function
- * @name Audio.Logger#error
  * @param {Object} context Контекст вызова.
  * @param {...*} [args] Дополнительные аргументы.
  */
@@ -92,8 +79,6 @@ Logger.prototype.error = noop;
 
 /**
  * Запись в лог с уровнем **trace**.
- * @function
- * @name Audio.Logger#trace
  * @param {Object} context Контекст вызова.
  * @param {...*} [args] Дополнительные аргументы.
  */
@@ -110,7 +95,7 @@ Logger.prototype._showUrl = function(url) {
 
 /**
  * Метод для обработки ссылок, передаваемых в лог. Можно переопределять. По умолчанию не выполняет никаких действий.
- * @name Audio.Logger#showUrl
+ * @name ya.music.Audio.Logger#showUrl
  * @param {String} url Ссылка.
  * @returns {String} ссылку.
  */
@@ -135,8 +120,6 @@ LEVELS.forEach(function(level) {
 
 /**
  * Сделать запись в лог.
- * @function
- * @name Audio.Logger#log
  * @param {String} level Уровень лога.
  * @param {String} channel Канал.
  * @param {Object} context Контекст вызова.

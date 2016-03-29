@@ -1,16 +1,15 @@
 /**
- * @class Методы конвертации значений громкости.
+ * @classdecs Методы конвертации значений громкости.
  * @static
- * @name Audio.fx.volumeLib
+ * @class volumeLib
+ * @alias ya.music.Audio.fx.volumeLib
  */
 var volumeLib = {};
 
 /**
  * Минимальное значение громкости, при котором происходит отключение звука.
  * Ограничение в 0.01 подобрано эмпирически.
- * @type number
- * @field
- * @name Audio.fx.volumeLib.EPSILON
+ * @type {number}
  */
 volumeLib.EPSILON = 0.01;
 
@@ -23,8 +22,6 @@ volumeLib._DBFS_COEF = 20 / Math.log(10);
 
 /**
  * Вычисление значение громкости по значению на логарифмической шкале.
- * @function
- * @name Audio.fx.volumeLib#toExponent
  * @param {Number} value Значение на шкале.
  * @returns {Number} значение громкости.
  */
@@ -34,8 +31,6 @@ volumeLib.toExponent = function(value) {
 };
 
 /**
- * @function
- * @name Audio.fx.volumeLib#fromExponent
  * @param {Number} volume Громкость.
  * @returns {Number} значения положения на логарифмической шкале по значению громкости.
  */
@@ -44,8 +39,6 @@ volumeLib.fromExponent = function(volume) {
 };
 
 /**
- * @function
- * @name Audio.fx.volumeLib#toDBFS
  * @param {Number} volume Относительная громкость.
  * @returns {Number} значения dBFS из относительного значения громкости.
  */
@@ -54,8 +47,6 @@ volumeLib.toDBFS = function(volume) {
 };
 
 /**
- * @function
- * @name Audio.fx.volumeLib#fromDBFS
  * @param {Number} dbfs Громкость в dBFS.
  * @returns {Number} значения относительной громкости из значения dBFS.
  */

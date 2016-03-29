@@ -72,35 +72,29 @@ setTimeout(function() {
 
 /**
  * Событие начала воспроизведения.
- * @name Audio#EVENT_PLAY
- * @event
+ * @event ya.music.Audio#EVENT_PLAY
  */
 /**
  * Событие завершения воспроизведения.
- * @name Audio#EVENT_ENDED
- * @event
+ * @event ya.music.Audio#EVENT_ENDED
  */
 /**
  * Событие изменения громкости.
- * @name Audio#EVENT_VOLUME
- * @event
+ * @event ya.music.Audio#EVENT_VOLUME
  * @param {Number} volume Новое значение громкости.
  */
 /**
  * Событие возникновения ошибки при инициализации плеера.
- * @name Audio#EVENT_CRASHED
- * @event
+ * @event ya.music.Audio#EVENT_CRASHED
  */
 /**
  * Событие смены статуса плеера.
- * @name Audio#EVENT_STATE
- * @event
+ * @event ya.music.Audio#EVENT_STATE
  * @param {String} state Новый статус плеера.
  */
 /**
  * Событие переключения активного плеера и прелоадера.
- * @name Audio#EVENT_SWAP
- * @event
+ * @event ya.music.Audio#EVENT_SWAP
  */
 
 // =================================================================
@@ -111,39 +105,33 @@ setTimeout(function() {
 
 /**
  * Событие остановки воспроизведения.
- * @name Audio#EVENT_STOP
- * @event
+ * @event ya.music.Audio#EVENT_STOP
  */
 
 /**
  * Событие паузы воспроизведения.
- * @name Audio#EVENT_PAUSE
- * @event
+ * @event ya.music.Audio#EVENT_PAUSE
  */
 
 /**
  * Событие обновления позиции воспроизведения или загруженной части.
- * @name Audio#EVENT_PROGRESS
- * @event
- * @param {Audio.AudioPlayerTimes} times Информация о временных данных аудиофайла.
+ * @event ya.music.Audio#EVENT_PROGRESS
+ * @param {ya.music.Audio~AudioPlayerTimes} times Информация о временных данных аудиофайла.
  */
 
 /**
  * Событие начала загрузки аудиофайла.
- * @name Audio#EVENT_LOADING
- * @event
+ * @event ya.music.Audio#EVENT_LOADING
  */
 
 /**
  * Событие завершения загрузки аудиофайла.
- * @name Audio#EVENT_LOADED
- * @event
+ * @event ya.music.Audio#EVENT_LOADED
  */
 
 /**
  * Событие ошибки воспроизведения.
- * @name Audio#EVENT_ERROR
- * @event
+ * @event ya.music.Audio#EVENT_ERROR
  */
 
 // =================================================================
@@ -154,33 +142,28 @@ setTimeout(function() {
 
 /**
  * Событие остановки воспроизведения.
- * @name Audio#PRELOADER_EVENT+EVENT_STOP
- * @event
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_STOP
  */
 
 /**
  * Событие обновления позиции загруженной части.
- * @name Audio#PRELOADER_EVENT+EVENT_PROGRESS
- * @event
- * @param {Audio.AudioPlayerTimes} times Информация о временных данных аудиофайла.
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_PROGRESS
+ * @param {ya.music.Audio~AudioPlayerTimes} times Информация о временных данных аудиофайла.
  */
 
 /**
  * Событие начала загрузки аудиофайла.
- * @event
- * @name Audio#PRELOADER_EVENT+EVENT_LOADING
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_LOADING
  */
 
 /**
  * Событие завершения загрузки аудиофайла.
- * @event
- * @name Audio#PRELOADER_EVENT+EVENT_LOADED
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_LOADED
  */
 
 /**
  * Событие ошибки воспроизведения.
- * @event
- * @name Audio#PRELOADER_EVENT+EVENT_ERROR
+ * @event ya.music.Audio#PRELOADER_EVENT+EVENT_ERROR
  */
 
 // =================================================================
@@ -190,12 +173,13 @@ setTimeout(function() {
 // =================================================================
 
 /**
- * @class Аудиоплеер для браузера.
- * @name Audio
+ * @classdecs Аудиоплеер для браузера.
+ * @class Audio
+ * @alias ya.music.Audio
  * @param {String} [preferredType="html5"] Предпочитаемый тип плеера. Может принимать значения: "html5", "flash" или
  * любое ложное значение (false, null, undefined, 0, ""). Если выбранный тип плеера окажется недоступен, будет запущен
  * оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера.
- * <p>Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5. </p>
+ * Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5. 
  * @param {HTMLElement} [overlay] HTML-контейнер для отображения Flash-апплета.
  * @mixes AudioStatic
  * @extends Events
@@ -297,9 +281,7 @@ AudioPlayer.info = {
 
 /**
  * Контекст для Web Audio API.
- * @type <xref scope="external" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext">AudioContext</xref>
- * @field
- * @name Audio.audioContext
+ * @type {AudioContext}
  * @static
  */
 AudioPlayer.audioContext = audioTypes.html5.audioContext;
@@ -515,8 +497,6 @@ AudioPlayer.prototype._populateEvents = function(event, offset, data) {
  */
 
 /**
- * @name Audio#initPromise
- * @function
  * @returns {Promise} обещание, разрешающееся после завершения инициализации.
  */
 AudioPlayer.prototype.initPromise = function() {
@@ -524,8 +504,6 @@ AudioPlayer.prototype.initPromise = function() {
 };
 
 /**
- * @name Audio#getState
- * @function
  * @returns {String} статус плеера.
  */
 AudioPlayer.prototype.getState = function() {
@@ -533,8 +511,6 @@ AudioPlayer.prototype.getState = function() {
 };
 
 /**
- * @name Audio#getType
- * @function
  * @returns {String|null} тип реализации плеера.
  */
 AudioPlayer.prototype.getType = function() {
@@ -542,8 +518,6 @@ AudioPlayer.prototype.getType = function() {
 };
 
 /**
- * @name Audio#getSrc
- * @function
  * @param {int} [offset=0] Брать аудиофайлиз активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
  * @returns {String|null} ссылку на текущий трек.
  */
@@ -558,8 +532,6 @@ AudioPlayer.prototype.getSrc = function(offset) {
 // =================================================================
 /**
  * Запуск воспроизведения.
- * @name Audio#play
- * @function
  * @param {String} src Ссылка на трек.
  * @param {Number} [duration] Длительность аудиофайла. Актуально для Flash-реализации, в ней пока аудиофайлгрузится
  * длительность определяется с погрешностью.
@@ -603,8 +575,6 @@ AudioPlayer.prototype.play = function(src, duration) {
 
 /**
  * Перезапуск воспроизведения.
- * @name Audio#restart
- * @function
  * @returns {AbortablePromise} Promise-объект, который разрешится, когда трек будет перезапущен.
  */
 AudioPlayer.prototype.restart = function() {
@@ -621,8 +591,6 @@ AudioPlayer.prototype.restart = function() {
 
 /**
  * Остановка воспроизведения.
- * @name Audio#stop
- * @function
  * @param {int} [offset=0] Активный плеер или прелоадер. 0 - активный плеер. 1 - прелоадер.
  * @returns {AbortablePromise} Promise-объект, который разрешится, когда воспроизведение будет остановлено.
  */
@@ -661,8 +629,6 @@ AudioPlayer.prototype.stop = function(offset) {
 
 /**
  * Поставить плеер на паузу.
- * @name Audio#pause
- * @function
  * @returns {AbortablePromise} Promise-объект, который разрешится, когда плеер будет поставлен на паузу.
  */
 AudioPlayer.prototype.pause = function() {
@@ -696,8 +662,6 @@ AudioPlayer.prototype.pause = function() {
 
 /**
  * Снятие плеера с паузы.
- * @name Audio#resume
- * @function
  * @returns {AbortablePromise} Promise-объект, который разрешится, когда начнется воспроизведение.
  */
 AudioPlayer.prototype.resume = function() {
@@ -742,8 +706,6 @@ AudioPlayer.prototype.resume = function() {
 
 /**
  * Запуск воспроизведения предзагруженного аудиофайла.
- * @name Audio#playPreloaded
- * @function
  * @param {String} [src] Ссылка на аудиофайл (для проверки, что в прелоадере нужный трек).
  * @returns {AbortablePromise} Promise-объект, который разрешится, когда начнется воспроизведение предзагруженного аудиофайла.
  */
@@ -804,8 +766,6 @@ AudioPlayer.prototype.playPreloaded = function(src) {
 
 /**
  * Предзагрузка аудиофайла.
- * @name Audio#preload
- * @function
  * @param {String} src Ссылка на трек.
  * @param {Number} [duration] Длительность аудиофайла. Актуально для Flash-реализации, в ней пока аудиофайл грузится
  * длительность определяется с погрешностью.
@@ -845,8 +805,6 @@ AudioPlayer.prototype.preload = function(src, duration) {
 
 /**
  * Проверка, что аудиофайл предзагружен.
- * @name Audio#isPreloading
- * @function
  * @param {String} src Ссылка на трек.
  * @returns {Boolean} true, если аудиофайл предварительно загружен, false - иначе.
  */
@@ -871,8 +829,6 @@ AudioPlayer.prototype.isPreloading = function(src) {
 
 /**
  * Получение позиции воспроизведения.
- * @name Audio#getPosition
- * @function
  * @returns {Number} позиция воспроизведения (в секундах).
  */
 AudioPlayer.prototype.getPosition = function() {
@@ -881,8 +837,6 @@ AudioPlayer.prototype.getPosition = function() {
 
 /**
  * Установка позиции воспроизведения.
- * @name Audio#setPosition
- * @function
  * @param {Number} position Новая позиция воспроизведения (в секундах).
  * @returns {Number} конечная позиция воспроизведения.
  */
@@ -904,8 +858,6 @@ AudioPlayer.prototype.setPosition = function(position) {
 };
 
 /**
- * @name Audio#getDuration
- * @function
  * @param {Boolean|int} preloader Активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик.
  * @returns {Number} длительность аудиофайла (в секундах).
  */
@@ -914,8 +866,6 @@ AudioPlayer.prototype.getDuration = function(preloader) {
 };
 
 /**
- * @name Audio#getLoaded
- * @function
  * @param {Boolean|int} preloader Активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик.
  * @returns {Number} длительность загруженной части (в секундах).
  */
@@ -924,8 +874,6 @@ AudioPlayer.prototype.getLoaded = function(preloader) {
 };
 
 /**
- * @name Audio#getPlayed
- * @function
  * @returns {Number} длительность воспроизведения (в секундах).
  */
 AudioPlayer.prototype.getPlayed = function() {
@@ -943,8 +891,6 @@ AudioPlayer.prototype.getPlayed = function() {
 // =================================================================
 
 /**
- * @name Audio#getVolume
- * @function
  * @returns {Number} текущее значение громкости плеера.
  */
 AudioPlayer.prototype.getVolume = function() {
@@ -957,8 +903,6 @@ AudioPlayer.prototype.getVolume = function() {
 
 /**
  * Установка громкости плеера.
- * @name Audio#setVolume
- * @function
  * @param {Number} volume Новое значение громкости.
  * @returns {Number} итоговое значение громкости.
  */
@@ -974,8 +918,6 @@ AudioPlayer.prototype.setVolume = function(volume) {
 
 /**
  * Проверка, что громкость управляется устройством, а не программно.
- * @name Audio#isDeviceVolume
- * @function
  * @returns {Boolean} true, если громкость управляется устройством, false - иначе.
  */
 AudioPlayer.prototype.isDeviceVolume = function() {
@@ -1002,8 +944,6 @@ AudioPlayer.prototype.toggleCrossDomain = function(state) {
 
 /**
  * Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.
- * @name Audio#toggleWebAudioAPI
- * @function
  * <note type="attention"> после включения режима Web Audio API он не отключается полностью, т.к. для этого требуется
  * реинициализация плеера, которой требуется клик пользователя. При отключении из графа обработки исключаются
  * все ноды кроме нод-источников и ноды вывода, управление громкостью переключается на элементы audio, без
@@ -1032,9 +972,7 @@ AudioPlayer.prototype.toggleWebAudioAPI = function(state) {
 /**
  * Подключение аудио препроцессора. Вход препроцессора подключается к аудиоэлементу, у которого выставлена
  * 100% громкость. Выход препроцессора подключается к GainNode, которая регулирует итоговую громкость.
- * @name Audio#setAudioPreprocessor
- * @function
- * @param {Audio.AudioPreprocessor} preprocessor Препроцессор.
+ * @param {ya.music.Audio~AudioPreprocessor} preprocessor Препроцессор.
  * @returns {boolean} статус успеха.
  */
 AudioPlayer.prototype.setAudioPreprocessor = function(preprocessor) {
@@ -1062,8 +1000,6 @@ AudioPlayer.prototype._generatePlayId = function() {
 };
 
 /**
- * @name Audio#getPlayId
- * @function
  * @returns {String} playId.
  */
 AudioPlayer.prototype.getPlayId = function() {
