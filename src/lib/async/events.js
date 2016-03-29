@@ -10,6 +10,7 @@ var MUTE_OPTION = "_muted";
 // =================================================================
 
 /**
+ * @class Events
  * @classdesc Диспетчер событий.
  * @noconstructor
  */
