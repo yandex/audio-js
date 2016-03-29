@@ -57,7 +57,7 @@ setTimeout(function() {
 
 /**
  * Описание временных данных плеера.
- * @typedef {Object} Audio.AudioPlayerTimes
+ * @typedef {Object} ya.music.Audio~AudioPlayerTimes
  * @property {Number} duration Длительность аудиофайла.
  * @property {Number} loaded Длительность загруженной части.
  * @property {Number} position Позиция воспроизведения.
@@ -173,7 +173,6 @@ setTimeout(function() {
 // =================================================================
 
 /**
- * @class AudioPlayer
  * @classdecs Аудиоплеер для браузера.
  * @alias ya.music.Audio
  *
