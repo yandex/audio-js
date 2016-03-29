@@ -10,7 +10,7 @@ var noop = require('../lib/noop');
 /**
  * @class Logger
  * @alias ya.music.Audio.Logger
- * @classdecs Настраиваемый логгер для аудиоплеера.
+ * @classdesc Настраиваемый логгер для аудиоплеера.
  * @param {String} channel Имя канала, за который будет отвечать экземляр логгера.
  * @constructor
  */

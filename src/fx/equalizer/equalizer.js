@@ -27,7 +27,7 @@ var EqualizerBand = require('./equalizer-band');
 // =================================================================
 
 /**
- * @classdecs Эквалайзер.
+ * @classdesc Эквалайзер.
  * @class Equalizer
  * @alias ya.music.Audio.fx.Equalizer
  *

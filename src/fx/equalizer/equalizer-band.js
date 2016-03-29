@@ -14,9 +14,9 @@ var EqualizerStatic = require('./equalizer-static');
  */
 
 /**
+ * @classdesc Полоса пропускания эквалайзера.
  * @class EqualizerBand
  * @alias ya.music.Audio.fx.Equalizer~EqualizerBand
- * @classdecs Полоса пропускания эквалайзера.
  * @extends Events
  *
  * @param {AudioContext} audioContext Контекст Web Audio API.

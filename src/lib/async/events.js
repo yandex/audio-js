@@ -11,7 +11,7 @@ var MUTE_OPTION = "_muted";
 
 /**
  * @class Events
- * @classdecs Диспетчер событий.
+ * @classdesc Диспетчер событий.
  * @noconstructor
  */
 var Events = function() {
