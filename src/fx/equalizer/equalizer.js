@@ -28,7 +28,6 @@ var EqualizerBand = require('./equalizer-band');
 
 /**
  * @classdesc Эквалайзер.
- * @class Equalizer
  * @alias ya.music.Audio.fx.Equalizer
  *
  * @param {AudioContext} audioContext Контекст Web Audio API.
