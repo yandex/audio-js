@@ -2,7 +2,7 @@ var ErrorClass = require('../lib/class/error-class');
 
 /**
  * @class PlaybackError
- * @alias ya.music.Audio~PlaybackError
+ * @alias ya.music.Audio.PlaybackError
  * @classdecs Класс ошибки воспроизведения.
  * @extends Error
  * @param String message Текст ошибки.
@@ -51,8 +51,8 @@ PlaybackError.BAD_DATA = "Bad data";
 PlaybackError.DONT_START = "Playback start error";
 
 /**
- * Таблица соответствия кодов ошибок HTML5 плеера. 
- * 
+ * Таблица соответствия кодов ошибок HTML5 плеера.
+ *
  * @const
  * @type {Object}
  */
