@@ -199,7 +199,6 @@ setTimeout(function() {
  * @param {HTMLElement} [overlay] HTML-контейнер для отображения Flash-апплета.
  * @mixes AudioStatic
  * @extends Events
- * @extends <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref>
  * @fires ya.music.Audio#EVENT_PLAY
  * @fires ya.music.Audio#EVENT_ENDED
  * @fires ya.music.Audio#EVENT_VOLUME
