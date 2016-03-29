@@ -6,7 +6,7 @@ var EqualizerBand = require('./equalizer-band');
 
 /**
  * Описание настроек эквалайзера.
- * @typedef {Object} Audio.fx.Equalizer.EqualizerPreset
+ * @typedef {Object} ya.music.Audio.fx.Equalizer~EqualizerPreset
  * @property {String} [id] Идентификатор настроек.
  * @property {Number} preamp Предусилитель.
  * @property {Array.<Number>} bands Значения для полос эквалайзера.
@@ -14,7 +14,7 @@ var EqualizerBand = require('./equalizer-band');
 
 /**
  * Событие изменения полосы пропускания
- * @event Audio.fx.Equalizer#EVENT_CHANGE
+ * @event ya.music.Audio.fx.Equalizer#EVENT_CHANGE
  *
  * @param {Number} freq Частота полосы пропускания.
  * @param {Number} value Значение усиления.

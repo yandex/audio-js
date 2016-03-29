@@ -173,8 +173,8 @@ setTimeout(function() {
 // =================================================================
 
 /**
- * @classdecs Аудиоплеер для браузера.
  * @class AudioPlayer
+ * @classdecs Аудиоплеер для браузера.
  * @alias ya.music.Audio
  *
  * @param {String} [preferredType="html5"] Предпочитаемый тип плеера. Может принимать значения: "html5", "flash" или
