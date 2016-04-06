@@ -1,0 +1,31 @@
+##<a name="{{{name}}}"></a>{{#unless exported}} *inner*{{/unless}} *class* {{{name}}}
+
+{{> exported}}
+
+{{{classdesc}}}
+
+{{#if augments}}
+**Расширяет:**
+
+{{#each augments}}
+  - \{@link {{this}}\}
+{{/each}}
+{{/if}}
+
+{{#if fires}}
+**Триггерит:**
+
+{{#each fires}}
+  - \{@link {{this}}\}
+{{/each}}
+{{/if}}
+
+{{#if exported}}
+#### new {{{name}}}({{> params-table line=1}})
+
+{{{description}}}
+
+{{> params-table}}
+{{/if}}
+
+{{> children}}

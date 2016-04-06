@@ -1,0 +1,11 @@
+# Внешняя структура модуля
+
+{{#with exportTree}}
+{{#each symbols}}
+{{../indent}}* \{@link {{name}} {{path}}\}
+{{/each}}
+{{#each sub}}
+{{../indent}}* {{@key}}
+{{> export-tree}}
+{{/each}}
+{{/with}}

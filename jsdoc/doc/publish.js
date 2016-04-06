@@ -1,0 +1,227 @@
+var util = require("util");
+var render = require('./render');
+var fs = require("fs");
+
+var makeKinds = function() {
+    return {
+        "class": [],
+        "typedef": [],
+        "namespace": [],
+
+        "event": [],
+
+        "function": [],
+        "member": [],
+
+        // "file": [],
+        "package": []
+    };
+};
+
+var checkDoc = function(data, includePrivate) {
+    return (includePrivate || !data.access || data.access == "public")
+        && (!data.undocumented)
+        && (!data.ignore);
+};
+
+var optimize = function(tree, indent) {
+    indent = indent || 0;
+    var orig = Object.keys(tree.sub);
+    var key, keys;
+
+    for (var k = 0; k < orig.length; k++) {
+        key = orig[k];
+        keys = Object.keys(tree.sub[key].sub);
+
+        if (keys.length == 1 && !tree.sub[key].symbols.length) {
+            tree.sub[key + "." + keys[0]] = tree.sub[key].sub[keys[0]];
+            delete tree.sub[key];
+            orig.push(key + "." + keys[0]);
+        } else {
+            optimize(tree.sub[key], indent + 1);
+        }
+    }
+    tree.indent = new Array(indent + 1).join("  ");
+};
+var makePath = function(path, name) {
+    path = path.split(".");
+    var symbol = path.pop();
+    var ns = docs.exportTree;
+
+    path.forEach(function(chunk) {
+        if (!ns.sub[chunk]) {
+            ns.sub[chunk] = {
+                sub: {},
+                indent: 0,
+                symbols: []
+            };
+        }
+        ns = ns.sub[chunk];
+    });
+
+    ns.symbols.push({path: symbol, name: name});
+};
+
+var weight = function(data) {
+    return (data.kind != "class" && data.static ? 10 : 0)
+        + (data.inner ? -1 : 0)
+        + (data.exported ? 5 : 0);
+};
+var sort = function(kinds) {
+    for (var kind in kinds) {
+        if (Array.isArray(kinds[kind])) {
+            kinds[kind] = kinds[kind].sort(function(a, b) {
+                return weight(b) - weight(a);
+            });
+        }
+    }
+};
+
+var fixParams = function(params) {
+    params.forEach(function(param) {
+        param.type && param.type.names && (param.type.names = param.type.names.map(function(type) {
+            type = type
+                .replace(/[\w.#~]*~/, "")
+                .replace(/\(|\)/g, "");
+
+            return type;
+        }));
+    });
+    return params;
+};
+var fixes = function(data) {
+    data.type && fixParams([data]);
+    data.params && fixParams(data.params);
+    data.properties && fixParams(data.properties);
+    data.returns && fixParams(data.returns) && (data.returns = data.returns[0]);
+
+    if (data.kind === 'constant') {
+        data.kind = 'member';
+        data.const = true;
+    }
+
+    if (data.kind === 'class') {
+        data["class"] = true;
+    }
+
+    if (data.scope === 'static') {
+        data.static = true;
+    } else if (data.scope === 'inner') {
+        data.inner = true;
+    }
+
+    data.fires && (data.fires = data.fires.map(function(event) { return event.replace("event:", ""); }));
+    if (data.kind === 'event') { data.longname = data.longname.replace("event:", ""); }
+
+    data.tags && data.tags.some(function(tag) {
+        if (tag.title === "exported") {
+            data.exported = tag.value;
+            makePath(tag.value, data.name);
+            return true;
+        }
+    });
+};
+
+var subtree = function(taffy, data) {
+    data.children = makeKinds();
+
+    taffy({memberof: data.longname}).each(function(member) {
+        if (!checkDoc(member)) {
+            return;
+        }
+
+        if (data.children[member.kind]) {
+            data.children[member.kind].push(member);
+        } else {
+            console.warn("Unexpected type", member.kind);
+            return;
+        }
+
+        member.parent = data;
+        subtree(taffy, member);
+    });
+
+    delete data.children.package;
+    sort(data.children);
+};
+
+var docs = {
+    exportTree: {
+        sub: {},
+        symbols: []
+    },
+    links: {},
+    tree: makeKinds(),
+    linear: makeKinds()
+};
+
+var prepare = function(taffy) {
+    taffy().each(function(data) {
+        fixes(data);
+
+        if (!checkDoc(data)) {
+            return;
+        }
+
+        if (!docs.linear[data.kind]) {
+            console.warn("Unexpected kind", data.kind);
+            return;
+        }
+
+        var link = (data.memberof && !data.inner ? data.memberof + (
+                    data.static ? "." : "#")
+                    : ""
+            ) + data.name;
+
+        docs.links[link] = data;
+
+        if (data.scope === 'global'
+            || data.kind === 'class'
+            || data.kind === 'typedef'
+            || data.kind === 'namespace') {
+            docs.linear[data.kind].push(data);
+        }
+    });
+
+    taffy({scope: "global"}).each(function(data) {
+        if (!checkDoc(data)) {
+            return;
+        }
+
+        if (docs.tree[data.kind]) {
+            docs.tree[data.kind].push(data);
+            subtree(taffy, data);
+        }
+    });
+
+    delete docs.tree.package;
+    delete docs.linear.package;
+
+    sort(docs.tree);
+    sort(docs.linear);
+
+    optimize(docs.exportTree);
+};
+
+var styles = {
+    "jsdoc": "jsdoc",
+    "gfm-single": "md",
+    "gfm-files": "md"
+};
+
+exports.publish = function(taffyData, opts, tutorials) {
+    prepare(taffyData);
+
+    var style = opts.query && opts.query.style || "gfm-single";
+
+    render.prepare(opts.template, style);
+    var files = render.render(docs);
+
+    var ext = "." + styles[style];
+
+    for (var name in files) {
+        fs.writeFileSync(opts.destination + name.replace(/~/g, "-") + ext, files[name]);
+    }
+
+    // console.log(util.inspect(docs.links, {color: true, depth: 1}));
+};

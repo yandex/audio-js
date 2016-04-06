@@ -1,0 +1,42 @@
+## Внешняя структура модуля
+
+{{> export-tree exportTree}}
+
+{{#each linear.class}}
+----
+
+{{> class}}
+
+{{/each}}
+
+
+{{#if linear.function}}
+----
+
+## Функции
+{{#each linear.function}}
+
+{{> function}}
+{{/each}}
+{{/if}}
+
+
+{{#if linear.typedef}}
+----
+
+## Типы
+{{#each linear.typedef}}
+
+{{> typedef}}
+{{/each}}
+{{/if}}
+
+
+## Пространства имён
+
+{{#each linear.namespace}}
+----
+
+{{> namespace}}
+
+{{/each}}

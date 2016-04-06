@@ -1,0 +1,17 @@
+#### {{#if parent}}
+<a name="{{{parent.name}}}{{#if static}}.{{else inner}}--{{else}}..{{/if}}{{{name}}}"></a> {{> parents-line}}
+{{else exported}}
+<a name="{{{name}}}"></a>
+{{else}}
+<a name="{{{name}}}"></a> *inner*
+{{/if}}{{{name}}} ({{> params-table line=1}}) {{>type returns line=1}} {{#if inherited}}*(inherits {@link {{inherits}}\})*{{/if}}
+
+{{> exported}}
+
+{{{description}}}
+
+{{> params-table}}
+
+{{#if returns.description}}
+> **Возвращает:** {{{returns.description}}}
+{{/if}}

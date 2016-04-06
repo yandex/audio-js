@@ -1,0 +1,7 @@
+{{#if properties}}
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+{{#each properties}}
+| {{#if optional}}*\[{{/if}}{{{name}}}{{#if optional}}\]*{{/if}} | {{> type}} | {{{defaultvalue}}} | {{{description}}} |
+{{/each}}
+{{/if}}

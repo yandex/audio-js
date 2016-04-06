@@ -1,0 +1,49 @@
+{{#each children.member}}
+
+{{> member}}
+
+{{/each}}
+
+
+{{#each children.function}}
+
+{{> function}}
+
+{{/each}}
+
+
+{{#if children.event}}
+----
+
+## События
+{{#each children.event}}
+
+{{> event}}
+
+{{/each}}
+{{/if}}
+
+
+{{#if children.namespace}}
+----
+
+## Пространства имён
+{{#each children.namespace}}
+
+
+{{> namespace}}
+
+{{/each}}
+{{/if}}
+
+
+{{#if children.typedef}}
+----
+
+## Типы
+{{#each children.typedef}}
+
+{{> typedef}}
+
+{{/each}}
+{{/if}}

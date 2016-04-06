@@ -1,0 +1,25 @@
+/**
+ * @classdesc {{{classdesc}}}
+ * @name {{{name}}}
+ * {{#if parent}}@memberof {{parent.longname}}{{/if}}
+ * {{#if static}}@static{{/if}}
+ * {{#if inner}}@inner{{/if}}
+ *
+{{#each augments}}
+ * @extends {{this}}
+{{/each}}
+ *
+{{#each fires}}
+ * @fires {{this}}
+{{/each}}
+ *
+{{#if exported}}
+ * @alias {{{exported}}}
+ *
+ * @constructor
+ * {{{description}}}
+{{> params-table}}
+{{/if}}
+ */
+
+{{> children children}}

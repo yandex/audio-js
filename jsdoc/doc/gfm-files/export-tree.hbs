@@ -1,0 +1,7 @@
+{{#each symbols}}
+{{../indent}}* \{@link {{name}} {{path}}\}
+{{/each}}
+{{#each sub}}
+{{../indent}}* {{@key}}
+{{> export-tree}}
+{{/each}}
