@@ -396,6 +396,8 @@
             
                 <li data-name="ya.music.Audio#stop"><a href="ya.music.Audio.html#stop">stop</a></li>
             
+                <li data-name="ya.music.Audio#toggleCrossDomain"><a href="ya.music.Audio.html#toggleCrossDomain">toggleCrossDomain</a></li>
+            
                 <li data-name="ya.music.Audio#toggleWebAudioAPI"><a href="ya.music.Audio.html#toggleWebAudioAPI">toggleWebAudioAPI</a></li>
             
                 <li data-name="ya.music.Audio#unmuteEvents"><a href="ya.music.Audio.html#unmuteEvents">unmuteEvents</a></li>
@@ -2267,7 +2269,7 @@
 
         
         <div class="tag-source">
-            audio-player.js, line 1007
+            audio-player.js, line 1012
         </div>
         
     </div>
@@ -4411,7 +4413,7 @@
 
         
         <div class="tag-source">
-            audio-player.js, line 980
+            audio-player.js, line 985
         </div>
         
     </div>
@@ -4920,14 +4922,14 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="toggleWebAudioAPI">
+        <h4 class="name" id="toggleCrossDomain">
             
-            toggleWebAudioAPI<span class="signature">(state)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Boolean}</span>
+            toggleCrossDomain<span class="signature">(state)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{boolean}</span>
         </h4>
 
         
         <div class="tag-source">
-            audio-player.js, line 956
+            audio-player.js, line 943
         </div>
         
     </div>
@@ -4938,11 +4940,132 @@
 
     
     <div class="description">
-        <p>Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.</p>
-<note type="attention"> после включения режима Web Audio API он не отключается полностью, т.к. для этого требуется
+        <p>Включить режим CORS для получения аудио-треков</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>Запрашиваемый статус.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="toggleWebAudioAPI">
+            
+            toggleWebAudioAPI<span class="signature">(state)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Boolean}</span>
+        </h4>
+
+        
+        <div class="tag-source">
+            audio-player.js, line 961
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.
+Внимание!!! После включения режима Web Audio API он не отключается полностью, т.к. для этого требуется
 реинициализация плеера, которой требуется клик пользователя. При отключении из графа обработки исключаются
 все ноды кроме нод-источников и ноды вывода, управление громкостью переключается на элементы audio, без
-использования GainNode. </note>
+использования GainNode.</p>
     </div>
     
 
