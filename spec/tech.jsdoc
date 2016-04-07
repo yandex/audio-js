@@ -849,7 +849,7 @@
 */
 
 /**
-* Запись в лог с уровнем <strong>debug</strong>.
+* Запись в лог с уровнем <b>debug</b>.
 * @field
 * @name debug
 * 
@@ -860,7 +860,7 @@
 */
 
 /**
-* Запись в лог с уровнем <strong>log</strong>.
+* Запись в лог с уровнем <b>log</b>.
 * @field
 * @name log
 * 
@@ -871,7 +871,7 @@
 */
 
 /**
-* Запись в лог с уровнем <strong>info</strong>.
+* Запись в лог с уровнем <b>info</b>.
 * @field
 * @name info
 * 
@@ -882,7 +882,7 @@
 */
 
 /**
-* Запись в лог с уровнем <strong>warn</strong>.
+* Запись в лог с уровнем <b>warn</b>.
 * @field
 * @name warn
 * 
@@ -893,7 +893,7 @@
 */
 
 /**
-* Запись в лог с уровнем <strong>error</strong>.
+* Запись в лог с уровнем <b>error</b>.
 * @field
 * @name error
 * 
@@ -904,7 +904,7 @@
 */
 
 /**
-* Запись в лог с уровнем <strong>trace</strong>.
+* Запись в лог с уровнем <b>trace</b>.
 * @field
 * @name trace
 * 
