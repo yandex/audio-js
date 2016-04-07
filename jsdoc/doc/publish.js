@@ -211,6 +211,7 @@ var prepare = function(taffy) {
 
 var styles = {
     "jsdoc": "jsdoc",
+    "jsdoc-tech": "jsdoc",
     "gfm-single": "md",
     "gfm-files": "md"
 };

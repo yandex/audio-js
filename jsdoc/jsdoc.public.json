@@ -38,7 +38,7 @@
         "template": "jsdoc/doc",
         "recurse": true,
         "encoding": "utf8",
-        "destination": "dist/public-doc/",
+        "destination": "spec/",
         "private": false,
         "lenient": true,
         "readme": "readme.md",

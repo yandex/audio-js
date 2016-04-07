@@ -39,9 +39,10 @@ $(BUILDDIR)/index.min.js: $(BUILDDIR)/index.js
 
 
 jsdoc: prepare
-	-rm -rf $(BUILDDIR)/public-doc/*
+	-rm -rf spec/*
+	-mkdir spec
 	$(JSDOC) jsdoc/jsdoc.public.json -q style=gfm-files
-	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc
+	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc-tech
 
 
 .PHONY: all clean build minify prepare jsdoc

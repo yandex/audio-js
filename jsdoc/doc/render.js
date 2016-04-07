@@ -1,5 +1,6 @@
 var fs = require("fs");
 var Handlebars = require("handlebars");
+var renderType;
 var renderStyle;
 var files;
 
@@ -10,8 +11,9 @@ var parser;
 var trim = /^\s*|\s*$|\n(\{\{\/if}})|(\{\{#if [.\w ]*}})\n|\n(\{\{else[.\w ]*}})\n/g;
 
 var prepare = function(path, style) {
-    renderStyle = style.split("-")[0];
-    files = style.split("-")[1] === "files";
+    renderType = style.split("-")[0];
+    renderStyle = style.split("-")[1];
+    files = renderStyle === "files";
 
     var partials = fs.readdirSync(path + "/" + style);
 
@@ -31,7 +33,7 @@ var prepare = function(path, style) {
         );
     } catch(e) {}
 
-    parser = require("./render." + renderStyle + ".js");
+    parser = require("./render." + renderType + ".js");
 };
 
 var render = function(data) {
@@ -81,13 +83,13 @@ var render = function(data) {
             list.global += data.linear[key].map(renderPage).join("\n\n");
         }
 
-        list.readme = parser(index(data), data);
+        list.readme = parser(index(data), data, renderStyle);
     } else {
         for (var link in data.links) {
             data.links[link] = "#" + link.replace(/#/g, "..").replace(/~/g, "--");
         }
 
-        list.readme = parser(layout(data), data);
+        list.readme = parser(layout(data), data, renderStyle);
     }
 
     return list;

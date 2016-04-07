@@ -8,7 +8,7 @@ var doclet = /\/\*\*[\s\S]*?\*\//g;
 var alias = /@alias (.*)/g;
 var name = /@name (.*)/g;
 
-module.exports = function(page) {
+module.exports = function(page, data, style) {
     var page = page.replace(cleanupTags, "")
         .replace(unescape, "$1")
         .replace(linkhref, "{@link $1 $2}");
@@ -37,6 +37,10 @@ module.exports = function(page) {
     aliases.forEach(function(alias) {
         page = page.replace(alias.reg, alias.rep);
     });
+
+    if (style === "tech") {
+        page = page.replace(/\.<(.*)>/g, ".&lt;$1&gt;");
+    }
 
     return page.replace(/\r/g, "").replace(beautify_lines, "\n\n")
         .replace(beautify_asterix, " *\n");
