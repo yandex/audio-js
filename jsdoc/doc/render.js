@@ -36,7 +36,7 @@ var prepare = function(path, style) {
     parser = require("./render." + renderType + ".js");
 };
 
-var render = function(data) {
+var render = function(data, out) {
     var renderPage = function(item) {
         var page = {};
         page[item.kind] = item;
@@ -83,13 +83,17 @@ var render = function(data) {
             list.global += data.linear[key].map(renderPage).join("\n\n");
         }
 
-        list.readme = parser(index(data), data, renderStyle);
+        list[out] = parser(index(data), data, renderStyle);
+
+        if (!list.global) {
+            delete list.global;
+        }
     } else {
         for (var link in data.links) {
             data.links[link] = "#" + link.replace(/#/g, "..").replace(/~/g, "--");
         }
 
-        list.readme = parser(layout(data), data, renderStyle);
+        list[out] = parser(layout(data), data, renderStyle);
     }
 
     return list;

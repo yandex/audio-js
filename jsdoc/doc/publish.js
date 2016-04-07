@@ -220,9 +220,10 @@ exports.publish = function(taffyData, opts, tutorials) {
     prepare(taffyData);
 
     var style = opts.query && opts.query.style || "gfm-single";
+    var out = opts.query && opts.query.out || "readme";
 
     render.prepare(opts.template, style);
-    var files = render.render(docs);
+    var files = render.render(docs, out);
 
     var ext = "." + styles[style];
 

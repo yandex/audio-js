@@ -42,7 +42,9 @@ jsdoc: prepare
 	-rm -rf spec/*
 	-mkdir spec
 	$(JSDOC) jsdoc/jsdoc.public.json -q style=gfm-files
-	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc-tech
+	$(JSDOC) jsdoc/jsdoc.public.json -q style=gfm-single\&out=full
+	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc\&out=audio
+	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc-tech\&out=tech
 
 
 .PHONY: all clean build minify prepare jsdoc

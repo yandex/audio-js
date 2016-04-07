@@ -32,7 +32,7 @@
  * 
  * @param { String } [preferredType] Предпочитаемый тип плеера. Может принимать значения: &quot;html5&quot;, &quot;flash&quot; или любое ложное значение (false, null, undefined, 0, &quot;&quot;). Если выбранный тип плеера окажется недоступен, будет запущен оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера. Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5.
  * @param { HTMLElement } [overlay] HTML-контейнер для отображения Flash-апплета.
-
+ * 
  */
 
 /*************************************************************/
@@ -46,9 +46,10 @@
 * @type { Object }
 * 
 * @memberof ya.music.Audio
-* @static 
 * 
+* @static 
 */
+
 /**
 * Контекст для Web ya.music.Audio API.
 * @field
@@ -56,8 +57,8 @@
 * @type { AudioContext }
 * 
 * @memberof ya.music.Audio
-* @static 
 * 
+* @static 
 */
 
 /*************************************************************/
@@ -346,12 +347,14 @@
  * @name ya.music.Audio.EVENT_PROGRESS
  * @param { AudioTimes } times Информация о временных данных аудиофайла.
  */
+
 /**
  * Событие начала воспроизведения.
  * 
  * @event
  * @name ya.music.Audio.EVENT_PLAY
  */
+
 /**
  * Событие изменения громкости.
  * 
@@ -359,12 +362,14 @@
  * @name ya.music.Audio.EVENT_VOLUME
  * @param { Number } volume Новое значение громкости.
  */
+
 /**
  * Событие возникновения ошибки при инициализации плеера.
  * 
  * @event
  * @name ya.music.Audio.EVENT_CRASHED
  */
+
 /**
  * Событие смены статуса плеера.
  * 
@@ -372,54 +377,63 @@
  * @name ya.music.Audio.EVENT_STATE
  * @param { String } state Новый статус плеера.
  */
+
 /**
  * Событие переключения активного плеера и прелоадера.
  * 
  * @event
  * @name ya.music.Audio.EVENT_SWAP
  */
+
 /**
  * Событие остановки воспроизведения.
  * 
  * @event
  * @name ya.music.Audio.EVENT_STOP
  */
+
 /**
  * Событие паузы воспроизведения.
  * 
  * @event
  * @name ya.music.Audio.EVENT_PAUSE
  */
+
 /**
  * Событие завершения воспроизведения.
  * 
  * @event
  * @name ya.music.Audio.EVENT_ENDED
  */
+
 /**
  * Событие начала загрузки аудиофайла.
  * 
  * @event
  * @name ya.music.Audio.EVENT_LOADING
  */
+
 /**
  * Событие завершения загрузки аудиофайла.
  * 
  * @event
  * @name ya.music.Audio.EVENT_LOADED
  */
+
 /**
  * Событие ошибки воспроизведения.
  * 
  * @event
  * @name ya.music.Audio.EVENT_ERROR
  */
+
 /**
  * Событие остановки воспроизведения.
  * 
  * @event
  * @name ya.music.Audio.PRELOADER_EVENT+EVENT_STOP
  */
+
 /**
  * Событие обновления позиции загруженной части.
  * 
@@ -427,24 +441,28 @@
  * @name ya.music.Audio.PRELOADER_EVENT+EVENT_PROGRESS
  * @param { AudioTimes } times Информация о временных данных аудиофайла.
  */
+
 /**
  * Событие начала загрузки аудиофайла.
  * 
  * @event
  * @name ya.music.Audio.PRELOADER_EVENT+EVENT_LOADING
  */
+
 /**
  * Событие завершения загрузки аудиофайла.
  * 
  * @event
  * @name ya.music.Audio.PRELOADER_EVENT+EVENT_LOADED
  */
+
 /**
  * Событие ошибки воспроизведения.
  * 
  * @event
  * @name ya.music.Audio.PRELOADER_EVENT+EVENT_ERROR
- *///-----------------------------------------------------------//
+ */
+//-----------------------------------------------------------//
 
 /**
  * @class Класс ошибки аудиопллеера.
@@ -455,7 +473,7 @@
  * @constructor
  * 
  * @param { String } message Текст ошибки.
-
+ * 
  */
 
 /*************************************************************/
@@ -469,9 +487,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
 * @field
@@ -479,9 +498,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Действие недоступно из текущего состояния.
 * @field
@@ -489,9 +509,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Flash-плеер был заблокирован.
 * @field
@@ -499,9 +520,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
 * @field
@@ -509,9 +531,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Возникла ошибка при инициализации Flash-плеера из-за таймаута.
 * @field
@@ -519,9 +542,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Внутренняя ошибка Flash-плеера.
 * @field
@@ -529,9 +553,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Попытка вызвать недоступный экземляр Flash-плеера.
 * @field
@@ -539,9 +564,10 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Flash-плеер перестал отвечать на запросы.
 * @field
@@ -549,8 +575,8 @@
 * @type { String }
 * @const
 * @memberof ya.music.Audio.AudioError
-* @static 
 * 
+* @static 
 */
 
 //-----------------------------------------------------------//
@@ -567,7 +593,7 @@
  * 
  * @param  String message Текст ошибки.
  * @param  String src Ссылка на трек.
-
+ * 
  */
 
 /*************************************************************/
@@ -581,9 +607,10 @@
 * @type { String }
 * @const
 * @memberof PlaybackError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Сетевая ошибка.
 * @field
@@ -591,9 +618,10 @@
 * @type { String }
 * @const
 * @memberof PlaybackError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Ошибка декодирования аудио.
 * @field
@@ -601,9 +629,10 @@
 * @type { String }
 * @const
 * @memberof PlaybackError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Недоступный источник.
 * @field
@@ -611,9 +640,10 @@
 * @type { String }
 * @const
 * @memberof PlaybackError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Не запускается воспроизведение.
 * @field
@@ -621,9 +651,10 @@
 * @type { String }
 * @const
 * @memberof PlaybackError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Таблица соответствия кодов ошибок HTML5 плеера.
 * @field
@@ -631,8 +662,8 @@
 * @type { Object }
 * @const
 * @memberof PlaybackError
-* @static 
 * 
+* @static 
 */
 
 //-----------------------------------------------------------//
@@ -651,7 +682,7 @@
  * 
  * @param { AudioContext } audioContext Контекст Web ya.music.Audio API.
  * @param { Array.&lt;Number&gt; } bands Список частот для полос эквалайзера.
-
+ * 
  */
 
 /*************************************************************/
@@ -665,9 +696,10 @@
 * @type { Array.&lt;Number&gt; }
 * @const
 * @memberof Equalizer
-* @static 
 * 
+* @static 
 */
+
 /**
 * Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
 * @field
@@ -675,9 +707,10 @@
 * @type { Object.&lt;String, EqualizerPreset&gt; }
 * @const
 * @memberof Equalizer
-* @static 
 * 
+* @static 
 */
+
 /**
 * 
 * @field
@@ -735,7 +768,8 @@
  * @name Equalizer.EVENT_CHANGE
  * @param { Number } freq Частота полосы пропускания.
  * @param { Number } value Значение усиления.
- *///-----------------------------------------------------------//
+ */
+//-----------------------------------------------------------//
 
 /**
  * @class Класс ошибок загрузчика.
@@ -747,7 +781,7 @@
  * @constructor
  * 
  * @param { String } message Текст ошибки.
-
+ * 
  */
 
 /*************************************************************/
@@ -761,9 +795,10 @@
 * @type { String }
 * @const
 * @memberof LoaderError
-* @static 
 * 
+* @static 
 */
+
 /**
 * Ошибка запроса на загрузку.
 * @field
@@ -771,8 +806,8 @@
 * @type { String }
 * @const
 * @memberof LoaderError
-* @static 
 * 
+* @static 
 */
 
 //-----------------------------------------------------------//
@@ -784,7 +819,7 @@
  * @constructor
  * 
  * @param { String } channel Имя канала, за который будет отвечать экземляр логгера.
-
+ * 
  */
 
 /*************************************************************/
@@ -798,9 +833,10 @@
 * @type { Array.&lt;String&gt; }
 * 
 * @memberof ya.music.Audio.Logger
-* @static 
 * 
+* @static 
 */
+
 /**
 * Список отображаемых в консоли уровней лога.
 * @field
@@ -808,9 +844,10 @@
 * @type { Array.&lt;String&gt; }
 * 
 * @memberof ya.music.Audio.Logger
-* @static 
 * 
+* @static 
 */
+
 /**
 * Запись в лог с уровнем <strong>debug</strong>.
 * @field
@@ -821,6 +858,7 @@
 * 
 * 
 */
+
 /**
 * Запись в лог с уровнем <strong>log</strong>.
 * @field
@@ -831,6 +869,7 @@
 * 
 * 
 */
+
 /**
 * Запись в лог с уровнем <strong>info</strong>.
 * @field
@@ -841,6 +880,7 @@
 * 
 * 
 */
+
 /**
 * Запись в лог с уровнем <strong>warn</strong>.
 * @field
@@ -851,6 +891,7 @@
 * 
 * 
 */
+
 /**
 * Запись в лог с уровнем <strong>error</strong>.
 * @field
@@ -861,6 +902,7 @@
 * 
 * 
 */
+
 /**
 * Запись в лог с уровнем <strong>trace</strong>.
 * @field
@@ -882,8 +924,8 @@
  * @name log
  * 
  * @memberof ya.music.Audio.Logger
- * @static
  * 
+ * @static
  * @param { String } level Уровень лога.
  * @param { String } channel Канал.
  * @param { Object } context Контекст вызова.
@@ -897,6 +939,7 @@
  * @class Диспетчер событий.
  * @name Events
  *
+
  * @noconstructor
  */
 
@@ -910,8 +953,8 @@
  * @name mixin
  * 
  * @memberof Events
- * @static
  * 
+ * @static
  * @param { function } classConstructor Конструктор класса.
  * @returns { function } тот же конструктор класса, расширенный свойствами диспетчера событий.
  */
@@ -922,8 +965,8 @@
  * @name eventize
  * 
  * @memberof Events
- * @static
  * 
+ * @static
  * @param { Object } object Объект.
  * @returns { Object } тот же объект, расширенный свойствами диспетчера событий.
  */
@@ -1002,6 +1045,7 @@
  *
  * @extends Promise
  *
+
  * @noconstructor
  */
 
@@ -1026,6 +1070,7 @@
  * @class 
  * @name Promise
  *
+
  * @noconstructor
  */
 
@@ -1065,8 +1110,8 @@
  * Описание временных данных плеера.
  * @typedef { Object } AudioTimes
  * @memberof ya.music.Audio
- * 
  * @inner
+ * 
  * @property { Number } duration Длительность аудиофайла.
  * @property { Number } loaded Длительность загруженной части.
  * @property { Number } position Позиция воспроизведения.
@@ -1079,8 +1124,8 @@
  * Аудио-препроцессор.
  * @typedef { Object } AudioPreprocessor
  * @memberof ya.music.Audio
- * 
  * @inner
+ * 
  * @property { AudioNode } input Нода, в которую перенаправляется вывод аудио.
  * @property { AudioNode } output Нода, из которой вывод подается на усилитель.
  */
@@ -1091,8 +1136,8 @@
  * Описание настроек эквалайзера.
  * @typedef { Object } EqualizerPreset
  * @memberof Equalizer
- * 
  * @inner
+ * 
  * @property { String } [id] Идентификатор настроек.
  * @property { Number } preamp Предусилитель.
  * @property { Array.&lt;Number&gt; } bands Значения для полос эквалайзера.
@@ -1107,8 +1152,8 @@
 * Общие настройки.
 * @name config.audio
 * 
-* @static
 * 
+* @static
 * @namespace
 */
 
@@ -1123,8 +1168,8 @@
 * @type { Number }
 * 
 * @memberof config.audio
-* @static 
 * 
+* @static 
 */
 
 //-----------------------------------------------------------//
@@ -1133,8 +1178,8 @@
 * Настройки подключения Flash-плеера.
 * @name config.flash
 * 
-* @static
 * 
+* @static
 * @namespace
 */
 
@@ -1149,9 +1194,10 @@
 * @type { String }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * Имя .swf файла флеш-плеера
 * @field
@@ -1159,9 +1205,10 @@
 * @type { String }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * Минимальная версия флеш-плеера
 * @field
@@ -1169,9 +1216,10 @@
 * @type { String }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * ID, который будет выставлен для элемента с Flash-плеером
 * @field
@@ -1179,9 +1227,10 @@
 * @type { String }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * Имя функции-обработчика событий Flash-плеера
 * @field
@@ -1189,9 +1238,10 @@
 * @type { String }
 * @const
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * Таймаут инициализации
 * @field
@@ -1199,9 +1249,10 @@
 * @type { Number }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * Таймаут загрузки
 * @field
@@ -1209,9 +1260,10 @@
 * @type { Number }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * Таймаут инициализации после клика
 * @field
@@ -1219,9 +1271,10 @@
 * @type { Number }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
+
 /**
 * Интервал проверки доступности Flash-плеера
 * @field
@@ -1229,8 +1282,8 @@
 * @type { Number }
 * 
 * @memberof config.flash
-* @static 
 * 
+* @static 
 */
 
 //-----------------------------------------------------------//
@@ -1239,8 +1292,8 @@
 * Описание настроек HTML5 плеера.
 * @name config.html5
 * 
-* @static
 * 
+* @static
 * @namespace
 */
 
@@ -1255,8 +1308,8 @@
 * @type { Array.&lt;String&gt; }
 * 
 * @memberof config.html5
-* @static 
 * 
+* @static 
 */
 
 //-----------------------------------------------------------//
@@ -1292,8 +1345,8 @@
 * @type { number }
 * 
 * @memberof ya.music.Audio.fx.volumeLib
-* @static 
 * 
+* @static 
 */
 
 /*************************************************************/
@@ -1306,8 +1359,8 @@
  * @name toExponent
  * 
  * @memberof ya.music.Audio.fx.volumeLib
- * @static
  * 
+ * @static
  * @param { Number } value Значение на шкале.
  * @returns { Number } 
  */
@@ -1318,8 +1371,8 @@
  * @name fromExponent
  * 
  * @memberof ya.music.Audio.fx.volumeLib
- * @static
  * 
+ * @static
  * @param { Number } volume Громкость.
  * @returns { Number } 
  */
@@ -1330,8 +1383,8 @@
  * @name toDBFS
  * 
  * @memberof ya.music.Audio.fx.volumeLib
- * @static
  * 
+ * @static
  * @param { Number } volume Относительная громкость.
  * @returns { Number } 
  */
@@ -1342,8 +1395,8 @@
  * @name fromDBFS
  * 
  * @memberof ya.music.Audio.fx.volumeLib
- * @static
  * 
+ * @static
  * @param { Number } dbfs Громкость в dBFS.
  * @returns { Number } 
  */

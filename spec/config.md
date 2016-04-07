@@ -3,6 +3,7 @@
 ##<a name="config"></a> *ns* config
 
 **Доступен извне как:** `ya.music.Audio.config`
+
 Настройки библиотеки.
 
 ----

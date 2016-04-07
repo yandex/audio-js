@@ -3,6 +3,7 @@
 ##<a name="volumeLib"></a> *ns* volumeLib
 
 **Доступен извне как:** `ya.music.Audio.fx.volumeLib`
+
 Методы конвертации значений громкости.
 
 #### volumeLib.EPSILON : number
