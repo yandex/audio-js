@@ -20,6 +20,8 @@ var CONTAINER_CLASS = "ya-flash-player-wrapper";
  * @param {string} sizeX - размер по горизонтали
  * @param {string} sizeY - размер по вертикали
  *
+ * @private
+ *
  * @returns {HTMLElement} -- Контейнер флеш-плеера
  */
 module.exports = function(url, minVersion, id, loadCallback, flashVars, container, sizeX, sizeY) {

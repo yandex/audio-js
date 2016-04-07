@@ -1,6 +1,7 @@
 /**
  * Методы конвертации значений громкости.
- * @alias ya.music.Audio.fx.volumeLib
+ * @name volumeLib
+ * @exported ya.music.Audio.fx.volumeLib
  * @namespace
  */
 var volumeLib = {};
@@ -20,9 +21,9 @@ volumeLib.EPSILON = 0.01;
 volumeLib._DBFS_COEF = 20 / Math.log(10);
 
 /**
- * Вычисление значение громкости по значению на логарифмической шкале.
+ * Вычисление значение относительной громкости по значению на логарифмической шкале.
  * @param {Number} value Значение на шкале.
- * @returns {Number} значение громкости.
+ * @returns {Number}
  */
 volumeLib.toExponent = function(value) {
     var volume = Math.pow(volumeLib.EPSILON, 1 - value);
@@ -30,24 +31,27 @@ volumeLib.toExponent = function(value) {
 };
 
 /**
+ * Вычисление положения на логарифмической шкале по значению относительной громкости громкости
  * @param {Number} volume Громкость.
- * @returns {Number} значения положения на логарифмической шкале по значению громкости.
+ * @returns {Number}
  */
 volumeLib.fromExponent = function(volume) {
     return 1 - Math.log(Math.max(volume, volumeLib.EPSILON)) / Math.log(volumeLib.EPSILON);
 };
 
 /**
+ * Вычисление значения dBFS из относительного значения громкости.
  * @param {Number} volume Относительная громкость.
- * @returns {Number} значения dBFS из относительного значения громкости.
+ * @returns {Number}
  */
 volumeLib.toDBFS = function(volume) {
     return Math.log(volume) * volumeLib._DBFS_COEF;
 };
 
 /**
+ * Вычисление значения относительной громкости из значения dBFS.
  * @param {Number} dbfs Громкость в dBFS.
- * @returns {Number} значения относительной громкости из значения dBFS.
+ * @returns {Number}
  */
 volumeLib.fromDBFS = function(dbfs) {
     return Math.exp(dbfs / volumeLib._DBFS_COEF);

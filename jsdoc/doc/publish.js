@@ -33,7 +33,7 @@ var optimize = function(tree, indent) {
         key = orig[k];
         keys = Object.keys(tree.sub[key].sub);
 
-        if (keys.length == 1 && !tree.sub[key].symbols.length) {
+        if (keys.length == 1 && !tree.sub[key].sub[keys[0]].link) {
             tree.sub[key + "." + keys[0]] = tree.sub[key].sub[keys[0]];
             delete tree.sub[key];
             orig.push(key + "." + keys[0]);
@@ -45,7 +45,7 @@ var optimize = function(tree, indent) {
 };
 var makePath = function(path, name) {
     path = path.split(".");
-    var symbol = path.pop();
+    // var symbol = path.pop();
     var ns = docs.exportTree;
 
     path.forEach(function(chunk) {
@@ -53,13 +53,13 @@ var makePath = function(path, name) {
             ns.sub[chunk] = {
                 sub: {},
                 indent: 0,
-                symbols: []
+                link: null
             };
         }
         ns = ns.sub[chunk];
     });
 
-    ns.symbols.push({path: symbol, name: name});
+    ns.link = name;
 };
 
 var weight = function(data) {
@@ -79,6 +79,8 @@ var sort = function(kinds) {
 
 var fixParams = function(params) {
     params.forEach(function(param) {
+        param.description = param.description && param.description.replace(/\n/g, " ");
+
         param.type && param.type.names && (param.type.names = param.type.names.map(function(type) {
             type = type
                 .replace(/[\w.#~]*~/, "")
@@ -163,6 +165,10 @@ var prepare = function(taffy) {
             return;
         }
 
+        if (data.kind === 'function' && !data.description) {
+            console.log(util.inspect(data, {color: true, depth: 0}));
+        }
+
         if (!docs.linear[data.kind]) {
             console.warn("Unexpected kind", data.kind);
             return;
@@ -219,9 +225,13 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     var ext = "." + styles[style];
 
+    try {
+        fs.mkdirSync(opts.destination);
+    } catch(e) {}
+
     for (var name in files) {
         fs.writeFileSync(opts.destination + name.replace(/~/g, "-") + ext, files[name]);
     }
 
-    // console.log(util.inspect(docs.links, {color: true, depth: 1}));
+    // console.log(util.inspect(docs.linear["class"], {color: true, depth: 2}));
 };

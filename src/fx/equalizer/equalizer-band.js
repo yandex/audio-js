@@ -9,22 +9,22 @@ var EqualizerStatic = require('./equalizer-static');
 
 /**
  * Событие изменения значения усиления.
- * @event Audio.fx.Equalizer.EqualizerBand#EVENT_CHANGE
+ * @event EqualizerBand.EVENT_CHANGE
  * @param {Number} value Новое значение.
  */
 
 /**
  * @classdesc Полоса пропускания эквалайзера.
- * @alias ya.music.Audio.fx.Equalizer~EqualizerBand
  * @extends Events
  *
  * @param {AudioContext} audioContext Контекст Web Audio API.
  * @param {String} type Тип фильтра.
  * @param {Number} frequency Частота фильтра.
  *
- * @fires ya.music.Audio.fx.Equalizer~EqualizerBand#EVENT_CHANGE
+ * @fires EqualizerBand.EVENT_CHANGE
  *
  * @constructor
+ * @private
  */
 var EqualizerBand = function(audioContext, type, frequency) {
     Events.call(this);
@@ -46,14 +46,16 @@ Events.mixin(EqualizerBand);
 // =================================================================
 
 /**
- * @returns {Number} частоту полосы пропускания.
+ * Получить частоту полосы пропускания.
+ * @returns {Number}
  */
 EqualizerBand.prototype.getFreq = function() {
     return this.filter.frequency.value;
 };
 
 /**
- * @returns {Number} Значение усиления.
+ * Получить значение усиления.
+ * @returns {Number}
  */
 EqualizerBand.prototype.getValue = function() {
     return this.filter.gain.value;

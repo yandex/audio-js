@@ -1,7 +1,7 @@
 var ErrorClass = require('../../class/error-class');
 
 /**
- * @alias ya.music.Audio.LoaderError
+ * @exported ya.music.Audio.LoaderError
  * @classdesc Класс ошибок загрузчика.
  * Расширяет Error.
  * @param {String} message Текст ошибки.

@@ -10,7 +10,7 @@ BROWSERIFY=$(NPM_BIN)/browserify -d
 MAKEFLAGS+=-j 1
 
 
-all: clean build minify jsdoc_public
+all: clean build minify jsdoc
 	git add -A
 	git commit
 
@@ -38,17 +38,10 @@ $(BUILDDIR)/index.min.js: $(BUILDDIR)/index.js
 	$(UGLIFY_JS) $(BUILDDIR)/index.js > $(BUILDDIR)/index.min.js --source-map $(BUILDDIR)/index.map.json
 
 
-jsdoc: jsdoc_public jsdoc_private
+jsdoc: prepare
+	-rm -rf $(BUILDDIR)/public-doc/*
+	$(JSDOC) jsdoc/jsdoc.public.json -q style=gfm-files
+	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc
 
 
-jsdoc_public: prepare
-	-rm -rf dist/public-doc/
-	$(JSDOC) jsdoc/jsdoc.public.json
-
-
-jsdoc_private: prepare
-	-rm -rf dist/dev-doc/
-	$(JSDOC) jsdoc/jsdoc.private.json
-
-
-.PHONY: all clean build minify prepare jsdoc jsdoc_public jsdoc_private
+.PHONY: all clean build minify prepare jsdoc

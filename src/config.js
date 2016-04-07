@@ -1,6 +1,6 @@
 /**
  * Настройки библиотеки.
- * @alias ya.music.Audio.config
+ * @exported ya.music.Audio.config
  * @namespace
  */
 var config = {

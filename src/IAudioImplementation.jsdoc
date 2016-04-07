@@ -64,7 +64,7 @@
  */
 /** Событие обновления позиции воспроизведения/загруженной части
  * @event IAudioImplementation#EVENT_PROGRESS
- * @param {ya.music.Audio~AudioPlayerTimes} times - информация о временных данных трека
+ * @param {Audio~AudioPlayerTimes} times - информация о временных данных трека
  */
 /** Событие начала загрузки трека
  * @event IAudioImplementation#EVENT_LOADING

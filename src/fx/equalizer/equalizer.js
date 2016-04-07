@@ -6,7 +6,7 @@ var EqualizerBand = require('./equalizer-band');
 
 /**
  * Описание настроек эквалайзера.
- * @typedef {Object} ya.music.Audio.fx.Equalizer~EqualizerPreset
+ * @typedef {Object} Equalizer~EqualizerPreset
  * @property {String} [id] Идентификатор настроек.
  * @property {Number} preamp Предусилитель.
  * @property {Array.<Number>} bands Значения для полос эквалайзера.
@@ -14,7 +14,7 @@ var EqualizerBand = require('./equalizer-band');
 
 /**
  * Событие изменения полосы пропускания
- * @event ya.music.Audio.fx.Equalizer#EVENT_CHANGE
+ * @event Equalizer.EVENT_CHANGE
  *
  * @param {Number} freq Частота полосы пропускания.
  * @param {Number} value Значение усиления.
@@ -28,7 +28,7 @@ var EqualizerBand = require('./equalizer-band');
 
 /**
  * @classdesc Эквалайзер.
- * @alias ya.music.Audio.fx.Equalizer
+ * @exported ya.music.Audio.fx.Equalizer
  *
  * @param {AudioContext} audioContext Контекст Web Audio API.
  * @param {Array.<Number>} bands Список частот для полос эквалайзера.
@@ -36,7 +36,7 @@ var EqualizerBand = require('./equalizer-band');
  * @extends Events
  * @mixes EqualizerStatic
  *
- * @fires ya.music.Audio.fx.Equalizer#EVENT_CHANGE
+ * @fires Equalizer.EVENT_CHANGE
  *
  * @constructor
  */
@@ -92,7 +92,7 @@ Equalizer.DEFAULT_BANDS = require('./default.bands.js');
 
 /**
  * Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
- * @type {Object.<String, ya.music.Audio.fx.Equalizer~EqualizerPreset>}
+ * @type {Object.<String, Equalizer~EqualizerPreset>}
  * @const
  */
 Equalizer.DEFAULT_PRESETS = require('./default.presets.js');
@@ -122,7 +122,7 @@ Equalizer.prototype._onBandEvent = function(band, event, data) {
 
 /**
  * Загрузить настройки.
- * @param {ya.music.Audio.fx.Equalizer~EqualizerPreset} preset Настройки.
+ * @param {Equalizer~EqualizerPreset} preset Настройки.
  */
 Equalizer.prototype.loadPreset = function(preset) {
     preset.bands.forEach(function(value, idx) {
@@ -133,7 +133,7 @@ Equalizer.prototype.loadPreset = function(preset) {
 
 /**
  * Сохранить текущие настройки.
- * @returns {ya.music.Audio.fx.Equalizer~EqualizerPreset}
+ * @returns {Equalizer~EqualizerPreset}
  */
 Equalizer.prototype.savePreset = function() {
     return {
