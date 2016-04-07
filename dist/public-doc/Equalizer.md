@@ -1,6 +1,7 @@
 ##<a name="Equalizer"></a> *class* Equalizer
 
 **Доступен извне как:** `ya.music.Audio.fx.Equalizer`
+
 Эквалайзер.
 
 **Расширяет:**
@@ -22,11 +23,28 @@
 
 Набор частот эквалайзера, применяющийся по умолчанию.
 
-#### Equalizer.DEFAULT_PRESETS : Object.&lt; String, EqualizerPreset &gt;
+#### Equalizer.DEFAULT_PRESETS : Object.&lt; String, [EqualizerPreset](Equalizer.md#EqualizerPreset) &gt;
 
 Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
 
 #### Equalizer#EVENT_CHANGE : String
+
+----
+
+### События
+
+####<a name="Equalizer.EVENT_CHANGE"></a> *event* Equalizer.EVENT_CHANGE
+
+Событие изменения полосы пропускания
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| freq | Number |  | Частота полосы пропускания. |
+| value | Number |  | Значение усиления. |
+
+----
+
+### Методы
 
 #### <a name="Equalizer..loadPreset"></a> Equalizer#loadPreset (preset: [EqualizerPreset](Equalizer.md#EqualizerPreset))  
 
@@ -99,20 +117,7 @@
 
 ----
 
-## События
-
-####<a name="Equalizer.EVENT_CHANGE"></a> *event* Equalizer.EVENT_CHANGE
-
-Событие изменения полосы пропускания
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| freq | Number |  | Частота полосы пропускания. |
-| value | Number |  | Значение усиления. |
-
-----
-
-## Типы
+### Типы
 
 ####<a name="EqualizerPreset"></a> *type* EqualizerPreset : Object
 

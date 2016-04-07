@@ -1,6 +1,7 @@
 ##<a name="AudioError"></a> *class* AudioError
 
 **Доступен извне как:** `ya.music.Audio.AudioError`
+
 Класс ошибки аудиопллеера.
 
 **Расширяет:**

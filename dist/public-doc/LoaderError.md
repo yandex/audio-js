@@ -1,6 +1,7 @@
 ##<a name="LoaderError"></a> *class* LoaderError
 
 **Доступен извне как:** `ya.music.Audio.LoaderError`
+
 Класс ошибок загрузчика.
 Расширяет Error.
 

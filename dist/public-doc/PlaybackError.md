@@ -1,6 +1,7 @@
 ##<a name="PlaybackError"></a> *class* PlaybackError
 
 **Доступен извне как:** `ya.music.Audio.PlaybackError`
+
 Класс ошибки воспроизведения.
 
 **Расширяет:**

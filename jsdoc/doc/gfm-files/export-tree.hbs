@@ -1,7 +1,4 @@
-{{#each symbols}}
-{{../indent}}* \{@link {{name}} {{path}}\}
-{{/each}}
 {{#each sub}}
-{{../indent}}* {{@key}}
+{{../indent}}* {{#if link}}\{@link {{link}} {{@key}}\}{{else}}{{@key}}{{/if}}
 {{> export-tree}}
 {{/each}}

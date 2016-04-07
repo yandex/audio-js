@@ -1,6 +1,7 @@
 ##<a name="Audio"></a> *class* Audio
 
 **Доступен извне как:** `ya.music.Audio`
+
 Аудиоплеер для браузера.
 
 **Расширяет:**
@@ -41,6 +42,98 @@
 #### Audio.audioContext : AudioContext
 
 Контекст для Web Audio API.
+
+----
+
+### События
+
+####<a name="Audio.EVENT_PROGRESS"></a> *event* Audio.EVENT_PROGRESS
+
+Событие обновления позиции воспроизведения или загруженной части.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| times | [AudioTimes](Audio.md#AudioTimes) |  | Информация о временных данных аудиофайла. |
+
+####<a name="Audio.EVENT_PLAY"></a> *event* Audio.EVENT_PLAY
+
+Событие начала воспроизведения.
+
+####<a name="Audio.EVENT_VOLUME"></a> *event* Audio.EVENT_VOLUME
+
+Событие изменения громкости.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| volume | Number |  | Новое значение громкости. |
+
+####<a name="Audio.EVENT_CRASHED"></a> *event* Audio.EVENT_CRASHED
+
+Событие возникновения ошибки при инициализации плеера.
+
+####<a name="Audio.EVENT_STATE"></a> *event* Audio.EVENT_STATE
+
+Событие смены статуса плеера.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| state | String |  | Новый статус плеера. |
+
+####<a name="Audio.EVENT_SWAP"></a> *event* Audio.EVENT_SWAP
+
+Событие переключения активного плеера и прелоадера.
+
+####<a name="Audio.EVENT_STOP"></a> *event* Audio.EVENT_STOP
+
+Событие остановки воспроизведения.
+
+####<a name="Audio.EVENT_PAUSE"></a> *event* Audio.EVENT_PAUSE
+
+Событие паузы воспроизведения.
+
+####<a name="Audio.EVENT_ENDED"></a> *event* Audio.EVENT_ENDED
+
+Событие завершения воспроизведения.
+
+####<a name="Audio.EVENT_LOADING"></a> *event* Audio.EVENT_LOADING
+
+Событие начала загрузки аудиофайла.
+
+####<a name="Audio.EVENT_LOADED"></a> *event* Audio.EVENT_LOADED
+
+Событие завершения загрузки аудиофайла.
+
+####<a name="Audio.EVENT_ERROR"></a> *event* Audio.EVENT_ERROR
+
+Событие ошибки воспроизведения.
+
+####<a name="Audio.PRELOADER_EVENT+EVENT_STOP"></a> *event* Audio.PRELOADER_EVENT+EVENT_STOP
+
+Событие остановки воспроизведения.
+
+####<a name="Audio.PRELOADER_EVENT+EVENT_PROGRESS"></a> *event* Audio.PRELOADER_EVENT+EVENT_PROGRESS
+
+Событие обновления позиции загруженной части.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| times | [AudioTimes](Audio.md#AudioTimes) |  | Информация о временных данных аудиофайла. |
+
+####<a name="Audio.PRELOADER_EVENT+EVENT_LOADING"></a> *event* Audio.PRELOADER_EVENT+EVENT_LOADING
+
+Событие начала загрузки аудиофайла.
+
+####<a name="Audio.PRELOADER_EVENT+EVENT_LOADED"></a> *event* Audio.PRELOADER_EVENT+EVENT_LOADED
+
+Событие завершения загрузки аудиофайла.
+
+####<a name="Audio.PRELOADER_EVENT+EVENT_ERROR"></a> *event* Audio.PRELOADER_EVENT+EVENT_ERROR
+
+Событие ошибки воспроизведения.
+
+----
+
+### Методы
 
 #### <a name="Audio..getDuration"></a> Audio#getDuration (preloader: Boolean \| int) : Number 
 
@@ -286,95 +379,7 @@
 
 ----
 
-## События
-
-####<a name="Audio.EVENT_PROGRESS"></a> *event* Audio.EVENT_PROGRESS
-
-Событие обновления позиции воспроизведения или загруженной части.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| times | [AudioTimes](Audio.md#AudioTimes) |  | Информация о временных данных аудиофайла. |
-
-####<a name="Audio.EVENT_PLAY"></a> *event* Audio.EVENT_PLAY
-
-Событие начала воспроизведения.
-
-####<a name="Audio.EVENT_VOLUME"></a> *event* Audio.EVENT_VOLUME
-
-Событие изменения громкости.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| volume | Number |  | Новое значение громкости. |
-
-####<a name="Audio.EVENT_CRASHED"></a> *event* Audio.EVENT_CRASHED
-
-Событие возникновения ошибки при инициализации плеера.
-
-####<a name="Audio.EVENT_STATE"></a> *event* Audio.EVENT_STATE
-
-Событие смены статуса плеера.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| state | String |  | Новый статус плеера. |
-
-####<a name="Audio.EVENT_SWAP"></a> *event* Audio.EVENT_SWAP
-
-Событие переключения активного плеера и прелоадера.
-
-####<a name="Audio.EVENT_STOP"></a> *event* Audio.EVENT_STOP
-
-Событие остановки воспроизведения.
-
-####<a name="Audio.EVENT_PAUSE"></a> *event* Audio.EVENT_PAUSE
-
-Событие паузы воспроизведения.
-
-####<a name="Audio.EVENT_ENDED"></a> *event* Audio.EVENT_ENDED
-
-Событие завершения воспроизведения.
-
-####<a name="Audio.EVENT_LOADING"></a> *event* Audio.EVENT_LOADING
-
-Событие начала загрузки аудиофайла.
-
-####<a name="Audio.EVENT_LOADED"></a> *event* Audio.EVENT_LOADED
-
-Событие завершения загрузки аудиофайла.
-
-####<a name="Audio.EVENT_ERROR"></a> *event* Audio.EVENT_ERROR
-
-Событие ошибки воспроизведения.
-
-####<a name="Audio.PRELOADER_EVENT+EVENT_STOP"></a> *event* Audio.PRELOADER_EVENT+EVENT_STOP
-
-Событие остановки воспроизведения.
-
-####<a name="Audio.PRELOADER_EVENT+EVENT_PROGRESS"></a> *event* Audio.PRELOADER_EVENT+EVENT_PROGRESS
-
-Событие обновления позиции загруженной части.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| times | [AudioTimes](Audio.md#AudioTimes) |  | Информация о временных данных аудиофайла. |
-
-####<a name="Audio.PRELOADER_EVENT+EVENT_LOADING"></a> *event* Audio.PRELOADER_EVENT+EVENT_LOADING
-
-Событие начала загрузки аудиофайла.
-
-####<a name="Audio.PRELOADER_EVENT+EVENT_LOADED"></a> *event* Audio.PRELOADER_EVENT+EVENT_LOADED
-
-Событие завершения загрузки аудиофайла.
-
-####<a name="Audio.PRELOADER_EVENT+EVENT_ERROR"></a> *event* Audio.PRELOADER_EVENT+EVENT_ERROR
-
-Событие ошибки воспроизведения.
-
-----
-
-## Типы
+### Типы
 
 ####<a name="AudioTimes"></a> *type* AudioTimes : Object
 

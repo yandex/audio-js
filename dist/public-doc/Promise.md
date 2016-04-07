@@ -1,5 +1,9 @@
 ##<a name="Promise"></a> *inner* *class* Promise
 
+----
+
+### Методы
+
 #### <a name="Promise..then"></a> Promise#then (callback: function, errback: null \| function) : [Promise](Promise.md#Promise) 
 
 Назначить обработчики разрешения и отклонения обещания.

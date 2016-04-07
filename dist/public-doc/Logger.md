@@ -1,6 +1,7 @@
 ##<a name="Logger"></a> *class* Logger
 
 **Доступен извне как:** `ya.music.Audio.Logger`
+
 Настраиваемый логгер для аудиоплеера.
 
 #### new Logger(channel: String)
@@ -40,6 +41,10 @@
 #### Logger#trace 
 
 Запись в лог с уровнем <strong>trace</strong>.
+
+----
+
+### Методы
 
 #### <a name="Logger.log"></a> Logger.log (level: String, channel: String, context: Object, args: *)  
 

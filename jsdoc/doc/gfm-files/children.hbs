@@ -5,20 +5,24 @@
 {{/each}}
 
 
-{{#each children.function}}
-
-{{> function}}
-
-{{/each}}
-
-
 {{#if children.event}}
 ----
 
-## События
+### События
 {{#each children.event}}
 
 {{> event}}
+
+{{/each}}
+{{/if}}
+
+{{#if children.function}}
+----
+
+### Методы
+{{#each children.function}}
+
+{{> function}}
 
 {{/each}}
 {{/if}}
@@ -27,7 +31,7 @@
 {{#if children.namespace}}
 ----
 
-## Пространства имён
+### Пространства имён
 {{#each children.namespace}}
 
 
@@ -40,7 +44,7 @@
 {{#if children.typedef}}
 ----
 
-## Типы
+### Типы
 {{#each children.typedef}}
 
 {{> typedef}}

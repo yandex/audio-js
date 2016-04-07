@@ -2,6 +2,10 @@
 
 Диспетчер событий.
 
+----
+
+### Методы
+
 #### <a name="Events.mixin"></a> Events.mixin (classConstructor: function) : function 
 
 Расширить произвольный класс свойствами диспетчера событий.

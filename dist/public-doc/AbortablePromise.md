@@ -6,6 +6,10 @@
 
   - [Promise](Promise.md#Promise)
 
+----
+
+### Методы
+
 #### <a name="AbortablePromise..abort"></a> AbortablePromise#abort (reason: String \| Error)  
 
 Отмена действия, связанного с обещанием. Абстрактный метод.

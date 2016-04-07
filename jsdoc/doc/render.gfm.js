@@ -2,7 +2,9 @@ var cleanupTags = /<\/?(ul|li|p)>/g;
 var unescape = /\\(\{|\})/g;
 var beautify = /(\n[\t ]*){3,}/g;
 
+var trim = /^\s*|\s*$/g;
 var link = /\{@link (.*?) *\}/g;
+var linkhref = /\{@linkhref (.*?) ([^\}]*) *\}/g;
 var ltgt = /&lt;(.*?)&gt;/;
 
 module.exports = function(page, data) {
@@ -15,7 +17,7 @@ module.exports = function(page, data) {
             return link.replace(ltgt, function(_, parts) {
                 return "&lt; " + parts.split(",").map(function(types) {
                         return types.split("|")
-                            .map(function(type) { return "{@link " + type + "}" })
+                            .map(function(type) { return "{@link " + type.replace(trim, "") + "}" })
                             .join(" \\| ");
                     }).join(", ") + " &gt;";
             });
@@ -35,6 +37,8 @@ module.exports = function(page, data) {
             return linkName;
         }
     });
+
+    page = page.replace(linkhref, "[$2]($1)");
 
     return page;
 };
