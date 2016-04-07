@@ -39,7 +39,9 @@ module.exports = function(page, data, style) {
     });
 
     if (style === "tech") {
-        page = page.replace(/\.<(.*)>/g, ".&lt;$1&gt;");
+        page = page
+            .replace(/\.<(.*)>/g, ".&lt;$1&gt;")
+            .replace(/<(\/?)code>/g, "<$1codeph>");
     }
 
     return page.replace(/\r/g, "").replace(beautify_lines, "\n\n")

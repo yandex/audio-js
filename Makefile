@@ -43,7 +43,7 @@ jsdoc: prepare
 	-mkdir spec
 	$(JSDOC) jsdoc/jsdoc.public.json -q style=gfm-files
 	$(JSDOC) jsdoc/jsdoc.public.json -q style=gfm-single\&out=full
-	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc\&out=audio
+	$(JSDOC) jsdoc/jsdoc.public.json -d $(BUILDDIR)/ -q style=jsdoc\&out=audio
 	$(JSDOC) jsdoc/jsdoc.public.json -q style=jsdoc-tech\&out=tech
 
 
