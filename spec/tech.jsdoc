@@ -583,11 +583,9 @@
 
 /**
  * @class Класс ошибки воспроизведения.
- * @name PlaybackError
+ * @name ya.music.Audio.PlaybackError
  *
  * @extends Error
- *
- * @alias ya.music.Audio.PlaybackError
  *
  * @constructor
  * 
@@ -606,7 +604,7 @@
 * @name CONNECTION_ABORTED
 * @type { String }
 * @const
-* @memberof PlaybackError
+* @memberof ya.music.Audio.PlaybackError
 * 
 * @static 
 */
@@ -617,7 +615,7 @@
 * @name NETWORK_ERROR
 * @type { String }
 * @const
-* @memberof PlaybackError
+* @memberof ya.music.Audio.PlaybackError
 * 
 * @static 
 */
@@ -628,7 +626,7 @@
 * @name DECODE_ERROR
 * @type { String }
 * @const
-* @memberof PlaybackError
+* @memberof ya.music.Audio.PlaybackError
 * 
 * @static 
 */
@@ -639,7 +637,7 @@
 * @name BAD_DATA
 * @type { String }
 * @const
-* @memberof PlaybackError
+* @memberof ya.music.Audio.PlaybackError
 * 
 * @static 
 */
@@ -650,7 +648,7 @@
 * @name DONT_START
 * @type { String }
 * @const
-* @memberof PlaybackError
+* @memberof ya.music.Audio.PlaybackError
 * 
 * @static 
 */
@@ -661,7 +659,7 @@
 * @name html5
 * @type { Object }
 * @const
-* @memberof PlaybackError
+* @memberof ya.music.Audio.PlaybackError
 * 
 * @static 
 */
@@ -670,13 +668,11 @@
 
 /**
  * @class Эквалайзер.
- * @name Equalizer
+ * @name ya.music.Audio.fx.Equalizer
  *
  * @extends Events
  *
- * @fires Equalizer.EVENT_CHANGE
- *
- * @alias ya.music.Audio.fx.Equalizer
+ * @fires ya.music.Audio.fx.Equalizer.EVENT_CHANGE
  *
  * @constructor
  * 
@@ -695,7 +691,7 @@
 * @name DEFAULT_BANDS
 * @type { Array.&lt;Number&gt; }
 * @const
-* @memberof Equalizer
+* @memberof ya.music.Audio.fx.Equalizer
 * 
 * @static 
 */
@@ -706,7 +702,7 @@
 * @name DEFAULT_PRESETS
 * @type { Object.&lt;String, EqualizerPreset&gt; }
 * @const
-* @memberof Equalizer
+* @memberof ya.music.Audio.fx.Equalizer
 * 
 * @static 
 */
@@ -717,7 +713,7 @@
 * @name EVENT_CHANGE
 * @type { String }
 * @const
-* @memberof Equalizer
+* @memberof ya.music.Audio.fx.Equalizer
 * 
 * 
 */
@@ -731,7 +727,7 @@
  * @function
  * @name loadPreset
  * 
- * @memberof Equalizer
+ * @memberof ya.music.Audio.fx.Equalizer
  *
  * @param { EqualizerPreset } preset Настройки.
  * 
@@ -742,7 +738,7 @@
  * @function
  * @name savePreset
  * 
- * @memberof Equalizer
+ * @memberof ya.music.Audio.fx.Equalizer
  *
  * @returns { EqualizerPreset } 
  */
@@ -752,7 +748,7 @@
  * @function
  * @name guessPreamp
  * 
- * @memberof Equalizer
+ * @memberof ya.music.Audio.fx.Equalizer
  *
  * @returns { number } значение предусиления.
  */
@@ -765,7 +761,7 @@
  * Событие изменения полосы пропускания
  * 
  * @event
- * @name Equalizer.EVENT_CHANGE
+ * @name ya.music.Audio.fx.Equalizer.EVENT_CHANGE
  * @param { Number } freq Частота полосы пропускания.
  * @param { Number } value Значение усиления.
  */
@@ -774,9 +770,7 @@
 /**
  * @class Класс ошибок загрузчика.
 Расширяет Error.
- * @name LoaderError
- *
- * @alias ya.music.Audio.LoaderError
+ * @name ya.music.Audio.LoaderError
  *
  * @constructor
  * 
@@ -794,7 +788,7 @@
 * @name TIMEOUT
 * @type { String }
 * @const
-* @memberof LoaderError
+* @memberof ya.music.Audio.LoaderError
 * 
 * @static 
 */
@@ -805,7 +799,7 @@
 * @name FAILED
 * @type { String }
 * @const
-* @memberof LoaderError
+* @memberof ya.music.Audio.LoaderError
 * 
 * @static 
 */
@@ -1135,7 +1129,7 @@
 /**
  * Описание настроек эквалайзера.
  * @typedef { Object } EqualizerPreset
- * @memberof Equalizer
+ * @memberof ya.music.Audio.fx.Equalizer
  * @inner
  * 
  * @property { String } [id] Идентификатор настроек.
@@ -1150,7 +1144,7 @@
 
 /**
 * Общие настройки.
-* @name config.audio
+* @name ya.music.Audio.config.audio
 * 
 * 
 * @static
@@ -1167,7 +1161,7 @@
 * @name retry
 * @type { Number }
 * 
-* @memberof config.audio
+* @memberof ya.music.Audio.config.audio
 * 
 * @static 
 */
@@ -1176,7 +1170,7 @@
 
 /**
 * Настройки подключения Flash-плеера.
-* @name config.flash
+* @name ya.music.Audio.config.flash
 * 
 * 
 * @static
@@ -1193,7 +1187,7 @@
 * @name path
 * @type { String }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1204,7 +1198,7 @@
 * @name name
 * @type { String }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1215,7 +1209,7 @@
 * @name version
 * @type { String }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1226,7 +1220,7 @@
 * @name playerID
 * @type { String }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1237,7 +1231,7 @@
 * @name callback
 * @type { String }
 * @const
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1248,7 +1242,7 @@
 * @name initTimeout
 * @type { Number }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1259,7 +1253,7 @@
 * @name loadTimeout
 * @type { Number }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1270,7 +1264,7 @@
 * @name clickTimeout
 * @type { Number }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1281,7 +1275,7 @@
 * @name heartBeatInterval
 * @type { Number }
 * 
-* @memberof config.flash
+* @memberof ya.music.Audio.config.flash
 * 
 * @static 
 */
@@ -1290,7 +1284,7 @@
 
 /**
 * Описание настроек HTML5 плеера.
-* @name config.html5
+* @name ya.music.Audio.config.html5
 * 
 * 
 * @static
@@ -1307,7 +1301,7 @@
 * @name blacklist
 * @type { Array.&lt;String&gt; }
 * 
-* @memberof config.html5
+* @memberof ya.music.Audio.config.html5
 * 
 * @static 
 */
@@ -1316,8 +1310,8 @@
 
 /**
 * Настройки библиотеки.
-* @name config
-* @alias ya.music.Audio.config
+* @name ya.music.Audio.config
+* 
 * 
 * 
 * @namespace

@@ -5,8 +5,6 @@ var beautify_asterix = /( \* *\n){2,}/g;
 var linkhref = /\{@linkhref (.*?) ([^\}]*) *\}/g;
 
 var doclet = /\/\*\*[\s\S]*?\*\//g;
-var alias = /@alias (.*)/g;
-var name = /@name (.*)/g;
 
 module.exports = function(page, data, style) {
     var page = page.replace(cleanupTags, "")
@@ -16,6 +14,9 @@ module.exports = function(page, data, style) {
     var aliases = [];
 
     page = page.replace(doclet, function(doclet) {
+        var alias = /@alias (.*)/g;
+        var name = /@name (.*)/g;
+
         var rawName;
         if (rawName = name.exec(doclet)) {
             rawName = rawName[1];
@@ -33,6 +34,9 @@ module.exports = function(page, data, style) {
 
         return doclet;
     });
+
+    // console.log("-----------------------------");
+    // console.log(aliases);
 
     aliases.forEach(function(alias) {
         page = page.replace(alias.reg, alias.rep);
