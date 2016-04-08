@@ -47,12 +47,15 @@ var makePath = function(path, name) {
     path = path.split(".");
     // var symbol = path.pop();
     var ns = docs.exportTree;
+    var full = "";
 
     path.forEach(function(chunk) {
+        full += (full ? "." : "") + chunk;
         if (!ns.sub[chunk]) {
             ns.sub[chunk] = {
                 sub: {},
                 indent: 0,
+                full: full,
                 link: null
             };
         }
@@ -115,11 +118,13 @@ var fixes = function(data) {
     data.fires && (data.fires = data.fires.map(function(event) { return event.replace("event:", ""); }));
     if (data.kind === 'event') { data.longname = data.longname.replace("event:", ""); }
 
-    data.tags && data.tags.some(function(tag) {
+    data.tags && data.tags.forEach(function(tag) {
         if (tag.title === "exported") {
             data.exported = tag.value;
             makePath(tag.value, data.name);
-            return true;
+        }
+        if (tag.title === "unignore") {
+            data.unignore = true;
         }
     });
 };
@@ -157,16 +162,34 @@ var docs = {
     linear: makeKinds()
 };
 
-var prepare = function(taffy) {
+var pendingExported = {};
+var unignore = {};
+
+var prepare = function(taffy, style) {
     taffy().each(function(data) {
         fixes(data);
 
+        if (unignore[data.longname]) {
+            data.ignore = false;
+        }
+
         if (!checkDoc(data)) {
+            if (data.exported) {
+                pendingExported[data.longname] = data.exported;
+            }
+            if (data.unignore) {
+                unignore[data.longname] = true;
+            }
+
             return;
         }
 
+        if (pendingExported[data.longname]) {
+            data.exported = pendingExported[data.longname];
+        }
+
         if (data.kind === 'function' && !data.description) {
-            console.log(util.inspect(data, {color: true, depth: 0}));
+            // console.log(util.inspect(data, {color: true, depth: 0}));
         }
 
         if (!docs.linear[data.kind]) {
@@ -206,7 +229,9 @@ var prepare = function(taffy) {
     sort(docs.tree);
     sort(docs.linear);
 
-    optimize(docs.exportTree);
+    if (!/jsdoc/.test(style)) {
+        optimize(docs.exportTree);
+    }
 };
 
 var styles = {
@@ -217,10 +242,10 @@ var styles = {
 };
 
 exports.publish = function(taffyData, opts, tutorials) {
-    prepare(taffyData);
-
     var style = opts.query && opts.query.style || "gfm-single";
     var out = opts.query && opts.query.out || "readme";
+
+    prepare(taffyData, style);
 
     render.prepare(opts.template, style);
     var files = render.render(docs, out);

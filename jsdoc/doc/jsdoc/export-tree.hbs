@@ -1,0 +1,11 @@
+{{#each sub}}
+{{#unless link}}
+/**
+ * @name {{full}}
+ * @namespace
+ */
+"{{full}}": {},
+{{/unless}}
+
+{{> export-tree}}
+{{/each}}

@@ -1,9 +1,7 @@
 /**
+ * @name {{name}}
+ * @kind class
  * @classdesc {{{classdesc}}}
- * @name {{{name}}}
- * {{#if parent}}@memberof {{parent.longname}}{{/if}}
- * {{#if static}}@static{{/if}}
- * {{#if inner}}@inner{{/if}}
  *
 {{#each augments}}
  * @extends {{this}}
@@ -20,5 +18,6 @@
  *
 {{/if}}
  */
+{{> method}}
 
 {{> children children}}
