@@ -743,7 +743,7 @@
  * @constructor
  * 
  * @param { AudioContext } audioContext Контекст Web Audio API.
- * @param { Array.&lt;Number&gt; } bands Список частот для полос эквалайзера.
+ * @param { Number[] } bands Список частот для полос эквалайзера.
  * 
  */
 
@@ -755,7 +755,7 @@
 * Набор частот эквалайзера, применяющийся по умолчанию.
 * @field
 * @name DEFAULT_BANDS
-* @type Array.&lt;Number&gt; 
+* @type Number[] 
 * @const
 * @memberof Audio.fx.Equalizer
 * 
@@ -888,7 +888,7 @@
 * Список игнорируемых каналов.
 * @field
 * @name ignores
-* @type Array.&lt;String&gt; 
+* @type String[] 
 * 
 * @memberof Audio.Logger
 * 
@@ -899,7 +899,7 @@
 * Список отображаемых в консоли уровней лога.
 * @field
 * @name logLevels
-* @type Array.&lt;String&gt; 
+* @type String[] 
 * 
 * @memberof Audio.Logger
 * 
@@ -1106,7 +1106,7 @@
  * 
  * @memberof AbortablePromise
  *
- * @param { String | Error } reason Причина отмены действия.
+ * @param { String | <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref> } reason Причина отмены действия.
  * 
  */
 
@@ -1180,7 +1180,7 @@
  * @memberof Audio.fx.Equalizer
  * @property { String } [id] Идентификатор настроек.
  * @property { Number } preamp Предусилитель.
- * @property { Array.&lt;Number&gt; } bands Значения для полос эквалайзера.
+ * @property { Number[] } bands Значения для полос эквалайзера.
  */
 
 /*************************************************************/
@@ -1342,7 +1342,7 @@
 * Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</codeph>
 * @field
 * @name blacklist
-* @type Array.&lt;String&gt; 
+* @type String[] 
 * 
 * @memberof Audio.config.html5
 * 

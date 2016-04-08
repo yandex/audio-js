@@ -48,7 +48,8 @@ module.exports = function(page, data, style) {
             .replace(/<(\/?)code>/g, "<$1codeph>")
             .replace(/<(\/?)strong>/g, "<$1b>")
             .replace(/ya\.music\./g, "")
-            //.replace(/ Error /g, " " + "" + " ");
+            .replace(/Array\.&lt;(.*)&gt;/g, "$1[]")
+            .replace(/ Error /g, " <xref scope=\"external\" href=\"https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error\">Error</xref> ");
     }
 
     return page.replace(/\r/g, "").replace(beautify_lines, "\n\n")
