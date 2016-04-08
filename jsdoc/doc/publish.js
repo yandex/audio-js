@@ -104,6 +104,9 @@ var fixes = function(data) {
         data.kind = 'member';
         data.const = true;
     }
+    if (data.kind === 'namespace') {
+        data.namespace = true;
+    }
 
     if (data.kind === 'class') {
         data["class"] = true;

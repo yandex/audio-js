@@ -1,10 +1,22 @@
+{{#if parent.namespace}}
 /**
-* {{{description}}}
-* @name {{{longname}}}
-* {{#if exported}}@alias {{{exported}}}{{/if}}
-* {{#if inner}}@inner{{/if}}
-* {{#if static}}@static{{/if}}
-* @namespace
-*/
+ * {{{description}}}
+ *
+ * ТУТ будет страшная табличка
+ *
+ * @name {{{longname}}}
+ * @type Object
+ */
+{{else}}
+/**
+ * @namespace {{{description}}}
+ * @name {{{longname}}}
+ * {{#if exported}}@alias {{{exported}}}{{/if}}
+ * {{#if inner}}@inner{{/if}}
+ * {{#if static}}@static{{/if}}
+ */
 
 {{> children children}}
+{{/if}}
+
+

@@ -34,7 +34,6 @@ var EqualizerBand = require('./equalizer-band');
  * @param {Array.<Number>} bands Список частот для полос эквалайзера.
  *
  * @extends Events
- * @mixes EqualizerStatic
  *
  * @fires Equalizer.EVENT_CHANGE
  *

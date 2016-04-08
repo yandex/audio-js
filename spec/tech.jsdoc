@@ -773,15 +773,6 @@
 * @static 
 */
 
-/* *
-* @field
-* @name EVENT_CHANGE
-* @type String 
-* @const
-* @memberof Audio.fx.Equalizer
- *
-*/
-
 /*************************************************************/
 
 // Functions
@@ -1189,183 +1180,45 @@
 //-----------------------------------------------------------//
 
 /**
-* Общие настройки.
-* @name Audio.config.audio
+ * Общие настройки.
  *
-* @static
-* @namespace
-*/
-
-/*************************************************************/
-
-// Members
+ * ТУТ будет страшная табличка
+ *
+ * @name Audio.config.audio
+ * @type Object
+ *///-----------------------------------------------------------//
 
 /**
-* Количество попыток реинициализации
-* @field
-* @name retry
-* @type Number 
-* 
-* @memberof Audio.config.audio
-* 
-* @static 
-*/
+ * Настройки подключения Flash-плеера.
+ *
+ * ТУТ будет страшная табличка
+ *
+ * @name Audio.config.flash
+ * @type Object
+ *///-----------------------------------------------------------//
+
+/**
+ * Описание настроек HTML5 плеера.
+ *
+ * ТУТ будет страшная табличка
+ *
+ * @name Audio.config.html5
+ * @type Object
+ *///-----------------------------------------------------------//
+
+/**
+ * @namespace Настройки библиотеки.
+ * @name Audio.config
+ *
+ */
 
 //-----------------------------------------------------------//
 
 /**
-* Настройки подключения Flash-плеера.
-* @name Audio.config.flash
+ * @namespace Методы конвертации значений громкости.
+ * @name Audio.fx.volumeLib
  *
-* @static
-* @namespace
-*/
-
-/*************************************************************/
-
-// Members
-
-/**
-* Путь к .swf файлу флеш-плеера
-* @field
-* @name path
-* @type String 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* Имя .swf файла флеш-плеера
-* @field
-* @name name
-* @type String 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* Минимальная версия флеш-плеера
-* @field
-* @name version
-* @type String 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* ID, который будет выставлен для элемента с Flash-плеером
-* @field
-* @name playerID
-* @type String 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* Имя функции-обработчика событий Flash-плеера
-* @field
-* @name callback
-* @type String 
-* @const
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* Таймаут инициализации
-* @field
-* @name initTimeout
-* @type Number 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* Таймаут загрузки
-* @field
-* @name loadTimeout
-* @type Number 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* Таймаут инициализации после клика
-* @field
-* @name clickTimeout
-* @type Number 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-/**
-* Интервал проверки доступности Flash-плеера
-* @field
-* @name heartBeatInterval
-* @type Number 
-* 
-* @memberof Audio.config.flash
-* 
-* @static 
-*/
-
-//-----------------------------------------------------------//
-
-/**
-* Описание настроек HTML5 плеера.
-* @name Audio.config.html5
- *
-* @static
-* @namespace
-*/
-
-/*************************************************************/
-
-// Members
-
-/**
-* Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</codeph>
-* @field
-* @name blacklist
-* @type String[] 
-* 
-* @memberof Audio.config.html5
-* 
-* @static 
-*/
-
-//-----------------------------------------------------------//
-
-/**
-* Настройки библиотеки.
-* @name Audio.config
- *
-* @namespace
-*/
-
-//-----------------------------------------------------------//
-
-/**
-* Методы конвертации значений громкости.
-* @name Audio.fx.volumeLib
- *
-* @namespace
-*/
+ */
 
 /*************************************************************/
 

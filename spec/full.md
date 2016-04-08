@@ -536,8 +536,6 @@ Flash-плеер перестал отвечать на запросы.
 
 Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
 
-#### Equalizer#EVENT_CHANGE : String
-
 #### <a name="Equalizer..loadPreset"></a> Equalizer#loadPreset (preset: [EqualizerPreset](#EqualizerPreset))  
 
 Загрузить настройки.

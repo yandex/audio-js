@@ -798,14 +798,6 @@
 
 "ya.music.Audio.fx.Equalizer.DEFAULT_PRESETS": undefined,
 
-/* *
- * @name ya.music.Audio.fx.Equalizer#EVENT_CHANGE
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.fx.Equalizer#EVENT_CHANGE": undefined,
-
 /*************************************************************/
 
 // Functions
