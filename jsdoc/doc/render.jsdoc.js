@@ -46,7 +46,9 @@ module.exports = function(page, data, style) {
         page = page
             .replace(/\.<(.*)>/g, ".&lt;$1&gt;")
             .replace(/<(\/?)code>/g, "<$1codeph>")
-            .replace(/<(\/?)strong>/g, "<$1b>");
+            .replace(/<(\/?)strong>/g, "<$1b>")
+            .replace(/ya\.music\./g, "")
+            //.replace(/ Error /g, " " + "" + " ");
     }
 
     return page.replace(/\r/g, "").replace(beautify_lines, "\n\n")

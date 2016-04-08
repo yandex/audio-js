@@ -695,11 +695,11 @@
  *
  * @constructor
  * 
- * @param  String - message Текст ошибки.
- * @param  String - src Ссылка на трек.
+ * @param { String } message - Текст ошибки.
+ * @param { String } src - Ссылка на трек.
  *
  */
-"ya.music.Audio.PlaybackError": function(String, String){},
+"ya.music.Audio.PlaybackError": function(message, src){},
 /*************************************************************/
 
 // Members

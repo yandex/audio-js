@@ -8,12 +8,12 @@
 
   - Error
 
-#### new PlaybackError(String, String)
+#### new PlaybackError(message: String, src: String)
 
 | Имя | Тип | * | Описание |
 | --- | --- | --- | --- |
-| String |  |  | message Текст ошибки. |
-| String |  |  | src Ссылка на трек. |
+| message | String |  | Текст ошибки. |
+| src | String |  | Ссылка на трек. |
 
 #### PlaybackError.CONNECTION_ABORTED : String
 
