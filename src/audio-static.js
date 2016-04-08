@@ -1,6 +1,6 @@
 /**
- * @namespace AudioStatic
- * @private
+ * @alias Audio
+ * @ignore
  */
 var AudioStatic = {};
 
@@ -8,42 +8,49 @@ var AudioStatic = {};
  * Начало воспроизведения трека.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_PLAY = "play";
 /**
  * Остановка воспроизведения.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_STOP = "stop";
 /**
  * Пауза воспроизведения.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_PAUSE = "pause";
 /**
  * Обновление позиции воспроизведения.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_PROGRESS = "progress";
 /**
  * Началась загрузка трека.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_LOADING = "loading";
 /**
  * Загрузка трека завершена.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_LOADED = "loaded";
 /**
  * Изменение громкости.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_VOLUME = "volumechange";
 
@@ -51,30 +58,35 @@ AudioStatic.EVENT_VOLUME = "volumechange";
  * Воспроизведение трека завершено.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_ENDED = "ended";
 /**
  * Возникла ошибка при инициализации плеера.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_CRASHED = "crashed";
 /**
  * Возникла ошибка при воспроизведении.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_ERROR = "error";
 /**
  * Изменение статуса плеера.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_STATE = "state";
 /**
  * Переключение между текущим и предзагруженным треком.
  * @type {String}
  * @const
+ * @ignore
  */
 AudioStatic.EVENT_SWAP = "swap";
 /**

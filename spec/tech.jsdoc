@@ -61,6 +61,72 @@
 * @static 
 */
 
+/**
+* Событие предзагрузчика. Используется в качестве префикса.
+* @field
+* @name PRELOADER_EVENT
+* @type { String }
+* @const
+* @memberof ya.music.Audio
+* 
+* @static 
+*/
+
+/**
+* Плеер находится в состоянии инициализации.
+* @field
+* @name STATE_INIT
+* @type { String }
+* @const
+* @memberof ya.music.Audio
+* 
+* @static 
+*/
+
+/**
+* Не удалось инициализировать плеер.
+* @field
+* @name STATE_CRASHED
+* @type { String }
+* @const
+* @memberof ya.music.Audio
+* 
+* @static 
+*/
+
+/**
+* Плеер готов и ожидает.
+* @field
+* @name STATE_IDLE
+* @type { String }
+* @const
+* @memberof ya.music.Audio
+* 
+* @static 
+*/
+
+/**
+* Плеер проигрывает трек.
+* @field
+* @name STATE_PLAYING
+* @type { String }
+* @const
+* @memberof ya.music.Audio
+* 
+* @static 
+*/
+
+/**
+* Плеер поставлен на паузу.
+* @field
+* @name STATE_PAUSED
+* @type { String }
+* @const
+* @memberof ya.music.Audio
+* 
+* @static 
+*/
+
 /*************************************************************/
 
 // Functions
@@ -707,15 +773,13 @@
 * @static 
 */
 
-/**
-* 
+/* *
 * @field
 * @name EVENT_CHANGE
 * @type { String }
 * @const
 * @memberof ya.music.Audio.fx.Equalizer
-* 
-* 
+ *
 */
 
 /*************************************************************/
@@ -846,66 +910,54 @@
 * Запись в лог с уровнем <b>debug</b>.
 * @field
 * @name debug
-* 
-* 
+ *
 * @memberof ya.music.Audio.Logger
-* 
-* 
+ *
 */
 
 /**
 * Запись в лог с уровнем <b>log</b>.
 * @field
 * @name log
-* 
-* 
+ *
 * @memberof ya.music.Audio.Logger
-* 
-* 
+ *
 */
 
 /**
 * Запись в лог с уровнем <b>info</b>.
 * @field
 * @name info
-* 
-* 
+ *
 * @memberof ya.music.Audio.Logger
-* 
-* 
+ *
 */
 
 /**
 * Запись в лог с уровнем <b>warn</b>.
 * @field
 * @name warn
-* 
-* 
+ *
 * @memberof ya.music.Audio.Logger
-* 
-* 
+ *
 */
 
 /**
 * Запись в лог с уровнем <b>error</b>.
 * @field
 * @name error
-* 
-* 
+ *
 * @memberof ya.music.Audio.Logger
-* 
-* 
+ *
 */
 
 /**
 * Запись в лог с уровнем <b>trace</b>.
 * @field
 * @name trace
-* 
-* 
+ *
 * @memberof ya.music.Audio.Logger
-* 
-* 
+ *
 */
 
 /*************************************************************/
@@ -1104,8 +1156,6 @@
  * Описание временных данных плеера.
  * @typedef { Object } AudioTimes
  * @memberof ya.music.Audio
- * @inner
- * 
  * @property { Number } duration Длительность аудиофайла.
  * @property { Number } loaded Длительность загруженной части.
  * @property { Number } position Позиция воспроизведения.
@@ -1118,8 +1168,6 @@
  * Аудио-препроцессор.
  * @typedef { Object } AudioPreprocessor
  * @memberof ya.music.Audio
- * @inner
- * 
  * @property { AudioNode } input Нода, в которую перенаправляется вывод аудио.
  * @property { AudioNode } output Нода, из которой вывод подается на усилитель.
  */
@@ -1130,8 +1178,6 @@
  * Описание настроек эквалайзера.
  * @typedef { Object } EqualizerPreset
  * @memberof ya.music.Audio.fx.Equalizer
- * @inner
- * 
  * @property { String } [id] Идентификатор настроек.
  * @property { Number } preamp Предусилитель.
  * @property { Array.&lt;Number&gt; } bands Значения для полос эквалайзера.
@@ -1145,8 +1191,7 @@
 /**
 * Общие настройки.
 * @name ya.music.Audio.config.audio
-* 
-* 
+ *
 * @static
 * @namespace
 */
@@ -1171,8 +1216,7 @@
 /**
 * Настройки подключения Flash-плеера.
 * @name ya.music.Audio.config.flash
-* 
-* 
+ *
 * @static
 * @namespace
 */
@@ -1285,8 +1329,7 @@
 /**
 * Описание настроек HTML5 плеера.
 * @name ya.music.Audio.config.html5
-* 
-* 
+ *
 * @static
 * @namespace
 */
@@ -1311,9 +1354,7 @@
 /**
 * Настройки библиотеки.
 * @name ya.music.Audio.config
-* 
-* 
-* 
+ *
 * @namespace
 */
 
@@ -1322,9 +1363,7 @@
 /**
 * Методы конвертации значений громкости.
 * @name ya.music.Audio.fx.volumeLib
-* 
-* 
-* 
+ *
 * @namespace
 */
 

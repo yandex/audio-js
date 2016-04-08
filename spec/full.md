@@ -58,6 +58,30 @@
 
 Контекст для Web Audio API.
 
+#### Audio.PRELOADER_EVENT : String
+
+Событие предзагрузчика. Используется в качестве префикса.
+
+#### Audio.STATE_INIT : String
+
+Плеер находится в состоянии инициализации.
+
+#### Audio.STATE_CRASHED : String
+
+Не удалось инициализировать плеер.
+
+#### Audio.STATE_IDLE : String
+
+Плеер готов и ожидает.
+
+#### Audio.STATE_PLAYING : String
+
+Плеер проигрывает трек.
+
+#### Audio.STATE_PAUSED : String
+
+Плеер поставлен на паузу.
+
 #### <a name="Audio..getDuration"></a> Audio#getDuration (preloader: Boolean \| int) : Number 
 
 Получить длительность текущего аудио-файла (в секундах).

@@ -77,6 +77,60 @@
 
 "ya.music.Audio.audioContext": undefined,
 
+/**
+ * Событие предзагрузчика. Используется в качестве префикса.
+ * @name ya.music.Audio.PRELOADER_EVENT
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.PRELOADER_EVENT": undefined,
+
+/**
+ * Плеер находится в состоянии инициализации.
+ * @name ya.music.Audio.STATE_INIT
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.STATE_INIT": undefined,
+
+/**
+ * Не удалось инициализировать плеер.
+ * @name ya.music.Audio.STATE_CRASHED
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.STATE_CRASHED": undefined,
+
+/**
+ * Плеер готов и ожидает.
+ * @name ya.music.Audio.STATE_IDLE
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.STATE_IDLE": undefined,
+
+/**
+ * Плеер проигрывает трек.
+ * @name ya.music.Audio.STATE_PLAYING
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.STATE_PLAYING": undefined,
+
+/**
+ * Плеер поставлен на паузу.
+ * @name ya.music.Audio.STATE_PAUSED
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.STATE_PAUSED": undefined,
+
 /*************************************************************/
 
 // Functions
@@ -744,8 +798,7 @@
 
 "ya.music.Audio.fx.Equalizer.DEFAULT_PRESETS": undefined,
 
-/**
- * 
+/* *
  * @name ya.music.Audio.fx.Equalizer#EVENT_CHANGE
  * @type { String }
  * @const
