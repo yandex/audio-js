@@ -9,7 +9,12 @@
       * [Equalizer](#Equalizer)
       * [volumeLib](#volumeLib)
     * [LoaderError](#LoaderError)
-    * [Logger](#Logger)
+  * lib
+    * [Deferred](#Deferred)
+    * [Events](#Events)
+    * [Promise](#Promise)
+  * [info](#info)
+  * [Logger](#Logger)
 
 ----
 
@@ -616,89 +621,43 @@ Flash-плеер перестал отвечать на запросы.
 
 ----
 
-##<a name="LoaderError"></a> *class* LoaderError
+##<a name="Deferred"></a> *class* Deferred
 
-**Доступен извне как:** `ya.music.Audio.LoaderError`
+**Доступен извне как:** `ya.music.lib.Deferred`
 
-Класс ошибок загрузчика.
-Расширяет Error.
+Класс для управления обещанием
 
-#### new LoaderError(message: String)
+#### new Deferred()
+
+#### <a name="Deferred..resolve"></a> Deferred#resolve (data)  
+
+Разрешить обещание
 
 | Имя | Тип | * | Описание |
 | --- | --- | --- | --- |
-| message | String |  | Текст ошибки. |
+| data |  |  | передать данные в обещание |
 
-#### LoaderError.TIMEOUT : String
+#### <a name="Deferred..reject"></a> Deferred#reject (error)  
 
-Таймаут загрузки.
+Отклонить обещание
 
-#### LoaderError.FAILED : String
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| error |  |  | передать ошибку |
 
-Ошибка запроса на загрузку.
+#### <a name="Deferred..promise"></a> Deferred#promise () : [Promise](#Promise) 
+
+Получить обещание
 
 ----
 
-##<a name="Logger"></a> *class* Logger
+##<a name="Events"></a> *class* Events
 
-**Доступен извне как:** `ya.music.Audio.Logger`
-
-Настраиваемый логгер для аудиоплеера.
-
-#### new Logger(channel: String)
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| channel | String |  | Имя канала, за который будет отвечать экземляр логгера. |
-
-#### Logger.ignores : Array.&lt; String &gt;
-
-Список игнорируемых каналов.
-
-#### Logger.logLevels : Array.&lt; String &gt;
-
-Список отображаемых в консоли уровней лога.
-
-#### Logger#debug 
-
-Запись в лог с уровнем <strong>debug</strong>.
-
-#### Logger#log 
-
-Запись в лог с уровнем <strong>log</strong>.
-
-#### Logger#info 
-
-Запись в лог с уровнем <strong>info</strong>.
-
-#### Logger#warn 
-
-Запись в лог с уровнем <strong>warn</strong>.
-
-#### Logger#error 
-
-Запись в лог с уровнем <strong>error</strong>.
-
-#### Logger#trace 
-
-Запись в лог с уровнем <strong>trace</strong>.
-
-#### <a name="Logger.log"></a> Logger.log (level: String, channel: String, context: Object, args: *)  
-
-Сделать запись в лог.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| level | String |  | Уровень лога. |
-| channel | String |  | Канал. |
-| context | Object |  | Контекст вызова. |
-| *\[args\]* | * |  | Дополнительные аргументы. |
-
-----
-
-##<a name="Events"></a> *inner* *class* Events
+**Доступен извне как:** `ya.music.lib.Events`
 
 Диспетчер событий.
+
+#### new Events()
 
 #### <a name="Events.mixin"></a> Events.mixin (classConstructor: function) : function 
 
@@ -773,6 +732,117 @@ Flash-плеер перестал отвечать на запросы.
 
 ----
 
+##<a name="Promise"></a> *class* Promise
+
+**Доступен извне как:** `ya.music.lib.Promise`
+
+Обещание по спецификации [ES 2015 promises](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise). В устаревших браузерах и IE используется замена из библиотеки [vow](http://github.com/dfilatov/vow.git)
+
+#### new Promise()
+
+#### <a name="Promise..then"></a> Promise#then (callback: function, errback: null \| function) : [Promise](#Promise) 
+
+Назначить обработчики разрешения и отклонения обещания.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| callback | function |  | Обработчик успеха. |
+| *\[errback\]* | null \| function |  | Обработчик ошибки. |
+
+> **Возвращает:** новое обещание из результатов обработчика.
+
+#### <a name="Promise..catch"></a> Promise#catch (errback: function) : [Promise](#Promise) 
+
+Назначить обработчик отклонения обещания.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| errback | function |  | Обработчик ошибки. |
+
+> **Возвращает:** новое обещание из результатов обработчика.
+
+----
+
+##<a name="LoaderError"></a> *class* LoaderError
+
+**Доступен извне как:** `ya.music.Audio.LoaderError`
+
+Класс ошибок загрузчика.
+Расширяет Error.
+
+#### new LoaderError(message: String)
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| message | String |  | Текст ошибки. |
+
+#### LoaderError.TIMEOUT : String
+
+Таймаут загрузки.
+
+#### LoaderError.FAILED : String
+
+Ошибка запроса на загрузку.
+
+----
+
+##<a name="Logger"></a> *class* Logger
+
+**Доступен извне как:** `ya.music.Logger`
+
+Настраиваемый логгер для аудиоплеера.
+
+#### new Logger(channel: String)
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| channel | String |  | Имя канала, за который будет отвечать экземляр логгера. |
+
+#### Logger.ignores : Array.&lt; String &gt;
+
+Список игнорируемых каналов.
+
+#### Logger.logLevels : Array.&lt; String &gt;
+
+Список отображаемых в консоли уровней лога.
+
+#### Logger#debug 
+
+Запись в лог с уровнем <strong>debug</strong>.
+
+#### Logger#log 
+
+Запись в лог с уровнем <strong>log</strong>.
+
+#### Logger#info 
+
+Запись в лог с уровнем <strong>info</strong>.
+
+#### Logger#warn 
+
+Запись в лог с уровнем <strong>warn</strong>.
+
+#### Logger#error 
+
+Запись в лог с уровнем <strong>error</strong>.
+
+#### Logger#trace 
+
+Запись в лог с уровнем <strong>trace</strong>.
+
+#### <a name="Logger.log"></a> Logger.log (level: String, channel: String, context: Object, args: *)  
+
+Сделать запись в лог.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| level | String |  | Уровень лога. |
+| channel | String |  | Канал. |
+| context | Object |  | Контекст вызова. |
+| *\[args\]* | * |  | Дополнительные аргументы. |
+
+----
+
 ##<a name="AbortablePromise"></a> *inner* *class* AbortablePromise
 
 Обещание с возможностью отмены связанного с ним действия.
@@ -801,31 +871,6 @@ Flash-плеер перестал отвечать на запросы.
 > **Возвращает:** новое обещание из результатов обработчика.
 
 #### <a name="AbortablePromise..catch"></a> AbortablePromise#catch (errback: function) : [Promise](#Promise) *(inherits [Promise#catch](#Promise..catch))*
-
-Назначить обработчик отклонения обещания.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| errback | function |  | Обработчик ошибки. |
-
-> **Возвращает:** новое обещание из результатов обработчика.
-
-----
-
-##<a name="Promise"></a> *inner* *class* Promise
-
-#### <a name="Promise..then"></a> Promise#then (callback: function, errback: null \| function) : [Promise](#Promise) 
-
-Назначить обработчики разрешения и отклонения обещания.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| callback | function |  | Обработчик успеха. |
-| *\[errback\]* | null \| function |  | Обработчик ошибки. |
-
-> **Возвращает:** новое обещание из результатов обработчика.
-
-#### <a name="Promise..catch"></a> Promise#catch (errback: function) : [Promise](#Promise) 
 
 Назначить обработчик отклонения обещания.
 
@@ -873,6 +918,12 @@ Flash-плеер перестал отвечать на запросы.
 
 ----
 
+##<a name="config"></a> *ns* config
+
+**Доступен извне как:** `ya.music.Audio.config`
+
+Настройки библиотеки.
+
 ##<a name="config.audio"></a> *ns* config.audio
 
 Общие настройки.
@@ -880,8 +931,6 @@ Flash-плеер перестал отвечать на запросы.
 #### config.audio.retry : Number
 
 Количество попыток реинициализации
-
-----
 
 ##<a name="config.flash"></a> *ns* config.flash
 
@@ -923,8 +972,6 @@ ID, который будет выставлен для элемента с Flas
 
 Интервал проверки доступности Flash-плеера
 
-----
-
 ##<a name="config.html5"></a> *ns* config.html5
 
 Описание настроек HTML5 плеера.
@@ -935,16 +982,10 @@ ID, который будет выставлен для элемента с Flas
 
 ----
 
-##<a name="config"></a> *ns* config
-
-**Доступен извне как:** `ya.music.Audio.config`
-Настройки библиотеки.
-
-----
-
 ##<a name="volumeLib"></a> *ns* volumeLib
 
 **Доступен извне как:** `ya.music.Audio.fx.volumeLib`
+
 Методы конвертации значений громкости.
 
 #### volumeLib.EPSILON : number
@@ -982,4 +1023,37 @@ ID, который будет выставлен для элемента с Flas
 | Имя | Тип | * | Описание |
 | --- | --- | --- | --- |
 | dbfs | Number |  | Громкость в dBFS. |
+
+----
+
+##<a name="info"></a> *ns* info
+
+**Доступен извне как:** `ya.music.info`
+
+Информация об окружении
+
+#### info.onlyDeviceVolume : boolean
+
+Настройка громкости
+
+##<a name="info.browser"></a> *ns* info.browser
+
+Информация о браузере
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| name | string |  | название браузера |
+| version | string |  | версия |
+| *\[documentMode\]* | number |  | версия документа (для IE) |
+
+##<a name="info.platform"></a> *ns* info.platform
+
+Информация о платформе
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| os | string |  | тип операционной системы |
+| type | string |  | тип платформы |
+| tablet | boolean |  | планшет |
+| mobile | boolean |  | мобильный |
 

@@ -220,8 +220,10 @@ var Audio = function(preferredType, overlay) {
     this._lastSkip = 0;
     this._playId = null;
 
+    this._initInProgress = true;
     this._whenReady = new Deferred();
     this.whenReady = this._whenReady.promise().then(function() {
+        this._initInProgress = false;
         logger.info(this, "implementation found", this.implementation.type);
 
         this.implementation.on("*", function(event, offset, data) {
@@ -254,6 +256,7 @@ var Audio = function(preferredType, overlay) {
 
         this._setState(Audio.STATE_IDLE);
     }.bind(this), function(e) {
+        this._initInProgress = false;
         logger.error(this, AudioError.NO_IMPLEMENTATION, e);
 
         this._setState(Audio.STATE_CRASHED);
@@ -324,7 +327,7 @@ Audio.prototype._init = function(retry) {
     retry = retry || 0;
     logger.info(this, "_init", retry);
 
-    if (!this._whenReady.pending) {
+    if (!this._initInProgress) {
         return;
     }
 

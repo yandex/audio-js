@@ -8,7 +8,9 @@ var detect = require('../browser/detect');
 // =================================================================
 
 /**
- * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise|ES 2015 Promise}
+ * @classdesc Обещание по спецификации {@linkhref https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise ES 2015 promises}. В устаревших браузерах и IE используется замена из библиотеки {@linkhref http://github.com/dfilatov/vow.git vow}
+ *
+ * @exported ya.music.lib.Promise
  * @constructor
  */
 var Promise;

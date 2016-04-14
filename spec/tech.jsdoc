@@ -8,7 +8,7 @@
  * @class Аудиоплеер для браузера.
  * @name Audio
  *
- * @extends Events
+ * @extends lib.Events
  *
  * @fires Audio.EVENT_PLAY
  * @fires Audio.EVENT_ENDED
@@ -149,7 +149,7 @@
  * 
  * @memberof Audio
  *
- * @returns { Promise } 
+ * @returns { lib.Promise } 
  */
 
 /**
@@ -404,7 +404,7 @@
 
 /*************************************************************/
 
-// Events
+// lib.Events
 
 /**
  * Событие обновления позиции воспроизведения или загруженной части.
@@ -736,7 +736,7 @@
  * @class Эквалайзер.
  * @name Audio.fx.Equalizer
  *
- * @extends Events
+ * @extends lib.Events
  *
  * @fires Audio.fx.Equalizer.EVENT_CHANGE
  *
@@ -810,7 +810,7 @@
 
 /*************************************************************/
 
-// Events
+// lib.Events
 
 /**
  * Событие изменения полосы пропускания
@@ -820,6 +820,193 @@
  * @param { Number } freq Частота полосы пропускания.
  * @param { Number } value Значение усиления.
  */
+//-----------------------------------------------------------//
+
+/**
+ * @class Класс для управления обещанием
+ * @name lib.Deferred
+ *
+ * @constructor
+ *
+ */
+
+/*************************************************************/
+
+// Functions
+
+/**
+ * Разрешить обещание
+ * @function
+ * @name resolve
+ * 
+ * @memberof lib.Deferred
+ *
+ * @param  data передать данные в обещание
+ * 
+ */
+
+/**
+ * Отклонить обещание
+ * @function
+ * @name reject
+ * 
+ * @memberof lib.Deferred
+ *
+ * @param  error передать ошибку
+ * 
+ */
+
+/**
+ * Получить обещание
+ * @function
+ * @name promise
+ * 
+ * @memberof lib.Deferred
+ *
+ * @returns { lib.Promise } 
+ */
+
+//-----------------------------------------------------------//
+
+/**
+ * @class Диспетчер событий.
+ * @name lib.Events
+ *
+ * @constructor
+ *
+ */
+
+/*************************************************************/
+
+// Functions
+
+/**
+ * Расширить произвольный класс свойствами диспетчера событий.
+ * @function
+ * @name mixin
+ * 
+ * @memberof lib.Events
+ * 
+ * @static
+ * @param { function } classConstructor Конструктор класса.
+ * @returns { function } тот же конструктор класса, расширенный свойствами диспетчера событий.
+ */
+
+/**
+ * Расширить произвольный объект свойствами диспетчера событий.
+ * @function
+ * @name eventize
+ * 
+ * @memberof lib.Events
+ * 
+ * @static
+ * @param { Object } object Объект.
+ * @returns { Object } тот же объект, расширенный свойствами диспетчера событий.
+ */
+
+/**
+ * Подписаться на событие (цепочный метод).
+ * @function
+ * @name on
+ * 
+ * @memberof lib.Events
+ *
+ * @param { String } event Имя события.
+ * @param { function } callback Обработчик события.
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Отписаться от события (цепочный метод).
+ * @function
+ * @name off
+ * 
+ * @memberof lib.Events
+ *
+ * @param { String } event Имя события.
+ * @param { function } callback Обработчик события.
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
+ * @function
+ * @name once
+ * 
+ * @memberof lib.Events
+ *
+ * @param { String } event Имя события.
+ * @param { function } callback Обработчик события.
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Отписаться от всех слушателей событий (цепочный метод).
+ * @function
+ * @name clearListeners
+ * 
+ * @memberof lib.Events
+ *
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Остановить запуск событий (цепочный метод).
+ * @function
+ * @name muteEvents
+ * 
+ * @memberof lib.Events
+ *
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Возобновить запуск событий (цепочный метод).
+ * @function
+ * @name unmuteEvents
+ * 
+ * @memberof lib.Events
+ *
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+//-----------------------------------------------------------//
+
+/**
+ * @class Обещание по спецификации {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/lib.Promise ES 2015 promises}. В устаревших браузерах и IE используется замена из библиотеки {@link http://github.com/dfilatov/vow.git vow}
+ * @name lib.Promise
+ *
+ * @constructor
+ *
+ */
+
+/*************************************************************/
+
+// Functions
+
+/**
+ * Назначить обработчики разрешения и отклонения обещания.
+ * @function
+ * @name then
+ * 
+ * @memberof lib.Promise
+ *
+ * @param { function } callback Обработчик успеха.
+ * @param { null | function } [errback] Обработчик ошибки.
+ * @returns { lib.Promise } новое обещание из результатов обработчика.
+ */
+
+/**
+ * Назначить обработчик отклонения обещания.
+ * @function
+ * @name catch
+ * 
+ * @memberof lib.Promise
+ *
+ * @param { function } errback Обработчик ошибки.
+ * @returns { lib.Promise } новое обещание из результатов обработчика.
+ */
+
 //-----------------------------------------------------------//
 
 /**
@@ -863,7 +1050,7 @@
 
 /**
  * @class Настраиваемый логгер для аудиоплеера.
- * @name Audio.Logger
+ * @name Logger
  *
  * @constructor
  * 
@@ -881,7 +1068,7 @@
 * @name ignores
 * @type String[] 
 * 
-* @memberof Audio.Logger
+* @memberof Logger
 * 
 * @static 
 */
@@ -892,7 +1079,7 @@
 * @name logLevels
 * @type String[] 
 * 
-* @memberof Audio.Logger
+* @memberof Logger
 * 
 * @static 
 */
@@ -902,7 +1089,7 @@
 * @field
 * @name debug
  *
-* @memberof Audio.Logger
+* @memberof Logger
  *
 */
 
@@ -911,7 +1098,7 @@
 * @field
 * @name log
  *
-* @memberof Audio.Logger
+* @memberof Logger
  *
 */
 
@@ -920,7 +1107,7 @@
 * @field
 * @name info
  *
-* @memberof Audio.Logger
+* @memberof Logger
  *
 */
 
@@ -929,7 +1116,7 @@
 * @field
 * @name warn
  *
-* @memberof Audio.Logger
+* @memberof Logger
  *
 */
 
@@ -938,7 +1125,7 @@
 * @field
 * @name error
  *
-* @memberof Audio.Logger
+* @memberof Logger
  *
 */
 
@@ -947,7 +1134,7 @@
 * @field
 * @name trace
  *
-* @memberof Audio.Logger
+* @memberof Logger
  *
 */
 
@@ -960,7 +1147,7 @@
  * @function
  * @name log
  * 
- * @memberof Audio.Logger
+ * @memberof Logger
  * 
  * @static
  * @param { String } level Уровень лога.
@@ -973,114 +1160,10 @@
 //-----------------------------------------------------------//
 
 /**
- * @class Диспетчер событий.
- * @name Events
- *
-
- * @noconstructor
- */
-
-/*************************************************************/
-
-// Functions
-
-/**
- * Расширить произвольный класс свойствами диспетчера событий.
- * @function
- * @name mixin
- * 
- * @memberof Events
- * 
- * @static
- * @param { function } classConstructor Конструктор класса.
- * @returns { function } тот же конструктор класса, расширенный свойствами диспетчера событий.
- */
-
-/**
- * Расширить произвольный объект свойствами диспетчера событий.
- * @function
- * @name eventize
- * 
- * @memberof Events
- * 
- * @static
- * @param { Object } object Объект.
- * @returns { Object } тот же объект, расширенный свойствами диспетчера событий.
- */
-
-/**
- * Подписаться на событие (цепочный метод).
- * @function
- * @name on
- * 
- * @memberof Events
- *
- * @param { String } event Имя события.
- * @param { function } callback Обработчик события.
- * @returns { Events } ссылку на контекст.
- */
-
-/**
- * Отписаться от события (цепочный метод).
- * @function
- * @name off
- * 
- * @memberof Events
- *
- * @param { String } event Имя события.
- * @param { function } callback Обработчик события.
- * @returns { Events } ссылку на контекст.
- */
-
-/**
- * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
- * @function
- * @name once
- * 
- * @memberof Events
- *
- * @param { String } event Имя события.
- * @param { function } callback Обработчик события.
- * @returns { Events } ссылку на контекст.
- */
-
-/**
- * Отписаться от всех слушателей событий (цепочный метод).
- * @function
- * @name clearListeners
- * 
- * @memberof Events
- *
- * @returns { Events } ссылку на контекст.
- */
-
-/**
- * Остановить запуск событий (цепочный метод).
- * @function
- * @name muteEvents
- * 
- * @memberof Events
- *
- * @returns { Events } ссылку на контекст.
- */
-
-/**
- * Возобновить запуск событий (цепочный метод).
- * @function
- * @name unmuteEvents
- * 
- * @memberof Events
- *
- * @returns { Events } ссылку на контекст.
- */
-
-//-----------------------------------------------------------//
-
-/**
  * @class Обещание с возможностью отмены связанного с ним действия.
  * @name AbortablePromise
  *
- * @extends Promise
+ * @extends lib.Promise
  *
 
  * @noconstructor
@@ -1099,43 +1182,6 @@
  *
  * @param { String | <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref> } reason Причина отмены действия.
  * 
- */
-
-//-----------------------------------------------------------//
-
-/**
- * @class 
- * @name Promise
- *
-
- * @noconstructor
- */
-
-/*************************************************************/
-
-// Functions
-
-/**
- * Назначить обработчики разрешения и отклонения обещания.
- * @function
- * @name then
- * 
- * @memberof Promise
- *
- * @param { function } callback Обработчик успеха.
- * @param { null | function } [errback] Обработчик ошибки.
- * @returns { Promise } новое обещание из результатов обработчика.
- */
-
-/**
- * Назначить обработчик отклонения обещания.
- * @function
- * @name catch
- * 
- * @memberof Promise
- *
- * @param { function } errback Обработчик ошибки.
- * @returns { Promise } новое обещание из результатов обработчика.
  */
 
 /*************************************************************/
@@ -1221,6 +1267,24 @@
 //-----------------------------------------------------------//
 
 /**
+ * Информация о браузере
+ *
+ * @name info.browser
+ * @type Object
+ */
+
+//-----------------------------------------------------------//
+
+/**
+ * Информация о платформе
+ *
+ * @name info.platform
+ * @type Object
+ */
+
+//-----------------------------------------------------------//
+
+/**
  * @namespace Настройки библиотеки.
  * @name Audio.config
  *
@@ -1296,4 +1360,27 @@
  * @param { Number } dbfs Громкость в dBFS.
  * @returns { Number } 
  */
+
+//-----------------------------------------------------------//
+
+/**
+ * @namespace Информация об окружении
+ * @name info
+ *
+ */
+
+/*************************************************************/
+
+// Members
+
+/**
+* Настройка громкости
+* @field
+* @name onlyDeviceVolume
+* @type boolean 
+* 
+* @memberof info
+* 
+* @static 
+*/
 

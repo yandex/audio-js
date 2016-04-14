@@ -118,21 +118,21 @@ try {
 /**
  * Информация об окружении
  * @namespace
- * @private
+ * @exported ya.music.info
  */
-var detect = {
+var info = {
     /**
      * Информация о браузере
-     * @type {object}
+     * @namespace
      * @property {string} name - название браузера
      * @property {string} version - версия
-     * @property {number} [documentMode] - версия документа
+     * @property {number} [documentMode] - версия документа (для IE)
      */
     browser: browser,
 
     /**
      * Информация о платформе
-     * @type {object}
+     * @namespace
      * @property {string} os - тип операционной системы
      * @property {string} type - тип платформы
      * @property {boolean} tablet - планшет
@@ -147,4 +147,4 @@ var detect = {
     onlyDeviceVolume: noVolume
 };
 
-module.exports = detect;
+module.exports = info;

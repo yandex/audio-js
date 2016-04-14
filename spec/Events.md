@@ -1,6 +1,10 @@
-##<a name="Events"></a> *inner* *class* Events
+##<a name="Events"></a> *class* Events
+
+**Доступен извне как:** `ya.music.lib.Events`
 
 Диспетчер событий.
+
+#### new Events()
 
 ----
 

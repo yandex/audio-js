@@ -8,7 +8,7 @@ var noop = require('../lib/noop');
 // =================================================================
 
 /**
- * @exported ya.music.Audio.Logger
+ * @exported ya.music.Logger
  * @classdesc Настраиваемый логгер для аудиоплеера.
  * @param {String} channel Имя канала, за который будет отвечать экземляр логгера.
  * @constructor

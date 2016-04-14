@@ -9,4 +9,9 @@
       * [Equalizer](Equalizer.md#Equalizer)
       * [volumeLib](volumeLib.md#volumeLib)
     * [LoaderError](LoaderError.md#LoaderError)
-    * [Logger](Logger.md#Logger)
+  * lib
+    * [Deferred](Deferred.md#Deferred)
+    * [Events](Events.md#Events)
+    * [Promise](Promise.md#Promise)
+  * [info](info.md#info)
+  * [Logger](Logger.md#Logger)

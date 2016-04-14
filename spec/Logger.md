@@ -1,6 +1,6 @@
 ##<a name="Logger"></a> *class* Logger
 
-**Доступен извне как:** `ya.music.Audio.Logger`
+**Доступен извне как:** `ya.music.Logger`
 
 Настраиваемый логгер для аудиоплеера.
 

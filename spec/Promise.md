@@ -1,4 +1,10 @@
-##<a name="Promise"></a> *inner* *class* Promise
+##<a name="Promise"></a> *class* Promise
+
+**Доступен извне как:** `ya.music.lib.Promise`
+
+Обещание по спецификации [ES 2015 promises](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise). В устаревших браузерах и IE используется замена из библиотеки [vow](http://github.com/dfilatov/vow.git)
+
+#### new Promise()
 
 ----
 
