@@ -2,11 +2,15 @@
 /**
  * {{{description}}}
  *
- * ТУТ будет страшная табличка
+{{#each children.member}}
+ * @property {{>type}} {{{name}}} {{{description}}}
+{{/each}}
  *
  * @name {{{longname}}}
  * @type Object
  */
+
+
 {{else}}
 /**
  * @namespace {{{description}}}

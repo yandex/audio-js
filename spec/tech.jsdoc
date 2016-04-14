@@ -1145,8 +1145,8 @@
 
 /**
  * Описание временных данных плеера.
- * @typedef { Object } AudioTimes
- * @memberof Audio
+ * @typedef { Object } Audio.AudioTimes
+ *
  * @property { Number } duration Длительность аудиофайла.
  * @property { Number } loaded Длительность загруженной части.
  * @property { Number } position Позиция воспроизведения.
@@ -1157,8 +1157,8 @@
 
 /**
  * Аудио-препроцессор.
- * @typedef { Object } AudioPreprocessor
- * @memberof Audio
+ * @typedef { Object } Audio.AudioPreprocessor
+ *
  * @property { AudioNode } input Нода, в которую перенаправляется вывод аудио.
  * @property { AudioNode } output Нода, из которой вывод подается на усилитель.
  */
@@ -1167,8 +1167,8 @@
 
 /**
  * Описание настроек эквалайзера.
- * @typedef { Object } EqualizerPreset
- * @memberof Audio.fx.Equalizer
+ * @typedef { Object } Audio.fx.Equalizer.EqualizerPreset
+ *
  * @property { String } [id] Идентификатор настроек.
  * @property { Number } preamp Предусилитель.
  * @property { Number[] } bands Значения для полос эквалайзера.
@@ -1182,29 +1182,43 @@
 /**
  * Общие настройки.
  *
- * ТУТ будет страшная табличка
+ * @property { Number } retry Количество попыток реинициализации
  *
  * @name Audio.config.audio
  * @type Object
- *///-----------------------------------------------------------//
+ */
+
+//-----------------------------------------------------------//
 
 /**
  * Настройки подключения Flash-плеера.
  *
- * ТУТ будет страшная табличка
+ * @property { String } path Путь к .swf файлу флеш-плеера
+ * @property { String } name Имя .swf файла флеш-плеера
+ * @property { String } version Минимальная версия флеш-плеера
+ * @property { String } playerID ID, который будет выставлен для элемента с Flash-плеером
+ * @property { String } callback Имя функции-обработчика событий Flash-плеера
+ * @property { Number } initTimeout Таймаут инициализации
+ * @property { Number } loadTimeout Таймаут загрузки
+ * @property { Number } clickTimeout Таймаут инициализации после клика
+ * @property { Number } heartBeatInterval Интервал проверки доступности Flash-плеера
  *
  * @name Audio.config.flash
  * @type Object
- *///-----------------------------------------------------------//
+ */
+
+//-----------------------------------------------------------//
 
 /**
  * Описание настроек HTML5 плеера.
  *
- * ТУТ будет страшная табличка
+ * @property { String> } blacklist Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</code[]
  *
  * @name Audio.config.html5
  * @type Object
- *///-----------------------------------------------------------//
+ */
+
+//-----------------------------------------------------------//
 
 /**
  * @namespace Настройки библиотеки.
@@ -1245,8 +1259,7 @@
  * @name toExponent
  * 
  * @memberof Audio.fx.volumeLib
- * 
- * @static
+ *
  * @param { Number } value Значение на шкале.
  * @returns { Number } 
  */
@@ -1257,8 +1270,7 @@
  * @name fromExponent
  * 
  * @memberof Audio.fx.volumeLib
- * 
- * @static
+ *
  * @param { Number } volume Громкость.
  * @returns { Number } 
  */
@@ -1269,8 +1281,7 @@
  * @name toDBFS
  * 
  * @memberof Audio.fx.volumeLib
- * 
- * @static
+ *
  * @param { Number } volume Относительная громкость.
  * @returns { Number } 
  */
@@ -1281,8 +1292,7 @@
  * @name fromDBFS
  * 
  * @memberof Audio.fx.volumeLib
- * 
- * @static
+ *
  * @param { Number } dbfs Громкость в dBFS.
  * @returns { Number } 
  */
