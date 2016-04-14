@@ -1290,7 +1290,7 @@
  * Описание настроек HTML5 плеера.
  *
  * <ul>
- * <li><codeph>blacklist</codeph> { String> } Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</codeph></li[]
+ * <li><codeph>blacklist</codeph> { String[] } Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</codeph></li>
  * </ul>
  * @name Audio.config.html5
  * @type Object
