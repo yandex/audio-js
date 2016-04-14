@@ -23,4 +23,6 @@ var Proxy = require('./lib/class/proxy');
 ya.music.Audio = Proxy.createClass(AudioPlayer);
 ya.music.Audio.config = config;
 
+require('./lib/export');
+
 module.exports = ya.music.Audio;

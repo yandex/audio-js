@@ -7,9 +7,14 @@ var linkhref = /\{@linkhref (.*?) ([^\}]*) *\}/g;
 var doclet = /\/\*\*[\s\S]*?\*\//g;
 
 module.exports = function(page, data, style) {
-    var page = page.replace(cleanupTags, "")
-        .replace(unescape, "$1")
-        .replace(linkhref, "{@link $1 $2}");
+    page = page.replace(cleanupTags, "")
+        .replace(unescape, "$1");
+    
+    if (style === 'tech') {
+        page = page.replace(linkhref, "<a href='$1' target='_blank'>$2</a>");
+    } else {
+        page = page.replace(linkhref, "{@link $1 $2}");
+    }
 
     var aliases = [];
 
@@ -23,7 +28,7 @@ module.exports = function(page, data, style) {
 
             doclet = doclet.replace(alias, function(_, aliasName) {
                 aliases.push({
-                    reg: new RegExp("([^\\w.#~])" + rawName + "([^\\w])", "g"),
+                    reg: new RegExp("([^\\w.#~\/])" + rawName + "([^\\w])", "g"),
                     rep: "$1" + aliasName + "$2"
                     // rep: aliasName
                 });
@@ -49,7 +54,8 @@ module.exports = function(page, data, style) {
             .replace(/<(\/?)strong>/g, "<$1b>")
             .replace(/ya\.music\./g, "")
             .replace(/Array\.&lt;(.*)&gt;/g, "$1[]")
-            .replace(/ Error /g, " <xref scope=\"external\" href=\"https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error\">Error</xref> ");
+            .replace(/ Error( |$)/g,
+                " <xref scope=\"external\" href=\"https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error\">Error</xref> ");
     }
 
     return page.replace(/\r/g, "").replace(beautify_lines, "\n\n")

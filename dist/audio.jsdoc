@@ -1055,7 +1055,7 @@
 /**
  * @name ya.music.lib.Promise
  * @kind class
- * @classdesc Обещание по спецификации {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/ya.music.lib.Promise ES 2015 promises}. В устаревших браузерах и IE используется замена из библиотеки {@link http://github.com/dfilatov/vow.git vow}
+ * @classdesc Обещание по спецификации {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise ES 2015 promises}. В устаревших браузерах и IE используется замена из библиотеки {@link http://github.com/dfilatov/vow.git vow}
  *
  * @constructor
  *
@@ -1462,6 +1462,9 @@
  * Информация о браузере
  * @name ya.music.info.browser
  * 
+ * @property { string } name - название браузера
+ * @property { string } version - версия
+ * @property { number } [documentMode] - версия документа (для IE)
  * @namespace
  */
 "ya.music.info.browser": {},
@@ -1472,6 +1475,10 @@
  * Информация о платформе
  * @name ya.music.info.platform
  * 
+ * @property { string } os - тип операционной системы
+ * @property { string } type - тип платформы
+ * @property { boolean } tablet - планшет
+ * @property { boolean } mobile - мобильный
  * @namespace
  */
 "ya.music.info.platform": {},

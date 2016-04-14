@@ -40,92 +40,100 @@
 // Members
 
 /**
-* Список доступных плееров
-* @field
-* @name info
-* @type Object 
-* 
-* @memberof Audio
-* 
-* @static 
-*/
+ * Список доступных плееров
+ * @field
+ * @name info
+ * @type Object 
+ * 
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Контекст для Web Audio API.
-* @field
-* @name audioContext
-* @type AudioContext 
-* 
-* @memberof Audio
-* 
-* @static 
-*/
+ * Контекст для Web Audio API.
+ * @field
+ * @name audioContext
+ * @type AudioContext 
+ * 
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Событие предзагрузчика. Используется в качестве префикса.
-* @field
-* @name PRELOADER_EVENT
-* @type String 
-* @const
-* @memberof Audio
-* 
-* @static 
-*/
+ * Событие предзагрузчика. Используется в качестве префикса.
+ * @field
+ * @name PRELOADER_EVENT
+ * @type String 
+ * @const
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Плеер находится в состоянии инициализации.
-* @field
-* @name STATE_INIT
-* @type String 
-* @const
-* @memberof Audio
-* 
-* @static 
-*/
+ * Плеер находится в состоянии инициализации.
+ * @field
+ * @name STATE_INIT
+ * @type String 
+ * @const
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Не удалось инициализировать плеер.
-* @field
-* @name STATE_CRASHED
-* @type String 
-* @const
-* @memberof Audio
-* 
-* @static 
-*/
+ * Не удалось инициализировать плеер.
+ * @field
+ * @name STATE_CRASHED
+ * @type String 
+ * @const
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Плеер готов и ожидает.
-* @field
-* @name STATE_IDLE
-* @type String 
-* @const
-* @memberof Audio
-* 
-* @static 
-*/
+ * Плеер готов и ожидает.
+ * @field
+ * @name STATE_IDLE
+ * @type String 
+ * @const
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Плеер проигрывает трек.
-* @field
-* @name STATE_PLAYING
-* @type String 
-* @const
-* @memberof Audio
-* 
-* @static 
-*/
+ * Плеер проигрывает трек.
+ * @field
+ * @name STATE_PLAYING
+ * @type String 
+ * @const
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Плеер поставлен на паузу.
-* @field
-* @name STATE_PAUSED
-* @type String 
-* @const
-* @memberof Audio
-* 
-* @static 
-*/
+ * Плеер поставлен на паузу.
+ * @field
+ * @name STATE_PAUSED
+ * @type String 
+ * @const
+ * @memberof Audio
+ * 
+ * @static 
+ *
+ */
 
 /*************************************************************/
 
@@ -547,103 +555,112 @@
 // Members
 
 /**
-* Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
-* @field
-* @name NO_IMPLEMENTATION
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
+ * @field
+ * @name NO_IMPLEMENTATION
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
-* @field
-* @name NOT_PRELOADED
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
+ * @field
+ * @name NOT_PRELOADED
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Действие недоступно из текущего состояния.
-* @field
-* @name BAD_STATE
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Действие недоступно из текущего состояния.
+ * @field
+ * @name BAD_STATE
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Flash-плеер был заблокирован.
-* @field
-* @name FLASH_BLOCKER
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Flash-плеер был заблокирован.
+ * @field
+ * @name FLASH_BLOCKER
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
-* @field
-* @name FLASH_UNKNOWN_CRASH
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
+ * @field
+ * @name FLASH_UNKNOWN_CRASH
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Возникла ошибка при инициализации Flash-плеера из-за таймаута.
-* @field
-* @name FLASH_INIT_TIMEOUT
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Возникла ошибка при инициализации Flash-плеера из-за таймаута.
+ * @field
+ * @name FLASH_INIT_TIMEOUT
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Внутренняя ошибка Flash-плеера.
-* @field
-* @name FLASH_INTERNAL_ERROR
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Внутренняя ошибка Flash-плеера.
+ * @field
+ * @name FLASH_INTERNAL_ERROR
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Попытка вызвать недоступный экземляр Flash-плеера.
-* @field
-* @name FLASH_EMMITER_NOT_FOUND
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Попытка вызвать недоступный экземляр Flash-плеера.
+ * @field
+ * @name FLASH_EMMITER_NOT_FOUND
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Flash-плеер перестал отвечать на запросы.
-* @field
-* @name FLASH_NOT_RESPONDING
-* @type String 
-* @const
-* @memberof Audio.AudioError
-* 
-* @static 
-*/
+ * Flash-плеер перестал отвечать на запросы.
+ * @field
+ * @name FLASH_NOT_RESPONDING
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
 
 //-----------------------------------------------------------//
 
@@ -665,70 +682,76 @@
 // Members
 
 /**
-* Отмена соединенния.
-* @field
-* @name CONNECTION_ABORTED
-* @type String 
-* @const
-* @memberof Audio.PlaybackError
-* 
-* @static 
-*/
+ * Отмена соединенния.
+ * @field
+ * @name CONNECTION_ABORTED
+ * @type String 
+ * @const
+ * @memberof Audio.PlaybackError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Сетевая ошибка.
-* @field
-* @name NETWORK_ERROR
-* @type String 
-* @const
-* @memberof Audio.PlaybackError
-* 
-* @static 
-*/
+ * Сетевая ошибка.
+ * @field
+ * @name NETWORK_ERROR
+ * @type String 
+ * @const
+ * @memberof Audio.PlaybackError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Ошибка декодирования аудио.
-* @field
-* @name DECODE_ERROR
-* @type String 
-* @const
-* @memberof Audio.PlaybackError
-* 
-* @static 
-*/
+ * Ошибка декодирования аудио.
+ * @field
+ * @name DECODE_ERROR
+ * @type String 
+ * @const
+ * @memberof Audio.PlaybackError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Недоступный источник.
-* @field
-* @name BAD_DATA
-* @type String 
-* @const
-* @memberof Audio.PlaybackError
-* 
-* @static 
-*/
+ * Недоступный источник.
+ * @field
+ * @name BAD_DATA
+ * @type String 
+ * @const
+ * @memberof Audio.PlaybackError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Не запускается воспроизведение.
-* @field
-* @name DONT_START
-* @type String 
-* @const
-* @memberof Audio.PlaybackError
-* 
-* @static 
-*/
+ * Не запускается воспроизведение.
+ * @field
+ * @name DONT_START
+ * @type String 
+ * @const
+ * @memberof Audio.PlaybackError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Таблица соответствия кодов ошибок HTML5 плеера.
-* @field
-* @name html5
-* @type Object 
-* @const
-* @memberof Audio.PlaybackError
-* 
-* @static 
-*/
+ * Таблица соответствия кодов ошибок HTML5 плеера.
+ * @field
+ * @name html5
+ * @type Object 
+ * @const
+ * @memberof Audio.PlaybackError
+ * 
+ * @static 
+ *
+ */
 
 //-----------------------------------------------------------//
 
@@ -752,26 +775,28 @@
 // Members
 
 /**
-* Набор частот эквалайзера, применяющийся по умолчанию.
-* @field
-* @name DEFAULT_BANDS
-* @type Number[] 
-* @const
-* @memberof Audio.fx.Equalizer
-* 
-* @static 
-*/
+ * Набор частот эквалайзера, применяющийся по умолчанию.
+ * @field
+ * @name DEFAULT_BANDS
+ * @type Number[] 
+ * @const
+ * @memberof Audio.fx.Equalizer
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
-* @field
-* @name DEFAULT_PRESETS
-* @type Object.&lt;String, EqualizerPreset&gt; 
-* @const
-* @memberof Audio.fx.Equalizer
-* 
-* @static 
-*/
+ * Набор распространенных пресетов эквалайзера для набора частот по умолчанию.
+ * @field
+ * @name DEFAULT_PRESETS
+ * @type Object.&lt;String, EqualizerPreset&gt; 
+ * @const
+ * @memberof Audio.fx.Equalizer
+ * 
+ * @static 
+ *
+ */
 
 /*************************************************************/
 
@@ -973,7 +998,7 @@
 //-----------------------------------------------------------//
 
 /**
- * @class Обещание по спецификации {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/lib.Promise ES 2015 promises}. В устаревших браузерах и IE используется замена из библиотеки {@link http://github.com/dfilatov/vow.git vow}
+ * @class Обещание по спецификации <a href='https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise' target='_blank'>ES 2015 promises</a>. В устаревших браузерах и IE используется замена из библиотеки <a href='http://github.com/dfilatov/vow.git' target='_blank'>vow</a>
  * @name lib.Promise
  *
  * @constructor
@@ -1025,26 +1050,28 @@
 // Members
 
 /**
-* Таймаут загрузки.
-* @field
-* @name TIMEOUT
-* @type String 
-* @const
-* @memberof Audio.LoaderError
-* 
-* @static 
-*/
+ * Таймаут загрузки.
+ * @field
+ * @name TIMEOUT
+ * @type String 
+ * @const
+ * @memberof Audio.LoaderError
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Ошибка запроса на загрузку.
-* @field
-* @name FAILED
-* @type String 
-* @const
-* @memberof Audio.LoaderError
-* 
-* @static 
-*/
+ * Ошибка запроса на загрузку.
+ * @field
+ * @name FAILED
+ * @type String 
+ * @const
+ * @memberof Audio.LoaderError
+ * 
+ * @static 
+ *
+ */
 
 //-----------------------------------------------------------//
 
@@ -1063,80 +1090,82 @@
 // Members
 
 /**
-* Список игнорируемых каналов.
-* @field
-* @name ignores
-* @type String[] 
-* 
-* @memberof Logger
-* 
-* @static 
-*/
+ * Список игнорируемых каналов.
+ * @field
+ * @name ignores
+ * @type String[] 
+ * 
+ * @memberof Logger
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Список отображаемых в консоли уровней лога.
-* @field
-* @name logLevels
-* @type String[] 
-* 
-* @memberof Logger
-* 
-* @static 
-*/
+ * Список отображаемых в консоли уровней лога.
+ * @field
+ * @name logLevels
+ * @type String[] 
+ * 
+ * @memberof Logger
+ * 
+ * @static 
+ *
+ */
 
 /**
-* Запись в лог с уровнем <b>debug</b>.
-* @field
-* @name debug
+ * Запись в лог с уровнем <b>debug</b>.
+ * @field
+ * @name debug
  *
-* @memberof Logger
+ * @memberof Logger
  *
-*/
+ */
 
 /**
-* Запись в лог с уровнем <b>log</b>.
-* @field
-* @name log
+ * Запись в лог с уровнем <b>log</b>.
+ * @field
+ * @name log
  *
-* @memberof Logger
+ * @memberof Logger
  *
-*/
+ */
 
 /**
-* Запись в лог с уровнем <b>info</b>.
-* @field
-* @name info
+ * Запись в лог с уровнем <b>info</b>.
+ * @field
+ * @name info
  *
-* @memberof Logger
+ * @memberof Logger
  *
-*/
+ */
 
 /**
-* Запись в лог с уровнем <b>warn</b>.
-* @field
-* @name warn
+ * Запись в лог с уровнем <b>warn</b>.
+ * @field
+ * @name warn
  *
-* @memberof Logger
+ * @memberof Logger
  *
-*/
+ */
 
 /**
-* Запись в лог с уровнем <b>error</b>.
-* @field
-* @name error
+ * Запись в лог с уровнем <b>error</b>.
+ * @field
+ * @name error
  *
-* @memberof Logger
+ * @memberof Logger
  *
-*/
+ */
 
 /**
-* Запись в лог с уровнем <b>trace</b>.
-* @field
-* @name trace
+ * Запись в лог с уровнем <b>trace</b>.
+ * @field
+ * @name trace
  *
-* @memberof Logger
+ * @memberof Logger
  *
-*/
+ */
 
 /*************************************************************/
 
@@ -1229,7 +1258,6 @@
  * Общие настройки.
  *
  * @property { Number } retry Количество попыток реинициализации
- *
  * @name Audio.config.audio
  * @type Object
  */
@@ -1248,7 +1276,6 @@
  * @property { Number } loadTimeout Таймаут загрузки
  * @property { Number } clickTimeout Таймаут инициализации после клика
  * @property { Number } heartBeatInterval Интервал проверки доступности Flash-плеера
- *
  * @name Audio.config.flash
  * @type Object
  */
@@ -1259,7 +1286,6 @@
  * Описание настроек HTML5 плеера.
  *
  * @property { String> } blacklist Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</code[]
- *
  * @name Audio.config.html5
  * @type Object
  */
@@ -1269,6 +1295,9 @@
 /**
  * Информация о браузере
  *
+ * @property { string } name название браузера
+ * @property { string } version версия
+ * @property { number } [documentMode] версия документа (для IE)
  * @name info.browser
  * @type Object
  */
@@ -1278,6 +1307,10 @@
 /**
  * Информация о платформе
  *
+ * @property { string } os тип операционной системы
+ * @property { string } type тип платформы
+ * @property { boolean } tablet планшет
+ * @property { boolean } mobile мобильный
  * @name info.platform
  * @type Object
  */
@@ -1303,15 +1336,16 @@
 // Members
 
 /**
-* Минимальное значение громкости, при котором происходит отключение звука. Ограничение в 0.01 подобрано эмпирически.
-* @field
-* @name EPSILON
-* @type number 
-* 
-* @memberof Audio.fx.volumeLib
-* 
-* @static 
-*/
+ * Минимальное значение громкости, при котором происходит отключение звука. Ограничение в 0.01 подобрано эмпирически.
+ * @field
+ * @name EPSILON
+ * @type number 
+ * 
+ * @memberof Audio.fx.volumeLib
+ * 
+ * @static 
+ *
+ */
 
 /*************************************************************/
 
@@ -1374,13 +1408,14 @@
 // Members
 
 /**
-* Настройка громкости
-* @field
-* @name onlyDeviceVolume
-* @type boolean 
-* 
-* @memberof info
-* 
-* @static 
-*/
+ * Настройка громкости
+ * @field
+ * @name onlyDeviceVolume
+ * @type boolean 
+ * 
+ * @memberof info
+ * 
+ * @static 
+ *
+ */
 
