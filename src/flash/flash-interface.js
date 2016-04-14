@@ -89,7 +89,7 @@ FlashInterface.prototype.getVolume = function() {
  * @param {Number} duration - длительность трека
  */
 FlashInterface.prototype.play = function(id, src, duration) {
-    this._callFlash("play", id, src, duration);
+    this._callFlash("play", id, src, duration && duration * 1000);
 };
 
 /**
@@ -170,7 +170,7 @@ FlashInterface.prototype.getLoaded = function(id, offset) {
  * @returns {Boolean} -- возможность данного действия
  */
 FlashInterface.prototype.preload = function(id, src, duration, offset) {
-    return this._callFlash("preload", id, src, duration, offset == null ? 1 : offset);
+    return this._callFlash("preload", id, src, duration && duration * 1000, offset == null ? 1 : offset);
 };
 
 /**
