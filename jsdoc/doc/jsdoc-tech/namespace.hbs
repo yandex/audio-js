@@ -2,10 +2,13 @@
 /**
  * {{{description}}}
  *
+ * [ul]
 {{#each children.member}}
- * @property {{>type}} {{{name}}} {{{description}}}
+ * [li]<codeph>{{{name}}}</codeph> {{>type}} {{{description}}}[/li]
+{{/each}}{{#each properties}}
+ * [li]<codeph>{{{name}}}</codeph> {{>type}} {{{description}}}[/li]
 {{/each}}
-{{> property-table}}
+ * [/ul]
  * @name {{{longname}}}
  * @type Object
  */

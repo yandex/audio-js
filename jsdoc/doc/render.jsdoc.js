@@ -1,4 +1,5 @@
 var cleanupTags = /<\/?(ul|li|p)>/g;
+var bbcodes = /\[(.*?)\]/g;
 var unescape = /\\(\{|\})/g;
 var beautify_lines = /(\n[\t ]*){3,}/g;
 var beautify_asterix = /([\t ]*\*[\t ]*\n){2,}/g;
@@ -8,10 +9,11 @@ var doclet = /\/\*\*[\s\S]*?\*\//g;
 
 module.exports = function(page, data, style) {
     page = page.replace(cleanupTags, "")
-        .replace(unescape, "$1");
-    
+        .replace(unescape, "$1")
+        .replace(bbcodes, "<$1>");
+
     if (style === 'tech') {
-        page = page.replace(linkhref, "<a href='$1' target='_blank'>$2</a>");
+        page = page.replace(linkhref, "<xref href='$1' scope='external'>$2</xref>");
     } else {
         page = page.replace(linkhref, "{@link $1 $2}");
     }

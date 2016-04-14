@@ -56,8 +56,8 @@
  *
  * @constructor
  * 
- * @param { String } [preferredType] - Предпочитаемый тип плеера. Может принимать значения: &quot;html5&quot;, &quot;flash&quot; или любое ложное значение (false, null, undefined, 0, &quot;&quot;). Если выбранный тип плеера окажется недоступен, будет запущен оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера. Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5.
- * @param { HTMLElement } [overlay] - HTML-контейнер для отображения Flash-апплета.
+ * @param { String } <preferredType> - Предпочитаемый тип плеера. Может принимать значения: &quot;html5&quot;, &quot;flash&quot; или любое ложное значение (false, null, undefined, 0, &quot;&quot;). Если выбранный тип плеера окажется недоступен, будет запущен оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера. Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5.
+ * @param { HTMLElement } <overlay> - HTML-контейнер для отображения Flash-апплета.
  *
  */
 "ya.music.Audio": function(preferredType, overlay){},
@@ -174,7 +174,7 @@
  * @function
  * @name ya.music.Audio#getSrc
  * 
- * @param { int } [offset] - Брать аудио-файл из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
+ * @param { int } <offset> - Брать аудио-файл из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
  * @returns { String | null } - 
  */
 "ya.music.Audio#getSrc": function(offset){},
@@ -185,7 +185,7 @@
  * @name ya.music.Audio#play
  * 
  * @param { String } src - Ссылка на трек.
- * @param { Number } [duration] - Длительность аудио-файла. Актуально для Flash-реализации, в ней пока аудио-файл грузится длительность определяется с погрешностью.
+ * @param { Number } <duration> - Длительность аудио-файла. Актуально для Flash-реализации, в ней пока аудио-файл грузится длительность определяется с погрешностью.
  * @returns { AbortablePromise } - 
  */
 "ya.music.Audio#play": function(src, duration){},
@@ -204,7 +204,7 @@
  * @function
  * @name ya.music.Audio#stop
  * 
- * @param { int } [offset] - Активный плеер или прелоадер. 0 - активный плеер. 1 - прелоадер.
+ * @param { int } <offset> - Активный плеер или прелоадер. 0 - активный плеер. 1 - прелоадер.
  * @returns { AbortablePromise } - обещание, которое разрешится, когда воспроизведение будет остановлено.
  */
 "ya.music.Audio#stop": function(offset){},
@@ -232,7 +232,7 @@
  * @function
  * @name ya.music.Audio#playPreloaded
  * 
- * @param { String } [src] - Ссылка на аудиофайл (для проверки, что в прелоадере нужный трек).
+ * @param { String } <src> - Ссылка на аудиофайл (для проверки, что в прелоадере нужный трек).
  * @returns { AbortablePromise } - обещание, которое разрешится, когда начнется воспроизведение предзагруженного аудиофайла.
  */
 "ya.music.Audio#playPreloaded": function(src){},
@@ -243,7 +243,7 @@
  * @name ya.music.Audio#preload
  * 
  * @param { String } src - Ссылка на трек.
- * @param { Number } [duration] - Длительность аудиофайла. Актуально для Flash-реализации, в ней пока аудиофайл грузится длительность определяется с погрешностью.
+ * @param { Number } <duration> - Длительность аудиофайла. Актуально для Flash-реализации, в ней пока аудиофайл грузится длительность определяется с погрешностью.
  * @returns { AbortablePromise } - обещание, которое разрешится, когда начнется предзагрузка аудиофайла.
  */
 "ya.music.Audio#preload": function(src, duration){},
@@ -1072,7 +1072,7 @@
  * @name ya.music.lib.Promise#then
  * 
  * @param { function } callback - Обработчик успеха.
- * @param { null | function } [errback] - Обработчик ошибки.
+ * @param { null | function } <errback> - Обработчик ошибки.
  * @returns { ya.music.lib.Promise } - новое обещание из результатов обработчика.
  */
 "ya.music.lib.Promise#then": function(callback, errback){},
@@ -1218,7 +1218,7 @@
  * @param { String } level - Уровень лога.
  * @param { String } channel - Канал.
  * @param { Object } context - Контекст вызова.
- * @param { * } [args] - Дополнительные аргументы.
+ * @param { * } <args> - Дополнительные аргументы.
  * 
  */
 "ya.music.Logger.log": function(level, channel, context, args){},
@@ -1255,7 +1255,7 @@
  * @name AbortablePromise#then
  * 
  * @param { function } callback - Обработчик успеха.
- * @param { null | function } [errback] - Обработчик ошибки.
+ * @param { null | function } <errback> - Обработчик ошибки.
  * @returns { ya.music.lib.Promise } - новое обещание из результатов обработчика.
  */
 "AbortablePromise#then": function(callback, errback){},
@@ -1307,7 +1307,7 @@
  * @memberof ya.music.Audio.fx.Equalizer
  * 
  * @inner
- * @property { String } [id] - Идентификатор настроек.
+ * @property { String } <id> - Идентификатор настроек.
  * @property { Number } preamp - Предусилитель.
  * @property { Array.<Number> } bands - Значения для полос эквалайзера.
  */
@@ -1464,7 +1464,7 @@
  * 
  * @property { string } name - название браузера
  * @property { string } version - версия
- * @property { number } [documentMode] - версия документа (для IE)
+ * @property { number } <documentMode> - версия документа (для IE)
  * @namespace
  */
 "ya.music.info.browser": {},

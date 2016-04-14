@@ -30,8 +30,8 @@
  *
  * @constructor
  * 
- * @param { String } [preferredType] Предпочитаемый тип плеера. Может принимать значения: &quot;html5&quot;, &quot;flash&quot; или любое ложное значение (false, null, undefined, 0, &quot;&quot;). Если выбранный тип плеера окажется недоступен, будет запущен оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера. Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5.
- * @param { HTMLElement } [overlay] HTML-контейнер для отображения Flash-апплета.
+ * @param { String } <preferredType> Предпочитаемый тип плеера. Может принимать значения: &quot;html5&quot;, &quot;flash&quot; или любое ложное значение (false, null, undefined, 0, &quot;&quot;). Если выбранный тип плеера окажется недоступен, будет запущен оставшийся тип. Если указано ложное значение либо параметр не передан, то API автоматически выберет поддерживаемый тип плеера. Если браузер поддерживает обе технологии, то по умолчанию YandexAudio создает аудиоплеер на основе HTML5.
+ * @param { HTMLElement } <overlay> HTML-контейнер для отображения Flash-апплета.
  * 
  */
 
@@ -177,7 +177,7 @@
  * 
  * @memberof Audio
  *
- * @param { int } [offset] Брать аудио-файл из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
+ * @param { int } <offset> Брать аудио-файл из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
  * @returns { String | null } 
  */
 
@@ -189,7 +189,7 @@
  * @memberof Audio
  *
  * @param { String } src Ссылка на трек.
- * @param { Number } [duration] Длительность аудио-файла. Актуально для Flash-реализации, в ней пока аудио-файл грузится длительность определяется с погрешностью.
+ * @param { Number } <duration> Длительность аудио-файла. Актуально для Flash-реализации, в ней пока аудио-файл грузится длительность определяется с погрешностью.
  * @returns { AbortablePromise } 
  */
 
@@ -210,7 +210,7 @@
  * 
  * @memberof Audio
  *
- * @param { int } [offset] Активный плеер или прелоадер. 0 - активный плеер. 1 - прелоадер.
+ * @param { int } <offset> Активный плеер или прелоадер. 0 - активный плеер. 1 - прелоадер.
  * @returns { AbortablePromise } обещание, которое разрешится, когда воспроизведение будет остановлено.
  */
 
@@ -241,7 +241,7 @@
  * 
  * @memberof Audio
  *
- * @param { String } [src] Ссылка на аудиофайл (для проверки, что в прелоадере нужный трек).
+ * @param { String } <src> Ссылка на аудиофайл (для проверки, что в прелоадере нужный трек).
  * @returns { AbortablePromise } обещание, которое разрешится, когда начнется воспроизведение предзагруженного аудиофайла.
  */
 
@@ -253,7 +253,7 @@
  * @memberof Audio
  *
  * @param { String } src Ссылка на трек.
- * @param { Number } [duration] Длительность аудиофайла. Актуально для Flash-реализации, в ней пока аудиофайл грузится длительность определяется с погрешностью.
+ * @param { Number } <duration> Длительность аудиофайла. Актуально для Flash-реализации, в ней пока аудиофайл грузится длительность определяется с погрешностью.
  * @returns { AbortablePromise } обещание, которое разрешится, когда начнется предзагрузка аудиофайла.
  */
 
@@ -998,7 +998,7 @@
 //-----------------------------------------------------------//
 
 /**
- * @class Обещание по спецификации <a href='https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise' target='_blank'>ES 2015 promises</a>. В устаревших браузерах и IE используется замена из библиотеки <a href='http://github.com/dfilatov/vow.git' target='_blank'>vow</a>
+ * @class Обещание по спецификации <xref href='https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise' scope='external'>ES 2015 promises</xref>. В устаревших браузерах и IE используется замена из библиотеки <xref href='http://github.com/dfilatov/vow.git' scope='external'>vow</xref>
  * @name lib.Promise
  *
  * @constructor
@@ -1017,7 +1017,7 @@
  * @memberof lib.Promise
  *
  * @param { function } callback Обработчик успеха.
- * @param { null | function } [errback] Обработчик ошибки.
+ * @param { null | function } <errback> Обработчик ошибки.
  * @returns { lib.Promise } новое обещание из результатов обработчика.
  */
 
@@ -1182,7 +1182,7 @@
  * @param { String } level Уровень лога.
  * @param { String } channel Канал.
  * @param { Object } context Контекст вызова.
- * @param { * } [args] Дополнительные аргументы.
+ * @param { * } <args> Дополнительные аргументы.
  * 
  */
 
@@ -1244,7 +1244,7 @@
  * Описание настроек эквалайзера.
  * @typedef { Object } Audio.fx.Equalizer.EqualizerPreset
  *
- * @property { String } [id] Идентификатор настроек.
+ * @property { String } <id> Идентификатор настроек.
  * @property { Number } preamp Предусилитель.
  * @property { Number[] } bands Значения для полос эквалайзера.
  */
@@ -1257,7 +1257,9 @@
 /**
  * Общие настройки.
  *
- * @property { Number } retry Количество попыток реинициализации
+ * <ul>
+ * <li><codeph>retry</codeph> { Number } Количество попыток реинициализации</li>
+ * </ul>
  * @name Audio.config.audio
  * @type Object
  */
@@ -1267,15 +1269,17 @@
 /**
  * Настройки подключения Flash-плеера.
  *
- * @property { String } path Путь к .swf файлу флеш-плеера
- * @property { String } name Имя .swf файла флеш-плеера
- * @property { String } version Минимальная версия флеш-плеера
- * @property { String } playerID ID, который будет выставлен для элемента с Flash-плеером
- * @property { String } callback Имя функции-обработчика событий Flash-плеера
- * @property { Number } initTimeout Таймаут инициализации
- * @property { Number } loadTimeout Таймаут загрузки
- * @property { Number } clickTimeout Таймаут инициализации после клика
- * @property { Number } heartBeatInterval Интервал проверки доступности Flash-плеера
+ * <ul>
+ * <li><codeph>path</codeph> { String } Путь к .swf файлу флеш-плеера</li>
+ * <li><codeph>name</codeph> { String } Имя .swf файла флеш-плеера</li>
+ * <li><codeph>version</codeph> { String } Минимальная версия флеш-плеера</li>
+ * <li><codeph>playerID</codeph> { String } ID, который будет выставлен для элемента с Flash-плеером</li>
+ * <li><codeph>callback</codeph> { String } Имя функции-обработчика событий Flash-плеера</li>
+ * <li><codeph>initTimeout</codeph> { Number } Таймаут инициализации</li>
+ * <li><codeph>loadTimeout</codeph> { Number } Таймаут загрузки</li>
+ * <li><codeph>clickTimeout</codeph> { Number } Таймаут инициализации после клика</li>
+ * <li><codeph>heartBeatInterval</codeph> { Number } Интервал проверки доступности Flash-плеера</li>
+ * </ul>
  * @name Audio.config.flash
  * @type Object
  */
@@ -1285,7 +1289,9 @@
 /**
  * Описание настроек HTML5 плеера.
  *
- * @property { String> } blacklist Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</code[]
+ * <ul>
+ * <li><codeph>blacklist</codeph> { String> } Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&amp;lt;platform.version&amp;gt; &amp;lt;platform.os&amp;gt;:&amp;lt;browser.name&amp;gt;/&amp;lt;browser.version&amp;gt;</codeph></li[]
+ * </ul>
  * @name Audio.config.html5
  * @type Object
  */
@@ -1295,9 +1301,14 @@
 /**
  * Информация о браузере
  *
- * @property { string } name название браузера
- * @property { string } version версия
- * @property { number } [documentMode] версия документа (для IE)
+ * <ul>
+
+ * <li><codeph>name</codeph> { string } название браузера</li>
+
+ * <li><codeph>version</codeph> { string } версия</li>
+
+ * <li><codeph>documentMode</codeph> { number } версия документа (для IE)</li>
+ * </ul>
  * @name info.browser
  * @type Object
  */
@@ -1307,10 +1318,16 @@
 /**
  * Информация о платформе
  *
- * @property { string } os тип операционной системы
- * @property { string } type тип платформы
- * @property { boolean } tablet планшет
- * @property { boolean } mobile мобильный
+ * <ul>
+
+ * <li><codeph>os</codeph> { string } тип операционной системы</li>
+
+ * <li><codeph>type</codeph> { string } тип платформы</li>
+
+ * <li><codeph>tablet</codeph> { boolean } планшет</li>
+
+ * <li><codeph>mobile</codeph> { boolean } мобильный</li>
+ * </ul>
  * @name info.platform
  * @type Object
  */
