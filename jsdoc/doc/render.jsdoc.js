@@ -1,5 +1,5 @@
 var cleanupTags = /<\/?(ul|li|p)>/g;
-var bbcodes = /\[(.*?)\]/g;
+var bbcodes = /\[(.+?)\]/g;
 var unescape = /\\(\{|\})/g;
 var beautify_lines = /(\n[\t ]*){3,}/g;
 var beautify_asterix = /([\t ]*\*[\t ]*\n){2,}/g;
