@@ -89,7 +89,7 @@ FlashInterface.prototype.getVolume = function() {
  * @param {Number} duration - длительность трека
  */
 FlashInterface.prototype.play = function(id, src, duration) {
-    this._callFlash("play", id, src, duration);
+    this._callFlash("play", id, src, duration && duration * 1000);
 };
 
 /**
