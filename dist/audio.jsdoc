@@ -137,7 +137,7 @@
 
 /**
  * Получить длительность текущего аудио-файла (в секундах).
- * @method
+ * @function
  * @name ya.music.Audio#getDuration
  * 
  * @param { Boolean | int } preloader - Активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик.
@@ -147,7 +147,7 @@
 
 /**
  * Получить обещание, разрешающееся после завершения инициализации.
- * @method
+ * @function
  * @name ya.music.Audio#initPromise
  * 
  * @returns { Promise } - 
@@ -156,7 +156,7 @@
 
 /**
  * Получить текущий тип реализации плеера.
- * @method
+ * @function
  * @name ya.music.Audio#getType
  * 
  * @returns { String | null } - 
@@ -165,7 +165,7 @@
 
 /**
  * Получить ссылку на текущий трек.
- * @method
+ * @function
  * @name ya.music.Audio#getSrc
  * 
  * @param { int } [offset] - Брать аудио-файл из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
@@ -175,7 +175,7 @@
 
 /**
  * Запуск воспроизведения.
- * @method
+ * @function
  * @name ya.music.Audio#play
  * 
  * @param { String } src - Ссылка на трек.
@@ -186,7 +186,7 @@
 
 /**
  * Перезапуск воспроизведения.
- * @method
+ * @function
  * @name ya.music.Audio#restart
  * 
  * @returns { AbortablePromise } - обещание, которое разрешится, когда трек будет перезапущен.
@@ -195,7 +195,7 @@
 
 /**
  * Остановка воспроизведения.
- * @method
+ * @function
  * @name ya.music.Audio#stop
  * 
  * @param { int } [offset] - Активный плеер или прелоадер. 0 - активный плеер. 1 - прелоадер.
@@ -205,7 +205,7 @@
 
 /**
  * Поставить плеер на паузу.
- * @method
+ * @function
  * @name ya.music.Audio#pause
  * 
  * @returns { AbortablePromise } - обещание, которое  разрешится, когда плеер будет поставлен на паузу.
@@ -214,7 +214,7 @@
 
 /**
  * Снятие плеера с паузы.
- * @method
+ * @function
  * @name ya.music.Audio#resume
  * 
  * @returns { AbortablePromise } - обещание, которое разрешится, когда начнется воспроизведение.
@@ -223,7 +223,7 @@
 
 /**
  * Запуск воспроизведения предзагруженного аудиофайла.
- * @method
+ * @function
  * @name ya.music.Audio#playPreloaded
  * 
  * @param { String } [src] - Ссылка на аудиофайл (для проверки, что в прелоадере нужный трек).
@@ -233,7 +233,7 @@
 
 /**
  * Предзагрузка аудиофайла.
- * @method
+ * @function
  * @name ya.music.Audio#preload
  * 
  * @param { String } src - Ссылка на трек.
@@ -244,7 +244,7 @@
 
 /**
  * Проверка, что аудиофайл предзагружен.
- * @method
+ * @function
  * @name ya.music.Audio#isPreloaded
  * 
  * @param { String } src - Ссылка на трек.
@@ -254,7 +254,7 @@
 
 /**
  * Проверка, что аудиофайл предзагружается.
- * @method
+ * @function
  * @name ya.music.Audio#isPreloading
  * 
  * @param { String } src - Ссылка на трек.
@@ -264,7 +264,7 @@
 
 /**
  * Получение позиции воспроизведения (в секундах).
- * @method
+ * @function
  * @name ya.music.Audio#getPosition
  * 
  * @returns { Number } - 
@@ -273,7 +273,7 @@
 
 /**
  * Установка позиции воспроизведения (в секундах).
- * @method
+ * @function
  * @name ya.music.Audio#setPosition
  * 
  * @param { Number } position - Новая позиция воспроизведения
@@ -283,7 +283,7 @@
 
 /**
  * Получить статус плеера.
- * @method
+ * @function
  * @name ya.music.Audio#getState
  * 
  * @returns { String } - 
@@ -292,7 +292,7 @@
 
 /**
  * Получить длительность загруженной части (в секундах).
- * @method
+ * @function
  * @name ya.music.Audio#getLoaded
  * 
  * @param { Boolean | int } preloader - Активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик.
@@ -302,7 +302,7 @@
 
 /**
  * Получить длительность воспроизведения (в секундах).
- * @method
+ * @function
  * @name ya.music.Audio#getPlayed
  * 
  * @returns { Number } - 
@@ -311,7 +311,7 @@
 
 /**
  * Получить текущее значение громкости плеера.
- * @method
+ * @function
  * @name ya.music.Audio#getVolume
  * 
  * @returns { Number } - 
@@ -320,7 +320,7 @@
 
 /**
  * Установка громкости плеера.
- * @method
+ * @function
  * @name ya.music.Audio#setVolume
  * 
  * @param { Number } volume - Новое значение громкости.
@@ -330,7 +330,7 @@
 
 /**
  * Проверка, что громкость управляется устройством, а не программно.
- * @method
+ * @function
  * @name ya.music.Audio#isDeviceVolume
  * 
  * @returns { Boolean } - true, если громкость управляется устройством, false - иначе.
@@ -339,7 +339,7 @@
 
 /**
  * Включить режим CORS для получения аудио-треков
- * @method
+ * @function
  * @name ya.music.Audio#toggleCrossDomain
  * 
  * @param { Boolean } state - Запрашиваемый статус.
@@ -353,7 +353,7 @@
 реинициализация плеера, которой требуется клик пользователя. При отключении из графа обработки исключаются
 все ноды кроме нод-источников и ноды вывода, управление громкостью переключается на элементы audio, без
 использования GainNode.
- * @method
+ * @function
  * @name ya.music.Audio#toggleWebAudioAPI
  * 
  * @param { Boolean } state - Запрашиваемый статус.
@@ -364,7 +364,7 @@
 /**
  * Подключение аудио препроцессора. Вход препроцессора подключается к аудиоэлементу, у которого выставлена
 100% громкость. Выход препроцессора подключается к GainNode, которая регулирует итоговую громкость.
- * @method
+ * @function
  * @name ya.music.Audio#setAudioPreprocessor
  * 
  * @param { AudioPreprocessor } preprocessor - Препроцессор.
@@ -374,7 +374,7 @@
 
 /**
  * Получить уникальный идентификатор воспроизведения. Создаётся каждый раз при запуске нового трека или перезапуске текущего.
- * @method
+ * @function
  * @name ya.music.Audio#getPlayId
  * 
  * @returns { String } - 
@@ -383,7 +383,7 @@
 
 /**
  * Подписаться на событие (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio#on
  * 
  * @param { String } event - Имя события.
@@ -394,7 +394,7 @@
 
 /**
  * Отписаться от события (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio#off
  * 
  * @param { String } event - Имя события.
@@ -405,7 +405,7 @@
 
 /**
  * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio#once
  * 
  * @param { String } event - Имя события.
@@ -416,7 +416,7 @@
 
 /**
  * Отписаться от всех слушателей событий (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio#clearListeners
  * 
  * @returns { Events } - ссылку на контекст.
@@ -425,7 +425,7 @@
 
 /**
  * Остановить запуск событий (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio#muteEvents
  * 
  * @returns { Events } - ссылку на контекст.
@@ -434,7 +434,7 @@
 
 /**
  * Возобновить запуск событий (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio#unmuteEvents
  * 
  * @returns { Events } - ссылку на контекст.
@@ -804,7 +804,7 @@
 
 /**
  * Загрузить настройки.
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#loadPreset
  * 
  * @param { EqualizerPreset } preset - Настройки.
@@ -814,7 +814,7 @@
 
 /**
  * Сохранить текущие настройки.
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#savePreset
  * 
  * @returns { EqualizerPreset } - 
@@ -823,7 +823,7 @@
 
 /**
  * Вычисляет оптимальное значение предусиления. Функция является экспериментальной.
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#guessPreamp
  * 
  * @returns { number } - значение предусиления.
@@ -832,7 +832,7 @@
 
 /**
  * Подписаться на событие (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#on
  * 
  * @param { String } event - Имя события.
@@ -843,7 +843,7 @@
 
 /**
  * Отписаться от события (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#off
  * 
  * @param { String } event - Имя события.
@@ -854,7 +854,7 @@
 
 /**
  * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#once
  * 
  * @param { String } event - Имя события.
@@ -865,7 +865,7 @@
 
 /**
  * Отписаться от всех слушателей событий (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#clearListeners
  * 
  * @returns { Events } - ссылку на контекст.
@@ -874,7 +874,7 @@
 
 /**
  * Остановить запуск событий (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#muteEvents
  * 
  * @returns { Events } - ссылку на контекст.
@@ -883,7 +883,7 @@
 
 /**
  * Возобновить запуск событий (цепочный метод).
- * @method
+ * @function
  * @name ya.music.Audio.fx.Equalizer#unmuteEvents
  * 
  * @returns { Events } - ссылку на контекст.
@@ -1028,7 +1028,7 @@
 
 /**
  * Сделать запись в лог.
- * @method
+ * @function
  * @name ya.music.Audio.Logger.log
  * 
  * @param { String } level - Уровень лога.
@@ -1055,7 +1055,7 @@
 
 /**
  * Расширить произвольный класс свойствами диспетчера событий.
- * @method
+ * @function
  * @name Events.mixin
  * 
  * @param { function } classConstructor - Конструктор класса.
@@ -1065,7 +1065,7 @@
 
 /**
  * Расширить произвольный объект свойствами диспетчера событий.
- * @method
+ * @function
  * @name Events.eventize
  * 
  * @param { Object } object - Объект.
@@ -1075,7 +1075,7 @@
 
 /**
  * Подписаться на событие (цепочный метод).
- * @method
+ * @function
  * @name Events#on
  * 
  * @param { String } event - Имя события.
@@ -1086,7 +1086,7 @@
 
 /**
  * Отписаться от события (цепочный метод).
- * @method
+ * @function
  * @name Events#off
  * 
  * @param { String } event - Имя события.
@@ -1097,7 +1097,7 @@
 
 /**
  * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
- * @method
+ * @function
  * @name Events#once
  * 
  * @param { String } event - Имя события.
@@ -1108,7 +1108,7 @@
 
 /**
  * Отписаться от всех слушателей событий (цепочный метод).
- * @method
+ * @function
  * @name Events#clearListeners
  * 
  * @returns { Events } - ссылку на контекст.
@@ -1117,7 +1117,7 @@
 
 /**
  * Остановить запуск событий (цепочный метод).
- * @method
+ * @function
  * @name Events#muteEvents
  * 
  * @returns { Events } - ссылку на контекст.
@@ -1126,7 +1126,7 @@
 
 /**
  * Возобновить запуск событий (цепочный метод).
- * @method
+ * @function
  * @name Events#unmuteEvents
  * 
  * @returns { Events } - ссылку на контекст.
@@ -1151,7 +1151,7 @@
 
 /**
  * Отмена действия, связанного с обещанием. Абстрактный метод.
- * @method
+ * @function
  * @name AbortablePromise#abort
  * 
  * @param { String | Error } reason - Причина отмены действия.
@@ -1161,7 +1161,7 @@
 
 /**
  * Назначить обработчики разрешения и отклонения обещания.
- * @method
+ * @function
  * @name AbortablePromise#then
  * 
  * @param { function } callback - Обработчик успеха.
@@ -1172,7 +1172,7 @@
 
 /**
  * Назначить обработчик отклонения обещания.
- * @method
+ * @function
  * @name AbortablePromise#catch
  * 
  * @param { function } errback - Обработчик ошибки.
@@ -1196,7 +1196,7 @@
 
 /**
  * Назначить обработчики разрешения и отклонения обещания.
- * @method
+ * @function
  * @name Promise#then
  * 
  * @param { function } callback - Обработчик успеха.
@@ -1207,7 +1207,7 @@
 
 /**
  * Назначить обработчик отклонения обещания.
- * @method
+ * @function
  * @name Promise#catch
  * 
  * @param { function } errback - Обработчик ошибки.
@@ -1440,7 +1440,7 @@
 
 /**
  * Вычисление значение относительной громкости по значению на логарифмической шкале.
- * @method
+ * @function
  * @name ya.music.Audio.fx.volumeLib.toExponent
  * 
  * @param { Number } value - Значение на шкале.
@@ -1450,7 +1450,7 @@
 
 /**
  * Вычисление положения на логарифмической шкале по значению относительной громкости громкости
- * @method
+ * @function
  * @name ya.music.Audio.fx.volumeLib.fromExponent
  * 
  * @param { Number } volume - Громкость.
@@ -1460,7 +1460,7 @@
 
 /**
  * Вычисление значения dBFS из относительного значения громкости.
- * @method
+ * @function
  * @name ya.music.Audio.fx.volumeLib.toDBFS
  * 
  * @param { Number } volume - Относительная громкость.
@@ -1470,7 +1470,7 @@
 
 /**
  * Вычисление значения относительной громкости из значения dBFS.
- * @method
+ * @function
  * @name ya.music.Audio.fx.volumeLib.fromDBFS
  * 
  * @param { Number } dbfs - Громкость в dBFS.
