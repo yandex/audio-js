@@ -2,13 +2,13 @@
 /**
  * {{{description}}}
  *
- * {[ul]}
+ * <table><tbody><tr><th width="25%">Имя</th><th width="15%">Тип</th><th width="60%">Описание</th></tr>
 {{#each children.member}}
- * {[li]}<codeph>{{{name}}}</codeph> {{>type}} {{{description}}}{[/li]}
+ * <tr><td><strong>{{{name}}}</strong></td><td>{{>type nowrap=1}}</td><td>{{{description}}}</td></tr>
 {{/each}}{{#each properties}}
- * {[li]}<codeph>{{{name}}}</codeph> {{>type}} {{{description}}}{[/li]}
+ * <tr><td><strong>{{{name}}}</strong></td><td>{{>type nowrap=1}}</td><td>{{{description}}}</td></tr>
 {{/each}}
- * {[/ul]}
+ * </tbody></table>
  * @name {{{longname}}}
  * @type Object
  */
@@ -25,5 +25,4 @@
 
 {{> children children}}
 {{/if}}
-
 

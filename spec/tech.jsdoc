@@ -1257,9 +1257,9 @@
 /**
  * Общие настройки.
  *
- * <ul>
- * <li><codeph>retry</codeph> { Number } Количество попыток реинициализации</li>
- * </ul>
+ * <table><tbody><tr><th width="25%">Имя</th><th width="15%">Тип</th><th width="60%">Описание</th></tr>
+ * <tr><td><b>retry</b></td><td>Number </td><td>Количество попыток реинициализации</td></tr>
+ * </tbody></table>
  * @name Audio.config.audio
  * @type Object
  */
@@ -1269,17 +1269,17 @@
 /**
  * Настройки подключения Flash-плеера.
  *
- * <ul>
- * <li><codeph>path</codeph> { String } Путь к .swf файлу флеш-плеера</li>
- * <li><codeph>name</codeph> { String } Имя .swf файла флеш-плеера</li>
- * <li><codeph>version</codeph> { String } Минимальная версия флеш-плеера</li>
- * <li><codeph>playerID</codeph> { String } ID, который будет выставлен для элемента с Flash-плеером</li>
- * <li><codeph>callback</codeph> { String } Имя функции-обработчика событий Flash-плеера</li>
- * <li><codeph>initTimeout</codeph> { Number } Таймаут инициализации</li>
- * <li><codeph>loadTimeout</codeph> { Number } Таймаут загрузки</li>
- * <li><codeph>clickTimeout</codeph> { Number } Таймаут инициализации после клика</li>
- * <li><codeph>heartBeatInterval</codeph> { Number } Интервал проверки доступности Flash-плеера</li>
- * </ul>
+ * <table><tbody><tr><th width="25%">Имя</th><th width="15%">Тип</th><th width="60%">Описание</th></tr>
+ * <tr><td><b>path</b></td><td>String </td><td>Путь к .swf файлу флеш-плеера</td></tr>
+ * <tr><td><b>name</b></td><td>String </td><td>Имя .swf файла флеш-плеера</td></tr>
+ * <tr><td><b>version</b></td><td>String </td><td>Минимальная версия флеш-плеера</td></tr>
+ * <tr><td><b>playerID</b></td><td>String </td><td>ID, который будет выставлен для элемента с Flash-плеером</td></tr>
+ * <tr><td><b>callback</b></td><td>String </td><td>Имя функции-обработчика событий Flash-плеера</td></tr>
+ * <tr><td><b>initTimeout</b></td><td>Number </td><td>Таймаут инициализации</td></tr>
+ * <tr><td><b>loadTimeout</b></td><td>Number </td><td>Таймаут загрузки</td></tr>
+ * <tr><td><b>clickTimeout</b></td><td>Number </td><td>Таймаут инициализации после клика</td></tr>
+ * <tr><td><b>heartBeatInterval</b></td><td>Number </td><td>Интервал проверки доступности Flash-плеера</td></tr>
+ * </tbody></table>
  * @name Audio.config.flash
  * @type Object
  */
@@ -1289,9 +1289,9 @@
 /**
  * Описание настроек HTML5 плеера.
  *
- * <ul>
- * <li><codeph>blacklist</codeph> { String[] } Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&lt;platform.version&gt; &lt;platform.os&gt;:&lt;browser.name&gt;/&lt;browser.version&gt;</codeph></li>
- * </ul>
+ * <table><tbody><tr><th width="25%">Имя</th><th width="15%">Тип</th><th width="60%">Описание</th></tr>
+ * <tr><td><b>blacklist</b></td><td>String[] </td><td>Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&lt;platform.version&gt; &lt;platform.os&gt;:&lt;browser.name&gt;/&lt;browser.version&gt;</codeph></td></tr>
+ * </tbody></table>
  * @name Audio.config.html5
  * @type Object
  */
@@ -1301,14 +1301,14 @@
 /**
  * Информация о браузере
  *
- * <ul>
+ * <table><tbody><tr><th width="25%">Имя</th><th width="15%">Тип</th><th width="60%">Описание</th></tr>
 
- * <li><codeph>name</codeph> { string } название браузера</li>
+ * <tr><td><b>name</b></td><td>string </td><td>название браузера</td></tr>
 
- * <li><codeph>version</codeph> { string } версия</li>
+ * <tr><td><b>version</b></td><td>string </td><td>версия</td></tr>
 
- * <li><codeph>documentMode</codeph> { number } версия документа (для IE)</li>
- * </ul>
+ * <tr><td><b>documentMode</b></td><td>number </td><td>версия документа (для IE)</td></tr>
+ * </tbody></table>
  * @name info.browser
  * @type Object
  */
@@ -1318,16 +1318,16 @@
 /**
  * Информация о платформе
  *
- * <ul>
+ * <table><tbody><tr><th width="25%">Имя</th><th width="15%">Тип</th><th width="60%">Описание</th></tr>
 
- * <li><codeph>os</codeph> { string } тип операционной системы</li>
+ * <tr><td><b>os</b></td><td>string </td><td>тип операционной системы</td></tr>
 
- * <li><codeph>type</codeph> { string } тип платформы</li>
+ * <tr><td><b>type</b></td><td>string </td><td>тип платформы</td></tr>
 
- * <li><codeph>tablet</codeph> { boolean } планшет</li>
+ * <tr><td><b>tablet</b></td><td>boolean </td><td>планшет</td></tr>
 
- * <li><codeph>mobile</codeph> { boolean } мобильный</li>
- * </ul>
+ * <tr><td><b>mobile</b></td><td>boolean </td><td>мобильный</td></tr>
+ * </tbody></table>
  * @name info.platform
  * @type Object
  */
