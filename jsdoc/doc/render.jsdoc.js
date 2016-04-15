@@ -56,7 +56,7 @@ module.exports = function(page, data, style) {
             .replace(/<(\/?)strong>/g, "<$1b>")
             .replace(/ya\.music\./g, "")
             .replace(/Array\.&lt;(.*?)&gt;/g, "$1[]")
-            .replace(/ Error( |$)/g,
+            .replace(/ Error( |$)/mg,
                 " <xref scope=\"external\" href=\"https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error\">Error</xref> ");
     }
 
