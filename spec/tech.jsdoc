@@ -140,62 +140,62 @@
 // Functions
 
 /**
+ * Получить длительность текущего аудио-файла (в секундах).
  * @function
- * 
  * @name getDuration
  * 
  * @memberof Audio
  *
  * @param { Boolean | int } preloader Активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик.
- * @returns { Number } Получить длительность текущего аудио-файла (в секундах).
+ * @returns { Number } 
  */
 
 /**
+ * Получить обещание, разрешающееся после завершения инициализации.
  * @function
- * 
  * @name initPromise
  * 
  * @memberof Audio
  *
- * @returns { lib.Promise } Получить обещание, разрешающееся после завершения инициализации.
+ * @returns { lib.Promise } 
  */
 
 /**
+ * Получить текущий тип реализации плеера.
  * @function
- * 
  * @name getType
  * 
  * @memberof Audio
  *
- * @returns { String | null } Получить текущий тип реализации плеера.Получить текущий тип реализации плеера.
+ * @returns { String | null } 
  */
 
 /**
+ * Получить ссылку на текущий трек.
  * @function
- * 
  * @name getSrc
  * 
  * @memberof Audio
  *
  * @param { int } [offset] Брать аудио-файл из активного плеера или из прелоадера. 0 - активный плеер, 1 - прелоадер.
- * @returns { String | null } Получить ссылку на текущий трек.Получить ссылку на текущий трек.
+ * @returns { String | null } 
  */
 
 /**
+ * Запуск воспроизведения.
  * @function
- * 
  * @name play
  * 
  * @memberof Audio
  *
  * @param { String } src Ссылка на трек.
  * @param { Number } [duration] Длительность аудио-файла. Актуально для Flash-реализации, в ней пока аудио-файл грузится длительность определяется с погрешностью.
- * @returns { AbortablePromise } Запуск воспроизведения.
+ * @returns { AbortablePromise } 
  */
 
 /**
- * @function
  * Перезапуск воспроизведения.
+ * @function
  * @name restart
  * 
  * @memberof Audio
@@ -204,8 +204,8 @@
  */
 
 /**
- * @function
  * Остановка воспроизведения.
+ * @function
  * @name stop
  * 
  * @memberof Audio
@@ -215,8 +215,8 @@
  */
 
 /**
- * @function
  * Поставить плеер на паузу.
+ * @function
  * @name pause
  * 
  * @memberof Audio
@@ -225,8 +225,8 @@
  */
 
 /**
- * @function
  * Снятие плеера с паузы.
+ * @function
  * @name resume
  * 
  * @memberof Audio
@@ -235,8 +235,8 @@
  */
 
 /**
- * @function
  * Запуск воспроизведения предзагруженного аудиофайла.
+ * @function
  * @name playPreloaded
  * 
  * @memberof Audio
@@ -246,8 +246,8 @@
  */
 
 /**
- * @function
  * Предзагрузка аудиофайла.
+ * @function
  * @name preload
  * 
  * @memberof Audio
@@ -258,8 +258,8 @@
  */
 
 /**
- * @function
  * Проверка, что аудиофайл предзагружен.
+ * @function
  * @name isPreloaded
  * 
  * @memberof Audio
@@ -269,8 +269,8 @@
  */
 
 /**
- * @function
  * Проверка, что аудиофайл предзагружается.
+ * @function
  * @name isPreloading
  * 
  * @memberof Audio
@@ -280,18 +280,18 @@
  */
 
 /**
+ * Получение позиции воспроизведения (в секундах).
  * @function
- * 
  * @name getPosition
  * 
  * @memberof Audio
  *
- * @returns { Number } Получение позиции воспроизведения (в секундах).
+ * @returns { Number } 
  */
 
 /**
- * @function
  * Установка позиции воспроизведения (в секундах).
+ * @function
  * @name setPosition
  * 
  * @memberof Audio
@@ -301,49 +301,49 @@
  */
 
 /**
+ * Получить статус плеера.
  * @function
- * 
  * @name getState
  * 
  * @memberof Audio
  *
- * @returns { String } Получить статус плеера.
+ * @returns { String } 
  */
 
 /**
+ * Получить длительность загруженной части (в секундах).
  * @function
- * 
  * @name getLoaded
  * 
  * @memberof Audio
  *
  * @param { Boolean | int } preloader Активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик.
- * @returns { Number } Получить длительность загруженной части (в секундах).
+ * @returns { Number } 
  */
 
 /**
+ * Получить длительность воспроизведения (в секундах).
  * @function
- * 
  * @name getPlayed
  * 
  * @memberof Audio
  *
- * @returns { Number } Получить длительность воспроизведения (в секундах).
+ * @returns { Number } 
  */
 
 /**
+ * Получить текущее значение громкости плеера.
  * @function
- * 
  * @name getVolume
  * 
  * @memberof Audio
  *
- * @returns { Number } Получить текущее значение громкости плеера.
+ * @returns { Number } 
  */
 
 /**
- * @function
  * Установка громкости плеера.
+ * @function
  * @name setVolume
  * 
  * @memberof Audio
@@ -353,8 +353,8 @@
  */
 
 /**
- * @function
  * Проверка, что громкость управляется устройством, а не программно.
+ * @function
  * @name isDeviceVolume
  * 
  * @memberof Audio
@@ -363,8 +363,8 @@
  */
 
 /**
- * @function
  * Включить режим CORS для получения аудио-треков
+ * @function
  * @name toggleCrossDomain
  * 
  * @memberof Audio
@@ -374,12 +374,12 @@
  */
 
 /**
- * @function
  * Переключение режима использования Web Audio API. Доступен только при html5-реализации плеера.
 Внимание!!! После включения режима Web Audio API он не отключается полностью, т.к. для этого требуется
 реинициализация плеера, которой требуется клик пользователя. При отключении из графа обработки исключаются
 все ноды кроме нод-источников и ноды вывода, управление громкостью переключается на элементы audio, без
 использования GainNode.
+ * @function
  * @name toggleWebAudioAPI
  * 
  * @memberof Audio
@@ -389,9 +389,9 @@
  */
 
 /**
- * @function
  * Подключение аудио препроцессора. Вход препроцессора подключается к аудиоэлементу, у которого выставлена
 100% громкость. Выход препроцессора подключается к GainNode, которая регулирует итоговую громкость.
+ * @function
  * @name setAudioPreprocessor
  * 
  * @memberof Audio
@@ -401,13 +401,13 @@
  */
 
 /**
+ * Получить уникальный идентификатор воспроизведения. Создаётся каждый раз при запуске нового трека или перезапуске текущего.
  * @function
- * 
  * @name getPlayId
  * 
  * @memberof Audio
  *
- * @returns { String } Получить уникальный идентификатор воспроизведения. Создаётся каждый раз при запуске нового трека или перезапуске текущего.
+ * @returns { String } 
  */
 
 /*************************************************************/
@@ -803,8 +803,8 @@
 // Functions
 
 /**
- * @function
  * Загрузить настройки.
+ * @function
  * @name loadPreset
  * 
  * @memberof Audio.fx.Equalizer
@@ -814,18 +814,18 @@
  */
 
 /**
+ * Сохранить текущие настройки.
  * @function
- * 
  * @name savePreset
  * 
  * @memberof Audio.fx.Equalizer
  *
- * @returns { EqualizerPreset } Сохранить текущие настройки.
+ * @returns { EqualizerPreset } 
  */
 
 /**
- * @function
  * Вычисляет оптимальное значение предусиления. Функция является экспериментальной.
+ * @function
  * @name guessPreamp
  * 
  * @memberof Audio.fx.Equalizer
@@ -860,8 +860,8 @@
 // Functions
 
 /**
- * @function
  * Разрешить обещание
+ * @function
  * @name resolve
  * 
  * @memberof lib.Deferred
@@ -871,8 +871,8 @@
  */
 
 /**
- * @function
  * Отклонить обещание
+ * @function
  * @name reject
  * 
  * @memberof lib.Deferred
@@ -882,13 +882,13 @@
  */
 
 /**
+ * Получить обещание
  * @function
- * 
  * @name promise
  * 
  * @memberof lib.Deferred
  *
- * @returns { lib.Promise } Получить обещание
+ * @returns { lib.Promise } 
  */
 
 //-----------------------------------------------------------//
@@ -906,8 +906,8 @@
 // Functions
 
 /**
- * @function
  * Расширить произвольный класс свойствами диспетчера событий.
+ * @function
  * @name mixin
  * 
  * @memberof lib.Events
@@ -918,8 +918,8 @@
  */
 
 /**
- * @function
  * Расширить произвольный объект свойствами диспетчера событий.
+ * @function
  * @name eventize
  * 
  * @memberof lib.Events
@@ -930,8 +930,8 @@
  */
 
 /**
- * @function
  * Подписаться на событие (цепочный метод).
+ * @function
  * @name on
  * 
  * @memberof lib.Events
@@ -942,8 +942,8 @@
  */
 
 /**
- * @function
  * Отписаться от события (цепочный метод).
+ * @function
  * @name off
  * 
  * @memberof lib.Events
@@ -954,8 +954,8 @@
  */
 
 /**
- * @function
  * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
+ * @function
  * @name once
  * 
  * @memberof lib.Events
@@ -966,8 +966,8 @@
  */
 
 /**
- * @function
  * Отписаться от всех слушателей событий (цепочный метод).
+ * @function
  * @name clearListeners
  * 
  * @memberof lib.Events
@@ -976,8 +976,8 @@
  */
 
 /**
- * @function
  * Остановить запуск событий (цепочный метод).
+ * @function
  * @name muteEvents
  * 
  * @memberof lib.Events
@@ -986,8 +986,8 @@
  */
 
 /**
- * @function
  * Возобновить запуск событий (цепочный метод).
+ * @function
  * @name unmuteEvents
  * 
  * @memberof lib.Events
@@ -1010,8 +1010,8 @@
 // Functions
 
 /**
- * @function
  * Назначить обработчики разрешения и отклонения обещания.
+ * @function
  * @name then
  * 
  * @memberof lib.Promise
@@ -1022,8 +1022,8 @@
  */
 
 /**
- * @function
  * Назначить обработчик отклонения обещания.
+ * @function
  * @name catch
  * 
  * @memberof lib.Promise
@@ -1172,8 +1172,8 @@
 // Functions
 
 /**
- * @function
  * Сделать запись в лог.
+ * @function
  * @name log
  * 
  * @memberof Logger
@@ -1203,8 +1203,8 @@
 // Functions
 
 /**
- * @function
  * Отмена действия, связанного с обещанием. Абстрактный метод.
+ * @function
  * @name abort
  * 
  * @memberof AbortablePromise
@@ -1369,47 +1369,47 @@
 // Functions
 
 /**
+ * Вычисление значение относительной громкости по значению на логарифмической шкале.
  * @function
- * 
  * @name toExponent
  * 
  * @memberof Audio.fx.volumeLib
  *
  * @param { Number } value Значение на шкале.
- * @returns { Number } Вычисление значение относительной громкости по значению на логарифмической шкале.
+ * @returns { Number } 
  */
 
 /**
+ * Вычисление положения на логарифмической шкале по значению относительной громкости громкости
  * @function
- * 
  * @name fromExponent
  * 
  * @memberof Audio.fx.volumeLib
  *
  * @param { Number } volume Громкость.
- * @returns { Number } Вычисление положения на логарифмической шкале по значению относительной громкости громкости
+ * @returns { Number } 
  */
 
 /**
+ * Вычисление значения dBFS из относительного значения громкости.
  * @function
- * 
  * @name toDBFS
  * 
  * @memberof Audio.fx.volumeLib
  *
  * @param { Number } volume Относительная громкость.
- * @returns { Number } Вычисление значения dBFS из относительного значения громкости.
+ * @returns { Number } 
  */
 
 /**
+ * Вычисление значения относительной громкости из значения dBFS.
  * @function
- * 
  * @name fromDBFS
  * 
  * @memberof Audio.fx.volumeLib
  *
  * @param { Number } dbfs Громкость в dBFS.
- * @returns { Number } Вычисление значения относительной громкости из значения dBFS.
+ * @returns { Number } 
  */
 
 //-----------------------------------------------------------//

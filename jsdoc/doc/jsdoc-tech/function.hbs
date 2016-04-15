@@ -1,13 +1,13 @@
 {{#unless inherited}}
 /**
+ * {{{description}}}
  * @function
- * {{#if returns.description}}{{{description}}}{{else}}{{#unless returns.type.names}}{{{description}}}{{/unless}}{{/if}}
  * @name {{name}}
  * {{#if exported}}@alias {{exported}}{{/if}}
  * {{#if parent}}@memberof {{parent.longname}}{{/if}}
  * {{#if inner}}@inner{{/if}}
  * {{#unless parent.namespace}}{{#if static}}@static{{/if}}{{/unless}}
 {{> params-table}}
- * {{#if returns.type.names}}@returns {{>type returns}} {{#if returns.description}}{{{returns.description}}}{{else returns.type.names}}{{{../description}}}{{/if}}{{/if}}
+ * {{#if returns.type.names}}@returns {{>type returns}} {{{returns.description}}}{{/if}}
  */
 {{/unless}}
