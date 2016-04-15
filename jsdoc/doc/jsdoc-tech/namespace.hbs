@@ -2,13 +2,13 @@
 /**
  * {{{description}}}
  *
- * <table><tbody><tr><th width="25%">Имя</th><th width="15%">Тип</th><th width="60%">Описание</th></tr>
+ * <table><tgroup cols="3"><colspec colname="method_name" colnum="1"/><colspec colname="default_value" colnum="2"/><colspec colname="description" colnum="3"/><thead><row><entry align="left" translate="no">Параметр</entry><entry align="left" translate="no">Значение по умолчанию</entry><entry align="left" translate="no">Описание</entry></row></thead><tbody>
 {{#each children.member}}
  * <tr><td><strong>{{{name}}}</strong></td><td>{{>type nowrap=1}}</td><td>{{{description}}}</td></tr>
 {{/each}}{{#each properties}}
  * <tr><td><strong>{{{name}}}</strong></td><td>{{>type nowrap=1}}</td><td>{{{description}}}</td></tr>
 {{/each}}
- * </tbody></table>
+ * </tbody></tgroup></table>
  * @name {{{longname}}}
  * @type Object
  */
