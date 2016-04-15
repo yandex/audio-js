@@ -4,9 +4,9 @@
  *
  * <table><tgroup cols="3"><colspec colname="method_name" colnum="1"/><colspec colname="default_value" colnum="2"/><colspec colname="description" colnum="3"/><thead><row><entry align="left" translate="no">Параметр</entry><entry align="left" translate="no">Значение по умолчанию</entry><entry align="left" translate="no">Описание</entry></row></thead><tbody>
 {{#each children.member}}
- * <tr><td><strong>{{{name}}}</strong></td><td>{{>type nowrap=1}}</td><td>{{{description}}}</td></tr>
+ * <row><entry><strong>{{{name}}}</strong></entry><entry>{{>type nowrap=1}}</entry><entry>{{{description}}}</entry></row>
 {{/each}}{{#each properties}}
- * <tr><td><strong>{{{name}}}</strong></td><td>{{>type nowrap=1}}</td><td>{{{description}}}</td></tr>
+ * <row><entry><strong>{{{name}}}</strong></entry><entry>{{>type nowrap=1}}</entry><entry>{{{description}}}</entry></row>
 {{/each}}
  * </tbody></tgroup></table>
  * @name {{{longname}}}

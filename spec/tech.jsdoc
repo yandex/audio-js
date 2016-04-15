@@ -1258,7 +1258,7 @@
  * Общие настройки.
  *
  * <table><tgroup cols="3"><colspec colname="method_name" colnum="1"/><colspec colname="default_value" colnum="2"/><colspec colname="description" colnum="3"/><thead><row><entry align="left" translate="no">Параметр</entry><entry align="left" translate="no">Значение по умолчанию</entry><entry align="left" translate="no">Описание</entry></row></thead><tbody>
- * <tr><td><b>retry</b></td><td>Number </td><td>Количество попыток реинициализации</td></tr>
+ * <row><entry><b>retry</b></entry><entry>Number </entry><entry>Количество попыток реинициализации</entry></row>
  * </tbody></tgroup></table>
  * @name Audio.config.audio
  * @type Object
@@ -1270,15 +1270,15 @@
  * Настройки подключения Flash-плеера.
  *
  * <table><tgroup cols="3"><colspec colname="method_name" colnum="1"/><colspec colname="default_value" colnum="2"/><colspec colname="description" colnum="3"/><thead><row><entry align="left" translate="no">Параметр</entry><entry align="left" translate="no">Значение по умолчанию</entry><entry align="left" translate="no">Описание</entry></row></thead><tbody>
- * <tr><td><b>path</b></td><td>String </td><td>Путь к .swf файлу флеш-плеера</td></tr>
- * <tr><td><b>name</b></td><td>String </td><td>Имя .swf файла флеш-плеера</td></tr>
- * <tr><td><b>version</b></td><td>String </td><td>Минимальная версия флеш-плеера</td></tr>
- * <tr><td><b>playerID</b></td><td>String </td><td>ID, который будет выставлен для элемента с Flash-плеером</td></tr>
- * <tr><td><b>callback</b></td><td>String </td><td>Имя функции-обработчика событий Flash-плеера</td></tr>
- * <tr><td><b>initTimeout</b></td><td>Number </td><td>Таймаут инициализации</td></tr>
- * <tr><td><b>loadTimeout</b></td><td>Number </td><td>Таймаут загрузки</td></tr>
- * <tr><td><b>clickTimeout</b></td><td>Number </td><td>Таймаут инициализации после клика</td></tr>
- * <tr><td><b>heartBeatInterval</b></td><td>Number </td><td>Интервал проверки доступности Flash-плеера</td></tr>
+ * <row><entry><b>path</b></entry><entry>String </entry><entry>Путь к .swf файлу флеш-плеера</entry></row>
+ * <row><entry><b>name</b></entry><entry>String </entry><entry>Имя .swf файла флеш-плеера</entry></row>
+ * <row><entry><b>version</b></entry><entry>String </entry><entry>Минимальная версия флеш-плеера</entry></row>
+ * <row><entry><b>playerID</b></entry><entry>String </entry><entry>ID, который будет выставлен для элемента с Flash-плеером</entry></row>
+ * <row><entry><b>callback</b></entry><entry>String </entry><entry>Имя функции-обработчика событий Flash-плеера</entry></row>
+ * <row><entry><b>initTimeout</b></entry><entry>Number </entry><entry>Таймаут инициализации</entry></row>
+ * <row><entry><b>loadTimeout</b></entry><entry>Number </entry><entry>Таймаут загрузки</entry></row>
+ * <row><entry><b>clickTimeout</b></entry><entry>Number </entry><entry>Таймаут инициализации после клика</entry></row>
+ * <row><entry><b>heartBeatInterval</b></entry><entry>Number </entry><entry>Интервал проверки доступности Flash-плеера</entry></row>
  * </tbody></tgroup></table>
  * @name Audio.config.flash
  * @type Object
@@ -1290,7 +1290,7 @@
  * Описание настроек HTML5 плеера.
  *
  * <table><tgroup cols="3"><colspec colname="method_name" colnum="1"/><colspec colname="default_value" colnum="2"/><colspec colname="description" colnum="3"/><thead><row><entry align="left" translate="no">Параметр</entry><entry align="left" translate="no">Значение по умолчанию</entry><entry align="left" translate="no">Описание</entry></row></thead><tbody>
- * <tr><td><b>blacklist</b></td><td>String[] </td><td>Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&lt;platform.version&gt; &lt;platform.os&gt;:&lt;browser.name&gt;/&lt;browser.version&gt;</codeph></td></tr>
+ * <row><entry><b>blacklist</b></entry><entry>String[] </entry><entry>Список идентификаторов для которых лучше не использовать html5 плеер. Используется при авто-определении типа плеера. Идентификаторы сравниваются со строкой построенной по шаблону <codeph>@&lt;platform.version&gt; &lt;platform.os&gt;:&lt;browser.name&gt;/&lt;browser.version&gt;</codeph></entry></row>
  * </tbody></tgroup></table>
  * @name Audio.config.html5
  * @type Object
@@ -1303,11 +1303,11 @@
  *
  * <table><tgroup cols="3"><colspec colname="method_name" colnum="1"/><colspec colname="default_value" colnum="2"/><colspec colname="description" colnum="3"/><thead><row><entry align="left" translate="no">Параметр</entry><entry align="left" translate="no">Значение по умолчанию</entry><entry align="left" translate="no">Описание</entry></row></thead><tbody>
 
- * <tr><td><b>name</b></td><td>string </td><td>название браузера</td></tr>
+ * <row><entry><b>name</b></entry><entry>string </entry><entry>название браузера</entry></row>
 
- * <tr><td><b>version</b></td><td>string </td><td>версия</td></tr>
+ * <row><entry><b>version</b></entry><entry>string </entry><entry>версия</entry></row>
 
- * <tr><td><b>documentMode</b></td><td>number </td><td>версия документа (для IE)</td></tr>
+ * <row><entry><b>documentMode</b></entry><entry>number </entry><entry>версия документа (для IE)</entry></row>
  * </tbody></tgroup></table>
  * @name info.browser
  * @type Object
@@ -1320,13 +1320,13 @@
  *
  * <table><tgroup cols="3"><colspec colname="method_name" colnum="1"/><colspec colname="default_value" colnum="2"/><colspec colname="description" colnum="3"/><thead><row><entry align="left" translate="no">Параметр</entry><entry align="left" translate="no">Значение по умолчанию</entry><entry align="left" translate="no">Описание</entry></row></thead><tbody>
 
- * <tr><td><b>os</b></td><td>string </td><td>тип операционной системы</td></tr>
+ * <row><entry><b>os</b></entry><entry>string </entry><entry>тип операционной системы</entry></row>
 
- * <tr><td><b>type</b></td><td>string </td><td>тип платформы</td></tr>
+ * <row><entry><b>type</b></entry><entry>string </entry><entry>тип платформы</entry></row>
 
- * <tr><td><b>tablet</b></td><td>boolean </td><td>планшет</td></tr>
+ * <row><entry><b>tablet</b></entry><entry>boolean </entry><entry>планшет</entry></row>
 
- * <tr><td><b>mobile</b></td><td>boolean </td><td>мобильный</td></tr>
+ * <row><entry><b>mobile</b></entry><entry>boolean </entry><entry>мобильный</entry></row>
  * </tbody></tgroup></table>
  * @name info.platform
  * @type Object
