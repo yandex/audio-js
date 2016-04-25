@@ -13,8 +13,92 @@
     * [Deferred](#Deferred)
     * [Events](#Events)
     * [Promise](#Promise)
+    * [Error](#ErrorClass)
+    * [pureInstance](#pureInstance)
+    * [merge](#merge)
   * [info](#info)
   * [Logger](#Logger)
+
+----
+
+##<a name="Events"></a> *class* Events
+
+**Доступен извне как:** `ya.music.lib.Events`
+
+Диспетчер событий.
+
+#### new Events()
+
+#### <a name="Events.mixin"></a> Events.mixin (classConstructor: function) : function 
+
+Расширить произвольный класс свойствами диспетчера событий.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| classConstructor | function |  | Конструктор класса. |
+
+> **Возвращает:** тот же конструктор класса, расширенный свойствами диспетчера событий.
+
+#### <a name="Events.eventize"></a> Events.eventize (object: Object) : Object 
+
+Расширить произвольный объект свойствами диспетчера событий.
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| object | Object |  | Объект. |
+
+> **Возвращает:** тот же объект, расширенный свойствами диспетчера событий.
+
+#### <a name="Events..on"></a> Events#on (event: String, callback: function) : [Events](#Events) 
+
+Подписаться на событие (цепочный метод).
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| event | String |  | Имя события. |
+| callback | function |  | Обработчик события. |
+
+> **Возвращает:** ссылку на контекст.
+
+#### <a name="Events..off"></a> Events#off (event: String, callback: function) : [Events](#Events) 
+
+Отписаться от события (цепочный метод).
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| event | String |  | Имя события. |
+| callback | function |  | Обработчик события. |
+
+> **Возвращает:** ссылку на контекст.
+
+#### <a name="Events..once"></a> Events#once (event: String, callback: function) : [Events](#Events) 
+
+Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| event | String |  | Имя события. |
+| callback | function |  | Обработчик события. |
+
+> **Возвращает:** ссылку на контекст.
+
+#### <a name="Events..clearListeners"></a> Events#clearListeners () : [Events](#Events) 
+
+Отписаться от всех слушателей событий (цепочный метод).
+
+> **Возвращает:** ссылку на контекст.
+
+#### <a name="Events..muteEvents"></a> Events#muteEvents () : [Events](#Events) 
+
+Остановить запуск событий (цепочный метод).
+
+> **Возвращает:** ссылку на контекст.
+
+#### <a name="Events..unmuteEvents"></a> Events#unmuteEvents () : [Events](#Events) 
+
+Возобновить запуск событий (цепочный метод).
+
+> **Возвращает:** ссылку на контекст.
 
 ----
 
@@ -415,60 +499,6 @@
 
 ----
 
-##<a name="AudioError"></a> *class* AudioError
-
-**Доступен извне как:** `ya.music.Audio.AudioError`
-
-Класс ошибки аудиопллеера.
-
-**Расширяет:**
-
-  - Error
-
-#### new AudioError(message: String)
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| message | String |  | Текст ошибки. |
-
-#### AudioError.NO_IMPLEMENTATION : String
-
-Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
-
-#### AudioError.NOT_PRELOADED : String
-
-Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
-
-#### AudioError.BAD_STATE : String
-
-Действие недоступно из текущего состояния.
-
-#### AudioError.FLASH_BLOCKER : String
-
-Flash-плеер был заблокирован.
-
-#### AudioError.FLASH_UNKNOWN_CRASH : String
-
-Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
-
-#### AudioError.FLASH_INIT_TIMEOUT : String
-
-Возникла ошибка при инициализации Flash-плеера из-за таймаута.
-
-#### AudioError.FLASH_INTERNAL_ERROR : String
-
-Внутренняя ошибка Flash-плеера.
-
-#### AudioError.FLASH_EMMITER_NOT_FOUND : String
-
-Попытка вызвать недоступный экземляр Flash-плеера.
-
-#### AudioError.FLASH_NOT_RESPONDING : String
-
-Flash-плеер перестал отвечать на запросы.
-
-----
-
 ##<a name="PlaybackError"></a> *class* PlaybackError
 
 **Доступен извне как:** `ya.music.Audio.PlaybackError`
@@ -651,84 +681,80 @@ Flash-плеер перестал отвечать на запросы.
 
 ----
 
-##<a name="Events"></a> *class* Events
+##<a name="AudioError"></a> *class* AudioError
 
-**Доступен извне как:** `ya.music.lib.Events`
+**Доступен извне как:** `ya.music.Audio.AudioError`
 
-Диспетчер событий.
+Класс ошибки аудиопллеера.
 
-#### new Events()
+**Расширяет:**
 
-#### <a name="Events.mixin"></a> Events.mixin (classConstructor: function) : function 
+  - Error
 
-Расширить произвольный класс свойствами диспетчера событий.
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| classConstructor | function |  | Конструктор класса. |
-
-> **Возвращает:** тот же конструктор класса, расширенный свойствами диспетчера событий.
-
-#### <a name="Events.eventize"></a> Events.eventize (object: Object) : Object 
-
-Расширить произвольный объект свойствами диспетчера событий.
+#### new AudioError(message: String)
 
 | Имя | Тип | * | Описание |
 | --- | --- | --- | --- |
-| object | Object |  | Объект. |
+| message | String |  | Текст ошибки. |
 
-> **Возвращает:** тот же объект, расширенный свойствами диспетчера событий.
+#### AudioError.NO_IMPLEMENTATION : String
 
-#### <a name="Events..on"></a> Events#on (event: String, callback: function) : [Events](#Events) 
+Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
 
-Подписаться на событие (цепочный метод).
+#### AudioError.NOT_PRELOADED : String
+
+Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
+
+#### AudioError.BAD_STATE : String
+
+Действие недоступно из текущего состояния.
+
+#### AudioError.FLASH_BLOCKER : String
+
+Flash-плеер был заблокирован.
+
+#### AudioError.FLASH_UNKNOWN_CRASH : String
+
+Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
+
+#### AudioError.FLASH_INIT_TIMEOUT : String
+
+Возникла ошибка при инициализации Flash-плеера из-за таймаута.
+
+#### AudioError.FLASH_INTERNAL_ERROR : String
+
+Внутренняя ошибка Flash-плеера.
+
+#### AudioError.FLASH_EMMITER_NOT_FOUND : String
+
+Попытка вызвать недоступный экземляр Flash-плеера.
+
+#### AudioError.FLASH_NOT_RESPONDING : String
+
+Flash-плеер перестал отвечать на запросы.
+
+----
+
+##<a name="LoaderError"></a> *class* LoaderError
+
+**Доступен извне как:** `ya.music.Audio.LoaderError`
+
+Класс ошибок загрузчика.
+Расширяет Error.
+
+#### new LoaderError(message: String)
 
 | Имя | Тип | * | Описание |
 | --- | --- | --- | --- |
-| event | String |  | Имя события. |
-| callback | function |  | Обработчик события. |
+| message | String |  | Текст ошибки. |
 
-> **Возвращает:** ссылку на контекст.
+#### LoaderError.TIMEOUT : String
 
-#### <a name="Events..off"></a> Events#off (event: String, callback: function) : [Events](#Events) 
+Таймаут загрузки.
 
-Отписаться от события (цепочный метод).
+#### LoaderError.FAILED : String
 
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| event | String |  | Имя события. |
-| callback | function |  | Обработчик события. |
-
-> **Возвращает:** ссылку на контекст.
-
-#### <a name="Events..once"></a> Events#once (event: String, callback: function) : [Events](#Events) 
-
-Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
-
-| Имя | Тип | * | Описание |
-| --- | --- | --- | --- |
-| event | String |  | Имя события. |
-| callback | function |  | Обработчик события. |
-
-> **Возвращает:** ссылку на контекст.
-
-#### <a name="Events..clearListeners"></a> Events#clearListeners () : [Events](#Events) 
-
-Отписаться от всех слушателей событий (цепочный метод).
-
-> **Возвращает:** ссылку на контекст.
-
-#### <a name="Events..muteEvents"></a> Events#muteEvents () : [Events](#Events) 
-
-Остановить запуск событий (цепочный метод).
-
-> **Возвращает:** ссылку на контекст.
-
-#### <a name="Events..unmuteEvents"></a> Events#unmuteEvents () : [Events](#Events) 
-
-Возобновить запуск событий (цепочный метод).
-
-> **Возвращает:** ссылку на контекст.
+Ошибка запроса на загрузку.
 
 ----
 
@@ -763,26 +789,30 @@ Flash-плеер перестал отвечать на запросы.
 
 ----
 
-##<a name="LoaderError"></a> *class* LoaderError
+##<a name="ErrorClass"></a> *class* ErrorClass
 
-**Доступен извне как:** `ya.music.Audio.LoaderError`
+**Доступен извне как:** `ya.music.lib.Error`
 
-Класс ошибок загрузчика.
-Расширяет Error.
+Класс ошибки. Оригинальный Error ведёт себя как фабрика, а не как класс. Этот объект ведёт себя как класс и его можно наследовать.
 
-#### new LoaderError(message: String)
+**Расширяет:**
+
+  - Error
+
+#### new ErrorClass(message: String, id: Number)
 
 | Имя | Тип | * | Описание |
 | --- | --- | --- | --- |
-| message | String |  | Текст ошибки. |
+| *\[message\]* | String |  | сообщение |
+| *\[id\]* | Number |  | идентификатор ошибки |
 
-#### LoaderError.TIMEOUT : String
+#### <a name="ErrorClass.create"></a> ErrorClass.create (name: String) : [ErrorClass](#ErrorClass) 
 
-Таймаут загрузки.
+Сахар для быстрого создания нового класса ошибок.
 
-#### LoaderError.FAILED : String
-
-Ошибка запроса на загрузку.
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| name | String |  | имя создаваемого класса |
 
 ----
 
@@ -879,6 +909,32 @@ Flash-плеер перестал отвечать на запросы.
 | errback | function |  | Обработчик ошибки. |
 
 > **Возвращает:** новое обещание из результатов обработчика.
+
+----
+
+## Функции
+
+#### <a name=""></a>pureInstance (OriginalClass: function) : OriginalClass 
+
+**Доступен извне как:** `ya.music.lib.pureInstance`
+
+Создаёт экземпляр класса, но не запускает его конструктор
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| OriginalClass | function |  | класс |
+
+#### <a name=""></a>merge (initial: Object, ...args: Object, extend: Boolean) : Object 
+
+**Доступен извне как:** `ya.music.lib.merge`
+
+Объединение объектов
+
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+| initial | Object |  | начальный объект |
+| ...args | Object |  | список объектов которые надо объединить с начальным |
+| *\[extend\]* | Boolean |  | если последний аргумент true, то будет модифицирован начальный объект, в противном случае будет создана неглубокая копия. |
 
 ----
 

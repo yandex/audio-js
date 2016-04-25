@@ -5,6 +5,110 @@
 //-----------------------------------------------------------//
 
 /**
+ * @class Диспетчер событий.
+ * @name lib.Events
+ *
+ * @constructor
+ *
+ */
+
+/*************************************************************/
+
+// Functions
+
+/**
+ * Расширить произвольный класс свойствами диспетчера событий.
+ * @function
+ * @name mixin
+ * 
+ * @memberof lib.Events
+ * 
+ * @static
+ * @param { function } classConstructor Конструктор класса.
+ * @returns { function } тот же конструктор класса, расширенный свойствами диспетчера событий.
+ */
+
+/**
+ * Расширить произвольный объект свойствами диспетчера событий.
+ * @function
+ * @name eventize
+ * 
+ * @memberof lib.Events
+ * 
+ * @static
+ * @param { Object } object Объект.
+ * @returns { Object } тот же объект, расширенный свойствами диспетчера событий.
+ */
+
+/**
+ * Подписаться на событие (цепочный метод).
+ * @function
+ * @name on
+ * 
+ * @memberof lib.Events
+ *
+ * @param { String } event Имя события.
+ * @param { function } callback Обработчик события.
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Отписаться от события (цепочный метод).
+ * @function
+ * @name off
+ * 
+ * @memberof lib.Events
+ *
+ * @param { String } event Имя события.
+ * @param { function } callback Обработчик события.
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
+ * @function
+ * @name once
+ * 
+ * @memberof lib.Events
+ *
+ * @param { String } event Имя события.
+ * @param { function } callback Обработчик события.
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Отписаться от всех слушателей событий (цепочный метод).
+ * @function
+ * @name clearListeners
+ * 
+ * @memberof lib.Events
+ *
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Остановить запуск событий (цепочный метод).
+ * @function
+ * @name muteEvents
+ * 
+ * @memberof lib.Events
+ *
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Возобновить запуск событий (цепочный метод).
+ * @function
+ * @name unmuteEvents
+ * 
+ * @memberof lib.Events
+ *
+ * @returns { lib.Events } ссылку на контекст.
+ */
+
+//-----------------------------------------------------------//
+
+/**
  * @class Аудиоплеер для браузера.
  * @name Audio
  *
@@ -539,132 +643,6 @@
 //-----------------------------------------------------------//
 
 /**
- * @class Класс ошибки аудиопллеера.
- * @name Audio.AudioError
- *
- * @extends <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref> 
- *
- * @constructor
- * 
- * @param { String } message Текст ошибки.
- * 
- */
-
-/*************************************************************/
-
-// Members
-
-/**
- * Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
- * @field
- * @name NO_IMPLEMENTATION
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
- * @field
- * @name NOT_PRELOADED
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Действие недоступно из текущего состояния.
- * @field
- * @name BAD_STATE
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Flash-плеер был заблокирован.
- * @field
- * @name FLASH_BLOCKER
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
- * @field
- * @name FLASH_UNKNOWN_CRASH
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Возникла ошибка при инициализации Flash-плеера из-за таймаута.
- * @field
- * @name FLASH_INIT_TIMEOUT
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Внутренняя ошибка Flash-плеера.
- * @field
- * @name FLASH_INTERNAL_ERROR
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Попытка вызвать недоступный экземляр Flash-плеера.
- * @field
- * @name FLASH_EMMITER_NOT_FOUND
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-/**
- * Flash-плеер перестал отвечать на запросы.
- * @field
- * @name FLASH_NOT_RESPONDING
- * @type String 
- * @const
- * @memberof Audio.AudioError
- * 
- * @static 
- *
- */
-
-//-----------------------------------------------------------//
-
-/**
  * @class Класс ошибки воспроизведения.
  * @name Audio.PlaybackError
  *
@@ -894,105 +872,168 @@
 //-----------------------------------------------------------//
 
 /**
- * @class Диспетчер событий.
- * @name lib.Events
+ * @class Класс ошибки аудиопллеера.
+ * @name Audio.AudioError
+ *
+ * @extends <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref> 
  *
  * @constructor
- *
+ * 
+ * @param { String } message Текст ошибки.
+ * 
  */
 
 /*************************************************************/
 
-// Functions
+// Members
 
 /**
- * Расширить произвольный класс свойствами диспетчера событий.
- * @function
- * @name mixin
+ * Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
+ * @field
+ * @name NO_IMPLEMENTATION
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
  * 
- * @memberof lib.Events
- * 
- * @static
- * @param { function } classConstructor Конструктор класса.
- * @returns { function } тот же конструктор класса, расширенный свойствами диспетчера событий.
- */
-
-/**
- * Расширить произвольный объект свойствами диспетчера событий.
- * @function
- * @name eventize
- * 
- * @memberof lib.Events
- * 
- * @static
- * @param { Object } object Объект.
- * @returns { Object } тот же объект, расширенный свойствами диспетчера событий.
- */
-
-/**
- * Подписаться на событие (цепочный метод).
- * @function
- * @name on
- * 
- * @memberof lib.Events
+ * @static 
  *
- * @param { String } event Имя события.
- * @param { function } callback Обработчик события.
- * @returns { lib.Events } ссылку на контекст.
  */
 
 /**
- * Отписаться от события (цепочный метод).
- * @function
- * @name off
+ * Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
+ * @field
+ * @name NOT_PRELOADED
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
  * 
- * @memberof lib.Events
+ * @static 
  *
- * @param { String } event Имя события.
- * @param { function } callback Обработчик события.
- * @returns { lib.Events } ссылку на контекст.
  */
 
 /**
- * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
- * @function
- * @name once
+ * Действие недоступно из текущего состояния.
+ * @field
+ * @name BAD_STATE
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
  * 
- * @memberof lib.Events
+ * @static 
  *
- * @param { String } event Имя события.
- * @param { function } callback Обработчик события.
- * @returns { lib.Events } ссылку на контекст.
  */
 
 /**
- * Отписаться от всех слушателей событий (цепочный метод).
- * @function
- * @name clearListeners
+ * Flash-плеер был заблокирован.
+ * @field
+ * @name FLASH_BLOCKER
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
  * 
- * @memberof lib.Events
+ * @static 
  *
- * @returns { lib.Events } ссылку на контекст.
  */
 
 /**
- * Остановить запуск событий (цепочный метод).
- * @function
- * @name muteEvents
+ * Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
+ * @field
+ * @name FLASH_UNKNOWN_CRASH
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
  * 
- * @memberof lib.Events
+ * @static 
  *
- * @returns { lib.Events } ссылку на контекст.
  */
 
 /**
- * Возобновить запуск событий (цепочный метод).
- * @function
- * @name unmuteEvents
+ * Возникла ошибка при инициализации Flash-плеера из-за таймаута.
+ * @field
+ * @name FLASH_INIT_TIMEOUT
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
  * 
- * @memberof lib.Events
+ * @static 
  *
- * @returns { lib.Events } ссылку на контекст.
+ */
+
+/**
+ * Внутренняя ошибка Flash-плеера.
+ * @field
+ * @name FLASH_INTERNAL_ERROR
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
+
+/**
+ * Попытка вызвать недоступный экземляр Flash-плеера.
+ * @field
+ * @name FLASH_EMMITER_NOT_FOUND
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
+
+/**
+ * Flash-плеер перестал отвечать на запросы.
+ * @field
+ * @name FLASH_NOT_RESPONDING
+ * @type String 
+ * @const
+ * @memberof Audio.AudioError
+ * 
+ * @static 
+ *
+ */
+
+//-----------------------------------------------------------//
+
+/**
+ * @class Класс ошибок загрузчика.
+Расширяет Error.
+ * @name Audio.LoaderError
+ *
+ * @constructor
+ * 
+ * @param { String } message Текст ошибки.
+ * 
+ */
+
+/*************************************************************/
+
+// Members
+
+/**
+ * Таймаут загрузки.
+ * @field
+ * @name TIMEOUT
+ * @type String 
+ * @const
+ * @memberof Audio.LoaderError
+ * 
+ * @static 
+ *
+ */
+
+/**
+ * Ошибка запроса на загрузку.
+ * @field
+ * @name FAILED
+ * @type String 
+ * @const
+ * @memberof Audio.LoaderError
+ * 
+ * @static 
+ *
  */
 
 //-----------------------------------------------------------//
@@ -1035,42 +1076,32 @@
 //-----------------------------------------------------------//
 
 /**
- * @class Класс ошибок загрузчика.
-Расширяет Error.
- * @name Audio.LoaderError
+ * @class Класс ошибки. Оригинальный <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref> ведёт себя как фабрика, а не как класс. Этот объект ведёт себя как класс и его можно наследовать.
+ * @name lib.Error
+ *
+ * @extends <xref scope="external" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</xref> 
  *
  * @constructor
  * 
- * @param { String } message Текст ошибки.
+ * @param { String } [message] сообщение
+ * @param { Number } [id] идентификатор ошибки
  * 
  */
 
 /*************************************************************/
 
-// Members
+// Functions
 
 /**
- * Таймаут загрузки.
- * @field
- * @name TIMEOUT
- * @type String 
- * @const
- * @memberof Audio.LoaderError
+ * Сахар для быстрого создания нового класса ошибок.
+ * @function
+ * @name create
  * 
- * @static 
- *
- */
-
-/**
- * Ошибка запроса на загрузку.
- * @field
- * @name FAILED
- * @type String 
- * @const
- * @memberof Audio.LoaderError
+ * @memberof lib.Error
  * 
- * @static 
- *
+ * @static
+ * @param { String } name имя создаваемого класса
+ * @returns { lib.Error } 
  */
 
 //-----------------------------------------------------------//
@@ -1434,5 +1465,29 @@
  * 
  * @static 
  *
+ */
+
+/*************************************************************/
+
+// Functions
+
+/**
+ * Создаёт экземпляр класса, но не запускает его конструктор
+ * @function
+ * @name lib.pureInstance
+ *
+ * @param { function } OriginalClass класс
+ * @returns { OriginalClass } 
+ */
+
+/**
+ * Объединение объектов
+ * @function
+ * @name lib.merge
+ *
+ * @param { Object } initial начальный объект
+ * @param { Object } ...args список объектов которые надо объединить с начальным
+ * @param { Boolean } [extend] если последний аргумент true, то будет модифицирован начальный объект, в противном случае будет создана неглубокая копия.
+ * @returns { Object } 
  */
 

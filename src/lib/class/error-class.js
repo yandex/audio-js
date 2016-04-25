@@ -1,13 +1,12 @@
-var clearInstance = require('./clear-instance');
+var pureInstance = require('./pure-instance');
 
 /**
- * Classic Error acts like a fabric: Error.call(this, message) just create new object.
- * ErrorClass acts more like a class: ErrorClass.call(this, message) modify 'this' object.
- * @param {String} [message] - error message
- * @param {Number} [id] - error id
+ * @classdesc Класс ошибки. Оригинальный Error ведёт себя как фабрика, а не как класс. Этот объект ведёт себя как класс и его можно наследовать.
+ * @param {String} [message] - сообщение
+ * @param {Number} [id] - идентификатор ошибки
  * @extends Error
+ * @exported ya.music.lib.Error
  * @constructor
- * @private
  */
 var ErrorClass = function(message, id) {
     var err = new Error(message, id);
@@ -18,17 +17,17 @@ var ErrorClass = function(message, id) {
 };
 
 /**
- * Sugar. Just create inheritance from ErrorClass and define name property
- * @param {String} name - name of error type
+ * Сахар для быстрого создания нового класса ошибок.
+ * @param {String} name - имя создаваемого класса
  * @returns {ErrorClass}
  */
 ErrorClass.create = function(name) {
-    var errClass = clearInstance(ErrorClass);
+    var errClass = pureInstance(this);
     errClass.name = name;
     return errClass;
 };
 
-ErrorClass.prototype = clearInstance(Error);
+ErrorClass.prototype = pureInstance(Error);
 ErrorClass.prototype.name = "ErrorClass";
 
 module.exports = ErrorClass;

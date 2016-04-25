@@ -30,6 +30,102 @@
 //-----------------------------------------------------------//
 
 /**
+ * @name ya.music.lib.Events
+ * @kind class
+ * @classdesc Диспетчер событий.
+ *
+ * @constructor
+ *
+ */
+"ya.music.lib.Events": function(){},
+
+/*************************************************************/
+
+// Functions
+
+/**
+ * Расширить произвольный класс свойствами диспетчера событий.
+ * @function
+ * @name ya.music.lib.Events.mixin
+ * 
+ * @param { function } classConstructor - Конструктор класса.
+ * @returns { function } - тот же конструктор класса, расширенный свойствами диспетчера событий.
+ */
+"ya.music.lib.Events.mixin": function(classConstructor){},
+
+/**
+ * Расширить произвольный объект свойствами диспетчера событий.
+ * @function
+ * @name ya.music.lib.Events.eventize
+ * 
+ * @param { Object } object - Объект.
+ * @returns { Object } - тот же объект, расширенный свойствами диспетчера событий.
+ */
+"ya.music.lib.Events.eventize": function(object){},
+
+/**
+ * Подписаться на событие (цепочный метод).
+ * @function
+ * @name ya.music.lib.Events#on
+ * 
+ * @param { String } event - Имя события.
+ * @param { function } callback - Обработчик события.
+ * @returns { ya.music.lib.Events } - ссылку на контекст.
+ */
+"ya.music.lib.Events#on": function(event, callback){},
+
+/**
+ * Отписаться от события (цепочный метод).
+ * @function
+ * @name ya.music.lib.Events#off
+ * 
+ * @param { String } event - Имя события.
+ * @param { function } callback - Обработчик события.
+ * @returns { ya.music.lib.Events } - ссылку на контекст.
+ */
+"ya.music.lib.Events#off": function(event, callback){},
+
+/**
+ * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
+ * @function
+ * @name ya.music.lib.Events#once
+ * 
+ * @param { String } event - Имя события.
+ * @param { function } callback - Обработчик события.
+ * @returns { ya.music.lib.Events } - ссылку на контекст.
+ */
+"ya.music.lib.Events#once": function(event, callback){},
+
+/**
+ * Отписаться от всех слушателей событий (цепочный метод).
+ * @function
+ * @name ya.music.lib.Events#clearListeners
+ * 
+ * @returns { ya.music.lib.Events } - ссылку на контекст.
+ */
+"ya.music.lib.Events#clearListeners": function(){},
+
+/**
+ * Остановить запуск событий (цепочный метод).
+ * @function
+ * @name ya.music.lib.Events#muteEvents
+ * 
+ * @returns { ya.music.lib.Events } - ссылку на контекст.
+ */
+"ya.music.lib.Events#muteEvents": function(){},
+
+/**
+ * Возобновить запуск событий (цепочный метод).
+ * @function
+ * @name ya.music.lib.Events#unmuteEvents
+ * 
+ * @returns { ya.music.lib.Events } - ссылку на контекст.
+ */
+"ya.music.lib.Events#unmuteEvents": function(){},
+
+//-----------------------------------------------------------//
+
+/**
  * @name ya.music.Audio
  * @kind class
  * @classdesc Аудиоплеер для браузера.
@@ -593,106 +689,6 @@
 //-----------------------------------------------------------//
 
 /**
- * @name ya.music.Audio.AudioError
- * @kind class
- * @classdesc Класс ошибки аудиопллеера.
- *
- * @extends Error
- *
- * @constructor
- * 
- * @param { String } message - Текст ошибки.
- *
- */
-"ya.music.Audio.AudioError": function(message){},
-/*************************************************************/
-
-// Members
-
-/**
- * Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
- * @name ya.music.Audio.AudioError.NO_IMPLEMENTATION
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.NO_IMPLEMENTATION": undefined,
-
-/**
- * Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
- * @name ya.music.Audio.AudioError.NOT_PRELOADED
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.NOT_PRELOADED": undefined,
-
-/**
- * Действие недоступно из текущего состояния.
- * @name ya.music.Audio.AudioError.BAD_STATE
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.BAD_STATE": undefined,
-
-/**
- * Flash-плеер был заблокирован.
- * @name ya.music.Audio.AudioError.FLASH_BLOCKER
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.FLASH_BLOCKER": undefined,
-
-/**
- * Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
- * @name ya.music.Audio.AudioError.FLASH_UNKNOWN_CRASH
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.FLASH_UNKNOWN_CRASH": undefined,
-
-/**
- * Возникла ошибка при инициализации Flash-плеера из-за таймаута.
- * @name ya.music.Audio.AudioError.FLASH_INIT_TIMEOUT
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.FLASH_INIT_TIMEOUT": undefined,
-
-/**
- * Внутренняя ошибка Flash-плеера.
- * @name ya.music.Audio.AudioError.FLASH_INTERNAL_ERROR
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.FLASH_INTERNAL_ERROR": undefined,
-
-/**
- * Попытка вызвать недоступный экземляр Flash-плеера.
- * @name ya.music.Audio.AudioError.FLASH_EMMITER_NOT_FOUND
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.FLASH_EMMITER_NOT_FOUND": undefined,
-
-/**
- * Flash-плеер перестал отвечать на запросы.
- * @name ya.music.Audio.AudioError.FLASH_NOT_RESPONDING
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.AudioError.FLASH_NOT_RESPONDING": undefined,
-
-//-----------------------------------------------------------//
-
-/**
  * @name ya.music.Audio.PlaybackError
  * @kind class
  * @classdesc Класс ошибки воспроизведения.
@@ -957,98 +953,138 @@
 //-----------------------------------------------------------//
 
 /**
- * @name ya.music.lib.Events
+ * @name ya.music.Audio.AudioError
  * @kind class
- * @classdesc Диспетчер событий.
+ * @classdesc Класс ошибки аудиопллеера.
+ *
+ * @extends Error
  *
  * @constructor
+ * 
+ * @param { String } message - Текст ошибки.
  *
  */
-"ya.music.lib.Events": function(){},
-
+"ya.music.Audio.AudioError": function(message){},
 /*************************************************************/
 
-// Functions
+// Members
 
 /**
- * Расширить произвольный класс свойствами диспетчера событий.
- * @function
- * @name ya.music.lib.Events.mixin
- * 
- * @param { function } classConstructor - Конструктор класса.
- * @returns { function } - тот же конструктор класса, расширенный свойствами диспетчера событий.
+ * Не найдена реализация плеера или возникла ошибка при инициализации всех доступных реализаций.
+ * @name ya.music.Audio.AudioError.NO_IMPLEMENTATION
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events.mixin": function(classConstructor){},
+
+"ya.music.Audio.AudioError.NO_IMPLEMENTATION": undefined,
 
 /**
- * Расширить произвольный объект свойствами диспетчера событий.
- * @function
- * @name ya.music.lib.Events.eventize
- * 
- * @param { Object } object - Объект.
- * @returns { Object } - тот же объект, расширенный свойствами диспетчера событий.
+ * Аудиофайл не был предзагружен или во время загрузки произошла ошибка.
+ * @name ya.music.Audio.AudioError.NOT_PRELOADED
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events.eventize": function(object){},
+
+"ya.music.Audio.AudioError.NOT_PRELOADED": undefined,
 
 /**
- * Подписаться на событие (цепочный метод).
- * @function
- * @name ya.music.lib.Events#on
- * 
- * @param { String } event - Имя события.
- * @param { function } callback - Обработчик события.
- * @returns { ya.music.lib.Events } - ссылку на контекст.
+ * Действие недоступно из текущего состояния.
+ * @name ya.music.Audio.AudioError.BAD_STATE
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events#on": function(event, callback){},
+
+"ya.music.Audio.AudioError.BAD_STATE": undefined,
 
 /**
- * Отписаться от события (цепочный метод).
- * @function
- * @name ya.music.lib.Events#off
- * 
- * @param { String } event - Имя события.
- * @param { function } callback - Обработчик события.
- * @returns { ya.music.lib.Events } - ссылку на контекст.
+ * Flash-плеер был заблокирован.
+ * @name ya.music.Audio.AudioError.FLASH_BLOCKER
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events#off": function(event, callback){},
+
+"ya.music.Audio.AudioError.FLASH_BLOCKER": undefined,
 
 /**
- * Подписаться на событие и отписаться сразу после его первого возникновения (цепочный метод).
- * @function
- * @name ya.music.lib.Events#once
- * 
- * @param { String } event - Имя события.
- * @param { function } callback - Обработчик события.
- * @returns { ya.music.lib.Events } - ссылку на контекст.
+ * Возникла ошибка при инициализации Flash-плеера по неизвестным причинам.
+ * @name ya.music.Audio.AudioError.FLASH_UNKNOWN_CRASH
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events#once": function(event, callback){},
+
+"ya.music.Audio.AudioError.FLASH_UNKNOWN_CRASH": undefined,
 
 /**
- * Отписаться от всех слушателей событий (цепочный метод).
- * @function
- * @name ya.music.lib.Events#clearListeners
- * 
- * @returns { ya.music.lib.Events } - ссылку на контекст.
+ * Возникла ошибка при инициализации Flash-плеера из-за таймаута.
+ * @name ya.music.Audio.AudioError.FLASH_INIT_TIMEOUT
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events#clearListeners": function(){},
+
+"ya.music.Audio.AudioError.FLASH_INIT_TIMEOUT": undefined,
 
 /**
- * Остановить запуск событий (цепочный метод).
- * @function
- * @name ya.music.lib.Events#muteEvents
- * 
- * @returns { ya.music.lib.Events } - ссылку на контекст.
+ * Внутренняя ошибка Flash-плеера.
+ * @name ya.music.Audio.AudioError.FLASH_INTERNAL_ERROR
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events#muteEvents": function(){},
+
+"ya.music.Audio.AudioError.FLASH_INTERNAL_ERROR": undefined,
 
 /**
- * Возобновить запуск событий (цепочный метод).
- * @function
- * @name ya.music.lib.Events#unmuteEvents
- * 
- * @returns { ya.music.lib.Events } - ссылку на контекст.
+ * Попытка вызвать недоступный экземляр Flash-плеера.
+ * @name ya.music.Audio.AudioError.FLASH_EMMITER_NOT_FOUND
+ * @type { String }
+ * @const
  */
-"ya.music.lib.Events#unmuteEvents": function(){},
+
+"ya.music.Audio.AudioError.FLASH_EMMITER_NOT_FOUND": undefined,
+
+/**
+ * Flash-плеер перестал отвечать на запросы.
+ * @name ya.music.Audio.AudioError.FLASH_NOT_RESPONDING
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.AudioError.FLASH_NOT_RESPONDING": undefined,
+
+//-----------------------------------------------------------//
+
+/**
+ * @name ya.music.Audio.LoaderError
+ * @kind class
+ * @classdesc Класс ошибок загрузчика.
+Расширяет Error.
+ *
+ * @constructor
+ * 
+ * @param { String } message - Текст ошибки.
+ *
+ */
+"ya.music.Audio.LoaderError": function(message){},
+/*************************************************************/
+
+// Members
+
+/**
+ * Таймаут загрузки.
+ * @name ya.music.Audio.LoaderError.TIMEOUT
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.LoaderError.TIMEOUT": undefined,
+
+/**
+ * Ошибка запроса на загрузку.
+ * @name ya.music.Audio.LoaderError.FAILED
+ * @type { String }
+ * @const
+ */
+
+"ya.music.Audio.LoaderError.FAILED": undefined,
 
 //-----------------------------------------------------------//
 
@@ -1090,38 +1126,33 @@
 //-----------------------------------------------------------//
 
 /**
- * @name ya.music.Audio.LoaderError
+ * @name ya.music.lib.Error
  * @kind class
- * @classdesc Класс ошибок загрузчика.
-Расширяет Error.
+ * @classdesc Класс ошибки. Оригинальный Error ведёт себя как фабрика, а не как класс. Этот объект ведёт себя как класс и его можно наследовать.
+ *
+ * @extends Error
  *
  * @constructor
  * 
- * @param { String } message - Текст ошибки.
+ * @param { String } [message] - сообщение
+ * @param { Number } [id] - идентификатор ошибки
  *
  */
-"ya.music.Audio.LoaderError": function(message){},
+"ya.music.lib.Error": function(message, id){},
+
 /*************************************************************/
 
-// Members
+// Functions
 
 /**
- * Таймаут загрузки.
- * @name ya.music.Audio.LoaderError.TIMEOUT
- * @type { String }
- * @const
+ * Сахар для быстрого создания нового класса ошибок.
+ * @function
+ * @name ya.music.lib.Error.create
+ * 
+ * @param { String } name - имя создаваемого класса
+ * @returns { ya.music.lib.Error } - 
  */
-
-"ya.music.Audio.LoaderError.TIMEOUT": undefined,
-
-/**
- * Ошибка запроса на загрузку.
- * @name ya.music.Audio.LoaderError.FAILED
- * @type { String }
- * @const
- */
-
-"ya.music.Audio.LoaderError.FAILED": undefined,
+"ya.music.lib.Error.create": function(name){},
 
 //-----------------------------------------------------------//
 
@@ -1582,5 +1613,31 @@
  */
 
 "ya.music.info.onlyDeviceVolume": undefined,
+
+/*************************************************************/
+
+// Functions
+
+/**
+ * Создаёт экземпляр класса, но не запускает его конструктор
+ * @function
+ * @name ya.music.lib.pureInstance
+ * 
+ * @param { function } OriginalClass - класс
+ * @returns { OriginalClass } - 
+ */
+"ya.music.lib.pureInstance": function(OriginalClass){},
+
+/**
+ * Объединение объектов
+ * @function
+ * @name ya.music.lib.merge
+ * 
+ * @param { Object } initial - начальный объект
+ * @param { Object } ...args - список объектов которые надо объединить с начальным
+ * @param { Boolean } [extend] - если последний аргумент true, то будет модифицирован начальный объект, в противном случае будет создана неглубокая копия.
+ * @returns { Object } - 
+ */
+"ya.music.lib.merge": function(initial, ...args, extend){},
 
 })

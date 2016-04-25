@@ -13,5 +13,8 @@
     * [Deferred](Deferred.md#Deferred)
     * [Events](Events.md#Events)
     * [Promise](Promise.md#Promise)
+    * [Error](ErrorClass.md#ErrorClass)
+    * [pureInstance](global.md#pureInstance)
+    * [merge](global.md#merge)
   * [info](info.md#info)
   * [Logger](Logger.md#Logger)
