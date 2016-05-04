@@ -1,5 +1,6 @@
 var vow = require('vow');
 var detect = require('../browser/detect');
+var merge = require('../data/merge');
 
 // =================================================================
 
@@ -17,7 +18,16 @@ var Promise;
 if (typeof window.Promise !== "function"
     || detect.browser.name === "msie" || detect.browser.name === "edge" // мелкие мягкие как всегда ничего не умеют делать правильно
 ) {
-    Promise = vow.Promise;
+    Promise = function(resolver) {
+        var promise;
+        try {
+            promise = new vow.Promise(resolver);
+        } catch(e) {
+            promise = vow.reject(e);
+        }
+        return promise;
+    };
+    merge(Promise, vow.Promise, true);
 } else {
     Promise = window.Promise;
 }
