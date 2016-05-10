@@ -100,6 +100,12 @@ var AudioHTML5Loader = function() {
 };
 Events.mixin(AudioHTML5Loader);
 
+AudioHTML5Loader._catchPromise = function(promise) {
+    if (promise && promise["catch"]) {
+        promise["catch"](function() {});
+    }
+};
+
 /**
  * Интервал обновления таймингов трека
  * @type {number}
@@ -234,7 +240,7 @@ AudioHTML5Loader.prototype._onNativeEnded = function() {
     this.trigger(AudioStatic.EVENT_ENDED);
     this.ended = true;
     this.playing = false;
-    this.audio.pause();
+    AudioHTML5Loader._catchPromise(this.audio.pause());
 };
 
 /**
@@ -407,7 +413,7 @@ AudioHTML5Loader.prototype._startupAudio = function() {
         this.__initListener.step = "pause";
 
         this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__initListener);
-        this.audio.pause();
+        AudioHTML5Loader._catchPromise(this.audio.pause());
 
         DEV && logger.debug(this, "_startupAudio:play", e.type);
     }.bind(this);
@@ -419,8 +425,8 @@ AudioHTML5Loader.prototype._startupAudio = function() {
     this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__initListener);
 
     //INFO: перед использованием объект Audio требуется инициализировать, в обработчике пользовательского события
-    this.audio.load();
-    this.audio.play();
+    AudioHTML5Loader._catchPromise(this.audio.load());
+    AudioHTML5Loader._catchPromise(this.audio.play());
 };
 
 /**
@@ -705,7 +711,7 @@ AudioHTML5Loader.prototype.load = function(src) {
 
     this.src = src;
     this.audio.src = src;
-    this.audio.load();
+    AudioHTML5Loader._catchPromise(this.audio.load());
 };
 
 /** Остановить воспроизведение и загрузку трека */
@@ -732,7 +738,7 @@ AudioHTML5Loader.prototype._startPlay = function() {
     }
 
     this._breakStartup("startPlay");
-    this.audio.play();
+    AudioHTML5Loader._catchPromise(this.audio.play());
 
     //THINK: нужно ли триггерить событие в случае успеха
     this._promiseStartPlaying().then(function() {
@@ -812,7 +818,7 @@ AudioHTML5Loader.prototype.pause = function() {
     this._cancelWait("startPlaying", "pause");
     this._breakStartup("pause");
 
-    this.audio.pause();
+    AudioHTML5Loader._catchPromise(this.audio.pause());
     this.position = this.audio.currentTime;
 };
 
