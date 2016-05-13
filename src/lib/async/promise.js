@@ -28,6 +28,7 @@ if (typeof window.Promise !== "function"
         return promise;
     };
     merge(Promise, vow.Promise, true);
+    Promise.prototype = vow.Promise.prototype;
 } else {
     Promise = window.Promise;
 }
