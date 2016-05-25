@@ -21,7 +21,7 @@ YandexAudio —  JavaScript-библиотека, предназначенная
   - **скрипт** - достаточно подключить основной файл скрипта 
   ([dist/index.js](https://music.yandex.ru/api/audio/dist/index.js) 
   или [dist/index.min.js](https://music.yandex.ru/api/audio/dist/index.min.js)  - минифицированную версию) 
-  в тело страницы и далее использовать глобально доступный объект {@link ya.music.Audio}.
+  в тело страницы и далее использовать глобально доступный объект [spec/Audio.md](ya.music.Audio).
 
 
 Использование
@@ -138,10 +138,10 @@ YandexAudio —  JavaScript-библиотека, предназначенная
 ```
 
 ### Документация
-  * [Справочник API](https://github.yandex-team.ru/pages/music/audio/)
-  * [Быстрый старт](https://github.yandex-team.ru/pages/music/audio/tutorial-quick-start.html)
-  * [Обработка звука](https://github.yandex-team.ru/pages/music/audio/tutorial-fx.html)
-  * [Подводные камни](https://github.yandex-team.ru/pages/music/audio/tutorial-corner-case.html)
-  * [Полезная теоретическая информация](https://github.yandex-team.ru/pages/music/audio/tutorial-sound.html)
-  * [Web Audio API](https://github.yandex-team.ru/pages/music/audio/tutorial-web-audio-api.html)
-  * [Инструкции для контрибьюторов](https://github.yandex-team.ru/pages/music/audio/tutorial-contrib.html)
+  * [Справочник API](spec)
+  * [Быстрый старт](tutorial/quick-start.md)
+  * [Обработка звука](tutorial/fx.md)
+  * [Подводные камни](tutorial/corner-case.md)
+  * [Полезная теоретическая информация](tutorial/sound.md)
+  * [Web Audio API](tutorial/web-audio-api.md)
+  * [Инструкции для контрибьюторов](tutorial/contrib.md)
