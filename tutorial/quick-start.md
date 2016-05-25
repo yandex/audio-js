@@ -24,7 +24,7 @@
     <div class="overlay"></div>      
 </div>
 
-<script src="https://github.yandex-team.ru/pages/music/audio/dist/index.min.js"></script>
+<script src="https://music.yandex.ru/api/audio/dist/index.min.js"></script>
 <script src="index.js"></script>
 ```
 
@@ -203,4 +203,4 @@ dom.volume.bar.addEventListener("click", function(evt) {
 ```
 
 Полный код можно [посмотреть тут](https://github.yandex-team.ru/music/audio/tree/master/examples/quick-start).
-Рабочий пример кода можно [посмотреть тут](https://github.yandex-team.ru/pages/music/audio/examples/quick-start/).
+Рабочий пример кода можно [посмотреть тут](https://music.yandex.ru/api/audio/examples/quick-start/index.html).

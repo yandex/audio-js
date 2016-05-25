@@ -19,8 +19,8 @@ YandexAudio —  JavaScript-библиотека, предназначенная
   - **npm** - если ваш проект использует сборку скриптов с помощью browserify или аналога, то можно просто подключать
   библиотку как npm-пакет `var YandexAudio = require('YandexAudio')`;
   - **скрипт** - достаточно подключить основной файл скрипта 
-  ([dist/index.js](https://github.yandex-team.ru/pages/music/audio/dist/index.js) 
-  или [dist/index.min.js](https://github.yandex-team.ru/pages/music/audio/dist/index.min.js)  - минифицированную версию) 
+  ([dist/index.js](https://music.yandex.ru/api/audio/dist/index.js) 
+  или [dist/index.min.js](https://music.yandex.ru/api/audio/dist/index.min.js)  - минифицированную версию) 
   в тело страницы и далее использовать глобально доступный объект {@link ya.music.Audio}.
 
 
