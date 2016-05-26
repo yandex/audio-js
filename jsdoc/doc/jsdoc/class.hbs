@@ -1,0 +1,23 @@
+/**
+ * @name {{name}}
+ * @kind class
+ * @classdesc {{{classdesc}}}
+ *
+{{#each augments}}
+ * @extends {{this}}
+{{/each}}
+ *
+{{#each fires}}
+ * @fires {{this}}
+{{/each}}
+ *{{#if exported}} @alias {{{exported}}}
+ *
+ * @constructor
+ * {{{description}}}
+{{> params-table}}
+ *
+{{/if}}
+ */
+{{> method}}
+
+{{> children children}}

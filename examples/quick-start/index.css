@@ -1,0 +1,91 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.player {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 140px;
+}
+
+.overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+.overlay_hidden {
+    display: none;
+}
+
+.overlay_error {
+    background: #ffcccc;
+    color: #ff0000;
+}
+
+.controls_play {
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px #aaa solid;
+    cursor: pointer;
+}
+
+.controls_play:hover {
+    border-color: #666;
+}
+
+.player_playing .controls_play {
+    background: #9DBAFF;
+}
+
+.progress {
+    display: block;
+    position: relative;
+    width: 90%;
+    height: 104px;
+    border: 1px #ccc solid;
+    margin: 10px 0;
+}
+
+.progress_loaded, .progress_current {
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.progress_loaded {
+    background: #ccc;
+    z-index: 1;
+}
+
+.progress_current {
+    background: #535BC3;
+    z-index: 2;
+}
+
+.volume {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 9%;
+    top: 0;
+    height: 100%;
+    border: 1px #ccc solid;
+}
+
+.volume_bar {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #535BC3;
+}

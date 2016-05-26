@@ -1,0 +1,11 @@
+{{#if params}}
+{{#if line}}
+{{#each params}}{{#unless @first}}, {{/unless}}{{{name}}}{{> type line=1}}{{/each}}
+{{else}}
+| Имя | Тип | * | Описание |
+| --- | --- | --- | --- |
+{{#each params}}
+| {{#if optional}}*\[{{/if}}{{{name}}}{{#if optional}}\]*{{/if}} | {{> type}} | {{{defaultvalue}}} | {{{description}}} |
+{{/each}}
+{{/if}}
+{{/if}}
