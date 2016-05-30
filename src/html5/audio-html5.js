@@ -56,7 +56,7 @@ if (detect.platform.mobile || detect.platform.tablet) {
 // =================================================================
 
 /**
- * @classdesc Класс html5 аудио-плеера
+ * @classdesc Класс HTML5-аудиоплеера.
  * @extends IAudioImplementation
  *
  * @fires IAudioImplementation#EVENT_PLAY
@@ -106,7 +106,7 @@ exports.type = AudioHTML5.type = AudioHTML5.prototype.type = "html5";
 // =================================================================
 
 /**
- * Добавить загрузчик аудио-файлов
+ * Добавить загрузчик аудиофайлов.
  * @private
  */
 AudioHTML5.prototype._addLoader = function() {
@@ -236,7 +236,7 @@ AudioHTML5.prototype.toggleWebAudioAPI = function(state) {
  * Подключение аудио препроцессора. Вход препроцессора подключается к аудио-элементу у которого выставлена
  * 100% громкость. Выход препроцессора подключается к GainNode, которая регулирует итоговую громкость
  * @param {Audio~AudioPreprocessor} preprocessor - препроцессор
- * @returns {boolean} -- статус успеха
+ * @returns {Boolean} -- статус успеха
  */
 AudioHTML5.prototype.setAudioPreprocessor = function(preprocessor) {
     if (!this.webAudioApi) {
@@ -412,7 +412,7 @@ AudioHTML5.prototype.preload = function(src, duration, offset) {
  * Проверить что трек предзагружается
  * @param {String} src - ссылка на трек
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean}
+ * @returns {Boolean}
  */
 AudioHTML5.prototype.isPreloaded = function(src, offset) {
     offset = offset == null ? 1 : offset;
@@ -424,7 +424,7 @@ AudioHTML5.prototype.isPreloaded = function(src, offset) {
  * Проверить что трек начал предзагружаться
  * @param {String} src - ссылка на трек
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean}
+ * @returns {Boolean}
  */
 AudioHTML5.prototype.isPreloading = function(src, offset) {
     offset = offset == null ? 1 : offset;
@@ -435,7 +435,7 @@ AudioHTML5.prototype.isPreloading = function(src, offset) {
 /**
  * Запустить воспроизведение предзагруженного трека
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean} -- доступность данного действия
+ * @returns {Boolean} -- доступность данного действия
  */
 AudioHTML5.prototype.playPreloaded = function(offset) {
     DEV && logger.debug(this, "playPreloaded", offset);
@@ -469,7 +469,7 @@ AudioHTML5.prototype.getSrc = function(offset) {
 
 /**
  * Проверить доступен ли программный контроль громкости
- * @returns {boolean}
+ * @returns {Boolean}
  */
 AudioHTML5.prototype.isDeviceVolume = function() {
     return detect.onlyDeviceVolume;

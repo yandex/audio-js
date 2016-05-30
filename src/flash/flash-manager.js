@@ -20,8 +20,8 @@ var LoaderError = require('../lib/net/error/loader-error');
 // =================================================================
 
 /**
- * @classdesc Загрузка flash-плеера и обработка событий
- * @param {HTMLElement} overlay - объект для загрузки и показа flash-плеера
+ * @classdesc Загрузка Flash-плеера и обработка событий
+ * @param {HTMLElement} overlay - объект для загрузки и показа Flash-плеера
  * @constructor
  * @private
  */
@@ -147,12 +147,12 @@ FlashManager.prototype._onInit = function() {
 
 // =================================================================
 
-//  Обработчики событий flash-плеера
+//  Обработчики событий Flash-плеера
 
 // =================================================================
 
 /**
- * Обработчик событий, создаваемых flash-плеером
+ * Обработчик событий, создаваемых Flash-плеером
  * @param {String} event
  * @param {int} id - id плеера
  * @param {int} offset - 0: для текущего загрузчика, 1: для следующего загрузчика
@@ -200,7 +200,7 @@ FlashManager.prototype._onEvent = function(event, id, offset, data) {
 };
 
 /**
- * Проверка доступности flash-плеера
+ * Проверка доступности Flash-плеера
  * @private
  */
 FlashManager.prototype._onHeartBeat = function() {
@@ -220,7 +220,7 @@ FlashManager.prototype._onHeartBeat = function() {
 
 /**
  * Создание нового плеера
- * @param {AudioFlash} audioFlash - flash аудио-плеер, который будет обслуживать созданный плеер
+ * @param {AudioFlash} audioFlash - flash аудиоплеер, который будет обслуживать созданный плеер
  * @returns {Promise} -- обещание, которое разрешается после завершения создания плеера
  */
 FlashManager.prototype.createPlayer = function(audioFlash) {

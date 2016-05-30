@@ -71,7 +71,7 @@ var AudioHTML5Loader = function() {
 
     /**
      * Флаг начала загрузки
-     * @type {boolean}
+     * @type {Boolean}
      * @private
      */
     this.notLoading = true;
@@ -541,7 +541,7 @@ AudioHTML5Loader._promiseMetadataEvents = [AudioHTML5Loader.EVENT_NATIVE_META, A
 
 /**
  * Проверка получения метаданных
- * @returns {boolean}
+ * @returns {Boolean}
  * @private
  */
 AudioHTML5Loader.prototype._promiseMetadataCheck = function() {
@@ -572,7 +572,7 @@ AudioHTML5Loader._promiseLoadedEvents = [AudioHTML5Loader.EVENT_NATIVE_LOADING];
 
 /**
  * Проверка, что загружена нужная часть трека
- * @returns {boolean}
+ * @returns {Boolean}
  * @private
  */
 AudioHTML5Loader.prototype._promiseLoadedCheck = function() {
@@ -619,7 +619,7 @@ AudioHTML5Loader._promisePlayingEvents = [AudioHTML5Loader.EVENT_NATIVE_TIMEUPDA
 
 /**
  * Проверка, что проигрывается нужная часть трека
- * @returns {boolean}
+ * @returns {Boolean}
  * @private
  */
 AudioHTML5Loader.prototype._promisePlayingCheck = function() {

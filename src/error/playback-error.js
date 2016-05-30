@@ -18,7 +18,7 @@ var PlaybackError = function(message, src) {
 PlaybackError.prototype = ErrorClass.create("PlaybackError");
 
 /**
- * Отмена соединенния.
+ * Отмена соединения.
  * @type {String}
  * @const
  */
@@ -50,7 +50,7 @@ PlaybackError.BAD_DATA = "Bad data";
 PlaybackError.DONT_START = "Playback start error";
 
 /**
- * Таблица соответствия кодов ошибок HTML5 плеера.
+ * Таблица соответствия кодов ошибок HTML5-плеера.
  *
  * @const
  * @type {Object}
@@ -62,6 +62,6 @@ PlaybackError.html5 = {
     4: PlaybackError.BAD_DATA
 };
 
-//TODO: сделать классификатор ошибок flash-плеера
+//TODO: сделать классификатор ошибок Flash-плеера
 
 module.exports = PlaybackError;
