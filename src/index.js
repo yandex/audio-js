@@ -1,3 +1,5 @@
+require('./lib/browser/audioContextMonkeyPatch.js');
+
 var YandexAudio = require('./export');
 require('./error/export');
 require('./lib/net/error/export');
