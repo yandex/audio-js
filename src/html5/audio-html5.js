@@ -39,6 +39,9 @@ exports.available = (function() {
 if (detect.platform.mobile || detect.platform.tablet) {
     audioContext = null;
     logger.info(this, "WebAudioAPI not allowed for mobile");
+} else if (detect.browser.name == 'safari') {
+    audioContext = null;
+    logger.info(this, "WebAudioAPI temporarily not allowed for Safari");
 } else {
     try {
         var audioContext = new AudioContext();
