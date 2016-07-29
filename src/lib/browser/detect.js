@@ -17,12 +17,17 @@ var rmmsie = /(iemobile)\/([\d\.]+)/;
 var rmozilla = /(mozilla)(?:.*? rv:([\w.]+))?/;
 var rsafari = /^((?!chrome).)*version\/([\d\w\.]+).*(safari)/;
 
+// Порядок очень важен:
+// у Ya, Opera и Edge есть и chrome и safari, но не факт, что одновременно,
+// поэтому чекаем их первыми, что бы избежать false positive
+// у хрома есть сафари, но у сафари нет хрома, поэтому сафари идет первым
+// хром считаем неким абстрактным вебкит-браузером, точнее никак, много притворяющихся
 var match = ruc.exec(ua)
-    || rsafari.exec(ua)
     || ryabro.exec(ua)
-    || redge.exec(ua)
-    || rmmsie.exec(ua)
     || ropera.exec(ua)
+    || redge.exec(ua)
+    || rsafari.exec(ua)
+    || rmmsie.exec(ua)
     || rwebkit.exec(ua)
     || rmsie.exec(ua)
     || ua.indexOf("compatible") < 0 && rmozilla.exec(ua)
@@ -32,6 +37,8 @@ var browser = {name: match[1] || "", version: match[2] || "0"};
 
 if (match[3] === "safari") {
     browser.name = match[3];
+    // Сафари четче различать по версии вебкита, а не по маркетинговой
+    browser.version = rwebkit.exec(ua)[2]
 }
 
 if (browser.name === 'msie') {
