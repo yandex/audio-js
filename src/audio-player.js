@@ -780,7 +780,7 @@ Audio.prototype.playPreloaded = function(src) {
  * @returns {AbortablePromise} обещание, которое разрешится, когда начнется предзагрузка аудиофайла.
  */
 Audio.prototype.preload = function(src, duration) {
-    if (detect.browser.name === "msie" && detect.browser.version[0] == "9") {
+    if (detect.tv || (detect.browser.name === "msie" && detect.browser.version[0] == "9")) {
         return reject(new AudioError(AudioError.NOT_PRELOADED));
     }
 
@@ -851,11 +851,7 @@ Audio.prototype.getPosition = function() {
 Audio.prototype.setPosition = function(position) {
     logger.info(this, "setPosition", position);
 
-    if (this.implementation.type == "flash") {
-        position = Math.max(0, Math.min(this.getLoaded() - 1, position));
-    } else {
-        position = Math.max(0, Math.min(this.getDuration() - 1, position));
-    }
+    position = Math.max(0, Math.min(this.implementation.getMaxSeekablePosition() - 1, position));
 
     this._played += this.getPosition() - this._lastSkip;
     this._lastSkip = position;
@@ -879,6 +875,7 @@ Audio.prototype.getDuration = function(preloader) {
  * @param {Boolean|int} preloader Активный плеер или предзагрузчик. 0 - активный плеер, 1 - предзагрузчик.
  * @returns {Number}
  */
+//TODO разный интерфейс у флэша и хтмл (offset vs id, offset)
 Audio.prototype.getLoaded = function(preloader) {
     return this.implementation.getLoaded(preloader ? 1 : 0) || 0;
 };

@@ -365,6 +365,15 @@ AudioHTML5.prototype.getLoaded = function(offset) {
 };
 
 /**
+ * Получить максимально возможную точку перемотки
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ */
+AudioHTML5.prototype.getMaxSeekablePosition = function(offset) {
+    return this.getDuration(offset);
+};
+
+/**
  * Получить текущее значение громкости
  * @returns {number}
  */

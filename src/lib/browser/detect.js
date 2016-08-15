@@ -70,23 +70,33 @@ if (browser.name === "mozilla" && browser.version.split(".")[0] === "11") {
 // =================================================================
 
 // Useragent RegExp
-var rplatform = /(windows phone|ipad|iphone|ipod|android|blackberry|playbook|windows ce|webos)/;
+var rplatform = /(windows phone|ipad|iphone|ipod|android|blackberry|playbook|windows ce)/;
 var rtablet = /(ipad|playbook)/;
 var randroid = /(android)/;
 var rmobile = /(mobile)/;
+var rtv = /(netcast|web[0o]s|nettv|netrange|sharp|smart-tv)/;
 
 platform = rplatform.exec(ua) || [];
 var tablet = rtablet.exec(ua) || !rmobile.exec(ua) && randroid.exec(ua) || [];
+var tv = rtv.exec(ua) || (!!window.tizen ? [null, 'tizen'] : false) || (typeof window.sony == 'object' && window.sony.tv ? [null, 'sony'] : false) || [];
 
 if (platform[1]) {
     platform[1] = platform[1].replace(/\s/g, "_"); // Change whitespace to underscore. Enables dot notation.
 }
 
+if (tv[1] == 'web0s') {
+    tv[1] = 'webos';
+}
+
 var platform = {
     type: platform[1] || "",
     tablet: !!tablet[1],
+    tv: !!tv[1],
     mobile: platform[1] && !tablet[1] || false
 };
+if (!!tv[1]) {
+    platform.type = tv[1];
+}
 if (!platform.type) {
     platform.type = 'pc';
 }
@@ -144,6 +154,7 @@ var info = {
      * @property {string} type - тип платформы
      * @property {boolean} tablet - планшет
      * @property {boolean} mobile - мобильный
+     * @property {boolean} tv - телевизор
      */
     platform: platform,
 

@@ -63,6 +63,13 @@ var AudioHTML5Loader = function() {
     this.position = 0;
 
     /**
+     * Последнее ненулевое значение текущей позиции
+     * @type {number}
+     * @private
+     */
+    this.lastGoodTime = 0;
+
+    /**
      * Время последнего обновления данных
      * @type {number}
      * @private
@@ -206,6 +213,10 @@ AudioHTML5Loader.prototype._updateProgress = function() {
         return;
     }
 
+    if(this.audio.currentTime){
+        this.lastGoodTime = this.audio.currentTime;
+    }
+
     this.lastUpdate = currentTime;
     this.trigger(AudioStatic.EVENT_PROGRESS);
 };
@@ -255,7 +266,7 @@ AudioHTML5Loader.prototype._onNativeError = function(e) {
 
     if (this.audio.error.code == 2) {
         logger.warn(this, "Network error. Restarting...", logger._showUrl(this.src));
-        this.position = this.audio.currentTime;
+        this.position = this.lastGoodTime;
         this._restart();
         return;
     }
@@ -708,6 +719,7 @@ AudioHTML5Loader.prototype.load = function(src) {
     this.playing = false;
     this.notLoading = true;
     this.position = 0;
+    this.lastGoodTime = 0;
 
     this.src = src;
     this.audio.src = src;

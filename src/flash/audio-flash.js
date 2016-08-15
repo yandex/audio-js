@@ -191,6 +191,14 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
  */
 
 /**
+ * Получить максимально возможную точку перемотки
+ * @method IAudioImplementation#getMaxSeekablePosition
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ * @abstract
+ */
+
+/**
  * Получить текущее значение громкости
  * @method AudioFlash#getVolume
  * @returns {number}

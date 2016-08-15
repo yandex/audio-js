@@ -155,6 +155,16 @@ FlashInterface.prototype.getLoaded = function(id, offset) {
     return this._callFlash("getLoaded", id, offset || 0);
 };
 
+/**
+ * Получить максимально возможную точку перемотки
+ * @param {int} id - id плеера
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ */
+FlashInterface.prototype.getMaxSeekablePosition = function(id, offset) {
+    return this.getLoaded(id, offset);
+};
+
 // =================================================================
 
 //  Предзагрузка

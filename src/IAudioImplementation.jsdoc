@@ -146,6 +146,14 @@
  */
 
 /**
+ * Получить максимально возможную точку перемотки
+ * @method IAudioImplementation#getMaxSeekablePosition
+ * @param {int} [offset=0] - 0: текущий загрузчик, 1: следующий загрузчик
+ * @returns {number}
+ * @abstract
+ */
+
+/**
  * Получить текущее значение громкости
  * @method IAudioImplementation#getVolume
  * @returns {number}
