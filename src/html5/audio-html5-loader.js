@@ -121,6 +121,13 @@ AudioHTML5Loader._catchPromise = function(promise) {
  */
 AudioHTML5Loader._updateInterval = 30;
 
+/**
+ * Звук-заглушка (16 семплов стерео-тишины в mp3), необходимый для корректной инициализации
+ * @type {string}
+ * @const
+ */
+AudioHTML5Loader.EMPTY_SOUND = "data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA//////////////////////////////////////////////////////////////////8AAAA8TEFNRTMuOThyBK8AAAAAAAAAADQgJAawTQABzAAAAnGGK6g3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sQRAAP8AAAf4AAAAgAAA/wAAABAAAB/gAAACAAAD/AAAAETEFNRTMuOTguMlVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/+xBkIg/wAABpAAAACAAADSAAAAEAAAGkAAAAIAAANIAAAARVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==";
+
 // =================================================================
 
 //  Нативные события Audio
@@ -260,7 +267,7 @@ AudioHTML5Loader.prototype._onNativeEnded = function() {
  * @private
  */
 AudioHTML5Loader.prototype._onNativeError = function(e) {
-    if (!this.src) {
+    if (!this.src || this.src == AudioHTML5Loader.EMPTY_SOUND) {
         return;
     }
 
@@ -358,7 +365,7 @@ AudioHTML5Loader.prototype._initAudio = function() {
     this.audio.loop = false; // for IE
     this.audio.preload = this.audio.autobuffer = "auto"; // 100%
     this.audio.autoplay = false;
-    this.audio.src = "";
+    this.audio.src = AudioHTML5Loader.EMPTY_SOUND;
 
     this._initUserEvents();
     this.__initListener = AudioHTML5Loader._defaultInitListener;
@@ -420,6 +427,7 @@ AudioHTML5Loader.prototype._startupAudio = function() {
             delete this.__initListener;
             this.unmuteEvents();
             logger.info(this, "_startupAudio:ready");
+
         }.bind(this);
         this.__initListener.step = "pause";
 
@@ -766,7 +774,7 @@ AudioHTML5Loader.prototype._startPlay = function() {
 AudioHTML5Loader.prototype._restart = function(reason) {
     logger.info(this, "_restart", reason, this.position, this.playing);
 
-    if (!this.src || reason && reason !== "timeout") {
+    if (!this.src || this.src == AudioHTML5Loader.EMPTY_SOUND || reason && reason !== "timeout") {
         return;
     }
 
@@ -868,7 +876,6 @@ AudioHTML5Loader.prototype.toggleCrossDomain = function(state) {
     } else {
         this.audio.removeAttribute("crossOrigin");
     }
-
     this._restart();
 };
 
