@@ -228,3 +228,10 @@
  * @returns {boolean}
  * @abstract
  */
+
+/**
+ * Проверить доступность воcпроизведения без пользовательского взаимодействия
+ * @method IAudioImplementation#isAutoplayable
+ * @returns {boolean}
+ * @abstract
+ */

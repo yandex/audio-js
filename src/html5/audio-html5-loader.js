@@ -43,6 +43,12 @@ var AudioHTML5Loader = function() {
     }.bind(this));
 
     /**
+     * До окончания инициализации плеер считается неспособным начать автовоспроизведение
+     * @type {Boolean}
+     */
+    this.isAutoplayable = false;
+
+    /**
      * Контейнер для различных ожиданий событий
      * @type {Object.<String, Deferred>}
      * @private
@@ -54,7 +60,7 @@ var AudioHTML5Loader = function() {
      * @type {string}
      * @private
      */
-    this.src = "";
+    this.src = AudioHTML5Loader.EMPTY_SOUND;
     /**
      * Назначенная позиция воспроизведения
      * @type {number}
@@ -89,6 +95,9 @@ var AudioHTML5Loader = function() {
      * @private
      */
     this.output = null;
+
+    this._whenReady = new Deferred();
+    this.whenReady = this._whenReady.promise();
 
     //--- Сахар для защиты от утечек памяти
     this.__startPlay = this._startPlay.bind(this);
@@ -371,6 +380,7 @@ AudioHTML5Loader.prototype._initAudio = function() {
     this.__initListener = AudioHTML5Loader._defaultInitListener;
 
     this._initNativeEvents();
+    this._initAndCheckAutoplay();
 };
 
 /**
@@ -427,6 +437,7 @@ AudioHTML5Loader.prototype._startupAudio = function() {
             delete this.__initListener;
             this.unmuteEvents();
             logger.info(this, "_startupAudio:ready");
+            this.isAutoplayable = true;
 
         }.bind(this);
         this.__initListener.step = "pause";
@@ -444,6 +455,77 @@ AudioHTML5Loader.prototype._startupAudio = function() {
     this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__initListener);
 
     //INFO: перед использованием объект Audio требуется инициализировать, в обработчике пользовательского события
+    AudioHTML5Loader._catchPromise(this.audio.load());
+    AudioHTML5Loader._catchPromise(this.audio.play());
+};
+
+/**
+ * До того, как произойдет полная инициализация всех возможностей в методе _startupAudio,
+ * непосредственно в момент инициализации плеера делается попытка проиграть пустой звук.
+ * Например, Firefox с настройкой media.autoplay.enabled=false будет делать вид,
+ * что ничего не понимает и не может проиграть файл, ему мы поставим isAutoplayable = false.
+ * @private
+ */
+AudioHTML5Loader.prototype._initAndCheckAutoplay = function() {
+    DEV && logger.debug(this, "_initAndCheckAutoplay");
+
+    this.__autoplayListener = function(e) {
+        if (!this.__autoplayListener) {
+            return;
+        }
+
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__autoplayListener);
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_CANPLAY, this.__autoplayListener);
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_META, this.__autoplayListener);
+        this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__autoplayListener);
+
+        // Если при попытке проиграть пустой звук пришла ошибка, то плеер не умеет
+        // играть без действия пользователя a.k.a. autoplay
+        // Ставим галочку и резолвим инициализацию
+        if(e.type == AudioHTML5Loader.EVENT_NATIVE_ERROR) {
+            this.isAutoplayable = false;
+            this._whenReady.resolve();
+            return;
+        }
+
+        // Ну а если нет ошибки, доведем начатое до конца и поставим пустой звук на паузу
+        // и зарезолвим инициализацию чуть позже
+        this.__autoplayListener = function(e) {
+            if (!this.__autoplayListener) {
+                return;
+            }
+
+            // Но еще раз проверим на предмет ошибок
+            if(e.type == AudioHTML5Loader.EVENT_NATIVE_ERROR) {
+                this.isAutoplayable = false;
+                this._whenReady.resolve();
+                return;
+            }
+
+            this.isAutoplayable = true;
+            this.audio.removeEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__autoplayListener);
+            delete this.__autoplayListener;
+            logger.info(this, "_initAndCheckAutoplay:ready");
+            this._whenReady.resolve();
+        }.bind(this);
+
+        this.__autoplayListener.step = "pause";
+
+        this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PAUSE, this.__autoplayListener);
+        AudioHTML5Loader._catchPromise(this.audio.pause());
+
+        DEV && logger.debug(this, "_initAndCheckAutoplay:play", e.type);
+
+    }.bind(this);
+    this.__autoplayListener.step = "play";
+
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_PLAY, this.__autoplayListener);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_CANPLAY, this.__autoplayListener);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_META, this.__autoplayListener);
+    this.audio.addEventListener(AudioHTML5Loader.EVENT_NATIVE_ERROR, this.__autoplayListener);
+
+    // Попробуем поиграть пустой файл
+    this.audio.src = AudioHTML5Loader.EMPTY_SOUND;
     AudioHTML5Loader._catchPromise(this.audio.load());
     AudioHTML5Loader._catchPromise(this.audio.play());
 };

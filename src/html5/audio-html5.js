@@ -3,6 +3,7 @@ var logger = new Logger('AudioHTML5');
 
 var detect = require('../lib/browser/detect');
 var Events = require('../lib/async/events');
+var Deferred = require('../lib/async/deferred');
 var AudioStatic = require('../audio-static');
 
 var AudioHTML5Loader = require('./audio-html5-loader');
@@ -94,8 +95,15 @@ var AudioHTML5 = function() {
     this.volume = 1;
     this.loaders = [];
 
+    this._whenReady = new Deferred();
+    this.whenReady = this._whenReady.promise();
+
     this._addLoader();
     this._addLoader();
+
+    this._getLoader().whenReady.then(function(){
+        this._whenReady.resolve();
+    }.bind(this))
 
     this._setActive(0);
 };
@@ -485,6 +493,14 @@ AudioHTML5.prototype.getSrc = function(offset) {
  */
 AudioHTML5.prototype.isDeviceVolume = function() {
     return detect.onlyDeviceVolume;
+};
+
+/**
+ * Проверить доступность воcпроизведения без пользовательского взаимодействия
+ * @returns {boolean}
+ */
+AudioHTML5.prototype.isAutoplayable = function() {
+    return this._getLoader(0).isAutoplayable;
 };
 
 // =================================================================

@@ -937,6 +937,14 @@ Audio.prototype.isDeviceVolume = function() {
     return this.implementation.isDeviceVolume();
 };
 
+/**
+ * Проверка возможности воспроизведения без пользовательского взаимодействия
+ * @returns {Boolean}
+ */
+Audio.prototype.isAutoplayable = function() {
+    return this.implementation && this.implementation.isAutoplayable();
+};
+
 // =================================================================
 
 //  Web Audio API

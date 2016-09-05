@@ -231,4 +231,12 @@ FlashInterface.prototype.getSrc = function(id, offset) {
     return this._callFlash("getSrc", id, offset || 0);
 };
 
+/**
+ * Проверить доступность воcпроизведения без пользовательского взаимодействия
+ * @returns {boolean}
+ */
+FlashInterface.prototype.isAutoplayable = function() {
+    return true;
+};
+
 module.exports = FlashInterface;
