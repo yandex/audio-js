@@ -13,7 +13,7 @@ var flashManager;
 
 // =================================================================
 
-//  Проверка доступности flash-плеера
+//  Проверка доступности Flash-плеера
 
 // =================================================================
 
@@ -30,7 +30,7 @@ logger.info(this, "detection", exports.available);
 // =================================================================
 
 /**
- * @classdesc Класс flash аудио-плеера
+ * @classdesc Класс Flash аудиоплеера.
  * @extends IAudioImplementation
  *
  * @fires IAudioImplementation#EVENT_PLAY
@@ -46,7 +46,7 @@ logger.info(this, "detection", exports.available);
  * @fires IAudioImplementation#EVENT_LOADED
  * @fires IAudioImplementation#EVENT_ERROR
  *
- * @param {HTMLElement} [overlay] - место для встраивания плеера (актуально только для flash-плеера)
+ * @param {HTMLElement} [overlay] - место для встраивания плеера (актуально только для Flash-плеера)
  * @param {Boolean} [force=false] - создать новый экзепляр FlashManager
  * @constructor
  * @private
@@ -139,14 +139,14 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
  * @method AudioFlash#isPreloaded
  * @param {String} src - ссылка на трек
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean}
+ * @returns {Boolean}
  */
 
 /**
  * Проверить что трек предзагружается
  * @param {String} src - ссылка на трек
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean}
+ * @returns {Boolean}
  */
 
 /**
@@ -154,14 +154,14 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
  * @method AudioFlash#isPreloading
  * @param {String} src - ссылка на трек
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean}
+ * @returns {Boolean}
  */
 
 /**
  * Запустить воспроизведение предзагруженного трека
  * @method AudioFlash#playPreloaded
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean} -- доступность данного действия
+ * @returns {Boolean} -- доступность данного действия
  */
 
 /**
@@ -225,7 +225,7 @@ Object.keys(FlashInterface.prototype).filter(function(key) {
 
 /**
  * Проверить доступен ли программный контроль громкости
- * @returns {boolean}
+ * @returns {Boolean}
  */
 AudioFlash.prototype.isDeviceVolume = function() {
     return false;

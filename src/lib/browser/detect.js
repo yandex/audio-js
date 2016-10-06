@@ -133,34 +133,34 @@ try {
 }
 
 /**
- * Информация об окружении
+ * Информация об окружении.
  * @namespace
  * @exported ya.music.info
  */
 var info = {
     /**
-     * Информация о браузере
+     * Информация о браузере.
      * @namespace
-     * @property {string} name - название браузера
-     * @property {string} version - версия
-     * @property {number} [documentMode] - версия документа (для IE)
+     * @property {string} name Название браузера.
+     * @property {string} version Версия.
+     * @property {number} [documentMode] Версия документа (для IE).
      */
     browser: browser,
 
     /**
-     * Информация о платформе
+     * Информация о платформе.
      * @namespace
-     * @property {string} os - тип операционной системы
-     * @property {string} type - тип платформы
-     * @property {boolean} tablet - планшет
-     * @property {boolean} mobile - мобильный
-     * @property {boolean} tv - телевизор
+     * @property {string} os Тип операционной системы.
+     * @property {string} type Тип платформы.
+     * @property {Boolean} tablet Планшет.
+     * @property {Boolean} mobile Мобильный.
+     * @property {boolean} tv Телевизор
      */
     platform: platform,
 
     /**
-     * Настройка громкости
-     * @type {boolean}
+     * Настройка громкости.
+     * @type {Boolean}
      */
     onlyDeviceVolume: noVolume
 };

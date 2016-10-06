@@ -51,11 +51,11 @@ module.exports = function(page, data, style) {
 
     if (style === "tech") {
         page = page
-            .replace(/\.<(.*?)>/g, ".&lt;$1&gt;")
+            .replace(/\.<([^/]*?)>/g, ".&lt;$1&gt;")
             .replace(/<(\/?)code>/g, "<$1codeph>")
             .replace(/<(\/?)strong>/g, "<$1b>")
             .replace(/ya\.music\./g, "")
-            .replace(/Array\.&lt;(.*?)&gt;/g, "$1[]")
+            .replace(/Array\.&lt;([^/]*?)&gt;/g, "$1[]")
             .replace(/ Error( |$)/mg,
                 " <xref scope=\"external\" href=\"https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Error\">Error</xref> ");
     }

@@ -11,7 +11,7 @@
  *
  * @extends Events
  *
- * @param {HTMLElement} [overlay] - место для встраивания плеера (актуально только для flash-плеера)
+ * @param {HTMLElement} [overlay] - место для встраивания плеера (актуально только для Flash-плеера)
  *
  * @property {string} type - Тип плеера
  * @property {Boolean} available - Доступность реализации

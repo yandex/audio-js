@@ -8,7 +8,7 @@ var logger = new Logger('FlashInterface');
 // =================================================================
 
 /**
- * @classdesc Описание внешнего интерфейса flash-плеера
+ * @classdesc Описание внешнего интерфейса Flash-плеера
  * @param {Object} flash - swf-объект
  * @constructor
  * @private
@@ -20,12 +20,12 @@ var FlashInterface = function(flash) {
 
 // =================================================================
 
-//  Общение с flash-плеером
+//  Общение с Flash-плеером
 
 // =================================================================
 
 /**
- * Вызвать метод flash-плеера
+ * Вызвать метод Flash-плеера
  * @param {String} fn - название метода
  * @returns {*}
  * @private
@@ -42,8 +42,8 @@ FlashInterface.prototype._callFlash = function(fn) {
 };
 
 /**
- * Проверка обратной связи с flash-плеером
- * @throws Ошибка доступа к flash-плееру
+ * Проверка обратной связи с Flash-плеером
+ * @throws Ошибка доступа к Flash-плееру
  * @private
  */
 FlashInterface.prototype._heartBeat = function() {
@@ -209,7 +209,7 @@ FlashInterface.prototype.isPreloading = function(id, src, offset) {
  * Запустить воспроизведение предзагруженного трека
  * @param {int} id - id плеера
  * @param {int} [offset=1] - 0: текущий загрузчик, 1: следующий загрузчик
- * @returns {boolean} -- доступность данного действия
+ * @returns {Boolean} -- доступность данного действия
  */
 FlashInterface.prototype.playPreloaded = function(id, offset) {
     return this._callFlash("playPreloaded", id, offset == null ? 1 : offset);

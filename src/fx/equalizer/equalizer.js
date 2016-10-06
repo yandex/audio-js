@@ -13,7 +13,7 @@ var EqualizerBand = require('./equalizer-band');
  */
 
 /**
- * Событие изменения полосы пропускания
+ * Событие изменения полосы пропускания.
  * @event Equalizer.EVENT_CHANGE
  *
  * @param {Number} freq Частота полосы пропускания.
@@ -103,7 +103,7 @@ Equalizer.DEFAULT_PRESETS = require('./default.presets.js');
 // =================================================================
 
 /**
- * Обработка события полосы эквалайзера
+ * Обработка события полосы эквалайзера.
  * @param {EqualizerBand} band - полоса эквалайзера
  * @param {String} event - событие
  * @param {*} data - данные события
